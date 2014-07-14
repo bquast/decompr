@@ -38,19 +38,19 @@ load.demand <- function(x, y) {
   bigrownam <- paste( z01, z02, sep="." )
   
   # define dimensions
-  Ad <- array( 0,dim=c( GN,GN ) )
-  Am <- array( 0,dim=c( GN,GN ) )
-  Bd <- array( 0,dim=c( GN,GN ) )
-  Bm <- array( 0,dim=c( GN,GN ) )
-  Y <- array( 0,dim=c( GN,length( regnam ) ) )
-  Yd <- array( 0,dim=c( GN,length( regnam ) ) )
-  Ym <- array( 0,dim=c( GN,length( regnam ) ) )
-  ESR <- array( 0,dim=c( GN,length( regnam ) ) )
+  Ad   <- array( 0,dim=c( GN,GN ) )
+  Am   <- array( 0,dim=c( GN,GN ) )
+  Bd   <- array( 0,dim=c( GN,GN ) )
+  Bm   <- array( 0,dim=c( GN,GN ) )
+  Y    <- array( 0,dim=c( GN,length( regnam ) ) )
+  Yd   <- array( 0,dim=c( GN,length( regnam ) ) )
+  Ym   <- array( 0,dim=c( GN,length( regnam ) ) )
+  ESR  <- array( 0,dim=c( GN,length( regnam ) ) )
   Eint <- array( 0,dim=c( GN,length( regnam ) ) )
-  Efd <- array( 0,dim=c( GN,length( regnam ) ) )
+  Efd  <- array( 0,dim=c( GN,length( regnam ) ) )
   
   x <- x[ -c(1,2),-c(1,2) ]
-  x <- apply( x,2,as.numeric )
+  x <- apply( x, 2, as.numeric )
   AX <- x[ 1:GN, ]
   
   X <- x[ dim(x)[1], ]
@@ -126,24 +126,24 @@ load.demand <- function(x, y) {
   
   
   # Part 4: naming the rows and columns in variables
-  colnames(A) <-  rownam
-  rownames( A ) <- rownam
-  dimnames(B) <-  dimnames( A )
-  dimnames(Bm) <-  dimnames( A )
-  dimnames(Bd) <-  dimnames( A )
-  dimnames(Ad) <-  dimnames( A )
-  dimnames(Am) <-  dimnames( A )
-  dimnames(L) <-  dimnames( A )
-  names(Vc) <-  rownam
-  names(X) <- rownam
-  colnames(Y) <-  regnam
-  rownames( Y ) <- rownam
-  dimnames(Ym) <-  dimnames( Y )
-  names(E) <-  rownam
-  colnames(ESR) <-  regnam
+  colnames(A)   <-  rownam
+  rownames( A )   <- rownam
+  dimnames(B)     <- dimnames( A )
+  dimnames(Bm)    <- dimnames( A )
+  dimnames(Bd)    <- dimnames( A )
+  dimnames(Ad)    <- dimnames( A )
+  dimnames(Am)    <- dimnames( A )
+  dimnames(L)     <- dimnames( A )
+  names(Vc)       <- rownam
+  names(X)        <- rownam
+  colnames(Y)     <- regnam
+  rownames( Y )   <- rownam
+  dimnames(Ym)    <- dimnames( Y )
+  names(E)        <- rownam
+  colnames(ESR)   <- regnam
   rownames( ESR ) <- rownam
-  dimnames(Eint) <-  dimnames( ESR )
-  dimnames(Efd) <-  dimnames( ESR )
+  dimnames(Eint)  <- dimnames( ESR )
+  dimnames(Efd)   <- dimnames( ESR )
   
   Exp <- diag(GN)
   diag(Exp) <- rowSums(ESR)
