@@ -8,10 +8,10 @@ Export Decomposition using the Wang-Wei-Zhu and Kung-Fu algorithms.
 }
 \details{
 \tabular{ll}{
-Package: \tab ExDecompR\cr
+Package: \tab decompr \cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
-Date: \tab 2014-07-08\cr
+Version: \tab 0.3.0\cr
+Date: \tab 2014-07-14\cr
 License: \tab GPL-3 \cr
 }
 decomp: runs the decomposition
