@@ -6,8 +6,9 @@
 decomp(intermediate.demand, final.demand, method = "wwz")
 }
 \arguments{
-\item{input.file}{the file which is
-created by the load.demand function}
+\item{intermediate.demand}{the intermediate demand table}
+
+\item{final.demand}{the final demand table}
 
 \item{method}{user specifies the decomposition method}
 }

@@ -2,8 +2,8 @@
 #' 
 #' This function runs the decomposition
 #' 
-#' @param input.file the file which is
-#'  created by the load.demand function
+#' @param intermediate.demand the intermediate demand table
+#' @param final.demand the final demand table
 #' @param method user specifies the decomposition method
 #' @return the decomposition table
 #' @author Bastiaan Quast

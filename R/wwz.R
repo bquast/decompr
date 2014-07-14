@@ -2,8 +2,7 @@
 #' 
 #' This function runs the decomposition
 #' 
-#' @param input.file the file which is
-#'  created by the load.demand function
+#' @param input.object an object of the class decompr
 #' @param return.totals logical as to whether totals should be included in the output
 #' @return the decomposed table
 #' @author Bastiaan Quast

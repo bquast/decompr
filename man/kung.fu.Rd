@@ -6,8 +6,7 @@
 kung.fu(object)
 }
 \arguments{
-\item{object}{the object of class exdecompr,
-as created by the load.demand function}
+\item{object}{the object of class decompr}
 }
 \value{
 a data frame containing the square matrix and labelled column and rows

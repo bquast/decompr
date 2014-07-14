@@ -6,8 +6,7 @@
 wwz(input.object, return.totals = FALSE)
 }
 \arguments{
-\item{input.file}{the file which is
-created by the load.demand function}
+\item{input.object}{an object of the class decompr}
 
 \item{return.totals}{logical as to whether totals should be included in the output}
 }

@@ -3,14 +3,11 @@
 #' This function load the demand tables
 #' and defines all variables for the decomposition
 #' 
-#' @param rownam list of country and industry names,
-#' the dimensions have to beG*N by 2.
 #' @param IOA the intermediate demand input-ouput table
 #' @param WFD the final demand table
-#' @return a exdecompr class object
-#' the data is saved to a file (for now)
+#' @return a decompr class object
 #' @author Bastiaan Quast
-#' @details This function load the data
+#' @details This function loads the data
 #' and creates the variables for the decomposition.
 #' Adapted from code by Fei Wang.
 #' @export
@@ -185,7 +182,7 @@ load.demand <- function(IOA, WFD) {
                z2 = z2
                )
   
-  class(out) <- 'exdecompr'
+  class(out) <- 'decompr'
   return(out)
   
 }

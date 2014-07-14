@@ -6,23 +6,19 @@
 load.demand(IOA, WFD)
 }
 \arguments{
-\item{rownam}{list of country and industry names,
-the dimensions have to beG*N by 2.}
-
 \item{IOA}{the intermediate demand input-ouput table}
 
 \item{WFD}{the final demand table}
 }
 \value{
-a exdecompr class object
-the data is saved to a file (for now)
+a decompr class object
 }
 \description{
 This function load the demand tables
 and defines all variables for the decomposition
 }
 \details{
-This function load the data
+This function loads the data
 and creates the variables for the decomposition.
 Adapted from code by Fei Wang.
 }

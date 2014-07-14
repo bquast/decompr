@@ -2,8 +2,7 @@
 #' 
 #' This function runs the decomposition
 #' 
-#' @param object the object of class exdecompr,
-#'  as created by the load.demand function
+#' @param object the object of class decompr
 #' @return a data frame containing the square matrix and labelled column and rows
 #' @author Bastiaan Quast
 #' @details The Kung Fu algorithm

@@ -6,5 +6,5 @@ Date: 2014-07-08
 Author: Bastiaan Quast
 Maintainer: Bastiaan Quast <bquast@gmail.com>
 Description: Export Decomposition using the
-    Wang-Wei-Zhu algorithm and Kung Fu.
+    Wang-Wei-Zhu and Kung-Fu algorithms.
 License: GPL-3

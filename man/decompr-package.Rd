@@ -2,9 +2,9 @@
 \alias{decompr-package}
 \alias{decompr}
 \docType{package}
-\title{Export Decomposition using the Wang-Wei-Zhu algorithm}
+\title{Export Decomposition }
 \description{
-
+Export Decomposition using the Wang-Wei-Zhu and Kung-Fu algorithms.
 }
 \details{
 \tabular{ll}{
@@ -15,6 +15,9 @@ Date: \tab 2014-07-08\cr
 License: \tab GPL-3 \cr
 }
 decomp: runs the decomposition
+load.demand: creates the decompr object which can be used by the individual methods
+wwz: takes a decompr object and performs the Wang-Wei-Zhu decomposition
+kung.fu takes a decompr object and performs the Kung-Fu decomposition
 }
 \author{
 Bastiaan Quast
