@@ -3,12 +3,12 @@
 \alias{load.demand}
 \title{Load the demand data}
 \usage{
-load.demand(IOA, WFD)
+load.demand(x, y)
 }
 \arguments{
-\item{IOA}{the intermediate demand input-ouput table}
+\item{x}{the intermediate demand input-output table}
 
-\item{WFD}{the final demand table}
+\item{y}{the final demand table}
 }
 \value{
 a decompr class object

@@ -2,17 +2,17 @@
 #' 
 #' This function runs the decomposition
 #' 
-#' @param object the object of class decompr
+#' @param x ane object of class decompr
 #' @return a data frame containing the square matrix and labelled column and rows
 #' @author Bastiaan Quast
 #' @details The Kung Fu algorithm
 #' @export
 
 
-kung.fu <- function( object ) {
+kung.fu <- function( x ) {
   
   # Part 1 == loading data A,L,Vc, X, Y, E,ESR, etc.
-  attach( object )
+  attach( x )
   
   # define Vhat
   Vhat <- diag(GN)
@@ -27,7 +27,7 @@ kung.fu <- function( object ) {
   row.names(out) <- rownam
   
   # detach object
-  detach(object)
+  detach(x)
   
   # return result
   return( out )

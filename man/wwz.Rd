@@ -3,10 +3,10 @@
 \alias{wwz}
 \title{Runs the WWZ decomposition}
 \usage{
-wwz(input.object, return.totals = FALSE)
+wwz(x, return.totals = FALSE)
 }
 \arguments{
-\item{input.object}{an object of the class decompr}
+\item{x}{an object of the class decompr}
 
 \item{return.totals}{logical as to whether totals should be included in the output}
 }

@@ -2,17 +2,17 @@
 #' 
 #' This function runs the decomposition
 #' 
-#' @param input.object an object of the class decompr
+#' @param x an object of the class decompr
 #' @param return.totals logical as to whether totals should be included in the output
 #' @return the decomposed table
 #' @author Bastiaan Quast
 #' @details Adapted from code by Fei Wang.
 #' @export
 
-wwz <- function( input.object, return.totals=FALSE ) {
+wwz <- function( x, return.totals=FALSE ) {
   
   # Part 1: loading data A,L,Vc, X, Y, E,ESR, etc.
-  attach( input.object )
+  attach( x )
   
   # Part 2: Decomposing Export into VA( 16 items )
   # defining ALL to contain all decomposed results
@@ -48,7 +48,7 @@ wwz <- function( input.object, return.totals=FALSE ) {
   
   ### find out why this returns an error
   # rm( Eint, Efd )
-  gc(  )
+  gc()
   
   # Part 2-1 == H10-(1): DVA_FIN=[ VsBss#Ysr ]
   # OK
@@ -56,13 +56,12 @@ wwz <- function( input.object, return.totals=FALSE ) {
     z1 <- array(Ym[,r ], dim=c( GN, GN))
     ALL[ ,r,1 ]  <- colSums( diag(Vc)%*%Bd*t(z1) )
   }
-  
   rm( z1 )
-  gc(  )
+  gc()
   
   # View( ALL[ ,,1 ] )   # DVA_FIN
   
-  # Part 2-2 == H10-(2): DVA_INT
+  # Part 2-2: H10-(2): DVA_INT
   
   # OK
   VsLss <- diag( Vc )%*%L
@@ -73,7 +72,7 @@ wwz <- function( input.object, return.totals=FALSE ) {
   }
   
   rm( z1 )
-  gc(  )
+  gc()
   
   # View( ALL[ ,,2 ] )   #  DVA_INT
   
@@ -311,7 +310,7 @@ wwz <- function( input.object, return.totals=FALSE ) {
     out <- ALLandTotal
   }
   
-  detach(input.object)
+  detach(x)
   
   return(out)
   

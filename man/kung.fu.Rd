@@ -3,10 +3,10 @@
 \alias{kung.fu}
 \title{Kung Fu Export Source Decomposition}
 \usage{
-kung.fu(object)
+kung.fu(x)
 }
 \arguments{
-\item{object}{the object of class decompr}
+\item{x}{ane object of class decompr}
 }
 \value{
 a data frame containing the square matrix and labelled column and rows

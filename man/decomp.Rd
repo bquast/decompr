@@ -3,12 +3,12 @@
 \alias{decomp}
 \title{Interface function for decompositions}
 \usage{
-decomp(intermediate.demand, final.demand, method = "wwz")
+decomp(x, y, method = "wwz")
 }
 \arguments{
-\item{intermediate.demand}{the intermediate demand table, where the first row and the first column list the country names, the second row and second column list the insdustry names for each country. The matrix is presumed to be of dimensions G*N where G represents the country and N the industry. No extra columns should be there. Extra rows at the bottom which list adjustments such as taxes as well are disregarded, with the exception that the very last row is presumed to contain the total output.}
+\item{x}{the intermediate demand table, where the first row and the first column list the country names, the second row and second column list the insdustry names for each country. The matrix is presumed to be of dimensions G*N where G represents the country and N the industry. No extra columns should be there. Extra rows at the bottom which list adjustments such as taxes as well are disregarded, with the exception that the very last row is presumed to contain the total output.}
 
-\item{final.demand}{the final demand table it has dimensions GN*GM ( where M is the number of objects final demand is decomposed in, e.g. household consumption, here this is five decompositions).}
+\item{y}{the final demand table it has dimensions GN*GM ( where M is the number of objects final demand is decomposed in, e.g. household consumption, here this is five decompositions).}
 
 \item{method}{user specifies the decomposition method}
 }

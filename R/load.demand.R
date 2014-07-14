@@ -3,8 +3,8 @@
 #' This function load the demand tables
 #' and defines all variables for the decomposition
 #' 
-#' @param IOA the intermediate demand input-ouput table
-#' @param WFD the final demand table
+#' @param x the intermediate demand input-output table
+#' @param y the final demand table
 #' @return a decompr class object
 #' @author Bastiaan Quast
 #' @details This function loads the data
@@ -12,15 +12,15 @@
 #' Adapted from code by Fei Wang.
 #' @export
 
-load.demand <- function(IOA, WFD) {
+load.demand <- function(x, y) {
 
   # Part 1: getting the rownames etc.
-  GN <- length(IOA) - 2
-  regnam <- unique(IOA[2:(GN+1),1])
+  GN <- length(x) - 2
+  regnam <- unique(x[3:(GN+2),1])
   G <- length(regnam)
   N <- GN / G
-  secnam <- unique(IOA[,2])[2:(N+1)]
-  rownam <- paste( IOA[2:(GN+1),1], ".", IOA[2:(GN+1),2], sep="" )
+  secnam <- unique(x[,2])[3:(N+2)]
+  rownam <- paste( x[3:(GN+2),1], ".", x[3:(GN+2),2], sep="" )
   
   # making regions' names
   z <- rownam
@@ -49,15 +49,15 @@ load.demand <- function(IOA, WFD) {
   Eint <- array( 0,dim=c( GN,length( regnam ) ) )
   Efd <- array( 0,dim=c( GN,length( regnam ) ) )
   
-  IOA <- IOA[ -1,-c(1,2) ]
-  IOA <- apply( IOA,2,as.numeric )
-  AX <- IOA[ 1:GN, ]
+  x <- x[ -c(1,2),-c(1,2) ]
+  x <- apply( x,2,as.numeric )
+  AX <- x[ 1:GN, ]
   
-  X <- IOA[ dim(IOA)[1], ]
+  X <- x[ dim(x)[1], ]
   
   #### this might not be the best way to construct V
   V <- X - colSums( AX )
-  rm( IOA )
+  rm( x )
   gc()
   
   A <- t(t(AX)/X)
@@ -86,17 +86,19 @@ load.demand <- function(IOA, WFD) {
   
   
   # Part 2: computing final demand: Y
+  ##### is the 5 hardcoded or always 5?
   for ( j in 1:length(regnam) ){
     m=1+(j-1)*5
     n=5+(j-1)*5
-    Y[ ,j ] <- rowSums( WFD[1:GN ,m:n ] ) #### check why this is now needed
+    Y[ ,j ] <- rowSums( y[1:GN ,m:n ] ) #### check why this is now needed
   }
   Ym <- Y
   
   
   # Part 3: computing export: E, Esr
-  E <- cbind( AX,WFD[1:GN,] )
-  rm( AX,WFD ); gc(  )
+  E <- cbind( AX,y[1:GN,] )
+  rm( AX, y )
+  gc()
   
   for (j in 1:length(regnam) )  {
     m=1+(j-1)*N; n=N+(j-1)*N
@@ -143,7 +145,6 @@ load.demand <- function(IOA, WFD) {
   dimnames(Eint) <-  dimnames( ESR )
   dimnames(Efd) <-  dimnames( ESR )
   
-  # for victors export thing
   Exp <- diag(GN)
   diag(Exp) <- rowSums(ESR)
   
@@ -183,6 +184,7 @@ load.demand <- function(IOA, WFD) {
                )
   
   class(out) <- 'decompr'
+  
   return(out)
   
 }
