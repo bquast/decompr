@@ -1,0 +1,10 @@
+Package: decompr
+Type: Package
+Title: Export Decomposition (Wang-Wei-Zhu and Kung Fu)
+Version: 0.3.0
+Date: 2014-07-08
+Author: Bastiaan Quast
+Maintainer: Bastiaan Quast <bquast@gmail.com>
+Description: Export Decomposition using the
+    Wang-Wei-Zhu algorithm and Kung Fu.
+License: GPL-3
