@@ -27,7 +27,7 @@ Installation
 
 ```R
 # install.packages("devtools")
-devtools::install_github("bquast/ExDecompR")
+devtools::install_github("bquast/decompr")
 ```
 
 
@@ -37,18 +37,15 @@ Usage
 # load the package
 library(ExDecompR)
 
-# read the csv files
-inter <- read.csv('WID1995.csv')
-final <- read.csv('WFD1995.csv')
+# load the csv files into the workspace
+final.demand <- read.csv('WFD1995.csv')
+inter.demand <- read.csv('WID1995.csv')
 
-# construct the intermediate file
-inter.obj <- load.demand(inter, final)
+# run the WWZ decomposition
+wwz1995 <- decomp(inter.demand, final.demand, method='wwz')
 
 # run the kung fu decomposition
-kf <- kung.fu(inter.obj)
-
-# run WWZ decomposition
-wwz <- decomp(inter.obj)
+kf1995 <- decomp(inter.demand, final.demand, method='kung.fu')
 ```
 
 TODO
@@ -63,7 +60,7 @@ The most import TODO items (in order of importance) are:
 - [x] minimalise inputs by computing final demand (and others?)
 - [ ] add checks on data (intermediate demand sums)
 - [ ] implement S4 class
-- [ ] replace use of attacch()
+- [ ] replace use of attach()
 - [ ] provide documentation and examples
 - [ ] review linear algebra for efficiency
 
