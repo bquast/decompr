@@ -1,4 +1,4 @@
-ExDecompR
+decompr
 ======================================
 Bastiaan Quast, bquast@gmail.com
 --------------------------------------
@@ -6,7 +6,7 @@ An R package that implements Export Decomposition using the Wang-Wei-Zhu algorit
 
 Description
 --------------------------------------
-
+Export Decomposition using the Wang-Wei-Zhu algorithm
 
 Inputs
 --------------------------------------
