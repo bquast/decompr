@@ -35,7 +35,7 @@ Usage
 --------------------------------------
 ```R
 # load the package
-library(ExDecompR)
+library(decompr)
 
 # load the csv files into the workspace
 final.demand <- read.csv('WFD1995.csv')
