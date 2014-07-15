@@ -12,9 +12,9 @@
 decomp <- function( x, y, method="wwz" ) {
   
   if (method == 'wwz') {
-    out <- wwz( load.demand(x, y) )
+    out <- wwz( load.tables(x, y) )
   } else if (method == 'kung.fu') {
-    out <- kung.fu(load.demand(x, y) )
+    out <- kung.fu(load.tables(x, y) )
   } else {
     stop('not a valid method')
   }

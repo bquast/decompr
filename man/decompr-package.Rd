@@ -15,7 +15,7 @@ Date: \tab 2014-07-14\cr
 License: \tab GPL-3 \cr
 }
 decomp: runs the decomposition
-load.demand: creates the decompr object which can be used by the individual methods
+load.tables: creates the decompr object which can be used by the individual methods
 wwz: takes a decompr object and performs the Wang-Wei-Zhu decomposition
 kung.fu takes a decompr object and performs the Kung-Fu decomposition
 }

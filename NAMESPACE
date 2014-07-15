@@ -2,5 +2,5 @@
 
 export(decomp)
 export(kung.fu)
-export(load.demand)
+export(load.tables)
 export(wwz)

@@ -1,4 +1,4 @@
-#' Load the demand data
+#' Load the Input-Output and Final demand tables
 #' 
 #' This function load the demand tables
 #' and defines all variables for the decomposition
@@ -12,7 +12,7 @@
 #' Adapted from code by Fei Wang.
 #' @export
 
-load.demand <- function(x, y) {
+load.tables <- function(x, y) {
 
   # Part 1: getting the rownames etc.
   GN <- length(x) - 2
