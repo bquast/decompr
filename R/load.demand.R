@@ -84,6 +84,9 @@ load.demand <- function(x, y) {
   Vc[ is.na( Vc ) ] <- 0
   Vc[ Vc==Inf ] <- 0
   
+  Exp <- diag(GN)
+  diag(Exp) <- rowSums(ESR)
+  
   
   # Part 2: computing final demand: Y
   ##### is the 5 hardcoded or always 5?
@@ -144,9 +147,6 @@ load.demand <- function(x, y) {
   rownames( ESR ) <- rownam
   dimnames(Eint)  <- dimnames( ESR )
   dimnames(Efd)   <- dimnames( ESR )
-  
-  Exp <- diag(GN)
-  diag(Exp) <- rowSums(ESR)
   
 
   # Part 5: saving the variables
