@@ -61,7 +61,8 @@ load.demand <- function(x, y) {
   gc()
   
   A <- t(t(AX)/X)
-  A[ is.na( A ) ] <- 0; A[ A==Inf ] <- 0
+  A[ is.na( A ) ] <- 0
+  A[ A==Inf ] <- 0
   II <- diag(GN)
   B <- solve( II-A )
   Bm <- B
@@ -79,37 +80,41 @@ load.demand <- function(x, y) {
   
   L <- solve( II-Ad )
   Vc <- V/X
-  Vhat <- diag(GN)
-  diag(Vhat) <- Vc
   Vc[ is.na( Vc ) ] <- 0
   Vc[ Vc==Inf ] <- 0
   
-  Exp <- diag(GN)
-  diag(Exp) <- rowSums(ESR)
+  # is this the right location
+  Vhat <- diag(GN)
+  diag(Vhat) <- Vc
   
   
   # Part 2: computing final demand: Y
   ##### is the 5 hardcoded or always 5?
+  y <- y[1:GN,1:(5*G)]
   for ( j in 1:length(regnam) ){
     m=1+(j-1)*5
     n=5+(j-1)*5
-    Y[ ,j ] <- rowSums( y[1:GN ,m:n ] ) #### check why this is now needed
+    Y[ ,j ] <- rowSums( y[,m:n ] )
   }
   Ym <- Y
   
   
   # Part 3: computing export: E, Esr
-  E <- cbind( AX,y[1:GN,] )
+  E <- cbind( AX,y )
   rm( AX, y )
   gc()
   
   for (j in 1:length(regnam) )  {
-    m=1+(j-1)*N; n=N+(j-1)*N
+    m=1+(j-1)*N
+    n=N+(j-1)*N
     E[m:n,m:n]  <- 0   # intermediate demand for domestic goods <- 0
   }
   
   for (j in 1:length(regnam))  {
-    m=1+(j-1)*N; n=N+(j-1)*N; s=GN+1+(j-1)*5;r=GN+5+(j-1)*5
+    m=1+(j-1)*N
+    n=N+(j-1)*N
+    s=GN+1+(j-1)*5
+    r=GN+5+(j-1)*5
     E[m:n,s:r]  <- 0  # final demand for domestic goods <- 0
     Yd[ m:n,j ] <- Y[m:n,j]
     Ym[ m:n,j ] <- 0
@@ -120,12 +125,17 @@ load.demand <- function(x, y) {
   E <- as.matrix( E )
   
   for (j in 1:length(regnam))  {
-    m=1+(j-1)*N; n=N+(j-1)*N
-    s=GN+1+(j-1)*5;r=GN+5+(j-1)*5
+    m = 1 + (j-1) * N
+    n = N + (j-1) * N
+    s = GN + 1 + (j-1) * 5
+    r = GN + 5 + (j-1) * 5
     ESR[ ,j ] <- rowSums( z[,m:n] ) + rowSums( z[ ,s:r ] )
     Eint[ ,j ] <- rowSums( z[,m:n] )
     Efd[ ,j ] <- rowSums( z[ ,s:r ] )
   }
+  
+  Exp <- diag(GN)
+  diag(Exp) <- rowSums(ESR)
   
   
   # Part 4: naming the rows and columns in variables
