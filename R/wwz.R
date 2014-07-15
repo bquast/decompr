@@ -51,9 +51,6 @@ wwz <- function( x ) {
     z1 <- array( x$Ym[,r ], dim=c(x$GN,x$GN) )
     ALL[ ,r,1 ]  <- colSums( diag(x$Vc) %*% x$Bd * t(z1) )
   }
-  
-  rm( z1 )
-  gc()
   # View( ALL[ ,,1 ] )   # DVA_FIN
   
   
@@ -65,9 +62,6 @@ wwz <- function( x ) {
     # r=2
     ALL[ ,r,2 ] <- colSums(VsLss)*t(z1[ ,r ])
   }
-  
-  rm( z1 )
-  gc()
   # View( ALL[ ,,2 ] )   #  DVA_INT
   
   
@@ -93,9 +87,6 @@ wwz <- function( x ) {
     n <-  x$N + (r-1) * x$N
     ALL[ ,r,3 ] <- colSums(VsLss)*(rowSums(z3[ ,m:n ]))
   }
-  
-  rm( z1,z2,z3 )
-  gc()
   # View( ALL[ ,,3 ] )  #  DVA_INTrexI1
   
   
@@ -116,10 +107,7 @@ wwz <- function( x ) {
     n <- x$N + (r-1) * x$N
     ALL[ ,r,4 ] <- colSums(VsLss) * (rowSums(z2[ ,m:n ]))
   }
-  
-  rm(z1, z2)
-  gc()
-  
+
   
   # Part 2-5: H10-(5): DVA_INTrexI2
   # OK !
@@ -136,9 +124,6 @@ wwz <- function( x ) {
     n <- x$N + (r-1) * x$N
     ALL[ ,r,5 ] <- colSums(VsLss) * (rowSums(z2[ ,m:n ]))
   }
-  
-  rm(z, z1, z2)
-  gc()
   #  View( ALL[ ,,5 ] )  #  DVA_INTrexI2
   
   
@@ -158,9 +143,6 @@ wwz <- function( x ) {
     n <- x$N + (r-1) * x$N
     ALL[ ,r,7 ] <- colSums(VsLss) * (rowSums(z1[ ,m:n ]))
   }
-  
-  rm(z1)
-  gc()
   # View( ALL[ ,,7 ] )  #  RDV_FIN
   
   
@@ -179,9 +161,10 @@ wwz <- function( x ) {
     n <- x$N + (r-1) * x$N
     ALL[ ,r,8 ] <- colSums(VsLss)*(rowSums(z2[ ,m:n ]))
   }
-  rm(z, z1, z2)
-  gc()
-    # View( ALL[ ,,8 ] )  #  RDV_FIN2
+  rm(z2)
+  g()
+  # View( ALL[ ,,8 ] )  #  RDV_FIN2
+
   
   # Part 2-8 == H10-(8): RDV_INT
   # OK !
@@ -198,9 +181,6 @@ wwz <- function( x ) {
     n <- x$N + (r-1) * x$N
     ALL[ ,r,6 ] <- colSums(VsLss)*(rowSums(z1[ ,m:n ]))
   }
-  
-  rm(z, z1)
-  gc()
   # View( ALL[ ,,6 ] )  #  RDV_INT
   
   
@@ -249,8 +229,8 @@ wwz <- function( x ) {
     ALL[ ,r,10 ] <- colSums( z[ m:n, ] ) # MVA_FIN[ ,r ]
     ALL[ ,r,9 ] <- colSums( z[ -c( m:n ), ] ) # OVA_FIN[ ,r ]
   }
-  rm( YYsr,z )
-  gc(  )
+  rm( YYsr )
+  gc()
   # View( ALL[ ,,9 ] ) # OVA_FIN
   # View( ALL[ ,,10 ] ) # MVA_FIN
   
@@ -267,7 +247,7 @@ wwz <- function( x ) {
     ALL[ ,r,12 ] <- colSums( z[ m:n, ] )   #  MVA_INT[ ,r ]
     ALL[ ,r,11 ] <-  colSums( z[ -c( m:n ) , ] )  #   OVA_INT[ ,r ]
   }
-  rm( YYrr,z )
+  rm( YYrr )
   gc()
   # View( ALL[ ,,11 ] )  #  OVA_INT
   # View( ALL[ ,,12 ] )  #  MVA_INT
@@ -285,7 +265,7 @@ wwz <- function( x ) {
     ALL[ ,r,16 ] <- colSums( z[ m:n, ] )   # MDC[ ,r ]
     ALL[ ,r,15 ] <-  colSums( z[ -c( m:n ) , ] )   # ODC[ ,r ]
   }
-  rm( EEr,z, VrBrs )
+  rm( EEr, z, VrBrs )
   gc()
   
   dimnames( ALL )  <-  list( x$rownam, x$regnam, decomp19)
