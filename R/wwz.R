@@ -3,18 +3,14 @@
 #' This function runs the decomposition
 #' 
 #' @param x an object of the class decompr
-#' @param return.totals logical as to whether totals should be included in the output
 #' @return the decomposed table
 #' @author Bastiaan Quast
 #' @details Adapted from code by Fei Wang.
 #' @export
 
-wwz <- function( x, return.totals=FALSE ) {
+wwz <- function( x ) {
   
-  # Part 1: loading data A,L,Vc, X, Y, E,ESR, etc.
-  attach( x )
-  
-  # Part 2: Decomposing Export into VA( 16 items )
+  # Part 1: Decomposing Export into VA( 16 items )
   # defining ALL to contain all decomposed results
   ALL  <- array( 0,dim=c( x$GN, x$G, 19 ) )
   
@@ -40,32 +36,28 @@ wwz <- function( x, return.totals=FALSE ) {
                   "texpfd"
   )
   
-  
   ALL[ ,,17 ] <- x$ESR
   ALL[ ,,18 ] <- x$Eint
   ALL[ ,,19 ] <- x$Efd
-  
-  
-  ### find out why this returns an error
-  # rm( Eint, Efd )
   x$Eint <- NULL
   x$Efd <- NULL
   gc()
   
+  
+  ####### THIS ONE TAKES A LONG TIME ##########
   # Part 2-1 == H10-(1): DVA_FIN=[ VsBss#Ysr ]
   # OK
   for ( r in 1: x$G ) {
-    z1 <- array(x$Ym[,r ], dim=c( x$GN, x$GN))
-    ALL[ ,r,1 ]  <- colSums( diag(x$Vc)%*%x$Bd*t(z1) )
+    z1 <- array( x$Ym[,r ], dim=c(x$GN,x$GN) )
+    ALL[ ,r,1 ]  <- colSums( diag(x$Vc) %*% x$Bd * t(z1) )
   }
-  # rm( z1 )
-  z1 <- NULL
-  gc()
   
+  rm( z1 )
+  gc()
   # View( ALL[ ,,1 ] )   # DVA_FIN
   
-  # Part 2-2: H10-(2): DVA_INT
   
+  # Part 2-2: H10-(2): DVA_INT
   # OK
   VsLss <- diag( x$Vc ) %*% x$L
   z1 <- x$Am %*% x$Bd %*% x$Yd
@@ -74,11 +66,10 @@ wwz <- function( x, return.totals=FALSE ) {
     ALL[ ,r,2 ] <- colSums(VsLss)*t(z1[ ,r ])
   }
   
-  # rm( z1 )
-  z1 <- NULL
+  rm( z1 )
   gc()
-  
   # View( ALL[ ,,2 ] )   #  DVA_INT
+  
   
   # Part 2-3: H10-(3): DVA_INTrexI1
   # OK
@@ -88,27 +79,25 @@ wwz <- function( x, return.totals=FALSE ) {
     n=x$N+(tt-1)*x$N
     z1[ m:n,m:n ] <- 0
   }
-  z2 <- x$Bm %*% z1
   
-  for ( tt in 1: G ) {
-    m=1+( tt-1 )*N
+  z2 <- x$Bm %*% z1
+  for ( tt in 1: x$G ) {
+    m=1+( tt-1 )*x$N
     n=x$N+(tt-1)*x$N
     z2[ m:n,m:n ] <- 0
   }
   
   z3 <- x$Am * t( z2 )
-  
   for ( r in 1:x$G ) {
     m <- 1 + (r-1) * x$N
     n <-  x$N + (r-1) * x$N
     ALL[ ,r,3 ] <- colSums(VsLss)*(rowSums(z3[ ,m:n ]))
   }
-  # rm( z1,z2,z3 )
-  x$z1 <- NULL
-  x$z2 <- NULL
-  x$z3 <- NULL
+  
+  rm( z1,z2,z3 )
   gc()
   # View( ALL[ ,,3 ] )  #  DVA_INTrexI1
+  
   
   # Part 2-4: H10-(4): DVA_INTrexF
   # OK
@@ -127,10 +116,10 @@ wwz <- function( x, return.totals=FALSE ) {
     n <- x$N + (r-1) * x$N
     ALL[ ,r,4 ] <- colSums(VsLss) * (rowSums(z2[ ,m:n ]))
   }
-
-  x$z1 <- NULL
-  x$z2 <- NULL
+  
+  rm(z1, z2)
   gc()
+  
   
   # Part 2-5: H10-(5): DVA_INTrexI2
   # OK !
@@ -148,12 +137,10 @@ wwz <- function( x, return.totals=FALSE ) {
     ALL[ ,r,5 ] <- colSums(VsLss) * (rowSums(z2[ ,m:n ]))
   }
   
-  x$z <- NULL
-  x$z1 <- NULL
-  x$z2 <- NULL
+  rm(z, z1, z2)
   gc()
-  
   #  View( ALL[ ,,5 ] )  #  DVA_INTrexI2
+  
   
   # Part 2-6: H10-(6): RDV_FIN
   # OK !
@@ -172,54 +159,51 @@ wwz <- function( x, return.totals=FALSE ) {
     ALL[ ,r,7 ] <- colSums(VsLss) * (rowSums(z1[ ,m:n ]))
   }
   
-  x$z1 <- NULL
+  rm(z1)
   gc()
   # View( ALL[ ,,7 ] )  #  RDV_FIN
   
+  
   # Part 2-7 == H10-(7): RDV_FIN2
   # OK !
-  z1 <- Bm %*% z
+  z1 <- x$Bm %*% z
   for ( tt in 1:x$G ){
     m <- 1 + (tt-1) * x$N
-    n <- N + (tt-1) * x$N
+    n <- x$N + (tt-1) * x$N
     z1[ m:n,m:n ] <- 0
   }
   
-  z2 <- Am * t(z1)
+  z2 <- x$Am * t(z1)
   for ( r in 1:x$G ) {
     m <- 1 + (r-1) * x$N
-    n <- N + (r-1) * x$N
+    n <- x$N + (r-1) * x$N
     ALL[ ,r,8 ] <- colSums(VsLss)*(rowSums(z2[ ,m:n ]))
   }
-  z <- NULL
-  z1 <- NULL
-  z2 <- NULL
+  rm(z, z1, z2)
   gc()
-  
-  # View( ALL[ ,,8 ] )  #  RDV_FIN2
+    # View( ALL[ ,,8 ] )  #  RDV_FIN2
   
   # Part 2-8 == H10-(8): RDV_INT
   # OK !
   z <- array( 0, dim=c( x$GN, x$GN ) )
   for ( tt in 1:x$G ){
     m <- 1 + (tt-1) * x$N
-    n <- N + (tt-1) * x$N
+    n <- x$N + (tt-1) * x$N
     z[,m:n] <-  x$Yd[ ,tt ]
   }
   
   z1 <- x$Am * t( x$Bm %*% z )
   for ( r in 1: x$G ) {
     m <- 1 + (r-1) * x$N
-    n <- N + (r-1) * x$N
+    n <- x$N + (r-1) * x$N
     ALL[ ,r,6 ] <- colSums(VsLss)*(rowSums(z1[ ,m:n ]))
   }
   
-  z <- NULL
-  z1 <- NULL
+  rm(z, z1)
   gc()
-
-  
   # View( ALL[ ,,6 ] )  #  RDV_INT
+  
+  
   # Part 2-9 == H10-(9): DDC_FIN
   # OK !
   z <- array( 0, dim=c(x$GN, x$GN) )
@@ -232,21 +216,24 @@ wwz <- function( x, return.totals=FALSE ) {
   z1 <- x$Am * t(x$Bm %*% z)
   for (r in 1:x$G) {
     m <- 1 + (r-1) * x$N
-    n <- N + (r-1) * x$N
+    n <- x$N + (r-1) * x$N
     ALL[ ,r,13 ] <- colSums(VsLss)*(rowSums(z1[ ,m:n ]))
   }
-  
+  rm(z1)
+  gc()
   # View( ALL[ ,,13 ] )  #   DDC_FIN
   
+  ####### THIS ONE TAKES A LONG TIME ##########
   # Part 2-10 == H10-(10): DDC_INT
   # OK !
-  z <- x$Am %*% diag(X)
+  z <- x$Am %*% diag(x$X)
   for (r in 1:x$G) {
     m <- 1 + (r-1) * x$N
     n <- x$N + (r-1) * x$N
     ALL[ ,r,14 ] <- colSums(diag(x$Vc) %*% x$Bd - VsLss) * (rowSums( z[ ,m:n ]) )
   }
-  
+  rm(VsLss)
+  gc()
   # View( ALL[ ,,14 ] )  # DDC_INT
   
   # Part 2-11 == H10-(11): MVA_FIN  =[ VrBrs#Ysr ]
@@ -264,94 +251,88 @@ wwz <- function( x, return.totals=FALSE ) {
   }
   rm( YYsr,z )
   gc(  )
-  
   # View( ALL[ ,,9 ] ) # OVA_FIN
   # View( ALL[ ,,10 ] ) # MVA_FIN
   
+  ####### THIS ONE TAKES A VERY LONG TIME ##########
   # Part 2-12 == H10-(12): MVA_INT  =[ VrBrs#AsrLrrYrr ]
   #     H10-(15): OVA_INT  =[ Sum(VtBts)#AsrLrrYrr ]
   # OK !
-  YYrr <- array(0, dim=c( GN, GN))
-  for ( r in 1: G ) {
-    m <- 1+( r-1 )*N; n <- N+(r-1)*N
-    YYrr[ ,1:GN] <- Yd[ ,r ]
-    z <- VrBrs*t(Am%*%L%*%YYrr)
+  YYrr <- array(0, dim=c(x$GN,x$GN) )
+  for (r in 1:x$G) {
+    m <- 1 + (r-1) * x$N
+    n <- x$N + (r-1) * x$N
+    YYrr[ ,1:x$GN] <- x$Yd[ ,r ]
+    z <- VrBrs * t(x$Am %*% x$L %*% YYrr)
     ALL[ ,r,12 ] <- colSums( z[ m:n, ] )   #  MVA_INT[ ,r ]
     ALL[ ,r,11 ] <-  colSums( z[ -c( m:n ) , ] )  #   OVA_INT[ ,r ]
   }
   rm( YYrr,z )
   gc()
-  
   # View( ALL[ ,,11 ] )  #  OVA_INT
   # View( ALL[ ,,12 ] )  #  MVA_INT
   
+  ####### THIS ONE TAKES A VERY LONG TIME ##########
   # Part 2-13 == H10-(13): MDC  =[ VrBrs#AsrLrrEr* ]
   # ==  H10-(16): ODC  =[ Sum(VtBts)#AsrLrrEr* ]
   # OK !
   for (r in 1:x$G) {
     m <- 1 + (r-1) * x$N
     n <- x$N + (r-1) * x$N
-    EEr <- array(0, dim=c(x$GN,x$GN))
+    EEr <- array(0, dim=c(x$GN,x$GN) )
     EEr[ m:n,1:x$GN] <- x$E[ m:n,1 ]
-    z <- VrBrs * t(x$Am %*% x$L %*% EEr )
+    z <- VrBrs * t(x$Am %*% x$L %*% EEr)
     ALL[ ,r,16 ] <- colSums( z[ m:n, ] )   # MDC[ ,r ]
     ALL[ ,r,15 ] <-  colSums( z[ -c( m:n ) , ] )   # ODC[ ,r ]
   }
-  rm( EEr,z )
+  rm( EEr,z, VrBrs )
   gc()
   
-  dimnames( ALL )  <-  list( rownam, regnam, decomp19)
+  dimnames( ALL )  <-  list( x$rownam, x$regnam, decomp19)
   
-  # Part 3 saving the variables
   
-  if (return.totals==FALSE) {
-    out <- ALL
-  } else {
-    # Part 4 Putting all results in one sheet
-    for ( u in 1: x$GN ){
-      if ( u==1 ){
-        if( exists( "ALLandTotal" ) ==TRUE )    rm( ALLandTotal )
-        ALLandTotal <- rbind( ALL[ u,, ], colSums( ALL[ u,, ] ))
-      }
-      else {
-        ALLandTotal <- rbind( ALLandTotal, ALL[ u,, ], colSums( ALL[ u,, ] ))
-      }
-    } # the end of for ( u in 1:GN ){......
-    
-    rownames( ALLandTotal ) <- bigrownam
-    
-    # Part 5  checking the differences resulted in texp, texpfd, texpintdiff
-    texpdiff  <-   rowSums( ALLandTotal[ ,1:16 ]) - ALLandTotal[ ,17 ]
-    
-    texpfddiff <- ALLandTotal[ ,1]+ALLandTotal[ ,9 ] +
-      ALLandTotal[ ,10 ] - ALLandTotal[ ,19 ]
-    
-    texpintdiff <- rowSums( ALLandTotal[ ,2:8 ] ) +
-      rowSums( ALLandTotal[ ,11:16 ] ) - ALLandTotal[ ,18 ]
-    
-    texpdiffpercent <-  texpdiff/ALLandTotal[ ,17 ]*100
-    texpdiffpercent[ is.na(texpdiffpercent) ] <- 0
-    texpfddiffpercent <-  texpfddiff/ALLandTotal[ ,19 ]*100
-    texpfddiffpercent[ is.na(texpfddiffpercent) ] <- 0
-    texpintdiffpercent <-  texpintdiff/ALLandTotal[ ,18 ]*100
-    texpintdiffpercent[ is.na(texpintdiffpercent) ] <- 0
-    texpdiff <- round( texpdiff, 4)
-    texpfddiff <- round( texpfddiff,4)
-    texpintdiff <-  round( texpintdiff, 4)
-    texpdiffpercent <- round( texpdiffpercent, 4)
-    texpfddiffpercent <- round( texpfddiffpercent,4)
-    texpintdiffpercent <-  round( texpintdiffpercent, 4)
-    
-    ALLandTotal <-   cbind( ALLandTotal,texpdiff, texpfddiff, texpintdiff,
-                            texpdiffpercent,texpfddiffpercent,texpintdiffpercent )
-    dim( ALLandTotal )
-    
-    # save(ALLandTotal, file=output.file )
-    out <- ALLandTotal
+  
+  # Part 3 Putting all results in one sheet
+  
+  for (u in 1:x$GN){
+    if ( u==1 ){
+      ALLandTotal <- rbind( ALL[ u,, ], colSums( ALL[ u,, ] ))
+    }
+    else {
+      ALLandTotal <- rbind( ALLandTotal, ALL[ u,, ], colSums( ALL[ u,, ] ))
+    }
   }
+  rm(ALL)
+  gc()
+  rownames( ALLandTotal ) <- x$bigrownam
   
-  detach(x)
   
-  return(out)
+  
+  # Part 4  checking the differences resulted in texp, texpfd, texpintdiff
+  
+  texpdiff  <-   rowSums( ALLandTotal[ ,1:16 ]) - ALLandTotal[ ,17 ]
+  
+  texpfddiff <- ALLandTotal[ ,1]+ALLandTotal[ ,9 ] + ALLandTotal[ ,10 ] - ALLandTotal[ ,19 ]
+
+  texpintdiff <- rowSums( ALLandTotal[ ,2:8 ] ) + rowSums( ALLandTotal[ ,11:16 ] ) - ALLandTotal[ ,18 ]
+  
+  texpdiffpercent <-  texpdiff/ALLandTotal[ ,17 ]*100
+  texpdiffpercent[ is.na(texpdiffpercent) ] <- 0
+  texpfddiffpercent <-  texpfddiff/ALLandTotal[ ,19 ]*100
+  texpfddiffpercent[ is.na(texpfddiffpercent) ] <- 0
+  texpintdiffpercent <-  texpintdiff/ALLandTotal[ ,18 ]*100
+  texpintdiffpercent[ is.na(texpintdiffpercent) ] <- 0
+  texpdiff <- round( texpdiff, 4)
+  texpfddiff <- round( texpfddiff,4)
+  texpintdiff <-  round( texpintdiff, 4)
+  texpdiffpercent <- round( texpdiffpercent, 4)
+  texpfddiffpercent <- round( texpfddiffpercent,4)
+  texpintdiffpercent <-  round( texpintdiffpercent, 4)
+  
+  ALLandTotal <-   cbind( ALLandTotal,texpdiff, texpfddiff, texpintdiff,
+                          texpdiffpercent,texpfddiffpercent,texpintdiffpercent )
+  dim( ALLandTotal )
+  
+  return(ALLandTotal)
   
 }
