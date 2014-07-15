@@ -55,7 +55,7 @@ The most import TODO items (in order of importance) are:
 - [ ] provide documentation and examples
 - [ ] add checks on data (intermediate demand sums)
 - [ ] implement S4 class objects
-- [ ] replace use of attach()
+- [x] replace use of attach()
 - [ ] review linear algebra for efficiency
 
 Credit
