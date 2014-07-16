@@ -3,17 +3,14 @@
 #' This function loads the demand tables
 #' and defines all variables for the decomposition
 #' 
-#' @param x the intermediate demand table,
-#'  where the first row and the first column list the country names,
-#'  the second row and second column list the industry names for each country.
-#'  The matrix is presumed to be of dimensions G*N, where G represents the country and N the industry.
-#'  No extra columns should be included.
-#'  The last row (i.e. row G*N+1) should contain final demand.
-#' @param y the final demand table it has dimensions G*M,
-#'  where the first row and the first column list the country names,
-#'  the second row lists the industry names for each country,
-#'  (where M is the number of objects final demand is decomposed into,
-#'  e.g. household consumption, here this is into five decompositions).
+#' @param x the intermediate demand table, it has dimensions G*N x G*N (G = no. of country, N = no. of industries),
+#'  excluding the first row and the first column which contains the country names,
+#'  and the second row and second column which contain the industry names for each country.
+#'  In addition, an extra row at the end should contain final demand.
+#' @param y the final demand table it has dimensions G*N x M*N,
+#'  excluding the first row and the first column which contains the country names,
+#'  the second column which contains the industry names for each country,
+#'  and second row which contains the five decomposed final demands (M).
 #' @return a decompr class object
 #' @author Bastiaan Quast
 #' @details Adapted from code by Fei Wang.
