@@ -3,8 +3,17 @@
 #' This function loads the demand tables
 #' and defines all variables for the decomposition
 #' 
-#' @param x the intermediate demand input-output table
-#' @param y the final demand table
+#' @param x the intermediate demand table,
+#'  where the first row and the first column list the country names,
+#'  the second row and second column list the industry names for each country.
+#'  The matrix is presumed to be of dimensions G*N, where G represents the country and N the industry.
+#'  No extra columns should be included.
+#'  The last row (i.e. row G*N+1) should contain final demand.
+#' @param y the final demand table it has dimensions G*M,
+#'  where the first row and the first column list the country names,
+#'  the second row lists the industry names for each country,
+#'  (where M is the number of objects final demand is decomposed into,
+#'  e.g. household consumption, here this is into five decompositions).
 #' @return a decompr class object
 #' @author Bastiaan Quast
 #' @details Adapted from code by Fei Wang.
@@ -87,8 +96,7 @@ load.tables <- function(x, y) {
   
   
   # Part 2: computing final demand: Y
-  ##### is the 5 hardcoded or always 5?
-  y <- y[1:GN,1:(5*G)]
+  y <- data.matrix( y[3:(GN+2),3:((5*G)+2)] )
   for ( j in 1:length(regnam) ){
     m=1+(j-1)*5
     n=5+(j-1)*5

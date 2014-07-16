@@ -6,9 +6,18 @@
 load.tables(x, y)
 }
 \arguments{
-\item{x}{the intermediate demand input-output table}
+\item{x}{the intermediate demand table,
+where the first row and the first column list the country names,
+the second row and second column list the industry names for each country.
+The matrix is presumed to be of dimensions G*N, where G represents the country and N the industry.
+No extra columns should be included.
+The last row (i.e. row G*N+1) should contain final demand.}
 
-\item{y}{the final demand table}
+\item{y}{the final demand table it has dimensions G*M,
+where the first row and the first column list the country names,
+the second row lists the industry names for each country,
+(where M is the number of objects final demand is decomposed into,
+e.g. household consumption, here this is into five decompositions).}
 }
 \value{
 a decompr class object

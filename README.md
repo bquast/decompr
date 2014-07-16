@@ -32,8 +32,8 @@ Usage
 library(decompr)
 
 # load the csv files into the workspace
-fin.demand <- read.csv('WFD1995.csv')
-inter.demand <- read.csv('WID1995.csv', header=FALSE)
+final.demand <- read.csv('WFD1995.csv', header=FALSE, stringsAsFactors=FALSE)
+inter.demand <- read.csv('WID1995.csv', header=FALSE, stringsAsFactors=FALSE)
 
 # run the WWZ decomposition
 wwz1995 <- decomp(inter.demand, fin.demand, method='wwz')

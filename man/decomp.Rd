@@ -6,9 +6,18 @@
 decomp(x, y, method = "wwz")
 }
 \arguments{
-\item{x}{the intermediate demand table, where the first row and the first column list the country names, the second row and second column list the insdustry names for each country. The matrix is presumed to be of dimensions G*N where G represents the country and N the industry. No extra columns should be there. Extra rows at the bottom which list adjustments such as taxes as well are disregarded, with the exception that the very last row is presumed to contain the total output.}
+\item{x}{the intermediate demand table,
+where the first row and the first column list the country names,
+the second row and second column list the industry names for each country.
+The matrix is presumed to be of dimensions G*N, where G represents the country and N the industry.
+No extra columns should be included.
+The last row (i.e. row G*N+1) should contain final demand.}
 
-\item{y}{the final demand table it has dimensions GN*GM ( where M is the number of objects final demand is decomposed in, e.g. household consumption, here this is five decompositions).}
+\item{y}{the final demand table it has dimensions G*M,
+where the first row and the first column list the country names,
+the second row lists the industry names for each country,
+(where M is the number of objects final demand is decomposed into,
+e.g. household consumption, here this is into five decompositions).}
 
 \item{method}{user specifies the decomposition method}
 }
@@ -23,10 +32,10 @@ Bastiaan Quast
 }
 \references{
 Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu.
-Quantifying international production sharing at the bilateral and sector levels.
-No. w19677. National Bureau of Economic Research, 2013.
-Mehrotra, Rajiv, Fu K. Kung, and William I. Grosky.
-"Industrial part recognition using a component-index."
-Image and Vision Computing 8, no. 3 (1990): 225-232.
+ Quantifying international production sharing at the bilateral and sector levels.
+ No. w19677. National Bureau of Economic Research, 2013.
+ Mehrotra, Rajiv, Fu K. Kung, and William I. Grosky.
+ "Industrial part recognition using a component-index."
+ Image and Vision Computing 8, no. 3 (1990): 225-232.
 }
 
