@@ -6,12 +6,12 @@
 load.tables(x, y)
 }
 \arguments{
-\item{x}{the intermediate demand table, it has dimensions G*N x G*N (G = no. of country, N = no. of industries),
+\item{x}{the intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
 excluding the first row and the first column which contains the country names,
 and the second row and second column which contain the industry names for each country.
 In addition, an extra row at the end should contain final demand.}
 
-\item{y}{the final demand table it has dimensions G*N x M*N,
+\item{y}{the final demand table it has dimensions GN x MN,
 excluding the first row and the first column which contains the country names,
 the second column which contains the industry names for each country,
 and second row which contains the five decomposed final demands (M).}
