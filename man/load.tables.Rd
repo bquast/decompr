@@ -14,12 +14,10 @@ load.tables(x, y)
 a decompr class object
 }
 \description{
-This function load the demand tables
+This function loads the demand tables
 and defines all variables for the decomposition
 }
 \details{
-This function loads the data
-and creates the variables for the decomposition.
 Adapted from code by Fei Wang.
 }
 \author{

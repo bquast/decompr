@@ -1,12 +1,16 @@
-#' Runs the WWZ decomposition
+#' Runs the Wang-Wei-Zhu decomposition
 #' 
-#' This function runs the decomposition
+#' This function runs the Wang-Wei-Zhu decomposition.
 #' 
 #' @param x an object of the class decompr
 #' @return the decomposed table
 #' @author Bastiaan Quast
 #' @details Adapted from code by Fei Wang.
+#' @references Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu.
+#' Quantifying international production sharing at the bilateral and sector levels. 
+#' No. w19677. National Bureau of Economic Research, 2013.
 #' @export
+
 
 wwz <- function( x ) {
   

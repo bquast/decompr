@@ -12,12 +12,15 @@ kung.fu(x)
 a data frame containing the square matrix and labelled column and rows
 }
 \description{
-This function runs the decomposition
-}
-\details{
-The Kung Fu algorithm
+This function runs the Kung Fu decomposition
 }
 \author{
 Bastiaan Quast
+}
+\references{
+No. w19677. National Bureau of Economic Research, 2013.
+Mehrotra, Rajiv, Fu K. Kung, and William I. Grosky.
+"Industrial part recognition using a component-index."
+Image and Vision Computing 8, no. 3 (1990): 225-232.
 }
 

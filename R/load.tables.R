@@ -1,16 +1,15 @@
 #' Load the Input-Output and Final demand tables
 #' 
-#' This function load the demand tables
+#' This function loads the demand tables
 #' and defines all variables for the decomposition
 #' 
 #' @param x the intermediate demand input-output table
 #' @param y the final demand table
 #' @return a decompr class object
 #' @author Bastiaan Quast
-#' @details This function loads the data
-#' and creates the variables for the decomposition.
-#' Adapted from code by Fei Wang.
+#' @details Adapted from code by Fei Wang.
 #' @export
+
 
 load.tables <- function(x, y) {
 
@@ -83,7 +82,6 @@ load.tables <- function(x, y) {
   Vc[ is.na( Vc ) ] <- 0
   Vc[ Vc==Inf ] <- 0
   
-  # is this the right location
   Vhat <- diag(GN)
   diag(Vhat) <- Vc
   
@@ -107,7 +105,7 @@ load.tables <- function(x, y) {
   for (j in 1:length(regnam) )  {
     m=1+(j-1)*N
     n=N+(j-1)*N
-    E[m:n,m:n]  <- 0   # intermediate demand for domestic goods <- 0
+    E[m:n,m:n]  <- 0   # intermediate demand for domestic goods
   }
   
   for (j in 1:length(regnam))  {
@@ -115,7 +113,7 @@ load.tables <- function(x, y) {
     n=N+(j-1)*N
     s=GN+1+(j-1)*5
     r=GN+5+(j-1)*5
-    E[m:n,s:r]  <- 0  # final demand for domestic goods <- 0
+    E[m:n,s:r]  <- 0  # final demand for domestic goods
     Yd[ m:n,j ] <- Y[m:n,j]
     Ym[ m:n,j ] <- 0
   }
@@ -159,7 +157,7 @@ load.tables <- function(x, y) {
   dimnames(Efd)   <- dimnames( ESR )
   
 
-  # Part 5: saving the variables
+  # Part 5: creating decompr object
   out <- list( Exp = Exp,
                Vhat = Vhat,
                A = A,
@@ -195,6 +193,7 @@ load.tables <- function(x, y) {
   
   class(out) <- 'decompr'
   
+  # Part 6: returning object
   return(out)
   
 }
