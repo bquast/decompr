@@ -162,7 +162,7 @@ wwz <- function( x ) {
     ALL[ ,r,8 ] <- colSums(VsLss)*(rowSums(z2[ ,m:n ]))
   }
   rm(z2)
-  g()
+  gc()
   # View( ALL[ ,,8 ] )  #  RDV_FIN2
 
   
