@@ -36,10 +36,10 @@ final.demand <- read.csv('WFD1995.csv', header=FALSE, stringsAsFactors=FALSE)
 inter.demand <- read.csv('WID1995.csv', header=FALSE, stringsAsFactors=FALSE)
 
 # run the WWZ decomposition
-wwz1995 <- decomp(inter.demand, fin.demand, method='wwz')
+wwz1995 <- decomp(inter.demand, final.demand, method='wwz')
 
 # run the kung fu decomposition
-kf1995 <- decomp(inter.demand, fin.demand, method='kung.fu')
+kf1995 <- decomp(inter.demand, final.demand, method='kung.fu')
 ```
 
 References
