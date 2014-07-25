@@ -10,6 +10,17 @@
 #' Quantifying international production sharing at the bilateral and sector levels. 
 #' No. w19677. National Bureau of Economic Research, 2013.
 #' @export
+#' @examples
+#' # load World Input-Output Database for 2011
+#' data(wiod)
+#' 
+#' # create intermediate object (class decompr)
+#' decompr.object <- load.tables(intermediate.demand, final.demand)
+#' str(decompr.object)
+#' 
+#' # run the WWZ decomposition on the decompr object
+#' wwz  <- wwz(decompr.object)
+#' wwz[1:5,1:5]
 
 
 wwz <- function( x ) {

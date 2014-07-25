@@ -26,6 +26,14 @@ and defines all variables for the decomposition
 \details{
 Adapted from code by Fei Wang.
 }
+\examples{
+# load World Input-Output Database for 2011
+data(wiod)
+
+# create intermediate object (class decompr)
+decompr.object <- load.tables(intermediate.demand, final.demand)
+str(decompr.object)
+}
 \author{
 Bastiaan Quast
 }

@@ -14,6 +14,18 @@ a data frame containing the square matrix and labelled column and rows
 \description{
 This function runs the Kung Fu decomposition
 }
+\examples{
+# load World Input-Output Database for 2011
+data(wiod)
+
+# create intermediate object (class decompr)
+decompr.object <- load.tables(intermediate.demand, final.demand)
+str(decompr.object)
+
+# run the Kung Fu decomposition on the decompr object
+kf  <- kung.fu(decompr.object)
+kf[1:5,1:5]
+}
 \author{
 Bastiaan Quast
 }
