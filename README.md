@@ -31,15 +31,36 @@ Usage
 # load the package
 library(decompr)
 
-# load the csv files into the workspace
-final.demand <- read.csv('WFD1995.csv', header=FALSE, stringsAsFactors=FALSE)
-inter.demand <- read.csv('WID1995.csv', header=FALSE, stringsAsFactors=FALSE)
+# load World Input-Output Database for 2011
+data(wiod)
 
+# explore the data
+dim(intermediate.demand) # (2 + GN + totals) x (2 + GN)
+dim(final.demand)        # (2 + GN + totals) x (2 + G*5)
+intermediate.demand[1:40,1:40]
+final.demand[1:40,1:10]
+
+# use the direct approach
 # run the WWZ decomposition
-wwz1995 <- decomp(inter.demand, final.demand, method='wwz')
+wwz <- decomp(intermediate.demand, final.demand, method='wwz')
+wwz[1:5,1:5]
 
-# run the kung fu decomposition
-kf1995 <- decomp(inter.demand, final.demand, method='kung.fu')
+# run the Kung Fu decomposition
+kf  <- decomp(intermediate.demand, final.demand, method='kung.fu')
+kf[1:5,1:5]
+
+# or use the step-by-step approach
+# create intermediate object (class decompr)
+decompr.object <- load.tables(intermediate.demand, final.demand)
+str(decompr.object)
+
+# run the WWZ decomposition on the decompr object
+wwz <- wwz(decompr.object)
+wwz[1:5,1:5]
+
+# run the Kung Fu decomposition on the decompr object
+kf  <- kung.fu(decompr.object)
+kf[1:5,1:5]
 ```
 
 References
