@@ -20,11 +20,11 @@
 load.tables <- function(x, y) {
 
   # Part 1: getting the rownames etc.
-  GN <- length(x) - 2
+  GN     <- length(x) - 2
   regnam <- unique(x[3:(GN+2),1])
-  G <- length(regnam)
-  N <- GN / G
-  secnam <- unique(x[,2])[3:(N+2)]
+  G      <- length(regnam)
+  N      <- GN / G
+  secnam <- unique( x[3:(N+2),2] )
   rownam <- paste( x[3:(GN+2),1], ".", x[3:(GN+2),2], sep="" )
   
   # making regions' names
@@ -63,7 +63,6 @@ load.tables <- function(x, y) {
   #### this might not be the best way to construct V
   V <- X - colSums( AX )
   rm( x )
-  gc()
   
   A <- t(t(AX)/X)
   A[ is.na( A ) ] <- 0
