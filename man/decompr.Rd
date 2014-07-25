@@ -7,25 +7,6 @@
 \description{
 Export Decomposition using the Wang-Wei-Zhu and Kung-Fu algorithms.
 }
-\examples{
-# load World Input-Output Database for 2011
-data(wiod)
-
-# explore the data
-dim(intermediate.demand) # (2 + GN + totals) x (2 + GN)
-dim(final.demand)        # (2 + GN + totals) x (2 + G*5)
-intermediate.demand[1:40,1:40]
-final.demand[1:40,1:10]
-
-# use the direct approach
-# run the WWZ decomposition
-wwz <- decomp(intermediate.demand, final.demand, method='wwz')
-wwz[1:5,1:5]
-
-# run the Kung Fu decomposition
-kf  <- decomp(intermediate.demand, final.demand, method='kung.fu')
-kf[1:5,1:5]
-}
 \author{
 Bastiaan Quast \email{bquast@gmail.com}
 }
