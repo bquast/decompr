@@ -1,0 +1,99 @@
+---
+title: "decompr"
+author: "Bastiaan Quast"
+date: "Friday, July 25, 2014"
+output:
+  html_document:
+    keep_md: yes
+---
+
+decompr
+======================================
+Bastiaan Quast, bquast@gmail.com
+--------------------------------------
+An R package that implements Export Decomposition using the Wang-Wei-Zhu and Kung-Fu algorithms. 
+
+Inputs
+--------------------------------------
+The package uses Inter-Country Input-Output (ICIO) tables, such as World Input Outpt Database (WIOD).
+
+The **x** argument is intermediate demand table, where the first row and the first column list the country names, the second row and second column list the insdustry names for each country. The matrix is presumed to be of dimensions **GxN** where **G** represents the country and **N** the industry. No extra columns should be there. Extra rows at the bottom which list adjustments such as taxes as well are disregarded, with the exception that the very last row is presumed to contain the total output.
+
+The **y** argument is the final demand table it has dimensions **GNxGM** ( where **M** is the number of objects final demand is decomposed in, e.g. household consumption, here this is five decompositions).
+
+Output
+--------------------------------------
+The output when using the WWZ algorithm is a matrix with dimensions **GNGx19**. Whereby **19** is the **16** objects the WWZ algorithm decomposes exports into, plus three checksums. **GNG** represents source country, using industry and using country.
+
+Installation
+--------------------------------------
+**WARNING**, decompr is in an extremely early stage of development. The API will still change.
+
+```{r}
+# install.packages("devtools")
+devtools::install_github("bquast/decompr")
+```
+
+Usage
+--------------------------------------
+```{r}
+# load the package
+library(decompr)
+
+# load World Input-Output Database for 2011
+data(wiod)
+
+# explore the data
+dim(intermediate.demand) # (2 + GN + totals) x (2 + GN)
+dim(final.demand)        # (2 + GN + totals) x (2 + G*5)
+intermediate.demand[1:40,1:40]
+final.demand[1:40,1:10]
+
+# use the direct approach
+# run the WWZ decomposition
+wwz <- decomp(intermediate.demand, final.demand, method='wwz')
+wwz[1:5,1:5]
+
+# run the Kung Fu decomposition
+kf  <- decomp(intermediate.demand, final.demand, method='kung.fu')
+kf[1:5,1:5]
+
+# or use the step-by-step approach
+# create intermediate object (class decompr)
+decompr.object <- load.tables(intermediate.demand, final.demand)
+str(decompr.object)
+
+# run the WWZ decomposition on the decompr object
+wwz <- wwz(decompr.object)
+wwz[1:5,1:5]
+
+# run the Kung Fu decomposition on the decompr object
+kf  <- kung.fu(decompr.object)
+kf[1:5,1:5]
+```
+
+References
+--------------------------------------
+* Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu. Quantifying international production sharing at the bilateral and sector levels. No. w19677. National Bureau of Economic Research, 2013.
+
+* Mehrotra, Rajiv, Fu K. Kung, and William I. Grosky. Industrial part recognition using a component-index. Image and Vision Computing 8, no. 3 (1990): 225-232.
+
+TODO
+--------------------------------------
+The most import TODO items (in order of importance) are:
+
+- [x] Remove use of windows-only **clipboard** function
+- [x] Remove use of multi-year functionality (this should be user implemented)
+- [x] Remove hard-coded dimensions
+- [x] change inputs and outputs to R objects in stead of files
+- [x] implement as a function for reading the matrices and a function for decomposing
+- [x] minimalise inputs by computing final demand (and others?)
+- [x] provide documentation and examples
+- [ ] add checks on data (intermediate demand sums)
+- [ ] implement S4 class objects
+- [x] replace use of **attach()**
+- [ ] review linear algebra for efficiency
+
+Credit
+--------------------------------------
+This package is based on R code written by Fei Wang (not to be confused with the author of the algorithm, with the same last name), which implemented this algorithm.
