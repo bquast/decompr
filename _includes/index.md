@@ -1,59 +1,61 @@
+# decompr
+
+This page describes the R package decompr.
 
 
-[Solo](http://solo.chibi.io) is a Jekyll theme that supports **single-page websites** only, but supports them well. Yes, it's responsive.
+## Installation
+The package is currently not on cran but can be downloading using the `devtools` package.
 
-<iframe src="http://ghbtns.com/github-btn.html?user=chibicode&amp;repo=solo&amp;type=watch&amp;count=true&amp;size=large"
-  allowtransparency="true" frameborder="0" scrolling="0" width="170" height="30"></iframe><br/>
-
-## Solo is useful if...
-
-* You want to create an "about me" page from a single markdown file and host it under a custom domain name.
-* You want to create a single-page website that's mostly text, like [Know Your Company](https://knowyourcompany.com/).
-* You want to share a single markdown file and tried GitHub Gist ([example](https://gist.github.com/dypsilon/5819504)), but would like something nicer-looking.
-* You want something like GitHub's [automatic page generator](http://pages.github.com/) for a non-code repository.
-
-This page itself is built with Solo. It's generated from [this markdown file](https://github.com/chibicode/solo/blob/gh-pages/_includes/index.md).
+```{r, eval=FALSE}
+# install.packages('devtools')
+devtools::install_github('bquast/decompr')
+```
 
 ## Usage
+The usage is described in the R documentation included in the package. In addition...
 
-First, [install Jekyll](http://jekyllrb.com/docs/installation/). Then download Solo from its [GitHub Repository](https://github.com/chibicode/solo). Start Jekyll and you should see this page up and running.
+```{r, eval=FALSE}
+# load the package
+library(decompr)
 
-**The main file you'll be editing is `_includes/index.md`**. This becomes the content for the main `index.html`.
+# load World Input-Output Database for 2011
+data(wiod)
 
-### Other Files
+# explore the data
+dim(intermediate.demand) # (2 + GN + totals) x (2 + GN)
+dim(final.demand)        # (2 + GN + totals) x (2 + G*5)
+intermediate.demand[1:40,1:40]
+final.demand[1:40,1:10]
 
-* Edit `_config.yml` to change the site title.
-* Edit `_includes/head.html` to add custom code to `<head>`.
-* Edit `_includes/scripts.html` to add custom code before `</body>`.
-* Edit `CNAME` to host on a custom domain.
-* Edit `README.md` before pushing your code.
+# use the direct approach
+# run the WWZ decomposition
+wwz <- decomp(intermediate.demand, final.demand, method='wwz')
+wwz[1:5,1:5]
 
-### Don't use `<h1>` tags
+# run the Kung Fu decomposition
+kf  <- decomp(intermediate.demand, final.demand, method='kung.fu')
+kf[1:5,1:5]
 
-Wthin `index.md`, do not use `<h1>` tags - `<h1>` is reserved for the site title.
+# or use the step-by-step approach
+# create intermediate object (class decompr)
+decompr.object <- load.tables(intermediate.demand, final.demand)
+str(decompr.object)
 
-### Supported Tags
+# run the WWZ decomposition on the decompr object
+wwz <- wwz(decompr.object)
+wwz[1:5,1:5]
 
-Solo supports lists, `<hr>`s, `<table>`s,
+# run the Kung Fu decomposition on the decompr object
+kf  <- kung.fu(decompr.object)
+kf[1:5,1:5]
+```
 
-> blockquotes, and...
+## Contribute
+The development version is available on Github, in fact this page is a branch of the **decompr** repository. The repository can be found at https://github.com/bquast/decompr.
 
-~~~html
-<pre>code blocks with syntax highlighting.</pre>
-~~~
 
-### Keep Solo up to date
+## About the page
 
-Instead of downloading, you can [fork Solo](https://github.com/chibicode/solo/fork) and use the "upstream" strategy described on [this page](https://help.github.com/articles/fork-a-repo) to keep Solo up to date.
-
-## Author
-
+This page is hosted on Github pages, render using jekyll and uses the Solo theme by
 Shu Uesugi ([Twitter](http://twitter.com/chibicode)/[GitHub](http://github.com/chibicode)/[G+](https://plus.google.com/110325199858284431541?rel=author)).
 
-![Shu Uesugi](http://www.gravatar.com/avatar/b868d84bbe2ed30ec45c9253e1c1cefe.jpg?s=200)
-
-### License
-
-[MIT License](http://chibicode.mit-license.org/)
-
-<div class="github-fork-ribbon-wrapper right fixed" style="width: 150px;height: 150px;position: fixed;overflow: hidden;top: 0;z-index: 9999;pointer-events: none;right: 0;"><div class="github-fork-ribbon" style="position: absolute;padding: 2px 0;background-color: #333;background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));-webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);-moz-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);z-index: 9999;pointer-events: auto;top: 42px;right: -43px;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);-ms-transform: rotate(45deg);-o-transform: rotate(45deg);transform: rotate(45deg);"><a href="https://github.com/chibicode/solo" style="font: 700 13px &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;color: #fff;text-decoration: none;text-shadow: 0 -1px rgba(0, 0, 0, 0.5);text-align: center;width: 200px;line-height: 20px;display: inline-block;padding: 2px 0;border-width: 1px 0;border-style: dotted;border-color: rgba(255, 255, 255, 0.7);">Fork me on GitHub</a></div></div>
