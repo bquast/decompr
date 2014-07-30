@@ -5,17 +5,18 @@ date: "Friday, July 25, 2014"
 output:
   html_document:
     keep_md: yes
+bibliography: bibliography.bib
 ---
 
 decompr
 ======================================
 Bastiaan Quast, bquast@gmail.com
 --------------------------------------
-An R package that implements Export Decomposition using the Wang-Wei-Zhu and Kung-Fu algorithms. 
+An R package that implements Export Decomposition using the Wang-Wei-Zhu [@wang2013quantifying] and Kung-Fu [@mehrotra1990industrial] algorithms. 
 
 Inputs
 --------------------------------------
-The package uses Inter-Country Input-Output (ICIO) tables, such as World Input Outpt Database (WIOD).
+The package uses Inter-Country Input-Output (ICIO) tables, such as World Input Outpt Database [@timmer2012world].
 
 The **x** argument is intermediate demand table, where the first row and the first column list the country names, the second row and second column list the insdustry names for each country. The matrix is presumed to be of dimensions **GxN** where **G** represents the country and **N** the industry. No extra columns should be there. Extra rows at the bottom which list adjustments such as taxes as well are disregarded, with the exception that the very last row is presumed to contain the total output.
 
@@ -72,12 +73,6 @@ kf  <- kung.fu(decompr.object)
 kf[1:5,1:5]
 ```
 
-References
---------------------------------------
-* Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu. Quantifying international production sharing at the bilateral and sector levels. No. w19677. National Bureau of Economic Research, 2013.
-
-* Mehrotra, Rajiv, Fu K. Kung, and William I. Grosky. Industrial part recognition using a component-index. Image and Vision Computing 8, no. 3 (1990): 225-232.
-
 TODO
 --------------------------------------
 The most import TODO items (in order of importance) are:
@@ -97,3 +92,7 @@ The most import TODO items (in order of importance) are:
 Credit
 --------------------------------------
 This package is based on R code written by Fei Wang (not to be confused with the author of the algorithm, with the same last name), which implemented this algorithm.
+
+
+References
+--------------------------------------
