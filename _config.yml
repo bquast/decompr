@@ -1,5 +1,5 @@
-markdown:       redcarpet
-highlight:      pygments
+markdown:         redcarpet
+highlighter:      pygments
 
 title_tag_text: decompr, R package
 h1_tag_text:    decompr
