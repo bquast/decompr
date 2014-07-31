@@ -63,11 +63,11 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <h1>decompr</h1>
 <div id="bastiaan-quast-bquastgmail.com" class="section level2">
 <h2>Bastiaan Quast, <a href="mailto:bquast@gmail.com">bquast@gmail.com</a></h2>
-<p>An R package that implements Export Decomposition using the Wang-Wei-Zhu and Kung-Fu algorithms.</p>
+<p>An R package that implements Export Decomposition using the Wang-Wei-Zhu <span class="citation">(Wang, Wei, and Zhu 2013)</span> and Kung-Fu <span class="citation">(Mehrotra, Kung, and Grosky 1990)</span> algorithms.</p>
 </div>
 <div id="inputs" class="section level2">
 <h2>Inputs</h2>
-<p>The package uses Inter-Country Input-Output (ICIO) tables, such as World Input Outpt Database (WIOD).</p>
+<p>The package uses Inter-Country Input-Output (ICIO) tables, such as World Input Outpt Database <span class="citation">(Timmer et al. 2012)</span>.</p>
 <p>The <strong>x</strong> argument is intermediate demand table, where the first row and the first column list the country names, the second row and second column list the insdustry names for each country. The matrix is presumed to be of dimensions <strong>GxN</strong> where <strong>G</strong> represents the country and <strong>N</strong> the industry. No extra columns should be there. Extra rows at the bottom which list adjustments such as taxes as well are disregarded, with the exception that the very last row is presumed to contain the total output.</p>
 <p>The <strong>y</strong> argument is the final demand table it has dimensions <strong>GNxGM</strong> ( where <strong>M</strong> is the number of objects final demand is decomposed in, e.g. household consumption, here this is five decompositions).</p>
 </div>
@@ -82,11 +82,13 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 devtools::install_github(&quot;bquast/decompr&quot;)</code></pre>
 <pre><code>## Installing github repo decompr/master from bquast
 ## Downloading master.zip from https://github.com/bquast/decompr/archive/master.zip
-## Installing package from C:\Users\quast2\AppData\Local\Temp\Rtmp028LJV/master.zip
+## Installing package from /tmp/RtmpQV7Eon/master.zip
+## arguments 'minimized' and 'invisible' are for Windows only
 ## Installing decompr
-## &quot;D:/R/R-3.1.1/bin/x64/R&quot; --vanilla CMD INSTALL  \
-##   &quot;C:\Users\quast2\AppData\Local\Temp\Rtmp028LJV\devtools1020760b663e\decompr-master&quot;  \
-##   --library=&quot;D:/R/R-3.1.1/library&quot; --install-tests</code></pre>
+## '/usr/lib/R/bin/R' --vanilla CMD INSTALL  \
+##   '/tmp/RtmpQV7Eon/devtoolsdbc9385f39/decompr-master'  \
+##   --library='/home/bquast/R/x86_64-pc-linux-gnu-library/3.1'  \
+##   --install-tests</code></pre>
 </div>
 <div id="usage" class="section level2">
 <h2>Usage</h2>
@@ -271,21 +273,21 @@ dim(intermediate.demand) # (2 + GN + totals) x (2 + GN)</code></pre>
 # run the WWZ decomposition
 wwz &lt;- decomp(intermediate.demand, final.demand, method='wwz')
 wwz[1:5,1:5]</code></pre>
-<pre><code>##            DVA_FIN DVA_INT DVA_INTrexI1 DVA_INTrexF DVA_INTrexI2
-## AUS.c1.AUS  0.0000  0.0000      0.00000      0.0000      0.00000
-## AUS.c1.AUT  0.9112  0.4625      0.06888      0.3572      0.01550
-## AUS.c1.BEL  7.2894 28.9449     18.69138     67.9672      5.61451
-## AUS.c1.BGR  0.0000  0.0000      0.00000      0.0000      0.00000
-## AUS.c1.BRA  0.0000  1.3342      0.20130      0.2498      0.03265</code></pre>
+<pre><code>##              DVA_FIN    DVA_INT DVA_INTrexI1 DVA_INTrexF DVA_INTrexI2
+## AUS.c1.AUS 0.0000000  0.0000000    0.0000000   0.0000000   0.00000000
+## AUS.c1.AUT 0.9111762  0.4625102    0.0688806   0.3571779   0.01550494
+## AUS.c1.BEL 7.2894098 28.9449226   18.6913782  67.9672390   5.61451475
+## AUS.c1.BGR 0.0000000  0.0000000    0.0000000   0.0000000   0.00000000
+## AUS.c1.BRA 0.0000000  1.3342108    0.2012988   0.2497688   0.03264660</code></pre>
 <pre class="r"><code># run the Kung Fu decomposition
 kf  &lt;- decomp(intermediate.demand, final.demand, method='kung.fu')
 kf[1:5,1:5]</code></pre>
-<pre><code>##          AUS.c1    AUS.c2   AUS.c3  AUS.c4  AUS.c5
-## AUS.c1 9008.839 2.073e+02 3403.212 106.007  28.764
-## AUS.c2  176.310 1.167e+05  378.836  23.238   6.361
-## AUS.c3  113.769 1.156e+02 6157.583   8.113   2.198
-## AUS.c4    7.174 3.906e+01   17.937 596.007   8.607
-## AUS.c5    1.562 8.343e+00    3.859   6.893 117.475</code></pre>
+<pre><code>##             AUS.c1       AUS.c2     AUS.c3     AUS.c4     AUS.c5
+## AUS.c1 9008.838928 2.073470e+02 3403.21235 106.006923  28.764122
+## AUS.c2  176.309989 1.167310e+05  378.83615  23.238096   6.361119
+## AUS.c3  113.768875 1.156293e+02 6157.58321   8.113164   2.197657
+## AUS.c4    7.173890 3.905584e+01   17.93670 596.007379   8.606622
+## AUS.c5    1.562337 8.343463e+00    3.85944   6.893088 117.474862</code></pre>
 <pre class="r"><code># or use the step-by-step approach
 # create intermediate object (class decompr)
 decompr.object &lt;- load.tables(intermediate.demand, final.demand)
@@ -371,28 +373,21 @@ str(decompr.object)</code></pre>
 <pre class="r"><code># run the WWZ decomposition on the decompr object
 wwz &lt;- wwz(decompr.object)
 wwz[1:5,1:5]</code></pre>
-<pre><code>##            DVA_FIN DVA_INT DVA_INTrexI1 DVA_INTrexF DVA_INTrexI2
-## AUS.c1.AUS  0.0000  0.0000      0.00000      0.0000      0.00000
-## AUS.c1.AUT  0.9112  0.4625      0.06888      0.3572      0.01550
-## AUS.c1.BEL  7.2894 28.9449     18.69138     67.9672      5.61451
-## AUS.c1.BGR  0.0000  0.0000      0.00000      0.0000      0.00000
-## AUS.c1.BRA  0.0000  1.3342      0.20130      0.2498      0.03265</code></pre>
+<pre><code>##              DVA_FIN    DVA_INT DVA_INTrexI1 DVA_INTrexF DVA_INTrexI2
+## AUS.c1.AUS 0.0000000  0.0000000    0.0000000   0.0000000   0.00000000
+## AUS.c1.AUT 0.9111762  0.4625102    0.0688806   0.3571779   0.01550494
+## AUS.c1.BEL 7.2894098 28.9449226   18.6913782  67.9672390   5.61451475
+## AUS.c1.BGR 0.0000000  0.0000000    0.0000000   0.0000000   0.00000000
+## AUS.c1.BRA 0.0000000  1.3342108    0.2012988   0.2497688   0.03264660</code></pre>
 <pre class="r"><code># run the Kung Fu decomposition on the decompr object
 kf  &lt;- kung.fu(decompr.object)
 kf[1:5,1:5]</code></pre>
-<pre><code>##          AUS.c1    AUS.c2   AUS.c3  AUS.c4  AUS.c5
-## AUS.c1 9008.839 2.073e+02 3403.212 106.007  28.764
-## AUS.c2  176.310 1.167e+05  378.836  23.238   6.361
-## AUS.c3  113.769 1.156e+02 6157.583   8.113   2.198
-## AUS.c4    7.174 3.906e+01   17.937 596.007   8.607
-## AUS.c5    1.562 8.343e+00    3.859   6.893 117.475</code></pre>
-</div>
-<div id="references" class="section level2">
-<h2>References</h2>
-<ul>
-<li><p>Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu. Quantifying international production sharing at the bilateral and sector levels. No. w19677. National Bureau of Economic Research, 2013.</p></li>
-<li><p>Mehrotra, Rajiv, Fu K. Kung, and William I. Grosky. Industrial part recognition using a component-index. Image and Vision Computing 8, no. 3 (1990): 225-232.</p></li>
-</ul>
+<pre><code>##             AUS.c1       AUS.c2     AUS.c3     AUS.c4     AUS.c5
+## AUS.c1 9008.838928 2.073470e+02 3403.21235 106.006923  28.764122
+## AUS.c2  176.309989 1.167310e+05  378.83615  23.238096   6.361119
+## AUS.c3  113.768875 1.156293e+02 6157.58321   8.113164   2.197657
+## AUS.c4    7.173890 3.905584e+01   17.93670 596.007379   8.606622
+## AUS.c5    1.562337 8.343463e+00    3.85944   6.893088 117.474862</code></pre>
 </div>
 <div id="todo" class="section level2">
 <h2>TODO</h2>
@@ -414,6 +409,12 @@ kf[1:5,1:5]</code></pre>
 <div id="credit" class="section level2">
 <h2>Credit</h2>
 <p>This package is based on R code written by Fei Wang (not to be confused with the author of the algorithm, with the same last name), which implemented this algorithm.</p>
+<div class="references">
+<h2>References</h2>
+<p>Mehrotra, Rajiv, Fu K. Kung, and William I. Grosky. 1990. “Industrial Part Recognition Using a Component-Index.” <em>Image and Vision Computing</em> 8 (3): 225–232.</p>
+<p>Timmer, Marcel, A. A. Erumban, R. Gouma, B. Los, U. Temurshoev, G. J. de Vries, and I. Arto. 2012. “The World Input-Output Database (WIOD): Contents, Sources and Methods.” <em>WIOD Background Document Available at Www. Wiod. Org</em>.</p>
+<p>Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu. 2013. “Quantifying International Production Sharing at the Bilateral and Sector Levels.”</p>
+</div>
 </div>
 </div>
 

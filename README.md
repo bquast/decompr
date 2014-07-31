@@ -6,11 +6,11 @@ decompr
 ======================================
 Bastiaan Quast, bquast@gmail.com
 --------------------------------------
-An R package that implements Export Decomposition using the Wang-Wei-Zhu and Kung-Fu algorithms. 
+An R package that implements Export Decomposition using the Wang-Wei-Zhu [@wang2013quantifying] and Kung-Fu [@mehrotra1990industrial] algorithms. 
 
 Inputs
 --------------------------------------
-The package uses Inter-Country Input-Output (ICIO) tables, such as World Input Outpt Database (WIOD).
+The package uses Inter-Country Input-Output (ICIO) tables, such as World Input Outpt Database [@timmer2012world].
 
 The **x** argument is intermediate demand table, where the first row and the first column list the country names, the second row and second column list the insdustry names for each country. The matrix is presumed to be of dimensions **GxN** where **G** represents the country and **N** the industry. No extra columns should be there. Extra rows at the bottom which list adjustments such as taxes as well are disregarded, with the exception that the very last row is presumed to contain the total output.
 
@@ -33,11 +33,13 @@ devtools::install_github("bquast/decompr")
 ```
 ## Installing github repo decompr/master from bquast
 ## Downloading master.zip from https://github.com/bquast/decompr/archive/master.zip
-## Installing package from C:\Users\quast2\AppData\Local\Temp\Rtmp028LJV/master.zip
+## Installing package from /tmp/RtmpQV7Eon/master.zip
+## arguments 'minimized' and 'invisible' are for Windows only
 ## Installing decompr
-## "D:/R/R-3.1.1/bin/x64/R" --vanilla CMD INSTALL  \
-##   "C:\Users\quast2\AppData\Local\Temp\Rtmp028LJV\devtools1020760b663e\decompr-master"  \
-##   --library="D:/R/R-3.1.1/library" --install-tests
+## '/usr/lib/R/bin/R' --vanilla CMD INSTALL  \
+##   '/tmp/RtmpQV7Eon/devtoolsdbc9385f39/decompr-master'  \
+##   --library='/home/bquast/R/x86_64-pc-linux-gnu-library/3.1'  \
+##   --install-tests
 ```
 
 Usage
@@ -252,12 +254,12 @@ wwz[1:5,1:5]
 ```
 
 ```
-##            DVA_FIN DVA_INT DVA_INTrexI1 DVA_INTrexF DVA_INTrexI2
-## AUS.c1.AUS  0.0000  0.0000      0.00000      0.0000      0.00000
-## AUS.c1.AUT  0.9112  0.4625      0.06888      0.3572      0.01550
-## AUS.c1.BEL  7.2894 28.9449     18.69138     67.9672      5.61451
-## AUS.c1.BGR  0.0000  0.0000      0.00000      0.0000      0.00000
-## AUS.c1.BRA  0.0000  1.3342      0.20130      0.2498      0.03265
+##              DVA_FIN    DVA_INT DVA_INTrexI1 DVA_INTrexF DVA_INTrexI2
+## AUS.c1.AUS 0.0000000  0.0000000    0.0000000   0.0000000   0.00000000
+## AUS.c1.AUT 0.9111762  0.4625102    0.0688806   0.3571779   0.01550494
+## AUS.c1.BEL 7.2894098 28.9449226   18.6913782  67.9672390   5.61451475
+## AUS.c1.BGR 0.0000000  0.0000000    0.0000000   0.0000000   0.00000000
+## AUS.c1.BRA 0.0000000  1.3342108    0.2012988   0.2497688   0.03264660
 ```
 
 ```r
@@ -267,12 +269,12 @@ kf[1:5,1:5]
 ```
 
 ```
-##          AUS.c1    AUS.c2   AUS.c3  AUS.c4  AUS.c5
-## AUS.c1 9008.839 2.073e+02 3403.212 106.007  28.764
-## AUS.c2  176.310 1.167e+05  378.836  23.238   6.361
-## AUS.c3  113.769 1.156e+02 6157.583   8.113   2.198
-## AUS.c4    7.174 3.906e+01   17.937 596.007   8.607
-## AUS.c5    1.562 8.343e+00    3.859   6.893 117.475
+##             AUS.c1       AUS.c2     AUS.c3     AUS.c4     AUS.c5
+## AUS.c1 9008.838928 2.073470e+02 3403.21235 106.006923  28.764122
+## AUS.c2  176.309989 1.167310e+05  378.83615  23.238096   6.361119
+## AUS.c3  113.768875 1.156293e+02 6157.58321   8.113164   2.197657
+## AUS.c4    7.173890 3.905584e+01   17.93670 596.007379   8.606622
+## AUS.c5    1.562337 8.343463e+00    3.85944   6.893088 117.474862
 ```
 
 ```r
@@ -370,12 +372,12 @@ wwz[1:5,1:5]
 ```
 
 ```
-##            DVA_FIN DVA_INT DVA_INTrexI1 DVA_INTrexF DVA_INTrexI2
-## AUS.c1.AUS  0.0000  0.0000      0.00000      0.0000      0.00000
-## AUS.c1.AUT  0.9112  0.4625      0.06888      0.3572      0.01550
-## AUS.c1.BEL  7.2894 28.9449     18.69138     67.9672      5.61451
-## AUS.c1.BGR  0.0000  0.0000      0.00000      0.0000      0.00000
-## AUS.c1.BRA  0.0000  1.3342      0.20130      0.2498      0.03265
+##              DVA_FIN    DVA_INT DVA_INTrexI1 DVA_INTrexF DVA_INTrexI2
+## AUS.c1.AUS 0.0000000  0.0000000    0.0000000   0.0000000   0.00000000
+## AUS.c1.AUT 0.9111762  0.4625102    0.0688806   0.3571779   0.01550494
+## AUS.c1.BEL 7.2894098 28.9449226   18.6913782  67.9672390   5.61451475
+## AUS.c1.BGR 0.0000000  0.0000000    0.0000000   0.0000000   0.00000000
+## AUS.c1.BRA 0.0000000  1.3342108    0.2012988   0.2497688   0.03264660
 ```
 
 ```r
@@ -385,19 +387,13 @@ kf[1:5,1:5]
 ```
 
 ```
-##          AUS.c1    AUS.c2   AUS.c3  AUS.c4  AUS.c5
-## AUS.c1 9008.839 2.073e+02 3403.212 106.007  28.764
-## AUS.c2  176.310 1.167e+05  378.836  23.238   6.361
-## AUS.c3  113.769 1.156e+02 6157.583   8.113   2.198
-## AUS.c4    7.174 3.906e+01   17.937 596.007   8.607
-## AUS.c5    1.562 8.343e+00    3.859   6.893 117.475
+##             AUS.c1       AUS.c2     AUS.c3     AUS.c4     AUS.c5
+## AUS.c1 9008.838928 2.073470e+02 3403.21235 106.006923  28.764122
+## AUS.c2  176.309989 1.167310e+05  378.83615  23.238096   6.361119
+## AUS.c3  113.768875 1.156293e+02 6157.58321   8.113164   2.197657
+## AUS.c4    7.173890 3.905584e+01   17.93670 596.007379   8.606622
+## AUS.c5    1.562337 8.343463e+00    3.85944   6.893088 117.474862
 ```
-
-References
---------------------------------------
-* Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu. Quantifying international production sharing at the bilateral and sector levels. No. w19677. National Bureau of Economic Research, 2013.
-
-* Mehrotra, Rajiv, Fu K. Kung, and William I. Grosky. Industrial part recognition using a component-index. Image and Vision Computing 8, no. 3 (1990): 225-232.
 
 TODO
 --------------------------------------
@@ -418,3 +414,7 @@ The most import TODO items (in order of importance) are:
 Credit
 --------------------------------------
 This package is based on R code written by Fei Wang (not to be confused with the author of the algorithm, with the same last name), which implemented this algorithm.
+
+
+References
+--------------------------------------
