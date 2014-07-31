@@ -1,0 +1,7 @@
+markdown:       redcarpet
+highlighter:      pygments
+
+title_tag_text: decompr, R package
+h1_tag_text:    decompr
+
+exclude: ["Procfile", "Gruntfile.js", "package.json", "node_modules"]
