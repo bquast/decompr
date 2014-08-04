@@ -3,8 +3,8 @@ title: "decompr"
 author: "Bastiaan Quast"
 date: "Friday, July 25, 2014"
 output:
-  html_document:
-    keep_md: yes
+  md_document:
+    variant: markdown_github
 bibliography: bibliography.bib
 ---
 

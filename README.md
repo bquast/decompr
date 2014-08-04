@@ -1,16 +1,13 @@
-# decompr
-Bastiaan Quast  
-Friday, July 25, 2014  
-
 decompr
-======================================
-Bastiaan Quast, bquast@gmail.com
---------------------------------------
-An R package that implements Export Decomposition using the Wang-Wei-Zhu [@wang2013quantifying] and Kung-Fu [@mehrotra1990industrial] algorithms. 
+=======
+
+Bastiaan Quast, <bquast@gmail.com>
+----------------------------------
+An R package that implements Export Decomposition using the Wang-Wei-Zhu (Wang, Wei, and Zhu 2013) and Kung-Fu (Mehrotra, Kung, and Grosky 1990) algorithms. 
 
 Inputs
 --------------------------------------
-The package uses Inter-Country Input-Output (ICIO) tables, such as World Input Outpt Database [@timmer2012world].
+The package uses Inter-Country Input-Output (ICIO) tables, such as World Input Outpt Database (Timmer et al. 2012).
 
 The **x** argument is intermediate demand table, where the first row and the first column list the country names, the second row and second column list the insdustry names for each country. The matrix is presumed to be of dimensions **GxN** where **G** represents the country and **N** the industry. No extra columns should be there. Extra rows at the bottom which list adjustments such as taxes as well are disregarded, with the exception that the very last row is presumed to contain the total output.
 
@@ -418,3 +415,8 @@ This package is based on R code written by Fei Wang (not to be confused with the
 
 References
 --------------------------------------
+Mehrotra, Rajiv, Fu K. Kung, and William I. Grosky. 1990. "Industrial Part Recognition Using a Component-Index." *Image and Vision Computing* 8 (3): 225-232.
+
+Timmer, Marcel, A. A. Erumban, R. Gouma, B. Los, U. Temurshoev, G. J. de Vries, and I. Arto. 2012. "The World Input-Output Database (WIOD): Contents, Sources and Methods." *WIOD Background Document Available at Www. Wiod. Org*.
+
+Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu. 2013. "Quantifying International Production Sharing at the Bilateral and Sector Levels."
