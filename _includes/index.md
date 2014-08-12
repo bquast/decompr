@@ -1,5 +1,6 @@
-This page describes the R package decompr.
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.11266.png)](http://dx.doi.org/10.5281/zenodo.11266)
 
+This page describes the R package decompr.
 
 ## Installation
 The package is currently not on cran but can be downloading using the `devtools` package.
@@ -55,5 +56,4 @@ The development version is available on Github, in fact this page is a branch of
 ## About the page
 
 This page is hosted on Github pages, render using jekyll and uses the Solo theme by
-Shu Uesugi ([Twitter](http://twitter.com/chibicode)/[GitHub](http://github.com/chibicode)/[G+](https://plus.google.com/110325199858284431541?rel=author)).
-
+Shu Uesugi.
