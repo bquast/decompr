@@ -1,9 +1,10 @@
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.11266.png)](http://dx.doi.org/10.5281/zenodo.11266)
+
 decompr
 =======
 
 Bastiaan Quast, <bquast@gmail.com>
 ----------------------------------
-[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.11266.png)](http://dx.doi.org/10.5281/zenodo.11266)
 An R package that implements Export Decomposition using the Wang-Wei-Zhu (Wang, Wei, and Zhu 2013) and Kung-Fu (Mehrotra, Kung, and Grosky 1990) algorithms. 
 
 Inputs
