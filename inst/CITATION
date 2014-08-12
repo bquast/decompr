@@ -1,14 +1,15 @@
-bibentry(bibtype = "Manual",
-         title = "decompr",
-         author = person("Bastiaan", "Quast"),
+bibentry(bibtype      = "Manual",
+         title        = "decompr",
+         author       = person("Bastiaan", "Quast"),
 		 organization = "The Graduate Institute",
-		 address = "Maison de la Paix, Geneva, Switzerland",
-         year = version$year,
-         url = "http://qua.st/decompr",
+		 address      = "Maison de la Paix, Geneva, Switzerland",
+         year         = version$year,
+		 doi          = "{10.5281/zenodo.11266}",
+         url          = "http://qua.st/decompr",
 		 
 		 
-		mheader = "To cite decompr in publications use:",
+		mheader       = "To cite decompr in publications use:",
 
-		mfooter = "If you use decompr for data analysis, please cite it."
+		mfooter       = "If you use decompr for data analysis, please cite it."
 		
 )
