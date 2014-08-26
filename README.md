@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.11266.png)](http://dx.doi.org/10.5281/zenodo.11266)
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.11431.png)](http://dx.doi.org/10.5281/zenodo.11431)
 
 decompr
 =======
