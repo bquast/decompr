@@ -15,15 +15,15 @@
 #' data(wiod)
 #' 
 #' # create intermediate object (class decompr)
-#' decompr.object <- load.tables(intermediate.demand, final.demand)
-#' str(decompr.object)
+#' decompr_object <- load_tables(intermediate_demand, final_demand)
+#' str(decompr_object)
 #' 
 #' # run the Kung Fu decomposition on the decompr object
-#' kf  <- kung.fu(decompr.object)
+#' kf  <- kung_fu(decompr_object)
 #' kf[1:5,1:5]
 
 
-kung.fu <- function( x ) {
+kung_fu <- function( x ) {
   
   # Part 1 == loading data A,L,Vc, X, Y, E,ESR, etc.
   

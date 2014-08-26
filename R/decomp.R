@@ -28,27 +28,27 @@
 #' data(wiod)
 #' 
 #' # explore the data
-#' dim(intermediate.demand) # (2 + GN + totals) x (2 + GN)
-#' dim(final.demand)        # (2 + GN + totals) x (2 + G*5)
-#' intermediate.demand[1:40,1:40]
-#' final.demand[1:40,1:10]
+#' dim(intermediate_demand) # (2 + GN + totals) x (2 + GN)
+#' dim(final_demand)        # (2 + GN + totals) x (2 + G*5)
+#' intermediate_demand[1:40,1:40]
+#' final_demand[1:40,1:10]
 #' 
 #' # use the direct approach
 #' # run the WWZ decomposition
-#' wwz <- decomp(intermediate.demand, final.demand, method='wwz')
+#' wwz <- decomp(intermediate_demand, final_demand, method='wwz')
 #' wwz[1:5,1:5]
 #' 
 #' # run the Kung Fu decomposition
-#' kf  <- decomp(intermediate.demand, final.demand, method='kung.fu')
+#' kf  <- decomp(intermediate_demand, final_demand, method='kung_fu')
 #' kf[1:5,1:5]
 
 
 decomp <- function( x, y, method="wwz" ) {
   
   if (method == 'wwz') {
-    out <- wwz( load.tables(x, y) )
-  } else if (method == 'kung.fu') {
-    out <- kung.fu(load.tables(x, y) )
+    out <- wwz( load_tables(x, y) )
+  } else if (method == 'kung_fu') {
+    out <- kung_fu(load_tables(x, y) )
   } else {
     stop('not a valid method')
   }

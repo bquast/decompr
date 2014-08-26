@@ -7,14 +7,14 @@
 #' 
 #' Mehrotra, Rajiv, Fu K. Kung, and William I. Grosky. Industrial part recognition using a component-index. Image and Vision Computing 8, no. 3 (1990): 225-232.}
 NULL
-#' @name final.demand
+#' @name final_demand
 #' @docType data
 #' @title World Input-Output Database 2011
 #' @description the final demand data
 #' @references {Marcel P. Timmer (ed) (2012), "The World Input-Output Database (WIOD): Contents Sources and Methods",
 #' WIOD Working Paper Number 10, downloadable at http://www.wiod.org/publications/papers/wiod10.pdf }
 NULL
-#' @name intermediate.demand
+#' @name intermediate_demand
 #' @docType data
 #' @title World Input-Output Database 2011
 #' @description the intermediate demand data

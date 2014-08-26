@@ -20,11 +20,11 @@
 #' data(wiod)
 #' 
 #' # create intermediate object (class decompr)
-#' decompr.object <- load.tables(intermediate.demand, final.demand)
-#' str(decompr.object)
+#' decompr_object <- load_tables(intermediate_demand, final_demand)
+#' str(decompr_object)
 
 
-load.tables <- function(x, y) {
+load_tables <- function(x, y) {
 
   # Part 1: getting the rownames etc.
   GN     <- length(x) - 2
