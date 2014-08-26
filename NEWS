@@ -1,0 +1,30 @@
+decompr 1.0
+=======================
+
+* functions names use underscores in stead of periods
+
+* method names use underscores in stead of periods
+
+* examples reflect the above changes
+
+* WIOD data set is now compressed using bzip2
+
+* included this news file
+
+
+decompr 0.7
+=======================
+
+* citation information is included
+
+
+decompr 0.6
+=======================
+
+* example data set in included
+
+
+decompr 0.5
+=======================
+
+* examples are included
