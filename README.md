@@ -6,7 +6,9 @@ decompr
 Bastiaan Quast, <bquast@gmail.com>
 ----------------------------------
 
-An R package that implements Export Decomposition using the Wang-Wei-Zhu (Wang, Wei, and Zhu 2013) and Kung-Fu (Mehrotra, Kung, and Grosky 1990) algorithms.
+The R package 'decompr' implements two export decomposition algorithms.
+Firstly, the Wang-Wei-Zhu (Wang, Wei, and Zhu 2013) algorithm splits bilateral gross exports into 16 value added components.
+Secondly, the Source decomposition algorithm derives the value added origin of exports by country and industry, which is also based on Wang, Wei, and Zhu (2013).
 
 
 Inputs
