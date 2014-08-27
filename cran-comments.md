@@ -1,0 +1,1 @@
+I have checked the package on Windows and Linux (Ubuntu). The only notes are related to this being an initial submission, or spell-checker false positives.
