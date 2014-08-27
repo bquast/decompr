@@ -1,12 +1,11 @@
 [![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.11467.png)](http://dx.doi.org/10.5281/zenodo.11467)
 
-This page describes the R package decompr.
-The package implements two export decomposition algorithms.
-Firstly, the **Wang-Wei-Zhu** (Wang, Wei, and Zhu 2013) algorithm which splits bilateral gross exports into 16 value added components.
-Secondly, the **Source decomposition** algorithm derives the value added origin of exports by country and industry.
+This page describes the R package decompr, which implements two export decomposition algorithms.
+Firstly, the **Wang-Wei-Zhu** (Wang, Wei, and Zhu 2013) algorithm splits bilateral gross exports into 16 value added components.
+Secondly, the **Source decomposition** algorithm derives the value added origin of exports by country and industry, which is also based on Wang, Wei, and Zhu (2013).
 
 ## Installation
-The package is currently not on cran but can be downloading using the `devtools` package.
+The package is currently not on cran but can be downloaded using the `devtools` package.
 
 {% highlight r linenos %}
 # install.packages('devtools')
@@ -35,7 +34,7 @@ wwz <- decomp(intermediate_demand, final_demand, method='wwz')
 wwz[1:5,1:5]
 
 # run the source decomposition
-kf  <- decomp(intermediate_demand, final_demand, method='kung_fu')
+source  <- decomp(intermediate_demand, final_demand, method='source')
 kf[1:5,1:5]
 
 # or use the step-by-step approach
@@ -48,8 +47,8 @@ wwz <- wwz(decompr_object)
 wwz[1:5,1:5]
 
 # run the source decomposition on the decompr object
-kf  <- kung_fu(decompr_object)
-kf[1:5,1:5]
+source  <- kung_fu(decompr_object)
+source[1:5,1:5]
 {% endhighlight %}
 
 # Contribute
