@@ -1,6 +1,9 @@
-[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.11266.png)](http://dx.doi.org/10.5281/zenodo.11266)
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.11467.png)](http://dx.doi.org/10.5281/zenodo.11467)
 
 This page describes the R package decompr.
+The package implements two export decomposition algorithms.
+Firstly, the **Wang-Wei-Zhu** (Wang, Wei, and Zhu 2013) algorithm which splits bilateral gross exports into 16 value added components.
+Secondly, the **Source decomposition** algorithm derives the value added origin of exports by country and industry.
 
 ## Installation
 The package is currently not on cran but can be downloading using the `devtools` package.
@@ -21,39 +24,38 @@ library(decompr)
 data(wiod)
 
 # explore the data
-dim(intermediate.demand) # (2 + GN + totals) x (2 + GN)
-dim(final.demand)        # (2 + GN + totals) x (2 + G*5)
-intermediate.demand[1:40,1:40]
-final.demand[1:40,1:10]
+dim(intermediate_demand) # (2 + GN + totals) x (2 + GN)
+dim(final_demand)        # (2 + GN + totals) x (2 + G*5)
+intermediate_demand[1:40,1:40]
+final_demand[1:40,1:10]
 
 # use the direct approach
 # run the WWZ decomposition
-wwz <- decomp(intermediate.demand, final.demand, method='wwz')
+wwz <- decomp(intermediate_demand, final_demand, method='wwz')
 wwz[1:5,1:5]
 
-# run the Kung Fu decomposition
-kf  <- decomp(intermediate.demand, final.demand, method='kung.fu')
+# run the source decomposition
+kf  <- decomp(intermediate_demand, final_demand, method='kung_fu')
 kf[1:5,1:5]
 
 # or use the step-by-step approach
 # create intermediate object (class decompr)
-decompr.object <- load.tables(intermediate.demand, final.demand)
-str(decompr.object)
+decompr.object <- load_tables(intermediate_demand, final_demand)
+str(decompr_object)
 
 # run the WWZ decomposition on the decompr object
-wwz <- wwz(decompr.object)
+wwz <- wwz(decompr_object)
 wwz[1:5,1:5]
 
-# run the Kung Fu decomposition on the decompr object
-kf  <- kung.fu(decompr.object)
+# run the source decomposition on the decompr object
+kf  <- kung_fu(decompr_object)
 kf[1:5,1:5]
 {% endhighlight %}
 
-## Contribute
+# Contribute
 The development version is available on Github, in fact this page is a branch of the **decompr** repository. The repository can be found at https://github.com/bquast/decompr.
 
+# References
+Timmer, Marcel, A. A. Erumban, R. Gouma, B. Los, U. Temurshoev, G. J. de Vries, and I. Arto. 2012. “The World Input-Output Database (WIOD): Contents, Sources and Methods.” *WIOD Background Document Available at Www. Wiod. Org*.
 
-## About the page
-
-This page is hosted on Github pages, render using jekyll and uses the Solo theme by
-Shu Uesugi.
+Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu. 2013. “Quantifying International Production Sharing at the Bilateral and Sector Levels.”
