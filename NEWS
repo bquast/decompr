@@ -1,3 +1,11 @@
+decompr 1.0.1
+=======================
+
+* remove examples other than for **decomp** function, to pass CRAN test in time
+
+* add cran-comments.md
+
+
 decompr 1.0
 =======================
 
