@@ -17,18 +17,6 @@ This function runs the Wang-Wei-Zhu decomposition.
 \details{
 Adapted from code by Fei Wang.
 }
-\examples{
-# load World Input-Output Database for 2011
-data(wiod)
-
-# create intermediate object (class decompr)
-decompr_object <- load_tables(intermediate_demand, final_demand)
-str(decompr_object)
-
-# run the WWZ decomposition on the decompr object
-wwz  <- wwz(decompr_object)
-wwz[1:5,1:5]
-}
 \author{
 Bastiaan Quast
 }
