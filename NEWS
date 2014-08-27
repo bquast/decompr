@@ -1,3 +1,11 @@
+decompr 1.0.2
+=======================
+
+* update example data to regional tables for faster computations
+
+* put back examples for non-decomp functions
+
+
 decompr 1.0.1
 =======================
 

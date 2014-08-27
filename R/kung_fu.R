@@ -10,6 +10,17 @@
 #' Industrial part recognition using a component-index.
 #' Image and Vision Computing 8, no. 3 (1990): 225-232.
 #' @export
+#' @examples
+#' # load World Input-Output Database for 2011
+#' data(wiod)
+#' 
+#' # create intermediate object (class decompr)
+#' decompr_object <- load_tables(intermediate_demand, final_demand)
+#' str(decompr_object)
+#' 
+#' # run the Kung Fu decomposition on the decompr object
+#' kf  <- kung_fu(decompr_object)
+#' kf[1:5,1:5]
 
 
 kung_fu <- function( x ) {
