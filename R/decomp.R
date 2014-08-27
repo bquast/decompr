@@ -15,9 +15,9 @@
 #'  Whereby 19 is the 16 objects the WWZ algorithm decomposes exports into, plus three checksums.
 #'  GNG represents source country, using industry and using country.
 #' @author Bastiaan Quast
-#' @references Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu.
-#'  Quantifying international production sharing at the bilateral and sector levels. 
-#'  No. w19677. National Bureau of Economic Research, 2013.
+#' @references {Timmer, Marcel P. (ed) (2012), "The World Input-Output Database (WIOD): Contents Sources and Methods", WIOD Working Paper Number 10, downloadable at http://www.wiod.org/publications/papers/wiod10.pdf }
+#' 
+#' {Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu. Quantifying international production sharing at the bilateral and sector levels. No. w19677. National Bureau of Economic Research, 2013.}
 #' @export
 #' @examples
 #' # load World Input-Output Database for 2011

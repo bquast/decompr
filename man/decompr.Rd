@@ -11,6 +11,8 @@ Export Decomposition using the Wang-Wei-Zhu and source decompositions algorithms
 Bastiaan Quast \email{bquast@gmail.com}
 }
 \references{
+{Timmer, Marcel P. (ed) (2012), "The World Input-Output Database (WIOD): Contents Sources and Methods", WIOD Working Paper Number 10, downloadable at http://www.wiod.org/publications/papers/wiod10.pdf }
+
 {Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu. Quantifying international production sharing at the bilateral and sector levels. No. w19677. National Bureau of Economic Research, 2013.}
 }
 

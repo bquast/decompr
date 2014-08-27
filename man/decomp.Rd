@@ -49,8 +49,8 @@ source[1:5,1:5]
 Bastiaan Quast
 }
 \references{
-Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu.
- Quantifying international production sharing at the bilateral and sector levels.
- No. w19677. National Bureau of Economic Research, 2013.
+{Timmer, Marcel P. (ed) (2012), "The World Input-Output Database (WIOD): Contents Sources and Methods", WIOD Working Paper Number 10, downloadable at http://www.wiod.org/publications/papers/wiod10.pdf }
+
+{Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu. Quantifying international production sharing at the bilateral and sector levels. No. w19677. National Bureau of Economic Research, 2013.}
 }
 
