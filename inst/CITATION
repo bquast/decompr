@@ -1,10 +1,10 @@
 bibentry(bibtype      = "Manual",
          title        = "decompr",
          author       = person("Bastiaan", "Quast"),
-		 organization = "The Graduate Institute",
-		 address      = "Maison de la Paix, Geneva, Switzerland",
+	    	 organization = "The Graduate Institute",
+		     address      = "Maison de la Paix, Geneva, Switzerland",
          year         = version$year,
-		 doi          = "{10.5281/zenodo.1143110}",
+		     doi          = "{10.5281/zenodo.11431}",
          url          = "http://qua.st/decompr",
 		 
 		 
