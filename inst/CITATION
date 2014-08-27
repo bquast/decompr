@@ -4,7 +4,7 @@ bibentry(bibtype      = "Manual",
 	    	 organization = "The Graduate Institute",
 		     address      = "Maison de la Paix, Geneva, Switzerland",
          year         = version$year,
-		     doi          = "{10.5281/zenodo.11431}",
+		     doi          = "{10.5281/zenodo.11469}",
          url          = "http://qua.st/decompr",
 		 
 		 
