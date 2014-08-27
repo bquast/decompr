@@ -54,8 +54,6 @@ This package is based on R code written by Fei Wang (not to be confused with the
 References
 ----------
 
-Mehrotra, Rajiv, Fu K. Kung, and William I. Grosky. 1990. “Industrial Part Recognition Using a Component-Index.” *Image and Vision Computing* 8 (3): 225–232.
-
 Timmer, Marcel, A. A. Erumban, R. Gouma, B. Los, U. Temurshoev, G. J. de Vries, and I. Arto. 2012. “The World Input-Output Database (WIOD): Contents, Sources and Methods.” *WIOD Background Document Available at Www. Wiod. Org*.
 
 Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu. 2013. “Quantifying International Production Sharing at the Bilateral and Sector Levels.”
