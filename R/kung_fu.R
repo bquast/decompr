@@ -1,14 +1,13 @@
-#' Kung Fu Export Source Decomposition
+#' Source Decomposition
 #' 
-#' This function runs the Kung Fu decomposition
+#' This function runs the source decomposition decomposition
 #' 
 #' @param x ane object of class decompr
 #' @return a data frame containing the square matrix and labelled column and rows
 #' @author Bastiaan Quast
-#' @references No. w19677. National Bureau of Economic Research, 2013.
-#' Mehrotra, Rajiv, Fu K. Kung, and William I. Grosky.
-#' Industrial part recognition using a component-index.
-#' Image and Vision Computing 8, no. 3 (1990): 225-232.
+#' @references Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu.
+#' Quantifying international production sharing at the bilateral and sector levels. 
+#' No. w19677. National Bureau of Economic Research, 2013.
 #' @export
 #' @examples
 #' # load World Input-Output Database for 2011

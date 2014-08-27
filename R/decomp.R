@@ -18,10 +18,6 @@
 #' @references Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu.
 #'  Quantifying international production sharing at the bilateral and sector levels. 
 #'  No. w19677. National Bureau of Economic Research, 2013.
-#'  
-#'  Mehrotra, Rajiv, Fu K. Kung, and William I. Grosky.
-#'  Industrial part recognition using a component-index.
-#'  Image and Vision Computing 8, no. 3 (1990): 225-232.
 #' @export
 #' @examples
 #' # load World Input-Output Database for 2011
@@ -38,16 +34,16 @@
 #' wwz <- decomp(intermediate_demand, final_demand, method='wwz')
 #' wwz[1:5,1:5]
 #' 
-#' # run the Kung Fu decomposition
-#' kf  <- decomp(intermediate_demand, final_demand, method='kung_fu')
-#' kf[1:5,1:5]
+#' # run the source decomposition
+#' source  <- decomp(intermediate_demand, final_demand, method='source')
+#' source[1:5,1:5]
 
 
 decomp <- function( x, y, method="wwz" ) {
   
   if (method == 'wwz') {
     out <- wwz( load_tables(x, y) )
-  } else if (method == 'kung_fu') {
+  } else if (method == 'source' | method == 'kung_fu') {
     out <- kung_fu(load_tables(x, y) )
   } else {
     stop('not a valid method')
