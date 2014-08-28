@@ -32,7 +32,7 @@ Installation
 You can install the latest **stable** version from CRAN.
 
 ```r
-install.packages('decompr')
+install.packages("decompr")
 ```
 
 You can install the latest **development** version from GitHub using the `devtools` package.
