@@ -4,15 +4,21 @@ This page describes the R package decompr, which implements two export decomposi
 Firstly, the **Wang-Wei-Zhu** (Wang, Wei, and Zhu 2013) algorithm splits bilateral gross exports into 16 value added components.
 Secondly, the **Source decomposition** algorithm derives the value added origin of exports by country and industry, which is also based on Wang, Wei, and Zhu (2013).
 
-## Installation
-The package is currently not on cran but can be downloaded using the `devtools` package.
+# Installation
+You can install the latest **stable** version from CRAN.
 
 {% highlight r linenos %}
-# install.packages('devtools')
-devtools::install_github('bquast/decompr')
+install.packages('decompr')
 {% endhighlight %}
 
-## Usage
+You can install the latest **development** version from GitHub using the `devtools` package.
+
+{% highlight r linenos %}
+# install.packages("devtools")
+devtools::install_github("bquast/decompr")
+{% endhighlight %}
+
+# Usage
 The usage is described in the R documentation included in the package. In addition...
 
 {% highlight r linenos %}
@@ -52,7 +58,7 @@ source[1:5,1:5]
 {% endhighlight %}
 
 # Contribute
-The development version is available on Github, in fact this page is a branch of the **decompr** repository. The repository can be found at https://github.com/bquast/decompr.
+The development version is available on Github, in fact this page is the [gh-pages branch](https://github.com/bquast/decompr/tree/gh-pages) of the [**decompr** repository](https://github.com/bquast/decompr).
 
 # References
 Timmer, Marcel, A. A. Erumban, R. Gouma, B. Los, U. Temurshoev, G. J. de Vries, and I. Arto. 2012. “The World Input-Output Database (WIOD): Contents, Sources and Methods.” *WIOD Background Document Available at Www. Wiod. Org*.
