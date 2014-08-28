@@ -8,7 +8,7 @@ Secondly, the **Source decomposition** algorithm derives the value added origin 
 You can install the latest **stable** version from CRAN.
 
 {% highlight r linenos %}
-install.packages('decompr')
+install.packages("decompr")
 {% endhighlight %}
 
 You can install the latest **development** version from GitHub using the `devtools` package.
@@ -36,11 +36,11 @@ final_demand[1:40,1:10]
 
 # use the direct approach
 # run the WWZ decomposition
-wwz <- decomp(intermediate_demand, final_demand, method='wwz')
+wwz <- decomp(intermediate_demand, final_demand, method="wwz")
 wwz[1:5,1:5]
 
 # run the source decomposition
-source  <- decomp(intermediate_demand, final_demand, method='source')
+source  <- decomp(intermediate_demand, final_demand, method="source")
 kf[1:5,1:5]
 
 # or use the step-by-step approach
