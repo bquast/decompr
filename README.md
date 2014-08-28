@@ -29,7 +29,13 @@ The output when using the WWZ algorithm is a matrix with dimensions **GNGx19**. 
 
 Installation
 ------------
-You can install the latest development version from GitHub using the `devtools` package.
+You can install the latest **stable** version from CRAN.
+
+```r
+install.packages('decompr')
+```
+
+You can install the latest **development** version from GitHub using the `devtools` package.
 
 ```r
 # install.packages("devtools")
