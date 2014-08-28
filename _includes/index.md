@@ -15,7 +15,7 @@ You can install the latest **development** version from GitHub using the `devtoo
 
 {% highlight r linenos %}
 library(devtools)
-install_github("bquast/decompr")
+install_github("decompr", "bquast")
 {% endhighlight %}
 
 # Usage
