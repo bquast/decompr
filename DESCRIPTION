@@ -1,11 +1,11 @@
 Package: decompr
 Type: Package
 Title: Export Decomposition (Wang-Wei-Zhu and source)
-Version: 1.1.1
+Version: 1.2
 Date: 2014-08-29
 Author: Bastiaan Quast
 Maintainer: Bastiaan Quast <bquast@gmail.com>
-Description: The R package 'decompr' implements two export decomposition
+Description: The R package "decompr" implements two export decomposition
     algorithms. Firstly, the Wang-Wei-Zhu (Wang, Wei, and Zhu 2013) algorithm
     splits bilateral gross exports into 16 value added components. Secondly,
     the Source decomposition algorithm derives the value added origin of

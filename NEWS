@@ -1,3 +1,13 @@
+decompr 1.2
+=======================
+
+* update citation code
+
+* use " in stead of ' in examples and function arguments
+
+* use match.arg for method in decomp function
+
+
 decompr 1.1
 =======================
 

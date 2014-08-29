@@ -31,19 +31,21 @@
 #' 
 #' # use the direct approach
 #' # run the WWZ decomposition
-#' wwz <- decomp(intermediate_demand, final_demand, method='wwz')
+#' wwz <- decomp(intermediate_demand, final_demand, method="wwz")
 #' wwz[1:5,1:5]
 #' 
 #' # run the source decomposition
-#' source  <- decomp(intermediate_demand, final_demand, method='source')
+#' source  <- decomp(intermediate_demand, final_demand, method="source")
 #' source[1:5,1:5]
 
 
-decomp <- function( x, y, method="wwz" ) {
+decomp <- function( x, y, method=c("wwz", "source") ) {
   
-  if (method == 'wwz') {
+  method <- match.arg(method)
+  
+  if (method == "wwz") {
     out <- wwz( load_tables(x, y) )
-  } else if (method == 'source' | method == 'kung_fu') {
+  } else if (method == "source") {
     out <- kung_fu(load_tables(x, y) )
   } else {
     stop('not a valid method')

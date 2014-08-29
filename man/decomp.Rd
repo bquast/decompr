@@ -3,7 +3,7 @@
 \alias{decomp}
 \title{Interface function for decompositions}
 \usage{
-decomp(x, y, method = "wwz")
+decomp(x, y, method = c("wwz", "source"))
 }
 \arguments{
 \item{x}{the intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
@@ -38,11 +38,11 @@ final_demand[1:40,1:10]
 
 # use the direct approach
 # run the WWZ decomposition
-wwz <- decomp(intermediate_demand, final_demand, method='wwz')
+wwz <- decomp(intermediate_demand, final_demand, method="wwz")
 wwz[1:5,1:5]
 
 # run the source decomposition
-source  <- decomp(intermediate_demand, final_demand, method='source')
+source  <- decomp(intermediate_demand, final_demand, method="source")
 source[1:5,1:5]
 }
 \author{
