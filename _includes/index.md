@@ -5,7 +5,7 @@ Firstly, the **Wang-Wei-Zhu** (Wang, Wei, and Zhu 2013) algorithm splits bilater
 Secondly, the **Source decomposition** algorithm derives the value added origin of exports by country and industry, which is also based on Wang, Wei, and Zhu (2013).
 
 # Installation
-You can install the latest **stable** version from CRAN.
+You can install the latest **stable** version from [CRAN](http://cran.r-project.org/web/packages/decompr/index.html).
 
 {% highlight r linenos %}
 install.packages("decompr")
