@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.11470.png)](http://dx.doi.org/10.5281/zenodo.11470)
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.11510.png)](http://dx.doi.org/10.5281/zenodo.11510)
 
 This page describes the R package decompr, which implements two export decomposition algorithms.
 Firstly, the **Wang-Wei-Zhu** (Wang, Wei, and Zhu 2013) algorithm splits bilateral gross exports into 16 value added components.
