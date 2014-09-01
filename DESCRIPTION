@@ -1,9 +1,11 @@
 Package: decompr
 Type: Package
 Title: Export Decomposition (Wang-Wei-Zhu and source)
-Version: 1.2
-Date: 2014-08-29
-Author: Bastiaan Quast
+Version: 1.2.1
+Date: 2014-09-01
+Authors@R: c( person("Bastiaan", "Quast", email = "bquast@gmail.com ", role =
+    c("aut", "cre") ), person("Fei", "Wang", role = "aut"), person("Victor",
+    "Kümmritz", role = "aut") )
 Maintainer: Bastiaan Quast <bquast@gmail.com>
 Description: The R package "decompr" implements two export decomposition
     algorithms. Firstly, the Wang-Wei-Zhu (Wang, Wei, and Zhu 2013) algorithm
