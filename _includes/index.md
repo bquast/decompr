@@ -93,18 +93,31 @@ for (i in length(year) ) {
 ## load the decompr package
 library(decompr)
 
-## perform the decomposition
+## construct a decompr object for each year
 for (i in length(year) ) {
   
   # create object names from vector
   inter.obj <- paste("inter", year[i], sep="")
   final.obj <- paste("final", year[i], sep="")
   
+  # construct the decompr object
+  decompr.obj <- load_tables(inter.obj, final.obj)
+  
+  # rename the decompr object to include the year
+  assign(paste("decompr", year[i], sep=""), decompr.obj )  
+}
+
+## perform the decomposition
+for (i in length(year) ) {
+  
+  # create object names from vector
+  decompr.obj <- paste("decompr", year[i], sep="")
+  
   # run the WWZ decomposition
-  wwz <- decomp(inter.obj, final.obj, method="wwz")
+  wwz.obj <- wwz(decompr.obj)
   
   # rename the output object
-  assign(paste("wwz", year[i], sep=""), wwz )
+  assign(paste("wwz", year[i], sep=""), wwz.obj )
 }
 {% endhighlight %}
 
