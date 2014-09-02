@@ -62,6 +62,49 @@ source  <- kung_fu(decompr_object)
 source[1:5,1:5]
 {% endhighlight %}
 
+
+Below is an example of looping the process. I assumes the data is stored in csv files.
+{% highlight r linenos %}
+## create a vector with the years
+year <- c(1995, 2000, 2005, 2008)
+
+## load the data
+
+# run the loop once for every year
+# i.e. the length of the vector
+for (i in length(year) ) {
+  
+  # read the file names of the csv data
+  inter.csv <- paste("WID", year[i], ".csv", sep="")
+  final.csv <- paste("WFD", year[i], ".csv", sep="")
+  
+  # write the data to temporary objects
+  inter.obj <- read.csv(inter.csv, header = FALSE, sep = ";")
+  final.obj <- read.csv(final.csv, header = FALSE, sep = ";")
+  
+  # rename the temporary objects
+  # include the year
+  assign(paste("inter", year[i], sep=""), inter.obj )
+  assign(paste("final", year[i], sep=""), final.obj )
+}
+
+## load the decompr package
+library(decompr)
+
+## perform the decomposition
+for (i in length(year) ) {
+  
+  # create object names from vector
+  inter.obj <- paste("inter", year[i], sep="")
+  final.obj <- paste("final", year[i], sep="")
+  
+  # run the WWZ decomposition
+  wwz <- decomp(inter.obj, final.obj, method="wwz")
+  
+  # rename the output object
+  assign(paste("wwz", year[i], sep=""), wwz )
+}
+{% endhighlight %}
 # Contribute
 The development version is available on Github, in fact this page is the [gh-pages branch](https://github.com/bquast/decompr/tree/gh-pages) of the [**decompr** repository](https://github.com/bquast/decompr).
 
