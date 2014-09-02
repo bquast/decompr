@@ -64,7 +64,7 @@ source  <- kung_fu(decompr_object)
 source[1:5,1:5]
 {% endhighlight %}
 
-Below is an example of looping the process. I assumes the data is stored in csv files.
+Below is an example of looping the process. It is assumed that the data is stored in csv files.
 
 {% highlight r linenos %}
 ## create a vector with the years
