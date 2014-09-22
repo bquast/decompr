@@ -4,6 +4,10 @@ This page describes the R package decompr, which implements two export decomposi
 Firstly, the **Wang-Wei-Zhu** (Wang, Wei, and Zhu 2013) algorithm splits bilateral gross exports into 16 value added components.
 Secondly, the **Source decomposition** algorithm derives the value added origin of exports by country and industry, which is also based on Wang, Wei, and Zhu (2013).
 
+# Authors
+Bastiaan Quast (bastiaan.quast@graduateinstitute.ch)
+Victor Kümmritz (victor.kummritz@graduateinstitute.ch)
+
 
 # Installation
 You can install the latest **stable** version from [CRAN](http://cran.r-project.org/web/packages/decompr/index.html).
