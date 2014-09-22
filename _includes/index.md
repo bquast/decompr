@@ -130,3 +130,6 @@ The development version is available on Github, in fact this page is the [gh-pag
 Timmer, Marcel, A. A. Erumban, R. Gouma, B. Los, U. Temurshoev, G. J. de Vries, and I. Arto. 2012. “The World Input-Output Database (WIOD): Contents, Sources and Methods.” *WIOD Background Document Available at Www. Wiod. Org*.
 
 Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu. 2013. “Quantifying International Production Sharing at the Bilateral and Sector Levels.”
+
+# Credits
+The authors gratefully acknowledge funding from the SNF under the projects 135148 ”Production Sharing, Global Trade and Trade Governance” and ...
