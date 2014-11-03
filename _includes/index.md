@@ -5,6 +5,9 @@ This page describes the R package decompr. The package enables researchers worki
 In detail, the package applies two decomposition algorithms to Inter-Country Input-Output tables (ICIOs) such as the ones provided by WIOD (http://www.wiod.org/new_site/home.htm) or TiVA (http://oe.cd/tiva). Firstly, the **Wang-Wei-Zhu** (Wang, Wei, and Zhu 2013) algorithm splits bilateral gross exports into 16 value added components depending on where they are finally consumed along three dimensions (source country, using industry, using country). The algorithm is theoretically derived and explained in Wang, Wei, and Zhu (2013). The main components are domestic value added in gross exports (DViX), foreign value added in gross exports (FVAX), and double counting terms that are misleading in official trade statistics. 
 Secondly, the **Source decomposition** algorithm derives the value added origin of an industry’s exports by source country and source industry. Therefore, it covers all four dimensions but at a lesser detail than the Wang-Wei-Zhu algorithm. It applies the basic Leontief insight to gross trade data. A theoretical derivation can also be found in Wang, Wei, and Zhu (2013).
 
+## World Investment Forum 2014
+The slides from the presentation at the World Investment Forum 2014 in Geneva are available [here in PDF format](https://github.com/bquast/decompr/blob/gh-pages/_includes/WIF-2014-10-15.pdf?raw=true).
+
 # Authors
 Bastiaan Quast (bastiaan.quast@graduateinstitute.ch)
 
@@ -18,6 +21,11 @@ You can install the latest **stable** version from [CRAN](http://cran.r-project.
 install.packages("decompr")
 {% endhighlight %}
 
+In addition there is a video briefly expaining how to perform this in RStudio.
+
+<iframe width="560" height="315" src="//www.youtube.com/embed/pdYJ2QjNiY8" frameborder="0" allowfullscreen></iframe>
+
+
 You can install the latest **development** version from GitHub using the `devtools` package.
 
 {% highlight r linenos %}
@@ -27,7 +35,8 @@ install_github("decompr", "bquast")
 
 
 # Usage
-The usage is described in the R documentation included in the package. In addition...
+The usage is described in the R documentation included in the package.
+
 
 {% highlight r linenos %}
 # load the package
