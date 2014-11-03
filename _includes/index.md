@@ -40,6 +40,10 @@ install_github("decompr", "bquast")
 
 
 # Usage
+These YouTube videos give a brief introduction into the usage of the package.
+
+<iframe width="560" height="315" src="//www.youtube.com/embed/hg6TyqapYtc" frameborder="0" allowfullscreen></iframe>
+
 The usage is described in the R documentation included in the package.
 
 
