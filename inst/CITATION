@@ -10,7 +10,7 @@ bibentry(bibtype      = "Manual",
          url          = "http://qua.st/decompr",
 		 
 		 
-		mheader       = "To cite decompr in publications use:",
+		mheader       = "To cite decompr in publications please use:",
 
 		mfooter       = "If you use decompr for data analysis, please cite it."
 		
