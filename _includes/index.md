@@ -2,6 +2,31 @@
 
 This page describes the R package decompr. The package enables researchers working on Global Value Chains (GVCs) to derive different GVC indicators at a bilateral and sectoral level (e.g. Vertical Specialization, i.e. foreign value added in exports).
 
+Citation information is included with the package, if you use decompr for data analysis, please cite it.
+
+{% highlight r linenos %}
+To cite decompr in publications please use:
+
+citation("decompr")
+
+Quast B, Wang F and Kummritz V (2014). _decompr_. The Graduate Institute, Maison de la Paix, Geneva,
+Switzerland. <URL: http://dx.doi.org/10.5281/zenodo.11510>, <URL: http://qua.st/decompr>.
+
+A BibTeX entry for LaTeX users is
+
+  @Manual{,
+    title = {decompr},
+    author = {Bastiaan Quast and Fei Wang and Victor Kummritz},
+    organization = {The Graduate Institute},
+    address = {Maison de la Paix, Geneva, Switzerland},
+    year = {2014},
+    doi = {10.5281/zenodo.11510},
+    url = {http://qua.st/decompr},
+  }
+
+If you use decompr for data analysis, please cite it.
+{% endhighlight %}
+
 In detail, the package applies two decomposition algorithms to Inter-Country Input-Output tables (ICIOs) such as the ones provided by WIOD (http://www.wiod.org/new_site/home.htm) or TiVA (http://oe.cd/tiva). Firstly, the **Wang-Wei-Zhu** (Wang, Wei, and Zhu 2013) algorithm splits bilateral gross exports into 16 value added components depending on where they are finally consumed along three dimensions (source country, using industry, using country). The algorithm is theoretically derived and explained in Wang, Wei, and Zhu (2013). The main components are domestic value added in gross exports (DViX), foreign value added in gross exports (FVAX), and double counting terms that are misleading in official trade statistics. 
 Secondly, the **Source decomposition** algorithm derives the value added origin of an industry’s exports by source country and source industry. Therefore, it covers all four dimensions but at a lesser detail than the Wang-Wei-Zhu algorithm. It applies the basic Leontief insight to gross trade data. A theoretical derivation can also be found in Wang, Wei, and Zhu (2013).
 
