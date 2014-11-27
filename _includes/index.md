@@ -5,9 +5,9 @@ This page describes the R package decompr. The package enables researchers worki
 Citation information is included with the package, if you use decompr for data analysis, please cite it.
 
 {% highlight r linenos %}
-To cite decompr in publications please use:
-
 citation("decompr")
+
+To cite decompr in publications please use:
 
 Quast B, Wang F and Kummritz V (2014). _decompr_. The Graduate Institute, Maison de la Paix, Geneva,
 Switzerland. <URL: http://dx.doi.org/10.5281/zenodo.11510>, <URL: http://qua.st/decompr>.
