@@ -4,7 +4,7 @@ This page describes the R package decompr. The package enables researchers worki
 
 Citation information is included with the package, if you use decompr for data analysis, please cite it.
 
-{% highlight r linenos %}
+{% highlight r %}
 citation("decompr")
 
 To cite decompr in publications please use:
