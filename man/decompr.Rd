@@ -10,7 +10,7 @@ Export Decomposition using the Wang-Wei-Zhu and source decompositions algorithms
 \author{
 Bastiaan Quast \email{bquast@gmail.com}
 Fei Wang
-Victor Kümmritz
+Victor Kummritz
 }
 \references{
 {Timmer, Marcel P. (ed) (2012), "The World Input-Output Database (WIOD): Contents Sources and Methods", WIOD Working Paper Number 10, downloadable at http://www.wiod.org/publications/papers/wiod10.pdf }

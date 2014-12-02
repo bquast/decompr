@@ -283,7 +283,7 @@ wwz <- function( x ) {
   rm( EEr, z, VrBrs )
   gc()
   
-  dimnames( ALL )  <-  list( x$rownam, x$regnam, decomp19)
+  dimnames( ALL )  <-  list( x$rownam, x$k, decomp19)
   
   
   

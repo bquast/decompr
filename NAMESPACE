@@ -3,4 +3,5 @@
 export(decomp)
 export(kung_fu)
 export(load_tables)
+export(load_tables_vectors)
 export(wwz)
