@@ -14,7 +14,14 @@ In addition, an extra row at the end should contain final demand.}
 \item{y}{the final demand table it has dimensions GN x MN,
 excluding the first row and the first column which contains the country names,
 the second column which contains the industry names for each country,
-and second row which contains the five decomposed final demands (M).}
+and second row which contains the five decomposed final demands (M).
+#'}
+
+\item{k}{is a vector of country of region names}
+
+\item{i}{is a vector of sector or industry names}
+
+\item{o}{is a vecotr of final outputs}
 
 \item{method}{user specifies the decomposition method}
 }
@@ -31,18 +38,16 @@ This function runs the decomposition
 data(wiod)
 
 # explore the data
-dim(intermediate_demand) # (2 + GN + totals) x (2 + GN)
-dim(final_demand)        # (2 + GN + totals) x (2 + G*5)
-intermediate_demand[1:40,1:40]
-final_demand[1:40,1:10]
+dim(intermediate_demand) # (GN + totals) x (GN)
+dim(final_demand)        # (GN + totals) x (G*5)
 
 # use the direct approach
 # run the WWZ decomposition
-wwz <- decomp(intermediate_demand, final_demand, region_nams, industry_names, output method="wwz")
+wwz <- decomp(intermediate_demand, final_demand, region_names, industry_names, output, method="wwz")
 wwz[1:5,1:5]
 
 # run the source decomposition
-source  <- decomp(intermediate_demand, final_demand, region_nams, industry_names, output, method="source")
+source  <- decomp(intermediate_demand, final_demand, region_names, industry_names, output, method="source")
 source[1:5,1:5]
 }
 \author{

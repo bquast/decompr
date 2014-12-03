@@ -17,7 +17,7 @@
 #' @export
 #' @examples
 #' # load World Input-Output Database for 2011
-#' data(wiod2)
+#' data(wiod_old)
 #' 
 #' # create intermediate object (class decompr)
 #' decompr_object <- load_tables(intermediate_demand, final_demand)

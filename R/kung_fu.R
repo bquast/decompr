@@ -14,7 +14,7 @@
 #' data(wiod)
 #' 
 #' # create intermediate object (class decompr)
-#' decompr_object <- load_tables(intermediate_demand, final_demand)
+#' decompr_object <- load_tables_vectors(intermediate_demand, final_demand, region_names, industry_names, output)
 #' str(decompr_object)
 #' 
 #' # run the Kung Fu decomposition on the decompr object

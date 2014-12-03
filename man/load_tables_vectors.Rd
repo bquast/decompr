@@ -34,7 +34,7 @@ Adapted from code by Fei Wang.
 }
 \examples{
 # load World Input-Output Database for 2011
-data(wiod2)
+data(wiod)
 
 # create intermediate object (class decompr)
 decompr_object <- load_tables_vectors(intermediate_demand, final_demand, region_names, industry_names, output)
