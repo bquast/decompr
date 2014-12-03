@@ -1,3 +1,11 @@
+decompr 2.0
+=======================
+
+* make load_tables_vectors default
+
+* update examples and data to reflect ltv
+
+
 decompr 1.3
 =======================
 
