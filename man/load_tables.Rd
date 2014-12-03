@@ -28,7 +28,7 @@ Adapted from code by Fei Wang.
 }
 \examples{
 # load World Input-Output Database for 2011
-data(wiod)
+data(wiod2)
 
 # create intermediate object (class decompr)
 decompr_object <- load_tables(intermediate_demand, final_demand)
