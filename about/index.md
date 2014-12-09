@@ -5,7 +5,7 @@ tags: [about, decompr, GVC]
 modified: 2014-12-09T16:53:07.573882+01:00
 comments: true
 image:
-  feature: sip-sunset.jpg
+  feature: ship-sunset.jpg
   credit: WeGraphics
   creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
 ---
