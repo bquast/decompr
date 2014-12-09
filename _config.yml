@@ -1,4 +1,48 @@
-title_tag_text: decompr, R package
-h1_tag_text:    decompr
+# Site wide configuration
 
-exclude: ["Procfile", "Gruntfile.js", "package.json", "node_modules"]
+title:            decompr, GVC decomposition in R
+locale:           en_US
+url:              http://qua.st/decompr-site
+encoding: 		  UTF-8
+
+
+# Jekyll configuration
+
+permalink:   /:categories/:title/
+markdown:    kramdown
+highlighter: pygments
+sass:
+  sass_dir: _sass
+  style: compressed
+gems:
+  - jekyll-sitemap
+
+kramdown:
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  use_coderay: false
+
+
+# Site owner
+owner:
+  name: Bastiaan Quast
+  avatar: http://gravatar.com/avatar/9f979d814c18db7e759b64ca8a52953d?s=400
+  bio: "PhD Development Economics, decompr maintainer"
+  email: bastiaan.quast@graduateinstitute.ch
+  disqus-shortname: bquast
+  twitter: baquast
+  google:
+    plus: BastiaanQuast
+    analytics: UA-52945502-3
+    verify:
+    ad-client:
+    ad-slot:
+  bing-verify:
+  github: bquast
+  stackoverflow: 1328355/bquast
+  youtube: BastiaanQuast
+
+include: [".htaccess"]
+exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md"]

@@ -1,0 +1,22 @@
+# Site navigation links
+
+- title: About
+  url: /about/
+
+- title: News
+  url: /news/
+
+- title: Examples
+  url: /examples/
+
+- title: Videos
+  url: /videos/
+
+- title: Contributing
+  url: /contributing/
+
+- title: Acknowledgements
+  url: /acknowledgements/
+
+- title: Citing
+  url: /citing/
