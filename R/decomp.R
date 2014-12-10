@@ -32,12 +32,22 @@
 #' 
 #' # use the direct approach
 #' # run the WWZ decomposition
-#' wwz <- decomp(intermediate_demand, final_demand, region_names, industry_names, output, method="wwz")
+#' wwz <- decomp(intermediate_demand,
+#'              final_demand,
+#'              region_names,
+#'              industry_names,
+#'              output,
+#'              method = "wwz"        )
 #' wwz[1:5,1:5]
 #' 
-#' # run the source decomposition
-#' source  <- decomp(intermediate_demand, final_demand, region_names, industry_names, output, method="source")
-#' source[1:5,1:5]
+#' # run the Leontief decomposition
+#' leontief  <- decomp(intermediate_demand,
+#'                     final_demand,
+#'                     region_names,
+#'                     industry_names,
+#'                     output,
+#'                     method = "leontief"    )
+#' leontief[1:5,1:5]
 
 
 decomp <- function( x, y, k, i, o,  method=c("wwz", "leontief", "source" ) ) {
@@ -53,7 +63,10 @@ decomp <- function( x, y, k, i, o,  method=c("wwz", "leontief", "source" ) ) {
   
   if (method == "wwz" ) {
     out <- wwz(     decompr_obj )
-  } else if (method == "source" | method == "leontief" ) {
+  } else if ( method == "leontief" ) {
+    out <- kung_fu( decompr_obj )
+  } else if ( method == "source" ) {
+    warning('The "source" method has been renamed to "leontief" please use this method, "source" is now deprecated')
     out <- kung_fu( decompr_obj )
   } else {
     stop('not a valid method')
