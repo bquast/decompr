@@ -44,3 +44,6 @@ NULL
 #' @references {Timmer, Marcel P. (ed) (2012), "The World Input-Output Database (WIOD): Contents Sources and Methods",
 #' WIOD Working Paper Number 10, downloadable at http://www.wiod.org/publications/papers/wiod10.pdf }
 NULL
+.onAttach <- function(...) {
+  packageStartupMessage('If you use decompr for data analysis, please cite R as well as decompr, using citation() and citation("decompr") respectively.')
+}
