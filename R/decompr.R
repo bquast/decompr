@@ -45,5 +45,7 @@ NULL
 #' WIOD Working Paper Number 10, downloadable at http://www.wiod.org/publications/papers/wiod10.pdf }
 NULL
 .onAttach <- function(...) {
-  packageStartupMessage('If you use decompr for data analysis, please cite R as well as decompr, using citation() and citation("decompr") respectively.')
+  packageStartupMessage('NOTICE: the API for decomp and load_tables is changing, to that of load_table_vectors in the upcoming version 2, please see http://qua.st/decompr/decompr-v2/ for more info.
+                        
+                        If you use decompr for data analysis, please cite R as well as decompr, using citation() and citation("decompr") respectively.')
 }
