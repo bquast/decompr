@@ -40,7 +40,7 @@
 #' source[1:5,1:5]
 
 
-decomp <- function( x, y, k, i, o,  method=c("wwz", "source") ) {
+decomp <- function( x, y, k, i, o,  method=c("wwz", "leontief", "source" ) ) {
   
   method <- match.arg(method)
   
@@ -51,9 +51,9 @@ decomp <- function( x, y, k, i, o,  method=c("wwz", "source") ) {
     decompr_obj <- load_tables_vectors(x, y, k, i, o)
   }
   
-  if (method == "wwz") {
+  if (method == "wwz" ) {
     out <- wwz(     decompr_obj )
-  } else if (method == "source") {
+  } else if (method == "source" | method == "leontief" ) {
     out <- kung_fu( decompr_obj )
   } else {
     stop('not a valid method')
