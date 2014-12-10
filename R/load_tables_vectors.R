@@ -13,7 +13,7 @@
 #'  and second row which contains the five decomposed final demands (M).
 #' @param k is a vector of country of region names
 #' @param i is a vector of sector or industry names
-#' @param o is a vecotr of final outputs
+#' @param o is a vector of final outputs
 #' @return a decompr class object
 #' @author Bastiaan Quast
 #' @details Adapted from code by Fei Wang.

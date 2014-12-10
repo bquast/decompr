@@ -20,7 +20,7 @@ and second row which contains the five decomposed final demands (M).}
 
 \item{i}{is a vector of sector or industry names}
 
-\item{o}{is a vecotr of final outputs}
+\item{o}{is a vector of final outputs}
 }
 \value{
 a decompr class object

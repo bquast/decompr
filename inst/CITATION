@@ -1,17 +1,18 @@
-bibentry(bibtype      = "Manual",
-         title        = "decompr",
+bibentry(bibtype      = "Article",
+         title        = "decompr: Global Value Chain decomposition in R",
          author       = c(person("Bastiaan", "Quast"),
-                          person("Fei", "Wang"),
                           person("Victor", "Kummritz") ),
-	    	 organization = "The Graduate Institute",
+      	 organization = "The Graduate Institute",
 		     address      = "Maison de la Paix, Geneva, Switzerland",
-         year         = version$year,
-		     doi          = "10.5281/zenodo.11510",
+         year         = "2015",
+         journal      = "CTEI Working Papers",
+         number       = "1",
          url          = "http://qua.st/decompr",
+         textVersion  = "Quast, B.A. and V. Kummritz (2015). decompr: Global Value Chain decomposition in R. CTEI Working Papers, 1.",
 		 
 		 
 		mheader       = "To cite decompr in publications please use:",
 
-		mfooter       = "If you use decompr for data analysis, please cite it."
+		mfooter       = "We have invested a lot of time and effort in creating decompr, please cite it when using it for data analysis. See also 'citation()' for citing R."
 		
 )
