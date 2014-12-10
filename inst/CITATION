@@ -1,13 +1,14 @@
 bibentry(bibtype      = "Article",
          title        = "decompr: Global Value Chain decomposition in R",
-         journal      = "CTEI Working Papers",
-         volume       = "1",
          author       = c(person("Bastiaan", "Quast"),
                           person("Victor", "Kummritz") ),
 	    	 organization = "The Graduate Institute",
 		     address      = "Maison de la Paix, Geneva, Switzerland",
          year         = "2015",
+         journal      = "CTEI Working Papers",
+         number       = "1",
          url          = "http://qua.st/decompr",
+         textVersion  = "Quast, B.A. and V. Kummritz (2015). decompr: Global Value Chain decomposition in R. CTEI Working Papers, 1.",
 		 
 		 
 		mheader       = "To cite decompr in publications please use:",
