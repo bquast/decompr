@@ -44,12 +44,21 @@ decomp <- function( x, y, k, i, o,  method=c("wwz", "source") ) {
   
   method <- match.arg(method)
   
+  if ( missing(k) ) {
+    warning('argument k is missing, switching to the old "load_tables" function, which is DEPRECATED! Please see "help(decomp) and "http://qua.st/decompr/decompr-v2/" for more information on this.')
+    decompr_obj <- load_tables(x, y)
+  }  else {
+    decompr_obj <- load_tables_vectors(x, y, k, i, o)
+  }
+  
   if (method == "wwz") {
-    out <- wwz( load_tables_vectors(x, y, k, i, o) )
+    out <- wwz(     decompr_obj )
   } else if (method == "source") {
-    out <- kung_fu(load_tables_vectors(x, y, k, i, o) )
+    out <- kung_fu( decompr_obj )
   } else {
     stop('not a valid method')
   }
+  
   return(out)
+  
 }
