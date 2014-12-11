@@ -113,7 +113,11 @@ load_tables_vectors <- function(x, y, k, i, o) {
   for ( j in 1:length(k) ){
     m = 1 + (j-1) * fdc
     n = fdc + (j-1) * fdc
-    Y[ ,j ] <- rowSums( y[,m:n ] )
+    if (m == n) {
+      Y[ , j ] <- y[ , m:n ]
+    } else {
+      Y[ , j ] <- rowSums( y[ , m:n ] )
+    }
   }
   Ym <- Y
   
@@ -148,9 +152,14 @@ load_tables_vectors <- function(x, y, k, i, o) {
     n = N + (j-1) * N
     s = GN + 1 + (j-1) * fdc
     r = GN + fdc + (j-1) * fdc
-    ESR[ ,j ] <- rowSums( z[,m:n] ) + rowSums( z[ ,s:r ] )
-    Eint[ ,j ] <- rowSums( z[,m:n] )
-    Efd[ ,j ] <- rowSums( z[ ,s:r ] )
+    if (s == r) {
+      fge <- z[ ,s:r ]
+    } else {
+      fge <- rowSums( z[ ,s:r ] )
+    }
+    ESR[ ,j ] <- rowSums( z[ , m:n ] ) + fge
+    Eint[ ,j ] <- rowSums( z[ , m:n ] )
+    Efd[ ,j ] <- fge
   }
   
   Exp <- diag(GN)
