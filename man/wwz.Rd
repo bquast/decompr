@@ -22,7 +22,11 @@ Adapted from code by Fei Wang.
 data(wiod)
 
 # create intermediate object (class decompr)
-decompr_object <- load_tables_vectors(intermediate_demand, final_demand, region_names, industry_names, output)
+decompr_object <- load_tables_vectors(intermediate_demand,
+                                      final_demand,
+                                      region_names,
+                                      industry_names,
+                                      output              )
 str(decompr_object)
 
 # run the WWZ decomposition on the decompr object

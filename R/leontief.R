@@ -1,6 +1,6 @@
-#' Source Decomposition
+#' Leontief Decomposition
 #' 
-#' This function runs the source decomposition decomposition
+#' This function runs the Leontief decomposition decomposition
 #' 
 #' @param x ane object of class decompr
 #' @return a data frame containing the square matrix and labelled column and rows
@@ -14,7 +14,11 @@
 #' data(wiod)
 #' 
 #' # create intermediate object (class decompr)
-#' decompr_object <- load_tables_vectors(intermediate_demand, final_demand, region_names, industry_names, output)
+#' decompr_object <- load_tables_vectors(intermediate_demand,
+#'                                       final_demand,
+#'                                       region_names,
+#'                                       industry_names,
+#'                                       output              )
 #' str(decompr_object)
 #' 
 #' # run the Leontief decomposition on the decompr object
@@ -55,7 +59,11 @@ leontief <- function( x ) {
 #' data(wiod)
 #' 
 #' # create intermediate object (class decompr)
-#' decompr_object <- load_tables_vectors(intermediate_demand, final_demand, region_names, industry_names, output)
+#' decompr_object <- load_tables_vectors(intermediate_demand,
+#'                                       final_demand,
+#'                                       region_names,
+#'                                       industry_names,
+#'                                       output              )
 #' str(decompr_object)
 #' 
 #' # run the Kung Fu decomposition on the decompr object

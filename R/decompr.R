@@ -44,6 +44,31 @@ NULL
 #' @references {Timmer, Marcel P. (ed) (2012), "The World Input-Output Database (WIOD): Contents Sources and Methods",
 #' WIOD Working Paper Number 10, downloadable at http://www.wiod.org/publications/papers/wiod10.pdf }
 NULL
+#' @name final
+#' @docType data
+#' @title Oil Example
+#' @description the final demand data
+NULL
+#' @name inter
+#' @docType data
+#' @title Oil Example
+#' @description the intermediate demand data
+NULL
+#' @name countries
+#' @docType data
+#' @title Oil Example
+#' @description the names of the countries data
+NULL
+#' @name industries
+#' @docType data
+#' @title Oil Example
+#' @description the names of the industries data
+NULL
+#' @name out
+#' @docType data
+#' @title Oil Example
+#' @description final output
+NULL
 .onAttach <- function(...) {
   packageStartupMessage('The API for the decomp function has changed,
 it now uses load_tables_vectors instead of load_tables,
