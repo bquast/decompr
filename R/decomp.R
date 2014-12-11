@@ -64,10 +64,10 @@ decomp <- function( x, y, k, i, o,  method=c("wwz", "leontief", "source" ) ) {
   if (method == "wwz" ) {
     out <- wwz(     decompr_obj )
   } else if ( method == "leontief" ) {
-    out <- kung_fu( decompr_obj )
+    out <- leontief( decompr_obj )
   } else if ( method == "source" ) {
     warning('The "source" method has been renamed to "leontief" please use this method, "source" is now deprecated')
-    out <- kung_fu( decompr_obj )
+    out <- leontief( decompr_obj )
   } else {
     stop('not a valid method')
   }
