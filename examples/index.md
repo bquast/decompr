@@ -1,12 +1,9 @@
 ---
 layout: page
-title: Theme Setup
-modified: 2014-07-31T13:23:02.362000-04:00
-excerpt: "Instructions on how to install and customize the Jekyll theme Minimal Mistakes."
+title: Examples
+modified: 2014-12-12T15:23:02.362000+01:00
 image:
   feature: shipping-train.jpg
-  credit: WeGraphics
-  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
 ---
 
 The usage is described in the R documentation included in the package.
@@ -16,45 +13,61 @@ The usage is described in the R documentation included in the package.
 library(decompr)
 
 # open the help file
-?decompr
+help(decompr)
 {% endhighlight %}
 
 {% highlight r linenos %}
-# load World Input-Output Database for 2011
-data(wiod)
+# load oil example data
+data(oil)
 
 # explore the data
-dim(intermediate_demand) # (2 + GN + totals) x (2 + GN)
-dim(final_demand)        # (2 + GN + totals) x (2 + G*5)
-intermediate_demand[1:40,1:40]
-final_demand[1:40,1:10]
+inter
+final
+countries
+industries
+out
 
 # use the direct approach
 # run the WWZ decomposition
-wwz <- decomp(intermediate_demand,
-              final_demand,
-              method="wwz")
+wwz <- decomp(inter,
+             final,
+             countries,
+             industries,
+             out,
+             method = "wwz")
 wwz[1:5,1:5]
 
-# run the source decomposition
-source  <- decomp(intermediate_demand,
-                  final_demand,
-                  method="source")
-kf[1:5,1:5]
+# run the Leontief decomposition
+leontief  <- decomp(inter,
+                    final,
+                    countries,
+                    industries,
+                    out,
+                    method = "leontief")
+leontief
+{% endhighlight %}
 
-# or use the step-by-step approach
+In addition, the contruction of the arrays and computations can be done separately using the atomic functions.
+
+{% highlight r linenos %}
+# load oil example data
+data(oil)
+
 # create intermediate object (class decompr)
-decompr.object <- load_tables(intermediate_demand,
-                              final_demand)
+decompr_object <- load_tables_vectors(inter,
+                                      final,
+                                      countries,
+                                      industries,
+                                      out        )
 str(decompr_object)
 
 # run the WWZ decomposition on the decompr object
-wwz <- wwz(decompr_object)
-wwz[1:5,1:5]
+w  <- wwz(decompr_object)
+w[1:5,1:5]
 
-# run the source decomposition on the decompr object
-source  <- kung_fu(decompr_object)
-source[1:5,1:5]
+# run the Leontief decomposition on the decompr object
+lt  <- leontief(decompr_object)
+lt
 {% endhighlight %}
 
 Below is an advanced example of looping the process and using the underlying functions to break the process into smaller steps. It is assumed that the data is stored in csv files.
