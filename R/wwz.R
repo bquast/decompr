@@ -12,19 +12,19 @@
 #' @export
 #' @examples
 #' # load World Input-Output Database for 2011
-#' data(wiod)
+#' data(oil)
 #' 
 #' # create intermediate object (class decompr)
-#' decompr_object <- load_tables_vectors(intermediate_demand,
-#'                                       final_demand,
-#'                                       region_names,
-#'                                       industry_names,
-#'                                       output              )
+#' decompr_object <- load_tables_vectors(inter,
+#'                                       final,
+#'                                       countries,
+#'                                       industries,
+#'                                       out        )
 #' str(decompr_object)
 #' 
 #' # run the WWZ decomposition on the decompr object
-#' wwz  <- wwz(decompr_object)
-#' wwz[1:5,1:5]
+#' w  <- wwz(decompr_object)
+#' w[1:5,1:5]
 
 
 wwz <- function( x ) {

@@ -24,30 +24,33 @@
 #' @export
 #' @examples
 #' # load World Input-Output Database for 2011
-#' data(wiod)
+#' data(oil)
 #' 
 #' # explore the data
-#' dim(intermediate_demand) # (GN + totals) x (GN)
-#' dim(final_demand)        # (GN + totals) x (G*5)
+#' inter
+#' final
+#' countries
+#' industries
+#' out
 #' 
 #' # use the direct approach
 #' # run the WWZ decomposition
-#' wwz <- decomp(intermediate_demand,
-#'              final_demand,
-#'              region_names,
-#'              industry_names,
-#'              output,
-#'              method = "wwz"        )
+#' wwz <- decomp(inter,
+#'              final,
+#'              countries,
+#'              industries,
+#'              out,
+#'              method = "wwz")
 #' wwz[1:5,1:5]
 #' 
 #' # run the Leontief decomposition
-#' leontief  <- decomp(intermediate_demand,
-#'                     final_demand,
-#'                     region_names,
-#'                     industry_names,
-#'                     output,
-#'                     method = "leontief"    )
-#' leontief[1:5,1:5]
+#' leontief  <- decomp(inter,
+#'                     final,
+#'                     countries,
+#'                     industries,
+#'                     out,
+#'                     method = "leontief")
+#' leontief
 
 
 decomp <- function( x, y, k, i, o,  method=c("wwz", "leontief", "source" ) ) {

@@ -15,13 +15,6 @@
 #' @author Bastiaan Quast
 #' @details Adapted from code by Fei Wang.
 #' @export
-#' @examples
-#' # load World Input-Output Database for 2011
-#' data(wiod_old)
-#' 
-#' # create intermediate object (class decompr)
-#' decompr_object <- load_tables(intermediate_demand, final_demand)
-#' str(decompr_object)
 
 
 load_tables <- function(x, y) {

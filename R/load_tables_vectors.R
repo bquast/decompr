@@ -19,15 +19,15 @@
 #' @details Adapted from code by Fei Wang.
 #' @export
 #' @examples
-#' # load World Input-Output Database for 2011
-#' data(wiod)
+#' # load sample data
+#' data(oil)
 #' 
 #' # create intermediate object (class decompr)
-#' decompr_object <- load_tables_vectors(intermediate_demand,
-#'                                       final_demand,
-#'                                       region_names,
-#'                                       industry_names,
-#'                                       output              )
+#' decompr_object <- load_tables_vectors(inter,
+#'                                       final,
+#'                                       countries,
+#'                                       industries,
+#'                                       out        )
 #' str(decompr_object)
 
 
