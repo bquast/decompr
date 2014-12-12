@@ -10,7 +10,7 @@
 #' No. w19677. National Bureau of Economic Research, 2013.
 #' @export
 #' @examples
-#' # load World Input-Output Database for 2011
+#' # load oil example data
 #' data(oil)
 #' 
 #' # create intermediate object (class decompr)

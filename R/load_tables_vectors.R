@@ -19,7 +19,7 @@
 #' @details Adapted from code by Fei Wang.
 #' @export
 #' @examples
-#' # load sample data
+#' # load oil example data
 #' data(oil)
 #' 
 #' # create intermediate object (class decompr)

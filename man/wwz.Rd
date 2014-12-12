@@ -18,7 +18,7 @@ This function runs the Wang-Wei-Zhu decomposition.
 Adapted from code by Fei Wang.
 }
 \examples{
-# load World Input-Output Database for 2011
+# load oil example data
 data(oil)
 
 # create intermediate object (class decompr)

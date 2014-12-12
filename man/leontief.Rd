@@ -15,7 +15,7 @@ a data frame containing the square matrix and labelled column and rows
 This function runs the Leontief decomposition decomposition
 }
 \examples{
-# load World Input-Output Database for 2011
+# load oil example data
 data(oil)
 
 # create intermediate object (class decompr)

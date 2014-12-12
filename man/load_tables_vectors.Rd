@@ -33,7 +33,7 @@ and defines all variables for the decomposition
 Adapted from code by Fei Wang.
 }
 \examples{
-# load sample data
+# load oil example data
 data(oil)
 
 # create intermediate object (class decompr)

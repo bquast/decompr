@@ -34,7 +34,7 @@ The output when using the WWZ algorithm is a matrix with dimensions GNG*19.
 This function runs the decomposition
 }
 \examples{
-# load World Input-Output Database for 2011
+# load oil example data
 data(oil)
 
 # explore the data
