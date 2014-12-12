@@ -17,20 +17,21 @@ citation("decompr")
 
 To cite decompr in publications please use:
 
-Quast B, Wang F and Kummritz V (2014). _decompr_. The Graduate Institute, Maison de la Paix, Geneva,
-Switzerland. <URL: http://dx.doi.org/10.5281/zenodo.11510>, <URL: http://qua.st/decompr>.
+  Quast, B.A. and V. Kummritz (2015). decompr: Global Value Chain decomposition in R. CTEI Working Papers, 1.
 
 A BibTeX entry for LaTeX users is
 
-  @Manual{,
-    title = {decompr},
-    author = {Bastiaan Quast and Fei Wang and Victor Kummritz},
+  @Article{,
+    title = {decompr: Global Value Chain decomposition in R},
+    author = {Bastiaan Quast and Victor Kummritz},
     organization = {The Graduate Institute},
     address = {Maison de la Paix, Geneva, Switzerland},
-    year = {2014},
-    doi = {10.5281/zenodo.11510},
+    year = {2015},
+    journal = {CTEI Working Papers},
+    number = {1},
     url = {http://qua.st/decompr},
   }
 
-If you use decompr for data analysis, please cite it.
+We have invested a lot of time and effort in creating decompr, please cite it when using it for data analysis.
+See also 'citation()' for citing R.
 {% endhighlight %}
