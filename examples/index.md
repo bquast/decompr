@@ -18,7 +18,7 @@ help(decompr)
 
 {% highlight r linenos %}
 # load oil example data
-data(oil)
+data(leather)
 
 # explore the data
 inter
@@ -64,11 +64,21 @@ str(decompr_object)
 # run the WWZ decomposition on the decompr object
 w  <- wwz(decompr_object)
 w[1:5,1:5]
+View(w)
 
 # run the Leontief decomposition on the decompr object
 lt  <- leontief(decompr_object)
 lt
 {% endhighlight %}
+
+{% highlight r linenos %}
+# write the results of WWZ to a csv file
+write.csv(w, file="wwz.csv")
+
+# write the results of Leontief to a csv file
+write.csv(lt, file="leontief.csv")
+{% endhighlight %}
+
 
 Below is an advanced example of looping the process and using the underlying functions to break the process into smaller steps. It is assumed that the data is stored in csv files.
 
