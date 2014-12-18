@@ -16,7 +16,7 @@ Firstly, the **Wang-Wei-Zhu** (Wang, Wei, and Zhu 2013) algorithm splits bilater
 The algorithm is theoretically derived and explained in Wang, Wei, and Zhu (2013).
 The main components are domestic value added in gross exports (DViX), foreign value added in gross exports (FVAX), and double counting terms that are misleading in official trade statistics.
 
-Secondly, the **Source decomposition** algorithm derives the value added origin of an industry's exports by source country and source industry.
+Secondly, the **Leontief decomposition** algorithm derives the value added origin of an industry's exports by source country and source industry.
 Therefore, it covers all four dimensions but at a lesser detail than the Wang-Wei-Zhu algorithm. It applies the basic Leontief insight to gross trade data.
 A theoretical derivation can also be found in Wang, Wei, and Zhu (2013).
 
