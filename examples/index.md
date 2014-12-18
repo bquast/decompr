@@ -17,7 +17,7 @@ help(decompr)
 {% endhighlight %}
 
 {% highlight r linenos %}
-# load oil example data
+# load car seat example data
 data(leather)
 
 # explore the data
