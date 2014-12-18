@@ -45,14 +45,12 @@ load_tables_vectors <- function(x, y, k, i, o) {
   G      <- length(k)
   N      <- length(i)
   GN     <- G * N
-  rownam <- as.vector(t(outer(k, i, paste, sep="."))) 
   
-  # making regions' names
-  z <- rownam
-  dim( z ) <- c( N, G )
+  z <- t(outer(k, i, paste, sep="."))
+  rownam <- as.vector(z)
   
   # making the big rownames: bigrownam
-  z1 <-  t( array( rownam,dim=c( GN,G ) ) )
+  z1 <-  t(matrix( rownam, nrow=GN, ncol=G ) )
   tot <- rep( "sub", times=GN )
   z01 <- rbind( z1,tot )
   dim(z01 ) <- c( (G+1)*GN,1 )
@@ -63,16 +61,16 @@ load_tables_vectors <- function(x, y, k, i, o) {
   bigrownam <- paste( z01, z02, sep="." )
   
   # define dimensions
-  Ad   <- array( 0,dim=c( GN,GN ) )
-  Am   <- array( 0,dim=c( GN,GN ) )
-  Bd   <- array( 0,dim=c( GN,GN ) )
-  Bm   <- array( 0,dim=c( GN,GN ) )
-  Y    <- array( 0,dim=c( GN,length( k ) ) )
-  Yd   <- array( 0,dim=c( GN,length( k ) ) )
-  Ym   <- array( 0,dim=c( GN,length( k ) ) )
-  ESR  <- array( 0,dim=c( GN,length( k ) ) )
-  Eint <- array( 0,dim=c( GN,length( k ) ) )
-  Efd  <- array( 0,dim=c( GN,length( k ) ) )
+  Ad   <- matrix( 0, nrow = GN, ncol = GN )
+  Am   <- Ad
+  Bd   <- Ad
+  Bm   <- Ad
+  Y    <- matrix( 0, nrow = GN, ncol = G )
+  Yd   <- Y
+  Ym   <- Y
+  ESR  <- Y
+  Eint <- Y
+  Efd  <- Y
   
   X <- o
   
@@ -87,7 +85,7 @@ load_tables_vectors <- function(x, y, k, i, o) {
   Bm <- B
   Am <- A
   
-  for (j in 1:length(k) )  {
+  for (j in 1:G )  {
     m=1+(j-1)*N
     n=N+(j-1)*N
     
@@ -97,48 +95,50 @@ load_tables_vectors <- function(x, y, k, i, o) {
     Am[m:n,m:n]  <- 0
   }
   
-  L <- solve( II-Ad )
-  Vc <- V/o
+  L                 <- solve( II-Ad )
+  Vc                <- V/o
   Vc[ is.na( Vc ) ] <- 0
-  Vc[ Vc==Inf ] <- 0
+  Vc[ Vc==Inf ]     <- 0
   
-  Vhat <- diag(GN)
-  diag(Vhat) <- Vc
+  Vhat <- diag(Vc)
   
   
   # contruct final demand components
   fdc <- dim(y)[2] / G
   
   # Part 2: computing final demand: Y
-  for ( j in 1:length(k) ){
-    m = 1 + (j-1) * fdc
-    n = fdc + (j-1) * fdc
+  for ( j in 1:G ){
+    m <- 1   + (j-1) * fdc
+    n <- fdc + (j-1) * fdc
+    
     if (m == n) {
       Y[ , j ] <- y[ , m:n ]
     } else {
       Y[ , j ] <- rowSums( y[ , m:n ] )
     }
   }
+  
   Ym <- Y
   
   
   # Part 3: computing export: E, Esr
   E <- cbind( x, y )
-  rm( x, y )
-  gc()
   
-  for (j in 1:length(k) )  {
-    m=1+(j-1)*N
-    n=N+(j-1)*N
-    E[m:n,m:n]  <- 0   # intermediate demand for domestic goods
+  for (j in 1:G )  {
+    m <- 1 +(j-1)*N
+    n <- N +(j-1)*N
+    
+    E[m:n, m:n]  <- 0   # intermediate demand for domestic goods
   }
   
-  for (j in 1:length(k))  {
-    m=1+(j-1)*N
-    n=N+(j-1)*N
-    s=GN+1+(j-1)*fdc
-    r=GN+fdc+(j-1)*fdc
-    E[m:n,s:r]  <- 0  # final demand for domestic goods
+  for (j in 1:G)  {
+    m <- 1 + (j-1) * N
+    n <- N + (j-1) * N
+    
+    s <- GN + 1   + (j-1) * fdc
+    r <- GN + fdc + (j-1) * fdc
+    
+    E[m:n,s:r]  <- 0 # final demand for domestic goods
     Yd[ m:n,j ] <- Y[m:n,j]
     Ym[ m:n,j ] <- 0
   }
@@ -147,34 +147,34 @@ load_tables_vectors <- function(x, y, k, i, o) {
   E <- rowSums( E )
   E <- as.matrix( E )
   
-  for (j in 1:length(k))  {
-    m = 1 + (j-1) * N
-    n = N + (j-1) * N
-    s = GN + 1 + (j-1) * fdc
-    r = GN + fdc + (j-1) * fdc
+  for (j in 1:G)  {
+    m <- 1        + (j-1) * N
+    n <- N        + (j-1) * N
+    s <- GN + 1   + (j-1) * fdc
+    r <- GN + fdc + (j-1) * fdc
     if (s == r) {
       fge <- z[ ,s:r ]
     } else {
       fge <- rowSums( z[ ,s:r ] )
     }
-    ESR[ ,j ] <- rowSums( z[ , m:n ] ) + fge
+    ESR[ ,j ]  <- rowSums( z[ , m:n ] ) + fge
     Eint[ ,j ] <- rowSums( z[ , m:n ] )
-    Efd[ ,j ] <- fge
+    Efd[ ,j ]  <- fge
   }
   
-  Exp <- diag(GN)
-  diag(Exp) <- rowSums(ESR)
+  Exp <- diag( rowSums(ESR) )
   
   
   # Part 4: naming the rows and columns in variables
-  colnames(A)     <-  rownam
-  rownames( A )   <- rownam
-  dimnames(B)     <- dimnames( A )
-  dimnames(Bm)    <- dimnames( A )
-  dimnames(Bd)    <- dimnames( A )
-  dimnames(Ad)    <- dimnames( A )
-  dimnames(Am)    <- dimnames( A )
-  dimnames(L)     <- dimnames( A )
+  colnames(A)     <- rownam
+  rownames(A)     <- rownam
+  A_names         <- dimnames(A)
+  dimnames(B)     <- A_names
+  dimnames(Bm)    <- A_names
+  dimnames(Bd)    <- A_names
+  dimnames(Ad)    <- A_names
+  dimnames(Am)    <- A_names
+  dimnames(L)     <- A_names
   names(Vc)       <- rownam
   names(o)        <- rownam
   colnames(Y)     <- k
@@ -188,36 +188,36 @@ load_tables_vectors <- function(x, y, k, i, o) {
   
 
   # Part 5: creating decompr object
-  out <- list( Exp = Exp,
+  out <- list( Exp  = Exp,
                Vhat = Vhat,
-               A = A,
-               B = B,
-               Ad = Ad,
-               Am = Am,
-               Bd = Bd,
-               Bm = Bm,
-               L = L,
-               Vc = Vc,
-               X = o,
-               Y = Y,
-               Yd = Yd,
-               Ym = Ym,
-               E = E,
-               ESR = ESR,
+               A    = A,
+               B    = B,
+               Ad   = Ad,
+               Am   = Am,
+               Bd   = Bd,
+               Bm   = Bm,
+               L    = L,
+               Vc   = Vc,
+               X    = o,
+               Y    = Y,
+               Yd   = Yd,
+               Ym   = Ym,
+               E    = E,
+               ESR  = ESR,
                Eint = Eint,
-               Efd = Efd,
-               G = G,
-               N = N,
-               GN = GN,
+               Efd  = Efd,
+               G    = G,
+               N    = N,
+               GN   = GN,
                bigrownam = bigrownam,
-               k <- k,
+               k    = k,
                rownam = rownam,
-               tot = tot,
-               z = z,
-               z01 = z01,
-               z02 = z02,
-               z1 = z1,
-               z2 = z2
+               tot  = tot,
+               z    = z,
+               z01  = z01,
+               z02  = z02,
+               z1   = z1,
+               z2   = z2
                )
   
   class(out) <- 'decompr'
