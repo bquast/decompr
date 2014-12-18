@@ -220,7 +220,7 @@ load_tables_vectors <- function(x, y, k, i, o) {
                z2   = z2
                )
   
-  class(out) <- 'decompr'
+  class(out) <- "decompr"
   
   # Part 6: returning object
   return(out)
