@@ -47,6 +47,16 @@ leontief  <- decomp(inter,
 leontief
 {% endhighlight %}
 
+If need be, the results can now be exported to a file format that can be processed by other data processing software such as Stata or simply Excel. Below you find an example for exporting the output to basic .csv files.
+
+{% highlight r linenos %}
+# write the results of WWZ to a csv file
+write.csv(w, file="wwz.csv")
+
+# write the results of Leontief to a csv file
+write.csv(lt, file="leontief.csv")
+{% endhighlight %}
+
 In addition, the contruction of the arrays and computations can be done separately using the atomic functions.
 
 {% highlight r linenos %}
@@ -69,14 +79,6 @@ View(w)
 # run the Leontief decomposition on the decompr object
 lt  <- leontief(decompr_object)
 lt
-{% endhighlight %}
-
-{% highlight r linenos %}
-# write the results of WWZ to a csv file
-write.csv(w, file="wwz.csv")
-
-# write the results of Leontief to a csv file
-write.csv(lt, file="leontief.csv")
 {% endhighlight %}
 
 
