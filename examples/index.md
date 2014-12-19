@@ -6,7 +6,23 @@ image:
   feature: shipping-train.jpg
 ---
 
-The usage is described in the R documentation included in the package.
+# Installation
+You can install the latest **stable** version from [CRAN](http://cran.r-project.org/web/packages/decompr/index.html).
+
+{% highlight r linenos %}
+install.packages("decompr")
+{% endhighlight %}
+
+There is a video briefly expaining how to perform this in RStudio.
+
+<iframe width="560" height="315" src="//www.youtube.com/embed/pdYJ2QjNiY8" frameborder="0" allowfullscreen></iframe>
+
+# Usage
+These YouTube videos give a brief introduction into the usage of the package.
+
+<iframe width="560" height="315" src="//www.youtube.com/embed/hg6TyqapYtc" frameborder="0" allowfullscreen></iframe>
+
+The usage is also described in the R documentation included in the package.
 
 {% highlight r linenos %}
 # load the package
@@ -17,7 +33,7 @@ help(decompr)
 {% endhighlight %}
 
 {% highlight r linenos %}
-# load oil example data
+# load leather example data
 data(leather)
 
 # explore the data
@@ -60,8 +76,8 @@ write.csv(lt, file="leontief.csv")
 In addition, the contruction of the arrays and computations can be done separately using the atomic functions.
 
 {% highlight r linenos %}
-# load oil example data
-data(oil)
+# load leather example data
+data(leather)
 
 # create intermediate object (class decompr)
 decompr_object <- load_tables_vectors(inter,
