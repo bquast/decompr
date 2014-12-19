@@ -6,21 +6,35 @@ image:
   feature: shipping-train.jpg
 ---
 
-You can install the latest **stable** version from [CRAN](http://cran.r-project.org/web/packages/decompr/index.html).
+As mentioned, the package is written for the free software R ([website](http://www.r-project.org)). 
+The download and installation guide can be found here for [Windows](http://cran.r-project.org/bin/windows/base) and [Mac](http://cran.r-project.org/bin/macosx).
+In addition we recommend installing [RStudio](http://www.rstudio.com/products/rstudio/), which can be downloaded free of cost  [here](http://www.rstudio.com/products/rstudio/download/).
+
+Once both programs are installed, you can install the latest **stable** version from [CRAN](http://cran.r-project.org/web/packages/decompr/index.html).
 
 {% highlight r linenos %}
 install.packages("decompr")
 {% endhighlight %}
 
+Or alternatively the latest development version
+
+{% highlight r linenos %}
+# install the devtools package (this package allows to install packages directly from github)
+install.packages("devtools")
+
+# load the devtools package
+library(devtools)
+
+# use the devtools package to the development version of decompr
+install.github("bquast/decompr")
+{% endhighlight %}
+
+
 There is a video briefly expaining how to perform this in RStudio.
 
 <iframe width="560" height="315" src="//www.youtube.com/embed/pdYJ2QjNiY8" frameborder="0" allowfullscreen></iframe>
 
-These YouTube videos give a brief introduction into the usage of the package.
-
-<iframe width="560" height="315" src="//www.youtube.com/embed/hg6TyqapYtc" frameborder="0" allowfullscreen></iframe>
-
-The usage is also described in the R documentation included in the package.
+Now that the package is installed, we can proceed with the application
 
 {% highlight r linenos %}
 # load the package
@@ -70,6 +84,12 @@ write.csv(w, file="wwz.csv")
 # write the results of Leontief to a csv file
 write.csv(lt, file="leontief.csv")
 {% endhighlight %}
+
+This YouTube videos gives a brief overwiew into the usage of the package as coded above.
+
+<iframe width="560" height="315" src="//www.youtube.com/embed/hg6TyqapYtc" frameborder="0" allowfullscreen></iframe>
+
+The usage is also described in the R documentation included in the package.
 
 In addition, the contruction of the arrays and computations can be done separately using the atomic functions.
 
