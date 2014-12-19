@@ -16,7 +16,6 @@ There is a video briefly expaining how to perform this in RStudio.
 
 <iframe width="560" height="315" src="//www.youtube.com/embed/pdYJ2QjNiY8" frameborder="0" allowfullscreen></iframe>
 
-# Usage
 These YouTube videos give a brief introduction into the usage of the package.
 
 <iframe width="560" height="315" src="//www.youtube.com/embed/hg6TyqapYtc" frameborder="0" allowfullscreen></iframe>
