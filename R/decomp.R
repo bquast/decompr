@@ -23,8 +23,8 @@
 #' {Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu. Quantifying international production sharing at the bilateral and sector levels. No. w19677. National Bureau of Economic Research, 2013.}
 #' @export
 #' @examples
-#' # load oil example data
-#' data(oil)
+#' # load leather example data
+#' data(leather)
 #' 
 #' # explore the data
 #' inter

@@ -19,8 +19,8 @@
 #' @details Adapted from code by Fei Wang.
 #' @export
 #' @examples
-#' # load oil example data
-#' data(oil)
+#' # load leather example data
+#' data(leather)
 #' 
 #' # create intermediate object (class decompr)
 #' decompr_object <- load_tables_vectors(inter,

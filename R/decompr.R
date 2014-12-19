@@ -46,27 +46,27 @@ NULL
 NULL
 #' @name final
 #' @docType data
-#' @title Oil Example
+#' @title Leather Example
 #' @description the final demand data
 NULL
 #' @name inter
 #' @docType data
-#' @title Oil Example
+#' @title Leather Example
 #' @description the intermediate demand data
 NULL
 #' @name countries
 #' @docType data
-#' @title Oil Example
+#' @title Leather Example
 #' @description the names of the countries data
 NULL
 #' @name industries
 #' @docType data
-#' @title Oil Example
+#' @title Leather Example
 #' @description the names of the industries data
 NULL
 #' @name out
 #' @docType data
-#' @title Oil Example
+#' @title Leather Example
 #' @description final output
 NULL
 .onAttach <- function(...) {
