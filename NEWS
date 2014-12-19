@@ -3,7 +3,19 @@ decompr 2.0
 
 * make load_tables_vectors default
 
-* update examples and data to reflect ltv
+* change notice to reflect new default
+
+* update examples and data to reflect lt
+
+* replace use of 2 dimensional arrays with matrices
+
+* more efficient construction of rownam and z1
+
+* replace use of length(k) with G
+
+* replace use of various inefficient uses of diag() (e.g. with Vhat)
+
+* improved spacing of code for legibility
 
 
 decompr 1.3.2
