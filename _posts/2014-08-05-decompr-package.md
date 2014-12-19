@@ -4,7 +4,7 @@ title: The decompr package
 comments: true
 ---
 
-I am proud to announce the beta version of the [decompr](http://qua.st/decompr/) **R package**. The package implements Export Decomposition using the Wang-Wei-Zhu (Wang, Wei, and Zhu 2013) and Kung-Fu (Mehrotra, Kung, and Grosky 1990) algorithms. It comes with a sample data set from the [WIOD project](http://www.wiod.org/), and has its own [mini site](http://qua.st/decompr).
+We are proud to announce the beta version of the [decompr](http://qua.st/decompr/) **R package**. The package implements Export Decomposition using the Wang-Wei-Zhu (Wang, Wei, and Zhu 2013) and Kung-Fu (Mehrotra, Kung, and Grosky 1990) algorithms. It comes with a sample data set from the [WIOD project](http://www.wiod.org/), and has its own [mini site](http://qua.st/decompr).
 
 **Update**, the decompr package in now [available on CRAN](http://cran.r-project.org/web/packages/decompr/index.html), also announced in [this post](/decompr-cran)
 
