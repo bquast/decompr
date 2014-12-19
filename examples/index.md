@@ -138,7 +138,7 @@ for (i in length(year) ) {
   decompr.obj <- load_tables(inter.obj, final.obj)
   
   # rename the decompr object to include the year
-  assign(paste("decompr", year[i], sep=""), decompr.obj )  
+  assign(paste("decompr", year[i], sep=""), decompr.obj )
 }
 
 ## perform the decomposition
