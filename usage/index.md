@@ -1,12 +1,11 @@
 ---
 layout: page
-title: Examples
+title: Usage
 modified: 2014-12-12T15:23:02.362000+01:00
 image:
   feature: shipping-train.jpg
 ---
 
-# Installation
 You can install the latest **stable** version from [CRAN](http://cran.r-project.org/web/packages/decompr/index.html).
 
 {% highlight r linenos %}
