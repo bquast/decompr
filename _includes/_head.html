@@ -3,7 +3,7 @@
 {% if page.excerpt %}<meta name="description" content="{{ page.excerpt | strip_html }}">{% endif %}
 <meta name="keywords" content="{{ page.tags | join: ', ' }}">
 {% if page.author %}
-  {% assign author = site.data.authors[page.author] %}{% else %}{% assign author = site.owner %}
+  {% assign author = site.data.authors[page.author] %}
 {% endif %}
 
 {% include _open-graph.html %}
