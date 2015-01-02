@@ -57,8 +57,8 @@ decomp <- function( x, y, k, i, o,  method=c("wwz", "leontief", "source" ) ) {
   
   method <- match.arg(method)
   
-  if ( missing(k) ) {
-    warning('argument k is missing, switching to the old "load_tables" function, which is DEPRECATED! Please see "help(decomp) and "http://qua.st/decompr/decompr-v2/" for more information on this.')
+  if ( missing(k) | missing(i) | missing(o) ) {
+    warning('argument k, i, or o is missing, switching to the old "load_tables" function, which is DEPRECATED! Please see "help(decomp) and "http://qua.st/decompr/decompr-v2/" for more information on this.')
     decompr_obj <- load_tables(x, y)
   }  else {
     decompr_obj <- load_tables_vectors(x, y, k, i, o)
