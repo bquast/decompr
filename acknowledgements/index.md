@@ -14,7 +14,7 @@ The original algorithm is developed in Wang, Wei, and Zhu (2014).
 The sample data is provided by the [WIOD](http://www.wiod.org/), see Timmer (2012).
 
 # Funding
-The authors gratefully acknowledge funding from the SNF under the projects 135148 "Production Sharing, Global Trade and Trade Governance".
+The authors gratefully acknowledge funding from the SNF under the projects 135148 "Production Sharing, Global Trade and Trade Governance" and 100018_140745 "Development Aid and Social Dynamics".
 
 # References
 Timmer, Marcel, A. A. Erumban, R. Gouma, B. Los, U. Temurshoev, G. J. de Vries, and I. Arto. 2012. "The World Input-Output Database (WIOD): Contents, Sources and Methods." *WIOD Background Document Available at www.wiod.Org*.
