@@ -1,6 +1,7 @@
 ---
 layout: post
 title: decompr  on CRAN
+author: Bastiaan_Quast
 permalink: decompr-cran
 comments: true
 ---
