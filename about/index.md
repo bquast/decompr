@@ -2,13 +2,12 @@
 layout: page
 title: About decompr
 tags: [about, decompr, GVC]
-modified: 2014-12-09T16:53:07.573882+01:00
+modified: 2015-01-04T13:03:02.362000+01:00
 comments: true
 image:
-  feature: ship-sunset.jpg
-  credit: WeGraphics
-  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
+  feature: shipping-train.jpg
 ---
+
 This page describes the R package decompr. The package enables researchers working on Global Value Chains (GVCs) to derive different GVC indicators at a bilateral and sectoral level (e.g. Vertical Specialization, i.e. foreign value added in exports).
 
 In detail, the package applies two decomposition algorithms to Inter-Country Input-Output tables (ICIOs) such as the ones provided by WIOD (http://www.wiod.org/new_site/home.htm) or TiVA (http://oe.cd/tiva).
