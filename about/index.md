@@ -24,10 +24,6 @@ The **decompr** package is hosted on the [Comprehensive R Archive Network (CRAN)
 
 [http://cran.r-project.org/web/packages/decompr/index.html](http://cran.r-project.org/web/packages/decompr/index.html)
 
-## World Investment Forum 2014
-The slides from the presentation at the World Investment Forum 2014 in Geneva are available [here in PDF format](https://github.com/bquast/decompr/blob/gh-pages/_includes/WIF-2014-10-15.pdf?raw=true).
-
-
 # Authors
 Bastiaan Quast (bastiaan.quast@graduateinstitute.ch)
 
