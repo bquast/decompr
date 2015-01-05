@@ -1,6 +1,6 @@
 ---
 layout: home
-title: decompr: GVC decomposition in R
+title: decompr, GVC decomposition in R
 comments: true
 tags: [Jekyll, theme, responsive, blog, template]
 image:
