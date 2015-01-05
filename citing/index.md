@@ -8,7 +8,7 @@ image:
   feature: sample-image-2.jpg
 ---
 
-Citation information is included with the package, if you use decompr for data analysis, please cite it.
+Citation information is included with the package. If you use decompr for data analysis, please cite R as well as decompr, using citation() and citation("decompr") respectively, or use the information below.
 
 {% highlight r %}
 citation("decompr")
