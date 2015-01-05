@@ -9,7 +9,7 @@ image:
 
 The **decompr** package enables researchers working on Global Value Chains (GVCs) to derive different GVC indicators at a bilateral and sectoral level (e.g. Vertical Specialization, i.e. foreign value added in exports).
 
-Specifically, the package applies two decomposition algorithms to Inter-Country Input-Output tables (ICIOs) such as the ones provided by WIOD (http://www.wiod.org/new_site/home.htm) or TiVA (http://oe.cd/tiva).
+Specifically, the package applies two decomposition algorithms to Inter-Country Input-Output tables (ICIOs) such as the ones provided by [WIOD](http://www.wiod.org/new_site/home.htm) or [TiVA](http://oe.cd/tiva).
 
 Firstly, the **Wang-Wei-Zhu** (Wang, Wei, and Zhu 2013) algorithm splits bilateral gross exports into 16 value added components,
 depending on where they are finally consumed along three dimensions (source country, using industry, using country).
