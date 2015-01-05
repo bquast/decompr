@@ -11,7 +11,7 @@ The **decompr** package enables researchers working on Global Value Chains (GVCs
 
 Specifically, the package applies two decomposition algorithms to Inter-Country Input-Output tables (ICIOs) such as the ones provided by [WIOD](http://www.wiod.org/new_site/home.htm) or [TiVA](http://oe.cd/tiva).
 
-Firstly, the **Wang-Wei-Zhu** (Wang, Wei, and Zhu 2013) algorithm splits bilateral gross exports into 16 value added components,
+Firstly, the **Wang-Wei-Zhu** (Wang, Wei, and Zhu 2014) algorithm splits bilateral gross exports into 16 value added components,
 depending on where they are finally consumed along three dimensions (source country, using industry, using country).
 The algorithm is theoretically derived and explained in Wang, Wei, and Zhu (2014).
 The main components are domestic value added in gross exports (DViX), foreign value added in gross exports (FVAX), and double counting terms that are misleading in official trade statistics.
