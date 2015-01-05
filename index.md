@@ -1,7 +1,7 @@
 ---
 layout: home
-title: decompr
-excerpt: "A minimal Jekyll theme for your blog by designer Michael Rose."
+title: decompr: GVC decomposition in R
+comments: true
 tags: [Jekyll, theme, responsive, blog, template]
 image:
   feature: shipping-sphere.jpg
