@@ -5,9 +5,7 @@ tags: [acknowledgements]
 modified: 2014-12-09T16:58:07.573882+01:00
 comments: true
 image:
-  feature: sample-image-2.jpg
-  credit: WeGraphics
-  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
+  feature: ship-ice.jpg
 ---
 The original algorithm is developed in Wang, Wei, and Zhu (2014).
 
