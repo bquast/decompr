@@ -46,17 +46,7 @@
   <div id="index">
     <h3><a href="{{ site.url}}/about/">decompr: GVC decomposition with R</a></h3>
 	<p>This page describes the R package decompr. The package enables researchers working on Global Value Chains to derive different GVC indicators at a bilateral and sectoral level...<a href="{{ site.url}}/about/">more about</a></p>
-    <h3><a href="{{ site.url}}/posts/">Recent Posts</a></h3>
-    {% for post in site.posts limit:5 %}    
-    <article>
-      {% if post.link %}
-        <h2 class="link-post"><a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> <a href="{{ post.link }}" target="_blank" title="{{ post.title }}"><i class="fa fa-link"></i></h2>
-      {% else %}
-        <h2><a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
-        <p>{{ post.excerpt | strip_html | truncate: 160 }}</p>
-      {% endif %}
-    </article>
-    {% endfor %}
+	{% include index.md %}
   </div><!-- /#index -->
 </div><!-- /#main -->
 
