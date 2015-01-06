@@ -2,7 +2,7 @@
 layout: post
 title: "leather data set"
 author: Bastiaan_Quast
-modified: 2015-01-04T13:03:02.362000+01:00
+modified: 2015-01-06T13:03:02.362000+01:00
 comments: true
 ---
 
@@ -86,7 +86,7 @@ out
 final
 {% endhighlight %}
 
-{% highlight r %}
+{% highlight r stripall:FALSE %}
       [,1] [,2] [,3]
  [1,] 21.5  6.1  8.4
  [2,] 16.2  1.9  5.1
