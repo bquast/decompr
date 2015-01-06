@@ -86,7 +86,7 @@ out
 final
 {% endhighlight %}
 
-{% raw %}
+{% highlight %}
       [,1] [,2] [,3]
  [1,] 21.5  6.1  8.4
  [2,] 16.2  1.9  5.1
@@ -97,7 +97,7 @@ final
  [7,]  9.2 17.9 51.2
  [8,]  7.9 10.1 38.5
  [9,] 25.1 35.2 68.4
-{% endraw %}
+{% endhighlight %}
 
 {% highlight r %}
 inter
