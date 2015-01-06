@@ -87,7 +87,7 @@ final
 {% endhighlight %}
 
 {% highlight r %}
-      [,1] [,2] [,3]
+ .    [,1] [,2] [,3]
  [1,] 21.5  6.1  8.4
  [2,] 16.2  1.9  5.1
  [3,] 11.0  0.5  0.8
@@ -104,7 +104,7 @@ inter
 {% endhighlight %}
 
 {% highlight r %}
-      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9]
+ .    [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9]
  [1,] 16.1  5.1  1.8  3.2  4.3  0.4  3.1  2.8  4.9
  [2,]  2.4  8.0  3.2  0.1  3.2  1.6  1.2  3.9 11.5
  [3,]  0.9  0.5  4.0  0.0  0.1  0.3  0.0  0.4  0.5
@@ -128,7 +128,7 @@ decomp(inter,
 {% endhighlight %}
 
 {% highlight r %}
-                              Argentina.Agriculture Argentina.Textile.and.Leather Argentina.Transport.Equipment Turkey.Agriculture Turkey.Textile.and.Leather Turkey.Transport.Equipment Germany.Agriculture Germany.Textile.and.Leather Germany.Transport.Equipment
+.                             Argentina.Agriculture Argentina.Textile.and.Leather Argentina.Transport.Equipment Turkey.Agriculture Turkey.Textile.and.Leather Turkey.Transport.Equipment Germany.Agriculture Germany.Textile.and.Leather Germany.Transport.Equipment
 Argentina.Agriculture                   28.52278143                    2.79395126                    0.35606694         1.81066955                  3.1173841                 0.35901126           1.2364172                  1.30283802                   4.1208736
 Argentina.Textile.and.Leather            1.06206936                   19.12053186                    0.41813924         0.48370042                  1.8329024                 0.43058635           0.5937041                  1.15375958                   4.7490351
 Argentina.Transport.Equipment            0.21043693                    0.14228369                    1.06369578         0.03329456                  0.0790545                 0.04024626           0.0231846                  0.07482343                   0.1932621
@@ -152,7 +152,7 @@ decomp(inter,
 
 
 {% highlight r %}
-                                           DVA_FIN    DVA_INT DVA_INTrexI1 DVA_INTrexF DVA_INTrexI2     RDV_INT    RDV_FIN    RDV_FIN2    OVA_FIN     MVA_FIN    OVA_INT    MVA_INT     DDC_FIN
+.                                          DVA_FIN    DVA_INT DVA_INTrexI1 DVA_INTrexF DVA_INTrexI2     RDV_INT    RDV_FIN    RDV_FIN2    OVA_FIN     MVA_FIN    OVA_INT    MVA_INT     DDC_FIN
 Argentina.Agriculture.Argentina          0.0000000  0.0000000   0.00000000  0.00000000  0.000000000 0.000000000 0.00000000 0.000000000 0.00000000  0.00000000 0.00000000 0.00000000 0.000000000
 Argentina.Agriculture.Turkey             5.4744354  2.6813686   1.13634407  1.40930027  0.504931544 0.168614730 0.70568372 0.347019751 0.41126356  0.21430105 0.19588405 0.10207118 0.064864146
 Argentina.Agriculture.Germany            7.5385668  5.1055954   0.41301548  2.07223830  0.184142503 0.241349852 1.40626760 0.084582830 0.29510308  0.56633015 0.19467191 0.37359342 0.087209223
