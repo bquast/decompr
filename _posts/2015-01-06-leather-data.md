@@ -86,8 +86,7 @@ out
 final
 {% endhighlight %}
 
-{% highlight %}
-
+{% highlight r %}
       [,1] [,2] [,3]
  [1,] 21.5  6.1  8.4
  [2,] 16.2  1.9  5.1
