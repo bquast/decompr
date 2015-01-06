@@ -140,10 +140,8 @@ Germany.Textile.and.Leather              0.64666560                    0.7278568
 Germany.Transport.Equipment              0.66638333                    0.65080723                    0.25807221         1.29066963                  1.4880228                 0.56934671           1.7321726                  1.51401054                  34.7438192
 {% endhighlight %}
 
-
-
-
 Now lets use the WWZ decomposition (default method, so no need to specify).
+
 {% highlight r %}
 decomp(inter,
        final,
