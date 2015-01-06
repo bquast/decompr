@@ -116,26 +116,41 @@ inter
  [9,]  2.1  1.4  3.0  4.1  3.1  3.9 11.3  8.1 51.3
 {% endhighlight %}
 
-
-
-
-
-
-
+We start by using the 'standard' Leontief decomposition.
 
 {% highlight r %}
-                              Argentina.Agriculture Argentina.Textile.and.Leather Argentina.Transport.Equipment Turkey.Agriculture Turkey.Textile.and.Leather Turkey.Transport.Equipment
-Argentina.Agriculture                   28.52278143                    2.79395126                    0.35606694         1.81066955                  3.1173841                 0.35901126
-Argentina.Textile.and.Leather            1.06206936                   19.12053186                    0.41813924         0.48370042                  1.8329024                 0.43058635
-Argentina.Transport.Equipment            0.21043693                    0.14228369                    1.06369578         0.03329456                  0.0790545                 0.04024626
-Turkey.Agriculture                       0.71952151                    1.34237213                    0.11504126        34.92704803                  6.9994970                 1.47711579
-Turkey.Textile.and.Leather               0.41201175                    1.38523849                    0.11764036         2.69291816                 40.1671410                 1.31799873
-Turkey.Transport.Equipment               0.03482652                    0.08553139                    0.02667530         0.81210167                  0.9075189                 3.16041392
-Germany.Agriculture                      0.92530356                    2.25142713                    0.16222512         2.31122022                  2.0595825                 0.51211484
-Germany.Textile.and.Leather              0.64666560                    0.72785683                    0.08244379         1.53837777                  2.5488967                 0.63316614
-Germany.Transport.Equipment              0.66638333                    0.65080723                    0.25807221         1.29066963                  1.4880228                 0.56934671
+decomp(inter,
+       final,
+       countries,
+       industries,
+       out,
+       method = "leontief")
 {% endhighlight %}
 
+{% highlight r %}
+                              Argentina.Agriculture Argentina.Textile.and.Leather Argentina.Transport.Equipment Turkey.Agriculture Turkey.Textile.and.Leather Turkey.Transport.Equipment Germany.Agriculture Germany.Textile.and.Leather Germany.Transport.Equipment
+Argentina.Agriculture                   28.52278143                    2.79395126                    0.35606694         1.81066955                  3.1173841                 0.35901126           1.2364172                  1.30283802                   4.1208736
+Argentina.Textile.and.Leather            1.06206936                   19.12053186                    0.41813924         0.48370042                  1.8329024                 0.43058635           0.5937041                  1.15375958                   4.7490351
+Argentina.Transport.Equipment            0.21043693                    0.14228369                    1.06369578         0.03329456                  0.0790545                 0.04024626           0.0231846                  0.07482343                   0.1932621
+Turkey.Agriculture                       0.71952151                    1.34237213                    0.11504126        34.92704803                  6.9994970                 1.47711579           2.5543089                  1.52213499                   6.1806254
+Turkey.Textile.and.Leather               0.41201175                    1.38523849                    0.11764036         2.69291816                 40.1671410                 1.31799873           1.1093993                  1.15207241                   9.5069032
+Turkey.Transport.Equipment               0.03482652                    0.08553139                    0.02667530         0.81210167                  0.9075189                 3.16041392           0.1151191                  0.07448266                   0.6464733
+Germany.Agriculture                      0.92530356                    2.25142713                    0.16222512         2.31122022                  2.0595825                 0.51211484          29.8763359                  5.24719728                   9.6006931
+Germany.Textile.and.Leather              0.64666560                    0.72785683                    0.08244379         1.53837777                  2.5488967                 0.63316614           1.4593583                 18.95868110                   8.1583150
+Germany.Transport.Equipment              0.66638333                    0.65080723                    0.25807221         1.29066963                  1.4880228                 0.56934671           1.7321726                  1.51401054                  34.7438192
+{% endhighlight %}
+
+
+
+
+Now lets use the WWZ decomposition (default method, so no need to specify).
+{% highlight r %}
+decomp(inter,
+       final,
+       countries,
+       industries,
+       out)
+{% endhighlight %}
 
 
 {% highlight r %}
