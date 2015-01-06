@@ -13,14 +13,14 @@ In addition we recommend installing [RStudio](http://www.rstudio.com/products/rs
 
 Once both programs are installed, you can install the latest **stable** version from [CRAN](http://cran.r-project.org/web/packages/decompr/index.html).
 
-{% highlight r linenos %}
+{% highlight r %}
 install.packages("decompr")
 {% endhighlight %}
 
 Or alternatively the latest development version
 
-{% highlight r linenos %}
-# install the devtools package (this package allows to install packages directly from github)
+{% highlight r %}
+# install the devtools package (installs packages directly from github)
 install.packages("devtools")
 
 # load the devtools package
@@ -37,7 +37,7 @@ There is a video briefly expaining how to perform this in RStudio.
 
 Now that the package is installed, we can proceed with the application
 
-{% highlight r linenos %}
+{% highlight r %}
 # load the package
 library(decompr)
 
@@ -45,7 +45,7 @@ library(decompr)
 help(decompr)
 {% endhighlight %}
 
-{% highlight r linenos %}
+{% highlight r %}
 # load leather example data
 data(leather)
 
@@ -78,7 +78,7 @@ leontief
 
 If need be, the results can now be exported to a file format that can be processed by other data processing software such as Stata or simply Excel. Below you find an example for exporting the output to basic .csv files.
 
-{% highlight r linenos %}
+{% highlight r %}
 # write the results of WWZ to a csv file
 write.csv(w, file="wwz.csv")
 
@@ -94,7 +94,7 @@ The usage is also described in the R documentation included in the package.
 
 In addition, the contruction of the arrays and computations can be done separately using the atomic functions.
 
-{% highlight r linenos %}
+{% highlight r %}
 # load leather example data
 data(leather)
 
@@ -119,7 +119,7 @@ lt
 
 Below is an advanced example of looping the process and using the underlying functions to break the process into smaller steps. It is assumed that the data is stored in csv files.
 
-{% highlight r linenos %}
+{% highlight r %}
 ## create a vector with the years
 year <- c(1995, 2000, 2005, 2008)
 
