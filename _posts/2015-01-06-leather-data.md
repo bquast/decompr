@@ -11,7 +11,7 @@ The current development version of decompr now includes a new 3-country  3-secto
 The development version of decompr can be installed using the following commands.
 
 {% highlight r %}
-# install the devtools package (installs packages directly from github)
+# install the devtools package (installs packages from github)
 install.packages("devtools")
 
 # load the devtools package

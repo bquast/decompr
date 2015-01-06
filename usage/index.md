@@ -20,7 +20,7 @@ install.packages("decompr")
 Or alternatively the latest development version
 
 {% highlight r %}
-# install the devtools package (installs packages directly from github)
+# install the devtools package (installs packages from github)
 install.packages("devtools")
 
 # load the devtools package
