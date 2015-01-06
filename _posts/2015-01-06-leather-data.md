@@ -97,7 +97,7 @@ final
  [7,]  9.2 17.9 51.2
  [8,]  7.9 10.1 38.5
  [9,] 25.1 35.2 68.4
-{% endhighlight %}
+{% raw %}
 
 {% highlight r %}
 inter
