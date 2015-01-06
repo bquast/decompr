@@ -116,6 +116,28 @@ inter
  [9,]  2.1  1.4  3.0  4.1  3.1  3.9 11.3  8.1 51.3
 {% endhighlight %}
 
+We can also display the data in the WIOD format.
+
+{% highlight r %}
+rbind(as.vector(cbind("", "", t(rep(countries, each=3)), t(countries), "")),
+      as.vector(cbind("", "", t(rep(industries, 3)),     t(rep("final", 3)), "output")),
+      cbind.data.frame(rep(countries, each=3), industries, inter, final, out)            )
+{% endhighlight %}
+
+{% highlight r %}
+1                      <NA>                <NA>   Argentina           Argentina           Argentina      Turkey              Turkey              Turkey     Germany             Germany             Germany  Argentina Turkey Germany
+2                      <NA>                <NA> Agriculture Textile.and.Leather Transport.Equipment Agriculture Textile.and.Leather Transport.Equipment Agriculture Textile.and.Leather Transport.Equipment      final  final   final output
+3                 Argentina         Agriculture        16.1                 5.1                 1.8         3.2                 4.3                 0.4         3.1                 2.8                 4.9       21.5    6.1     8.4   77.7
+4                 Argentina Textile.and.Leather         2.4                   8                 3.2         0.1                 3.2                 1.6         1.2                 3.9                11.5       16.2    1.9     5.1   58.3
+5                 Argentina Transport.Equipment         0.9                 0.5                   4           0                 0.1                 0.3           0                 0.4                 0.5         11    0.5     0.8     19
+6                    Turkey         Agriculture         1.1                 1.9                 0.2          18                13.2                 6.1           9                 3.1                 8.9        7.5   29.5    14.2  112.7
+7                    Turkey Textile.and.Leather         0.3                 2.8                 0.1         6.1                28.1                 6.3         2.1                 2.5                25.6        8.9   24.9    16.9  124.6
+8                    Turkey Transport.Equipment           0                 0.1                 0.3         4.1                 3.2                 8.9         0.2                   0                 1.8        1.2   18.5     4.9   43.2
+9                   Germany         Agriculture         1.2                 4.2                 0.3         4.1                 1.2                 0.6          29                19.5                17.9        9.2   17.9    51.2  156.3
+10                  Germany Textile.and.Leather         1.3                 1.1                   0         3.2                 4.8                 2.6         5.1                29.1                24.1        7.9   10.1    38.5  127.8
+11                  Germany Transport.Equipment         2.1                 1.4                   3         4.1                 3.1                 3.9        11.3                 8.1                51.3       25.1   35.2    68.4    217
+{% endhighlight %}
+
 We start by using the 'standard' Leontief decomposition.
 
 {% highlight r %}
