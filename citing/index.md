@@ -5,7 +5,7 @@ tags: [about, Jekyll, theme, responsive]
 modified: 2014-08-08T20:53:07.573882-04:00
 comments: true
 image:
-  feature: sample-image-2.jpg
+  feature: ship-sunset.jpg
 ---
 
 Citation information is included with the package. If you use decompr for data analysis, please cite R as well as decompr, using citation() and citation("decompr") respectively, or use the information below.
