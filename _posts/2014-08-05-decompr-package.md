@@ -8,7 +8,7 @@ comments: true
 
 We are proud to announce the beta version of the [decompr](http://qua.st/decompr/) **R package**. The package implements Export Decomposition using the Wang-Wei-Zhu (Wang, Wei, and Zhu 2013) and Kung-Fu (Mehrotra, Kung, and Grosky 1990) algorithms. It comes with a sample data set from the [WIOD project](http://www.wiod.org/), and has its own [mini site](http://qua.st/decompr).
 
-**Update**, the decompr package in now [available on CRAN](http://cran.r-project.org/web/packages/decompr/index.html), also announced in [this post](/decompr-cran)
+**Update**, the decompr package is now [available on CRAN](http://cran.r-project.org/web/packages/decompr/index.html), also announced in [this post](/decompr-cran)
 
 Inputs
 ------
@@ -22,7 +22,7 @@ The **y** argument is the final demand table it has dimensions **GNxGM** ( where
 Output
 ------
 
-The output when using the WWZ algorithm is a matrix with dimensions **GNGx19**. Whereby **19** is the **16** objects the WWZ algorithm decomposes exports into, plus three checksums. **GNG** represents source country, using industry and using country.
+The output when using the WWZ algorithm is a matrix with dimensions **GNGx19**. Whereby **19** is the **16** objects the WWZ algorithm decomposes exports into, plus three checksums. **GNG** source country, source industry and using country whereas these terms are slightly ambiguous here due to the complex nature of the decomposition.
 
 Installation
 ------------
