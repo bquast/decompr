@@ -21,12 +21,15 @@ Therefore, it covers all four dimensions but at a lesser detail than the Wang-We
 A theoretical derivation can also be found in Wang, Wei, and Zhu (2014).
 
 ## CRAN
-The **decompr** package is hosted on the [Comprehensive R Archive Network (CRAN)](http://cran.r-project.org/). There is a dedicated CRAN decompr page which can be accessed here: [http://cran.r-project.org/web/packages/decompr/index.html](http://cran.r-project.org/web/packages/decompr/index.html)
-
+The **decompr** package is hosted on the [Comprehensive R Archive Network (CRAN)](http://cran.r-project.org/).
 **decompr** can be installed from CRAN by using the following command from the R console.
 {% highlight r %}
 install.packages("decompr")
 {% endhighlight %}
+
+There is a dedicated CRAN decompr page which can be accessed here: 
+
+[http://cran.r-project.org/web/packages/decompr/index.html](http://cran.r-project.org/web/packages/decompr/index.html)
 
 ## Citing
 
