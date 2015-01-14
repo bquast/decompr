@@ -40,27 +40,13 @@ Germany.Transport.Equipment              0.66638333                    0.6508072
 {% endhighlight %}
 
 
-\begin{table}[htbp]\scriptsize
-    \begin{adjustwidth}{-1.15in}{-1.15in} 
-  \centering
-  \caption{Non-decomposed Values}
-    \begin{tabular}{lccccccccc}
-    \toprule
-         & Argentina. & Argentina. & Argentina. & Turkey. & Turkey. & Turkey. & Germany. & Germany. & Germany.\\
-          & Agriculture & Textile.and. & Transport. & Agriculture & Textile.and. & Transport. & Agriculture & Textile.and. & Transport.\\
-          & & Leather & Equipment & & Leather & Equipment & & Leather & Equipment\\
-    \midrule
-    Argentina.Agriculture & 6.88  & 2.49  & 0.25  & 1.30  & 2.04  & 0.08  & 0.77  & 0.68  & 1.76 \\
-    Argentina.Textile.and.Leather & 1.03  & 3.91  & 0.44  & 0.04  & 1.52  & 0.31  & 0.30  & 0.95  & 4.13 \\
-    Argentina.Transport.Equipment & 0.38  & 0.24  & 0.55  & 0.00  & 0.05  & 0.06  & 0.00  & 0.10  & 0.18 \\
-    Turkey.Agriculture & 0.47  & 0.93  & 0.03  & 7.33  & 6.27  & 1.20  & 2.23  & 0.75  & 3.19 \\
-    Turkey.Textile.and.Leather & 0.13  & 1.37  & 0.01  & 2.48  & 13.35 & 1.24  & 0.52  & 0.61  & 9.19 \\
-    Turkey.Transport.Equipment & 0.00  & 0.05  & 0.04  & 1.67  & 1.52  & 1.75  & 0.05  & 0.00  & 0.65 \\
-    Germany.Agriculture & 0.51  & 2.05  & 0.04  & 1.67  & 0.57  & 0.12  & 7.18  & 4.73  & 6.43 \\
-    Germany.Textile.and.Leather & 0.56  & 0.54  & 0.00  & 1.30  & 2.28  & 0.51  & 1.26  & 7.06  & 8.65 \\
-    Germany.Transport.Equipment & 0.90  & 0.68  & 0.41  & 1.67  & 1.47  & 0.77  & 2.80  & 1.96  & 18.42 \\
-    \bottomrule
-    \end{tabular}
-  \label{tab:noleon}
-        \end{adjustwidth}
-\end{table}
+|-------------------------------|------|------|------|------|-------|------|------|------|-------|
+| Argentina.Agriculture         | 6.88 | 2.49 | 0.25 | 1.30 | 2.04  | 0.08 | 0.77 | 0.68 | 1.76  |
+| Argentina.Textile.and.Leather | 1.03 | 3.91 | 0.44 | 0.04 | 1.52  | 0.31 | 0.30 | 0.95 | 4.13  |
+| Argentina.Transport.Equipment | 0.38 | 0.24 | 0.55 | 0.00 | 0.05  | 0.06 | 0.00 | 0.10 | 0.18  |
+| Turkey.Agriculture            | 0.47 | 0.93 | 0.03 | 7.33 | 6.27  | 1.20 | 2.23 | 0.75 | 3.19  |
+| Turkey.Textile.and.Leather    | 0.13 | 1.37 | 0.01 | 2.48 | 13.35 | 1.24 | 0.52 | 0.61 | 9.19  |
+| Turkey.Transport.Equipment    | 0.00 | 0.05 | 0.04 | 1.67 | 1.52  | 1.75 | 0.05 | 0.00 | 0.65  |
+| Germany.Agriculture           | 0.51 | 2.05 | 0.04 | 1.67 | 0.57  | 0.12 | 7.18 | 4.73 | 6.43  |
+| Germany.Textile.and.Leather   | 0.56 | 0.54 | 0.00 | 1.30 | 2.28  | 0.51 | 1.26 | 7.06 | 8.65  |
+| Germany.Transport.Equipment   | 0.90 | 0.68 | 0.41 | 1.67 | 1.47  | 0.77 | 2.80 | 1.96 | 18.42 |
