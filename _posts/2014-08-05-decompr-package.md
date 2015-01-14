@@ -28,14 +28,14 @@ Installation
 ------------
 You can install the latest **stable** version from CRAN.
 
-{% highlight r linenos %}
+{% highlight r %}
 install.packages("decompr")
 {% endhighlight %}
 
 You can install the latest **development** version from GitHub using the `devtools` package.
 
 
-{% highlight r linenos %}
+{% highlight r %}
 library(devtools)
 install_github("decompr", "bquast")
 {% endhighlight %}
@@ -62,7 +62,7 @@ The process of setting up the various data structures (`load_tables_vectors`) fo
 Usage
 -----
 
-{% highlight r linenos %}
+{% highlight r %}
 # load the package
 library(decompr)
 
@@ -75,13 +75,13 @@ dim(intermediate_demand) # (2 + GN + totals) x (2 + GN)
 
     ## [1] 255 247
 
-{% highlight r linenos %}
+{% highlight r %}
 dim(final_demand)        # (2 + GN + totals) x (2 + G*5)
 {% endhighlight %}
 
     ## [1] 247  37
 
-{% highlight r linenos %}
+{% highlight r %}
 intermediate_demand[1:40,1:40]
 {% endhighlight %}
 
@@ -332,7 +332,7 @@ intermediate_demand[1:40,1:40]
     ## 39        18         0      309     3956      304
     ## 40        57         0     8909      118    38313
 
-{% highlight r linenos %}
+{% highlight r %}
 final_demand[1:40,1:10]
 {% endhighlight %}
 
@@ -419,7 +419,7 @@ final_demand[1:40,1:10]
     ## 39     4342        6       91
     ## 40   129956       24      195
 
-{% highlight r linenos %}
+{% highlight r %}
 # use the direct approach
 # run the WWZ decomposition
 wwz <- decomp(intermediate_demand, final_demand, method='wwz')
@@ -439,7 +439,7 @@ wwz[1:5,1:5]
     ## Euro-zone.c1.China           12.077
     ## Euro-zone.c1.East Asia        2.459
 
-{% highlight r linenos %}
+{% highlight r %}
 # run the source decomposition
 source  <- decomp(intermediate_demand, final_demand, method='source')
 source[1:5,1:5]
@@ -459,7 +459,7 @@ source[1:5,1:5]
     ## Euro-zone.c5     10071.56
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # or use the step-by-step approach
 # create intermediate object (class decompr)
 decompr_object <- load_tables(intermediate_demand, final_demand)
@@ -545,7 +545,7 @@ str(decompr_object)
     ##  $ z2       : chr [1:8] "Euro-zone" "Other EU" "NAFTA" "China" ...
     ##  - attr(*, "class")= chr "decompr"
 
-{% highlight r linenos %}
+{% highlight r %}
 # run the WWZ decomposition on the decompr object
 wwz <- wwz(decompr_object)
 wwz[1:5,1:5]
@@ -565,7 +565,7 @@ wwz[1:5,1:5]
     ## Euro-zone.c1.East Asia        2.459
 
 
-{% highlight r linenos %}
+{% highlight r %}
 # run the source decomposition on the decompr object
 source  <- kung_fu(decompr_object)
 source[1:5,1:5]
