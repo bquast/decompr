@@ -31,10 +31,6 @@ library(decompr)
 If you use decompr for data analysis,
 please cite R as well as decompr,
 using citation() and citation("decompr") respectively.
-
-The API for the decomp function has changed,
-it now uses load_tables_vectors instead of load_tables,
-for more info see http://qua.st/decompr/decompr-v2/.
 {% endhighlight %}
 
 We can now load the new leather dataset
