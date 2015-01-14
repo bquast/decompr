@@ -13,30 +13,32 @@ We can also take look at specific industries. For instance, we find that the non
 
 Finally let's consider the countries of our specific example. We see that Germany has more instances in which the non-decomposed values are above the value added flows than Argentina and Turkey combined. Along the lines of the industry analysis, this shows that Germany focuses within this GVC on downstream tasks producing mostly final goods that contain value added from countries located more upstream. In our example these are Turkey and Argentina.
 
-\begin{table}[htbp] \scriptsize
-    \begin{adjustwidth}{-1.15in}{-1.15in}  
-  \centering
-  \caption{Leontief Decomposition}
-    \begin{tabular}{lccccccccc}
-    \toprule
-          & Argentina. & Argentina. & Argentina. & Turkey. & Turkey. & Turkey. & Germany. & Germany. & Germany.\\
-          & Agriculture & Textile.and. & Transport. & Agriculture & Textile.and. & Transport. & Agriculture & Textile.and. & Transport.\\
-          & & Leather & Equipment & & Leather & Equipment & & Leather & Equipment\\
-    \midrule
-    Argentina.Agriculture & 28.52 & 2.79  & 0.36  & 1.81  & 3.12  & 0.36  & 1.24  & 1.30  & 4.12 \\
-    Argentina.Textile.and.Leather & 1.06  & 19.12 & 0.42  & 0.48  & 1.83  & 0.43  & 0.59  & 1.15  & 4.75 \\
-    Argentina.Transport.Equipment & 0.21  & 0.14  & 1.06  & 0.03  & 0.08  & 0.04  & 0.02  & 0.07  & 0.19 \\
-    Turkey.Agriculture & 0.72  & 1.34  & 0.12  & 34.93 & 7.00  & 1.48  & 2.55  & 1.52  & 6.18 \\
-    Turkey.Textile.and.Leather & 0.41  & 1.39  & 0.12  & 2.69  & 40.17 & 1.32  & 1.11  & 1.15  & 9.51 \\
-    Turkey.Transport.Equipment & 0.03  & 0.09  & 0.03  & 0.81  & 0.91  & 3.16  & 0.12  & 0.07  & 0.65 \\
-    Germany.Agriculture & 0.93  & 2.25  & 0.16  & 2.31  & 2.06  & 0.51  & 29.88 & 5.25  & 9.60 \\
-    Germany.Textile.and.Leather & 0.65  & 0.73  & 0.08  & 1.54  & 2.55  & 0.63  & 1.46  & 18.96 & 8.16 \\
-    Germany.Transport.Equipment & 0.67  & 0.65  & 0.26  & 1.29  & 1.49  & 0.57  & 1.73  & 1.51  & 34.74 \\
-    \bottomrule
-    \end{tabular}
-  \label{tab:leon}
-      \end{adjustwidth}
-\end{table}
+We call the following command.
+
+{% highlight r %}
+decomp(inter,
+       final,
+       countries,
+       industries,
+       out,
+       method = "leontief")
+{% endhighlight %}
+
+Which give us this output.
+
+{% highlight r %}
+.                             Argentina.Agriculture Argentina.Textile.and.Leather Argentina.Transport.Equipment Turkey.Agriculture Turkey.Textile.and.Leather Turkey.Transport.Equipment Germany.Agriculture Germany.Textile.and.Leather Germany.Transport.Equipment
+Argentina.Agriculture                   28.52278143                    2.79395126                    0.35606694         1.81066955                  3.1173841                 0.35901126           1.2364172                  1.30283802                   4.1208736
+Argentina.Textile.and.Leather            1.06206936                   19.12053186                    0.41813924         0.48370042                  1.8329024                 0.43058635           0.5937041                  1.15375958                   4.7490351
+Argentina.Transport.Equipment            0.21043693                    0.14228369                    1.06369578         0.03329456                  0.0790545                 0.04024626           0.0231846                  0.07482343                   0.1932621
+Turkey.Agriculture                       0.71952151                    1.34237213                    0.11504126        34.92704803                  6.9994970                 1.47711579           2.5543089                  1.52213499                   6.1806254
+Turkey.Textile.and.Leather               0.41201175                    1.38523849                    0.11764036         2.69291816                 40.1671410                 1.31799873           1.1093993                  1.15207241                   9.5069032
+Turkey.Transport.Equipment               0.03482652                    0.08553139                    0.02667530         0.81210167                  0.9075189                 3.16041392           0.1151191                  0.07448266                   0.6464733
+Germany.Agriculture                      0.92530356                    2.25142713                    0.16222512         2.31122022                  2.0595825                 0.51211484          29.8763359                  5.24719728                   9.6006931
+Germany.Textile.and.Leather              0.64666560                    0.72785683                    0.08244379         1.53837777                  2.5488967                 0.63316614           1.4593583                 18.95868110                   8.1583150
+Germany.Transport.Equipment              0.66638333                    0.65080723                    0.25807221         1.29066963                  1.4880228                 0.56934671           1.7321726                  1.51401054                  34.7438192
+{% endhighlight %}
+
 
 \begin{table}[htbp]\scriptsize
     \begin{adjustwidth}{-1.15in}{-1.15in} 
