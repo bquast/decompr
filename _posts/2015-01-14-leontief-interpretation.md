@@ -39,14 +39,16 @@ Germany.Textile.and.Leather              0.64666560                    0.7278568
 Germany.Transport.Equipment              0.66638333                    0.65080723                    0.25807221         1.29066963                  1.4880228                 0.56934671           1.7321726                  1.51401054                  34.7438192
 {% endhighlight %}
 
-
-|-------------------------------|------|------|------|------|-------|------|------|------|-------|
-| Argentina.Agriculture         | 6.88 | 2.49 | 0.25 | 1.30 | 2.04  | 0.08 | 0.77 | 0.68 | 1.76  |
-| Argentina.Textile.and.Leather | 1.03 | 3.91 | 0.44 | 0.04 | 1.52  | 0.31 | 0.30 | 0.95 | 4.13  |
-| Argentina.Transport.Equipment | 0.38 | 0.24 | 0.55 | 0.00 | 0.05  | 0.06 | 0.00 | 0.10 | 0.18  |
-| Turkey.Agriculture            | 0.47 | 0.93 | 0.03 | 7.33 | 6.27  | 1.20 | 2.23 | 0.75 | 3.19  |
-| Turkey.Textile.and.Leather    | 0.13 | 1.37 | 0.01 | 2.48 | 13.35 | 1.24 | 0.52 | 0.61 | 9.19  |
-| Turkey.Transport.Equipment    | 0.00 | 0.05 | 0.04 | 1.67 | 1.52  | 1.75 | 0.05 | 0.00 | 0.65  |
-| Germany.Agriculture           | 0.51 | 2.05 | 0.04 | 1.67 | 0.57  | 0.12 | 7.18 | 4.73 | 6.43  |
-| Germany.Textile.and.Leather   | 0.56 | 0.54 | 0.00 | 1.30 | 2.28  | 0.51 | 1.26 | 7.06 | 8.65  |
-| Germany.Transport.Equipment   | 0.90 | 0.68 | 0.41 | 1.67 | 1.47  | 0.77 | 2.80 | 1.96 | 18.42 |
+{% highlight r %}
+                             . Argentina..Agriculture Argentina..Textile.and.Leather Argentina..Transport.Equipment Turkey..Agriculture Turkey..Textile.and.Leather Turkey..Transport.Equipment Germany..Agriculture Germany..Textile.and.Leather
+1                           <NA>  Argentina.Agriculture  Argentina.Textile.and.Leather  Argentina.Transport.Equipment  Turkey.Agriculture  Turkey.Textile.and.Leather  Turkey.Transport.Equipment  Germany.Agriculture  Germany.Textile.and.Leather
+2          Argentina.Agriculture       6.87927927927928               2.49313893653516              0.246315789473684    1.30328305235138             2.0430176565008          0.0787037037037037    0.767562380038388            0.679186228482003
+3  Argentina.Textile.and.Leather       1.02548262548263               3.91080617495712              0.437894736842105  0.0407275953859805            1.52038523274478           0.314814814814815    0.297120921305182            0.946009389671361
+4  Argentina.Transport.Equipment      0.384555984555985               0.24442538593482              0.547368421052632                   0          0.0475120385232745          0.0590277777777778                    0           0.0970266040688576
+5             Turkey.Agriculture       0.47001287001287              0.928816466552316             0.0273684210526316    7.33096716947649            6.27158908507223            1.20023148148148     2.22840690978887            0.751956181533646
+6     Turkey.Textile.and.Leather      0.128185328185328               1.36878216123499             0.0136842105263158    2.48438331854481            13.3508828250401            1.23958333333333    0.519961612284069             0.60641627543036
+7     Turkey.Transport.Equipment                      0              0.048885077186964             0.0410526315789474     1.6698314108252            1.52038523274478            1.75115740740741   0.0495201535508637                            0
+8            Germany.Agriculture      0.512741312741313               2.05317324185249             0.0410526315789474     1.6698314108252           0.570144462279293           0.118055555555556     7.18042226487524             4.73004694835681
+9    Germany.Textile.and.Leather      0.555469755469756              0.537735849056604                              0    1.30328305235138            2.28057784911717           0.511574074074074     1.26276391554702             7.05868544600939
+10   Germany.Transport.Equipment      0.897297297297297              0.684391080617496              0.410526315789474     1.6698314108252            1.47287319422151           0.767361111111111      2.7978886756238             1.96478873239437
+{% endhighlight %}
