@@ -40,10 +40,10 @@ Germany.Transport.Equipment              0.66638333                    0.6508072
 {% endhighlight %}
 
 {% highlight r %}
-.          		      Argentina.Agriculture  Argentina.Textile.and.Leather  Argentina.Transport.Equipment  Turkey.Agriculture  Turkey.Textile.and.Leather  Turkey.Transport.Equipment  Germany.Agriculture  Germany.Textile.and.Leather
-Argentina.Agriculture              6.87927927927928               2.49313893653516              0.246315789473684    1.30328305235138             2.0430176565008          0.0787037037037037    0.767562380038388            0.679186228482003
-Argentina.Textile.and.Leather      1.02548262548263               3.91080617495712              0.437894736842105  0.0407275953859805            1.52038523274478           0.314814814814815    0.297120921305182            0.946009389671361
-Argentina.Transport.Equipment     0.384555984555985               0.24442538593482              0.547368421052632                   0          0.0475120385232745          0.0590277777777778                    0           0.0970266040688576
+.          		      Argentina.Agriculture  Argentina.Textile.and.Leather  Argentina.Transport.Equipment  Turkey.Agriculture  Turkey.Textile.and.Leather  Turkey.Transport.Equipment  Germany.Agriculture  Germany.Textile.and.Leather   Germany.Transport.Equipment
+Argentina.Agriculture              6.87927927927928               2.49313893653516              0.246315789473684    1.30328305235138             2.0430176565008          0.0787037037037037    0.767562380038388            0.679186228482003                1.75903225806452
+Argentina.Textile.and.Leather      1.02548262548263               3.91080617495712              0.437894736842105  0.0407275953859805            1.52038523274478           0.314814814814815    0.297120921305182            0.946009389671361                4.12834101382489
+Argentina.Transport.Equipment     0.384555984555985               0.24442538593482              0.547368421052632                   0          0.0475120385232745          0.0590277777777778                    0           0.0970266040688576                0.179493087557604
 Turkey.Agriculture                 0.47001287001287              0.928816466552316             0.0273684210526316    7.33096716947649            6.27158908507223            1.20023148148148     2.22840690978887            0.751956181533646
 Turkey.Textile.and.Leather        0.128185328185328               1.36878216123499             0.0136842105263158    2.48438331854481            13.3508828250401            1.23958333333333    0.519961612284069             0.60641627543036
 Turkey.Transport.Equipment                        0              0.048885077186964             0.0410526315789474     1.6698314108252            1.52038523274478            1.75115740740741   0.0495201535508637                            0
