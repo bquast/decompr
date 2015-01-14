@@ -47,18 +47,6 @@ install_github("decompr", "bquast")
     ##   --library="D:/R/R-3.1.1/library" --install-tests
 
 
-Functions
----------
-The package contains the following functions.
-
-* `load_tables_vectors`
-* `leontief`
-* `wwz`
-* `decomp`
-
-The process of setting up the various data structures (`load_tables_vectors`) for the decomposition together with the subsequent decomposition (`wwz` or `leontief`) can be rather resource / time consuming. For this reason we have chosen to implement these steps as seperate functions, so that the process can be split. However, a wrapper function (`decomp`) is also provided which combines the two, thus also providing the user with option to run both steps at the same time.
-
-
 Usage
 -----
 
