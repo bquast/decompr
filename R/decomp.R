@@ -53,7 +53,7 @@
 #' leontief
 
 
-decomp <- function( x, y, k, i, o,  method=c("wwz", "leontief", "source" ) ) {
+decomp <- function( x, y, k, i, o,  method=c("leontief", "wwz", "source" ) ) {
   
   method <- match.arg(method)
   
