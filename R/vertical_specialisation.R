@@ -20,9 +20,8 @@
 #'                                       out        )
 #' str(decompr_object)
 #' 
-#' # run the Leontief decomposition on the decompr object
-#' lt  <- leontief(decompr_object)
-#' lt
+#' # run the Vertical Specialisation decomposition on the decompr object
+#' vertical_specialisation(decompr_object)
 
 
 # example code for blocks
@@ -45,6 +44,9 @@ vertical_specialisation <- function ( x ) {
     
     f[p] <- colSums(lt[-p,p])
   }
+  
+  f <- as.data.frame(t(f))
+  names(f) <- x$rownam
   
   return(f)
   
