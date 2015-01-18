@@ -25,11 +25,9 @@ decompr_object <- load_tables_vectors(inter,
                                       countries,
                                       industries,
                                       out        )
-str(decompr_object)
 
 # run the Leontief decomposition on the decompr object
-lt  <- leontief(decompr_object)
-lt
+leontief(decompr_object)
 }
 \author{
 Bastiaan Quast

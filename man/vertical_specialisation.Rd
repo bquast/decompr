@@ -27,9 +27,8 @@ decompr_object <- load_tables_vectors(inter,
                                       out        )
 str(decompr_object)
 
-# run the Leontief decomposition on the decompr object
-lt  <- leontief(decompr_object)
-lt
+# run the Vertical Specialisation decomposition on the decompr object
+vertical_specialisation(decompr_object)
 }
 \author{
 Bastiaan Quast

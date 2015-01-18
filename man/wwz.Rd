@@ -28,7 +28,6 @@ decompr_object <- load_tables_vectors(inter,
                                       countries,
                                       industries,
                                       out        )
-str(decompr_object)
 
 # run the WWZ decomposition on the decompr object
 w  <- wwz(decompr_object)

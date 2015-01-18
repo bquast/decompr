@@ -4,7 +4,8 @@
 \alias{decomp}
 \title{Interface function for decompositions}
 \usage{
-decomp(x, y, k, i, o, method = c("leontief", "wwz", "source"))
+decomp(x, y, k, i, o, method = c("leontief", "wwz", "vertical_specialisation",
+  "vertical_specialization", "source"))
 }
 \arguments{
 \item{x}{the intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
@@ -38,7 +39,10 @@ This function runs the decomposition
 # load leather example data
 data(leather)
 
-# explore the data
+# explore the data set
+ls()
+
+# explore each of the objects
 inter
 final
 countries
@@ -56,13 +60,12 @@ wwz <- decomp(inter,
 wwz[1:5,1:5]
 
 # run the Leontief decomposition
-leontief  <- decomp(inter,
-                    final,
-                    countries,
-                    industries,
-                    out,
-                    method = "leontief")
-leontief
+decomp(inter,
+       final,
+       countries,
+       industries,
+       out,
+       method = "leontief")
 }
 \author{
 Bastiaan Quast
