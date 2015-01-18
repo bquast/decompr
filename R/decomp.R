@@ -26,7 +26,10 @@
 #' # load leather example data
 #' data(leather)
 #' 
-#' # explore the data
+#' # explore the data set
+#' ls()
+#' 
+#' # explore each of the objects
 #' inter
 #' final
 #' countries
@@ -44,13 +47,12 @@
 #' wwz[1:5,1:5]
 #' 
 #' # run the Leontief decomposition
-#' leontief  <- decomp(inter,
-#'                     final,
-#'                     countries,
-#'                     industries,
-#'                     out,
-#'                     method = "leontief")
-#' leontief
+#' decomp(inter,
+#'        final,
+#'        countries,
+#'        industries,
+#'        out,
+#'        method = "leontief")
 
 
 decomp <- function( x, y, k, i, o,  method=c("leontief", "wwz", "source" ) ) {

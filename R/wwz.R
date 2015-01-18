@@ -20,7 +20,6 @@
 #'                                       countries,
 #'                                       industries,
 #'                                       out        )
-#' str(decompr_object)
 #' 
 #' # run the WWZ decomposition on the decompr object
 #' w  <- wwz(decompr_object)
