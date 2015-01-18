@@ -55,7 +55,7 @@
 #'        method = "leontief")
 
 
-decomp <- function( x, y, k, i, o,  method=c("leontief", "wwz", "source" ) ) {
+decomp <- function( x, y, k, i, o,  method=c("leontief", "wwz", "vertical_specialisation", "vertical_specialization", "source" ) ) {
   
   method <- match.arg(method)
   
@@ -66,10 +66,12 @@ decomp <- function( x, y, k, i, o,  method=c("leontief", "wwz", "source" ) ) {
     decompr_obj <- load_tables_vectors(x, y, k, i, o)
   }
   
-  if (method == "wwz" ) {
-    out <- wwz(     decompr_obj )
-  } else if ( method == "leontief" ) {
+  if ( method == "leontief" ) {
     out <- leontief( decompr_obj )
+  } else if (method == "wwz" ) {
+    out <- wwz(     decompr_obj )
+  } else if ( method == "vertical_specialisation") {
+    out <- vertical_specialisation( decompr_obj )
   } else if ( method == "source" ) {
     warning('The "source" method has been renamed to "leontief" please use this method, "source" is now deprecated')
     out <- leontief( decompr_obj )
