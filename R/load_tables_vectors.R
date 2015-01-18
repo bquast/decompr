@@ -33,19 +33,13 @@
 
 load_tables_vectors <- function(x, y, k, i, o) {
 
-  # Part 1: getting the rownames etc.
-  # GN     <- length(x) - 2
-  # regnam <- unique(x[3:(GN+2),1])
-  # G      <- length(regnam)
-  # N      <- GN / G
-  # secnam <- unique( x[3:(N+2),2] )
-  # rownam <- paste( x[3:(GN+2),1], ".", x[3:(GN+2),2], sep="" )
-  
-  
+  # find number of sections and regions
+  # compute combination
   G      <- length(k)
   N      <- length(i)
   GN     <- G * N
   
+  # create vector of unique combinations of regions and sectors
   z <- t(outer(k, i, paste, sep="."))
   rownam <- as.vector(z)
   
