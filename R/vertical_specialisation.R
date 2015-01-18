@@ -35,13 +35,17 @@ vertical_specialisation <- function ( x ) {
   
   lt <- leontief( x )
   
-  for (i in 1:k) {
-    p <- seq( ((i-1)*k + 1),
-              i*k         )
+  # create output vector
+  f <- vector()
+  
+  # sum columns excluding the moving block diagonal of width G (no. of sectors)
+  for (j in 1:x$N) {
+    p <- seq( ((j-1)*x$N + 1),
+              j*x$N         )
     
     f[p] <- colSums(lt[-p,p])
   }
   
-  out(f)
+  return(f)
   
 }
