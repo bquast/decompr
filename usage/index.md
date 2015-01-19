@@ -27,7 +27,7 @@ install.packages("devtools")
 library(devtools)
 
 # use the devtools package to the development version of decompr
-install.github("bquast/decompr")
+install_github("bquast/decompr")
 {% endhighlight %}
 
 
