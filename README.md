@@ -39,7 +39,7 @@ You can install the latest **development** version from GitHub using the `devtoo
 
 ```r
 library(devtools)
-install_github("decompr", "bquast")
+devtools::install_github("decompr", "bquast")
 ```
 
 
@@ -49,7 +49,7 @@ Please read the included documentation, specifically of the `decomp` function.
 
 ```r
 library(decompr)
-?decomp
+help("decomp")"
 ```
 
 
