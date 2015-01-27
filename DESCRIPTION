@@ -1,16 +1,16 @@
 Package: decompr
 Type: Package
-Title: Global Value Chains decomposition (Wang-Wei-Zhu and Leontief)
+Title: Global Value Chains Decomposition (Wang-Wei-Zhu and Leontief)
 Version: 2.0
 Date: 2014-12-19
 Authors@R: c( person("Bastiaan", "Quast", email = "bquast@gmail.com", role =
     c("aut", "cre") ), person("Fei", "Wang", role = "aut"), person("Victor",
     "Kummritz", role = "aut") )
 Maintainer: Bastiaan Quast <bquast@gmail.com>
-Description: decompr implements two export decomposition algorithms. Firstly,
+Description: Two Global Value Chains decompositions are implemented. Firstly,
     the Wang-Wei-Zhu (Wang, Wei, and Zhu 2013) algorithm splits bilateral gross
-    exports into 16 value added components. Secondly, the Source decomposition
-    algorithm derives the value added origin of exports by country and
+    exports into 16 value added components. Secondly, the Leontief decomposition
+    (default) derives the value added origin of exports by country and
     industry, which is also based on Wang, Wei, and Zhu (2013).
 Depends:
     R (>= 2.10)
