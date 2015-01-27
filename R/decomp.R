@@ -1,6 +1,8 @@
 #' Interface function for decompositions
 #' 
-#' This function runs the decomposition
+#' This function runs the decomposition.
+#' NOTE: the default method is now "leontief", please specify method="wwz" explicitly for Wang-Wei-Zhu.
+#' See http://qua.st/decompr/decompr-v2/ for more information.
 #' 
 #' @param x the intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
 #'  excluding the first row and the first column which contains the country names,
@@ -17,6 +19,8 @@
 #' @return The output when using the WWZ algorithm is a matrix with dimensions GNG*19.
 #'  Whereby 19 is the 16 objects the WWZ algorithm decomposes exports into, plus three checksums.
 #'  GNG represents source country, using industry and using country.
+#' @details Version 2 introduces several important changes, the default method is now leontief, which means that wwz has to be specified explicitly.
+#' Furthermore, the input object have a different structure, see the information below for details.
 #' @author Bastiaan Quast
 #' @references {Timmer, Marcel P. (ed) (2012), "The World Input-Output Database (WIOD): Contents Sources and Methods", WIOD Working Paper Number 10, downloadable at http://www.wiod.org/publications/papers/wiod10.pdf }
 #' 

@@ -71,5 +71,9 @@ NULL
 NULL
 .onAttach <- function(...) {
   packageStartupMessage('If you use decompr for data analysis,
-please cite R as well as decompr,
-using citation() and citation("decompr") respectively.')}
+please cite both R and decompr,
+using citation() and citation("decompr") respectively.
+                        
+IMPORTANT changes to the decomp function defaults,
+see help("decomp") and http://qua.st/decompr/decompr-v2/
+')}

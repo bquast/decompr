@@ -33,7 +33,13 @@ The output when using the WWZ algorithm is a matrix with dimensions GNG*19.
  GNG represents source country, using industry and using country.
 }
 \description{
-This function runs the decomposition
+This function runs the decomposition.
+NOTE: the default method is now "leontief", please specify method="wwz" explicitly for Wang-Wei-Zhu.
+See http://qua.st/decompr/decompr-v2/ for more information.
+}
+\details{
+Version 2 introduces several important changes, the default method is now leontief, which means that wwz has to be specified explicitly.
+Furthermore, the input object have a different structure, see the information below for details.
 }
 \examples{
 # load leather example data
