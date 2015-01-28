@@ -2,7 +2,7 @@
 % Please edit documentation in R/leontief.R
 \name{kung_fu}
 \alias{kung_fu}
-\title{Source Decomposition}
+\title{Source Decomposition (deprecated)}
 \usage{
 kung_fu(x)
 }
@@ -13,7 +13,7 @@ kung_fu(x)
 a data frame containing the square matrix and labelled column and rows
 }
 \description{
-This function runs the source decomposition decomposition
+DEPRECATED: This function runs the source decomposition decomposition
 }
 \examples{
 # load World Input-Output Database for 2011

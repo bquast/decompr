@@ -1,6 +1,6 @@
 #' Leontief Decomposition
 #' 
-#' This function runs the Leontief decomposition decomposition
+#' This function runs the Leontief decomposition.
 #' 
 #' @param x ane object of class decompr
 #' @return a data frame containing the square matrix and labelled column and rows
@@ -41,9 +41,54 @@ leontief <- function( x ) {
   
 }
 
-#' Source Decomposition
+#' Leontief Output Decomposition
 #' 
-#' This function runs the source decomposition decomposition
+#' This function runs the Leontief decomposition on output
+#' 
+#' @param x ane object of class decompr
+#' @return a data frame containing the square matrix and labelled column and rows
+#' @author Bastiaan Quast
+#' @references Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu.
+#' Quantifying international production sharing at the bilateral and sector levels. 
+#' No. w19677. National Bureau of Economic Research, 2013.
+#' @export
+#' @examples
+#' # load leather example data
+#' data(leather)
+#' 
+#' # create intermediate object (class decompr)
+#' decompr_object <- load_tables_vectors(inter,
+#'                                       final,
+#'                                       countries,
+#'                                       industries,
+#'                                       out        )
+#' 
+#' # run the Leontief decomposition on the decompr object
+#' leontief_out(decompr_object)
+
+
+leontief_out <- function( x ) {
+  
+  # Part 1 == loading data A,L,Vc, X, Y, E,ESR, etc.
+  
+  # decompose
+  out <- x$Vhat %*% x$B %*% diag(x$X)
+  
+  # add row and column names
+  out <- as.data.frame(out)
+  names(out) <- x$rownam
+  row.names(out) <- x$rownam
+  
+  # return result
+  return( out )
+  
+}
+
+
+
+#' Source Decomposition (deprecated)
+#' 
+#' DEPRECATED: This function runs the source decomposition decomposition
 #' 
 #' @param x ane object of class decompr
 #' @return a data frame containing the square matrix and labelled column and rows

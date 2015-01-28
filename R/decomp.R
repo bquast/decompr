@@ -59,8 +59,7 @@
 #'        method = "leontief")
 
 
-decomp <- function( x, y, k, i, o,  method=c("leontief", "wwz", "vertical_specialisation", "vertical_specialization", "source" ) ) {
-  
+decomp <- function( x, y, k, i, o,  method=c("leontief", "wwz", "leontief_output", "vertical_specialisation", "vertical_specialization", "source" ) ) {  
   method <- match.arg(method)
   
   if ( missing(k) | missing(i) | missing(o) ) {
@@ -74,6 +73,8 @@ decomp <- function( x, y, k, i, o,  method=c("leontief", "wwz", "vertical_specia
     out <- leontief( decompr_obj )
   } else if (method == "wwz" ) {
     out <- wwz(     decompr_obj )
+  } else if ( method == "leontief_output") {
+    out <- leontief_out( decompr_obj )    
   } else if ( method == "vertical_specialisation") {
     out <- vertical_specialisation( decompr_obj )
   } else if ( method == "source" ) {
