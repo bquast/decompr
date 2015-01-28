@@ -1,5 +1,7 @@
-decompr 2.0.1
+decompr 2.1.0
 =======================
+
+* add a leontief_output decomposition method
 
 * update the README.md file
 

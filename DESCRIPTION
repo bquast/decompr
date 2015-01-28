@@ -1,8 +1,8 @@
 Package: decompr
 Type: Package
 Title: Global Value Chains Decomposition (Wang-Wei-Zhu and Leontief)
-Version: 2.0
-Date: 2014-12-19
+Version: 2.1.0
+Date: 2015-1-28
 Authors@R: c( person("Bastiaan", "Quast", email = "bquast@gmail.com", role =
     c("aut", "cre") ), person("Fei", "Wang", role = "aut"), person("Victor",
     "Kummritz", role = "aut") )
