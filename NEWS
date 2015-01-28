@@ -1,4 +1,10 @@
-decompr 2.0
+decompr 2.0.1
+=======================
+
+* update the README.md file
+
+
+decompr 2.0.0
 =======================
 
 * make load_tables_vectors default
@@ -32,7 +38,7 @@ decompr 1.3.1
 * fix citations etc.
 
 
-decompr 1.3
+decompr 1.3.0
 =======================
 
 * add load_tables_vectors to input in simple form
@@ -44,7 +50,7 @@ decompr 1.2.1
 * update authors
 
 
-decompr 1.2
+decompr 1.2.0
 =======================
 
 * update citation code
@@ -54,7 +60,7 @@ decompr 1.2
 * use match.arg for method in decomp function
 
 
-decompr 1.1
+decompr 1.1.0
 =======================
 
 * update references
@@ -78,7 +84,7 @@ decompr 1.0.1
 * add cran-comments.md
 
 
-decompr 1.0
+decompr 1.0.0
 =======================
 
 * functions names use underscores in stead of periods
@@ -92,19 +98,19 @@ decompr 1.0
 * included this news file
 
 
-decompr 0.7
+decompr 0.7.0
 =======================
 
 * citation information is included
 
 
-decompr 0.6
+decompr 0.6.0
 =======================
 
 * example data set in included
 
 
-decompr 0.5
+decompr 0.5.0
 =======================
 
 * examples are included
