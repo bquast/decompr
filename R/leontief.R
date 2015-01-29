@@ -67,7 +67,7 @@ leontief <- function( x ) {
 #' leontief_out(decompr_object)
 
 
-leontief_out <- function( x ) {
+leontief_output <- function( x ) {
   
   # Part 1 == loading data A,L,Vc, X, Y, E,ESR, etc.
   
