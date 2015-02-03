@@ -60,6 +60,13 @@
 
 
 decomp <- function( x, y, k, i, o,  method=c("leontief", "wwz", "leontief_output", "vertical_specialisation", "vertical_specialization", "source" ) ) {  
+  
+  if ( missing(method) ) {
+    message('No method specified, the default method in version 2 of decompr has been changed to Leontief.
+
+            In order to use the Wang-Wei-Zhu (cf. decompr v.1), please specify this explicitly using: method="wwz"')
+  }
+  
   method <- match.arg(method)
   
   if ( missing(k) | missing(i) | missing(o) ) {
@@ -74,7 +81,7 @@ decomp <- function( x, y, k, i, o,  method=c("leontief", "wwz", "leontief_output
   } else if (method == "wwz" ) {
     out <- wwz(     decompr_obj )
   } else if ( method == "leontief_output") {
-    out <- leontief_out( decompr_obj )    
+    out <- leontief_output( decompr_obj )    
   } else if ( method == "vertical_specialisation") {
     out <- vertical_specialisation( decompr_obj )
   } else if ( method == "source" ) {

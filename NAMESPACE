@@ -3,7 +3,7 @@
 export(decomp)
 export(kung_fu)
 export(leontief)
-export(leontief_out)
+export(leontief_output)
 export(load_tables)
 export(load_tables_vectors)
 export(vertical_specialisation)

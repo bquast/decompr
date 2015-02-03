@@ -64,7 +64,7 @@ leontief <- function( x ) {
 #'                                       out        )
 #' 
 #' # run the Leontief decomposition on the decompr object
-#' leontief_out(decompr_object)
+#' leontief_output(decompr_object)
 
 
 leontief_output <- function( x ) {

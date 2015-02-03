@@ -5,6 +5,8 @@ decompr 2.1.0
 
 * update the README.md file
 
+* add warning when no method is specified in decomp (default is Leontief as of v.2)
+
 
 decompr 2.0.0
 =======================
