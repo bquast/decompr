@@ -1,6 +1,6 @@
 #' @name decompr
 #' @docType package
-#' @title Export Decomposition using the Wang-Wei-Zhu and source decompositions algorithms.
+#' @title Export Decomposition using the Wang-Wei-Zhu and Leontief decompositions algorithms.
 #' @author
 #' Bastiaan Quast \email{bquast@@gmail.com}
 #' Fei Wang

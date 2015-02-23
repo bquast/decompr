@@ -4,9 +4,9 @@
 \name{decompr}
 \alias{decompr}
 \alias{decompr-package}
-\title{Export Decomposition using the Wang-Wei-Zhu and source decompositions algorithms.}
+\title{Export Decomposition using the Wang-Wei-Zhu and Leontief decompositions algorithms.}
 \description{
-Export Decomposition using the Wang-Wei-Zhu and source decompositions algorithms.
+Export Decomposition using the Wang-Wei-Zhu and Leontief decompositions algorithms.
 }
 \author{
 Bastiaan Quast \email{bquast@gmail.com}
