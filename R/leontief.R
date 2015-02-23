@@ -36,6 +36,11 @@ leontief <- function( x ) {
   names(out) <- x$rownam
   row.names(out) <- x$rownam
   
+  # create attributes
+  attr(out, "N")      <- x$N
+  attr(out, "G")      <- x$G
+  attr(out, "rownam") <- x$rownam
+  
   # return result
   return( out )
   
@@ -79,10 +84,10 @@ leontief_output <- function( x ) {
   names(out) <- x$rownam
   row.names(out) <- x$rownam
   
-  # cread attributes
-  attr(out, "N")      <- N
-  attr(out, "G")      <- G
-  attr(out, "rownam") <- rownam
+  # create attributes
+  attr(out, "N")      <- x$N
+  attr(out, "G")      <- x$G
+  attr(out, "rownam") <- x$rownam
   
   # return result
   return( out )
