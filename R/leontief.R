@@ -107,20 +107,5 @@ leontief_output <- function( x ) {
 #' Quantifying international production sharing at the bilateral and sector levels. 
 #' No. w19677. National Bureau of Economic Research, 2013.
 #' @export
-#' @examples
-#' # load World Input-Output Database for 2011
-#' data(wiod)
-#' 
-#' # create intermediate object (class decompr)
-#' decompr_object <- load_tables_vectors(intermediate_demand,
-#'                                       final_demand,
-#'                                       region_names,
-#'                                       industry_names,
-#'                                       output              )
-#' str(decompr_object)
-#' 
-#' # run the Kung Fu decomposition on the decompr object
-#' kf  <- kung_fu(decompr_object)
-#' kf[1:5,1:5]
 
 kung_fu <- leontief
