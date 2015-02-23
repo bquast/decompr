@@ -45,8 +45,9 @@ vertical_specialisation <- function ( x ) {
     f[p] <- colSums(lt[-p,p])
   }
   
-  f <- as.data.frame(t(f))
-  names(f) <- x$rownam
+  f <- as.data.frame(f)
+  rownames(f) <- x$rownam
+  names(f) <- "vertical_specialisation"
   
   return(f)
   
