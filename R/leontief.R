@@ -37,9 +37,9 @@ leontief <- function( x ) {
   row.names(out) <- x$rownam
   
   # create attributes
-  attr(out, "N")      <- x$N
-  attr(out, "G")      <- x$G
-  attr(out, "rownam") <- x$rownam
+  attr(out, "k")      <- x$k
+  attr(out, "i")      <- x$i
+  # attr(out, "rownam") <- x$rownam
   
   # return result
   return( out )
