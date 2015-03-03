@@ -15,22 +15,6 @@ a data frame containing the square matrix and labelled column and rows
 \description{
 DEPRECATED: This function runs the source decomposition decomposition
 }
-\examples{
-# load World Input-Output Database for 2011
-data(wiod)
-
-# create intermediate object (class decompr)
-decompr_object <- load_tables_vectors(intermediate_demand,
-                                      final_demand,
-                                      region_names,
-                                      industry_names,
-                                      output              )
-str(decompr_object)
-
-# run the Kung Fu decomposition on the decompr object
-kf  <- kung_fu(decompr_object)
-kf[1:5,1:5]
-}
 \author{
 Bastiaan Quast
 }
