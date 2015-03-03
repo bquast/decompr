@@ -1,3 +1,11 @@
+decompr 2.2.0
+=======================
+
+* remove vertical_specialisation and vertical_specialization, will be included in GVC package (on Github)
+
+* add some attributes to output t.b. used by GVC package
+
+
 decompr 2.1.0
 =======================
 

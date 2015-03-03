@@ -28,7 +28,7 @@ install.packages("decompr")
 You can install the latest **development** version from GitHub using the `devtools` package.
 
 ```r
-install.packages(devtools)
+if (!require('devtools')) install.packages('devtools')
 devtools::install_github("bquast/decompr")
 ```
 
