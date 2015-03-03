@@ -204,6 +204,7 @@ load_tables_vectors <- function(x, y, k, i, o) {
                N    = N,
                GN   = GN,
                bigrownam = bigrownam,
+               i    = i,
                k    = k,
                rownam = rownam,
                tot  = tot,
