@@ -287,10 +287,12 @@ wwz <- function( x ) {
   
   for ( u in 1:x$GN ){
     if ( u==1 ){
-      ALLandTotal <- rbind( ALL[ u,, ], colSums( ALL[ u,, ] ))
+      #ALLandTotal <- rbind( ALL[ u,, ], colSums( ALL[ u,, ] ))
+      ALLandTotal <- rbind( ALL[ u,, ])
     }
     else {
-      ALLandTotal <- rbind( ALLandTotal, ALL[ u,, ], colSums( ALL[ u,, ] ))
+      #ALLandTotal <- rbind( ALLandTotal, ALL[ u,, ], colSums( ALL[ u,, ] ))
+      ALLandTotal <- rbind( ALLandTotal, ALL[ u,, ])
     }
   }
   # rm(ALL)

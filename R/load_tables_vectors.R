@@ -44,13 +44,9 @@ load_tables_vectors <- function(x, y, k, i, o) {
   rownam <- as.vector(z)
   
   # making the big rownames: bigrownam
-  z1 <-  t(matrix( rownam, nrow=GN, ncol=G ) )
-  tot <- rep( "sub", times=GN )
-  z01 <- rbind( z1,tot )
-  dim(z01 ) <- c( (G+1)*GN,1 )
-  
-  z2 <-  c( k, "TOTAL" )
-  z02 <- rep( z2,times=GN )
+  z01 <-  t(matrix( rownam, nrow=GN, ncol=G ) )
+  dim(z01 ) <- c( (G)*GN,1 )
+  z02 <- rep( k,times=GN )
   
   bigrownam <- paste( z01, z02, sep="." )
   
@@ -207,12 +203,9 @@ load_tables_vectors <- function(x, y, k, i, o) {
                i    = i,
                k    = k,
                rownam = rownam,
-               tot  = tot,
                z    = z,
                z01  = z01,
-               z02  = z02,
-               z1   = z1,
-               z2   = z2
+               z02  = z02
                )
   
   class(out) <- "decompr"
