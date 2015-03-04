@@ -8,6 +8,8 @@ kung_fu(x, tidy = TRUE)
 }
 \arguments{
 \item{x}{ane object of class decompr}
+
+\item{tidy}{transform the output data into a tidy data set or not, default it TRUE.}
 }
 \value{
 a data frame containing the square matrix and labelled column and rows
