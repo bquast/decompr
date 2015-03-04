@@ -36,11 +36,13 @@ leontief <- function( x, tidy=TRUE ) {
   if (tidy == TRUE) {
     
     out <- as.vector(out)
-    out <- cbind( rep(x$k, times = x$GN, each = x$N),
-                  rep(x$i, times = x$GN*x$G),
-                  rep(x$k,               each = x$GN*x$N ),
+    out <- data.frame( rep(x$k,               each = x$GN*x$N ),
                   rep(x$i, times = x$G,  each = x$GN),
+                  rep(x$k, times = x$GN, each = x$N),
+                  rep(x$i, times = x$GN*x$G),
+                  
                   out)
+    names(out) <- c("Importing_Country", "Importing_Industry", "Exporting_Country", "Exporting_Industry", "Value")
     
   } else {
     
