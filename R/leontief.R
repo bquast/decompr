@@ -32,10 +32,26 @@ leontief <- function( x, tidy=TRUE ) {
   # decompose
   out <- x$Vhat %*% x$B %*% x$Exp
   
-  # add row and column names
-  out <- as.data.frame(out)
-  names(out) <- x$rownam
-  row.names(out) <- x$rownam
+  
+  if (tidy == TRUE) {
+    
+    out <- as.vector(out)
+    out <- cbind( rep(x$k, times = x$GN, each = x$N),
+                  rep(x$i, times = x$GN*x$G),
+                  rep(x$k,               each = x$GN*x$N ),
+                  rep(x$i, times = x$G,  each = x$GN),
+                  out)
+    
+  } else {
+    
+    # add row and column names
+    out <- as.data.frame(out)
+    names(out) <- x$rownam
+    row.names(out) <- x$rownam
+    
+  }
+  
+  
   
   # create attributes
   attr(out, "k")      <- x$k
