@@ -4,7 +4,7 @@
 \alias{leontief_output}
 \title{Leontief Output Decomposition}
 \usage{
-leontief_output(x)
+leontief_output(x, tidy = TRUE)
 }
 \arguments{
 \item{x}{ane object of class decompr}
