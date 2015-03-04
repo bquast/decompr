@@ -321,8 +321,16 @@ wwz <- function( x ) {
   texpfddiffpercent <- round( texpfddiffpercent,4)
   texpintdiffpercent <-  round( texpintdiffpercent, 4)
   
-  ALLandTotal <-   cbind( ALLandTotal,texpdiff, texpfddiff, texpintdiff,
-                          texpdiffpercent,texpfddiffpercent,texpintdiffpercent )
+  ALLandTotal <-   cbind( rep(x$k,                       each=length(x$k)*length(x$i) ),
+                          rep(x$i,  times = length(x$k), each=length(x$k) ),
+                          rep(x$k,  times = length(x$k)*length(x$i) ),
+                          ALLandTotal,
+                          texpdiff,
+                          texpfddiff,
+                          texpintdiff,
+                          texpdiffpercent,
+                          texpfddiffpercent,
+                          texpintdiffpercent )
   # dim( ALLandTotal )
   
   return(ALLandTotal)
