@@ -53,6 +53,7 @@ leontief <- function( x, tidy=TRUE ) {
 #' 
 #' @param x ane object of class decompr
 #' @return a data frame containing the square matrix and labelled column and rows
+#' @param tidy transform the output data into a tidy data set or not, default it TRUE.
 #' @author Bastiaan Quast
 #' @references Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu.
 #' Quantifying international production sharing at the bilateral and sector levels. 
