@@ -4,7 +4,7 @@
 \alias{kung_fu}
 \title{Source Decomposition (deprecated)}
 \usage{
-kung_fu(x)
+kung_fu(x, tidy = TRUE)
 }
 \arguments{
 \item{x}{ane object of class decompr}

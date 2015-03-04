@@ -3,6 +3,7 @@
 #' This function runs the Leontief decomposition.
 #' 
 #' @param x ane object of class decompr
+#' @param tidy transform the output data into a tidy data set or not, default it TRUE.
 #' @return a data frame containing the square matrix and labelled column and rows
 #' @author Bastiaan Quast
 #' @references Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu.
@@ -24,7 +25,7 @@
 #' leontief(decompr_object)
 
 
-leontief <- function( x ) {
+leontief <- function( x, tidy=TRUE ) {
   
   # Part 1 == loading data A,L,Vc, X, Y, E,ESR, etc.
   
