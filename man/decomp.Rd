@@ -4,8 +4,7 @@
 \alias{decomp}
 \title{Interface function for decompositions}
 \usage{
-decomp(x, y, k, i, o, method = c("leontief", "wwz", "leontief_output",
-  "vertical_specialisation", "vertical_specialization", "source"))
+decomp(x, y, k, i, o, method = c("leontief", "wwz", "leontief_output"))
 }
 \arguments{
 \item{x}{the intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
