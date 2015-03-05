@@ -41,7 +41,7 @@ leontief <- function( x, tidy=TRUE ) {
                        rep(x$k,               each = x$GN*x$N ),
                        rep(x$i, times = x$G,  each = x$GN),
                        out)
-    names(out) <- c("Source_Country", "Source_Industry", "Using_Country", "Using_Industry", "Value")
+    names(out) <- c("Source_Country", "Source_Industry", "Using_Country", "Using_Industry", "FVAX")
     
   } else {
     
