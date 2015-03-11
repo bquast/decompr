@@ -1,3 +1,5 @@
+[![Travis-CI Build Status](https://travis-ci.org/bquast/decompr.png?branch=master)](https://travis-ci.org/bquast/decompr)
+
 [![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.14810.png)](http://dx.doi.org/10.5281/zenodo.14810)
 
 decompr
@@ -5,16 +7,9 @@ decompr
 
 Bastiaan Quast, <bquast@gmail.com>
 ----------------------------------
-
 Two Global Value Chains decompositions are implemented.
 Firstly, the Wang-Wei-Zhu (Wang, Wei, and Zhu 2013) algorithm splits bilateral gross exports into 16 value added components.
 Secondly, the Leontief decomposition (default) derives the value added origin of exports by country and industry, which is also based on Wang, Wei, and Zhu (2013).
-
-
-The R package 'decompr' implements two export decomposition algorithms.
-Firstly, the Wang-Wei-Zhu (Wang, Wei, and Zhu 2013) algorithm splits bilateral gross exports into 16 value added components.
-Secondly, the Source decomposition algorithm derives the value added origin of exports by country and industry, which is also based on Wang, Wei, and Zhu (2013).
-
 
 
 Installation
