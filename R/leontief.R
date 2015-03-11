@@ -35,11 +35,11 @@ leontief <- function( x, tidy=TRUE ) {
   
   if (tidy == TRUE) {
     
-    out <- as.vector(out)
-    out <- data.frame( rep(x$k, times = x$GN, each = x$N),
-                       rep(x$i, times = x$GN*x$G),
-                       rep(x$k,               each = x$GN*x$N ),
-                       rep(x$i, times = x$G,  each = x$GN),
+    out <- as.vector(t(out))
+    out <- data.frame( rep(x$k,                  each = x$GN*x$N ),
+                       rep(x$i, times = x$G,     each = x$GN),
+                       rep(x$k, times = x$GN,    each = x$N),
+                       rep(x$i, times = x$GN*x$G ),
                        out)
     names(out) <- c("Source_Country", "Source_Industry", "Using_Country", "Using_Industry", "FVAX")
     
