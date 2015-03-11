@@ -16,6 +16,7 @@
 #' @param i is a vector of sector or industry names
 #' @param o is a vecotr of final outputs
 #' @param method user specifies the decomposition method
+#' @param long convert output to long format for the leontief and leontief-output methods
 #' @return The output when using the WWZ algorithm is a matrix with dimensions GNG*19.
 #'  Whereby 19 is the 16 objects the WWZ algorithm decomposes exports into, plus three checksums.
 #'  GNG represents source country, using industry and using country.
@@ -60,7 +61,7 @@
 
 
 
-decomp <- function( x, y, k, i, o,  method=c("leontief", "wwz", "leontief_output" ) ) {  
+decomp <- function( x, y, k, i, o,  method=c("leontief", "wwz", "leontief_output" ), long=TRUE ) {  
   
   if ( missing(method) ) {
     message('No method specified, the default method in version 2 of decompr has been changed to Leontief.
@@ -78,11 +79,11 @@ decomp <- function( x, y, k, i, o,  method=c("leontief", "wwz", "leontief_output
   }
   
   if ( method == "leontief" ) {
-    out <- leontief( decompr_obj )
+    out <- leontief( decompr_obj, long )
   } else if (method == "wwz" ) {
     out <- wwz(     decompr_obj )
   } else if ( method == "leontief_output") {
-    out <- leontief_output( decompr_obj )
+    out <- leontief_output( decompr_obj, long )
   } else {
     stop('not a valid method')
   }

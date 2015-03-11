@@ -4,7 +4,8 @@
 \alias{decomp}
 \title{Interface function for decompositions}
 \usage{
-decomp(x, y, k, i, o, method = c("leontief", "wwz", "leontief_output"))
+decomp(x, y, k, i, o, method = c("leontief", "wwz", "leontief_output"),
+  long = TRUE)
 }
 \arguments{
 \item{x}{the intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
@@ -25,6 +26,8 @@ and second row which contains the five decomposed final demands (M).
 \item{o}{is a vecotr of final outputs}
 
 \item{method}{user specifies the decomposition method}
+
+\item{long}{convert output to long format for the leontief and leontief-output methods}
 }
 \value{
 The output when using the WWZ algorithm is a matrix with dimensions GNG*19.
