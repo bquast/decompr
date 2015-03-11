@@ -8,6 +8,6 @@ notifications:
     on_success: change
     on_failure: change
 
- env:
-   global:
-     - CRAN: http://cran.rstudio.com
+env:
+ global:
+   - CRAN: http://cran.rstudio.com
