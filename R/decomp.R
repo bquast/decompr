@@ -83,9 +83,6 @@ decomp <- function( x, y, k, i, o,  method=c("leontief", "wwz", "leontief_output
     out <- wwz(     decompr_obj )
   } else if ( method == "leontief_output") {
     out <- leontief_output( decompr_obj )
-  } else if ( method == "source" ) {
-    warning('The "source" method has been renamed to "leontief" please use this method, "source" is now deprecated')
-    out <- leontief( decompr_obj )
   } else {
     stop('not a valid method')
   }
