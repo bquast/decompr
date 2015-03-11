@@ -1,5 +1,5 @@
 Package: decompr
-Version: 2.2.9000
+Version: 2.3.0.9000
 Date: 2015-11-3
 Title: Global Value Chains Decomposition (Wang-Wei-Zhu and Leontief)
 Description: Two Global Value Chains decompositions are implemented. Firstly,

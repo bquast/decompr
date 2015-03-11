@@ -4,12 +4,12 @@
 \alias{leontief}
 \title{Leontief Decomposition}
 \usage{
-leontief(x, tidy = TRUE)
+leontief(x, long = TRUE)
 }
 \arguments{
 \item{x}{ane object of class decompr}
 
-\item{tidy}{transform the output data into a tidy data set or not, default it TRUE.}
+\item{long}{transform the output data into a long (tidy) data set or not, default it TRUE.}
 }
 \value{
 a data frame containing the square matrix and labelled column and rows
@@ -29,7 +29,7 @@ decompr_object <- load_tables_vectors(inter,
                                       out        )
 
 # run the Leontief decomposition on the decompr object
-leontief(decompr_object, tidy=FALSE )
+leontief(decompr_object, long=FALSE )
 }
 \author{
 Bastiaan Quast

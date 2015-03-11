@@ -4,7 +4,7 @@
 #' 
 #' @param x ane object of class decompr
 #' @return a data frame containing the square matrix and labelled column and rows
-#' @param tidy transform the output data into a tidy data set or not, default it TRUE.
+#' @param long transform the output data into a long (tidy) data set or not, default it TRUE.
 #' @author Bastiaan Quast
 #' @references Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu.
 #' Quantifying international production sharing at the bilateral and sector levels. 
@@ -25,7 +25,7 @@
 #' leontief_output(decompr_object)
 
 
-leontief_output <- function( x, tidy=TRUE ) {
+leontief_output <- function( x, long=TRUE ) {
   
   # Part 1 == loading data A,L,Vc, X, Y, E,ESR, etc.
   

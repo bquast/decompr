@@ -4,12 +4,12 @@
 \alias{leontief_output}
 \title{Leontief Output Decomposition}
 \usage{
-leontief_output(x, tidy = TRUE)
+leontief_output(x, long = TRUE)
 }
 \arguments{
 \item{x}{ane object of class decompr}
 
-\item{tidy}{transform the output data into a tidy data set or not, default it TRUE.}
+\item{long}{transform the output data into a long (tidy) data set or not, default it TRUE.}
 }
 \value{
 a data frame containing the square matrix and labelled column and rows

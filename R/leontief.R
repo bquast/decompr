@@ -3,7 +3,7 @@
 #' This function runs the Leontief decomposition.
 #' 
 #' @param x ane object of class decompr
-#' @param tidy transform the output data into a tidy data set or not, default it TRUE.
+#' @param long transform the output data into a long (tidy) data set or not, default it TRUE.
 #' @return a data frame containing the square matrix and labelled column and rows
 #' @author Bastiaan Quast
 #' @references Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu.
@@ -22,10 +22,10 @@
 #'                                       out        )
 #' 
 #' # run the Leontief decomposition on the decompr object
-#' leontief(decompr_object, tidy=FALSE )
+#' leontief(decompr_object, long=FALSE )
 
 
-leontief <- function( x, tidy=TRUE ) {
+leontief <- function( x, long=TRUE ) {
   
   # Part 1 == loading data A,L,Vc, X, Y, E,ESR, etc.
   
@@ -33,7 +33,7 @@ leontief <- function( x, tidy=TRUE ) {
   out <- x$Vhat %*% x$B %*% x$Exp
   
   
-  if (tidy == TRUE) {
+  if (long == TRUE) {
     
     out <- as.vector(t(out))
     out <- data.frame( rep(x$k,                  each = x$GN*x$N ),
