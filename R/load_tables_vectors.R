@@ -28,6 +28,8 @@
 #'                                       countries,
 #'                                       industries,
 #'                                       out        )
+#' 
+#' # examine output object                                    
 #' str(decompr_object)
 
 

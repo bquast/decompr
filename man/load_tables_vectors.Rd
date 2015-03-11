@@ -43,6 +43,8 @@ decompr_object <- load_tables_vectors(inter,
                                       countries,
                                       industries,
                                       out        )
+
+# examine output object
 str(decompr_object)
 }
 \author{

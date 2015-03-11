@@ -22,7 +22,7 @@
 #'                                       out        )
 #' 
 #' # run the Leontief decomposition on the decompr object
-#' leontief(decompr_object)
+#' leontief(decompr_object, tidy=FALSE )
 
 
 leontief <- function( x, tidy=TRUE ) {

@@ -29,7 +29,7 @@ decompr_object <- load_tables_vectors(inter,
                                       out        )
 
 # run the Leontief decomposition on the decompr object
-leontief(decompr_object)
+leontief(decompr_object, tidy=FALSE )
 }
 \author{
 Bastiaan Quast

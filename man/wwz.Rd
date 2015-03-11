@@ -30,8 +30,7 @@ decompr_object <- load_tables_vectors(inter,
                                       out        )
 
 # run the WWZ decomposition on the decompr object
-w  <- wwz(decompr_object)
-w[1:5,1:5]
+wwz(decompr_object)
 }
 \author{
 Bastiaan Quast

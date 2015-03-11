@@ -41,14 +41,6 @@
 #' out
 #' 
 #' # use the direct approach
-#' # run the WWZ decomposition
-#' wwz <- decomp(inter,
-#'              final,
-#'              countries,
-#'              industries,
-#'              out,
-#'              method = "wwz")
-#' wwz[1:5,1:5]
 #' 
 #' # run the Leontief decomposition
 #' decomp(inter,
@@ -57,6 +49,15 @@
 #'        industries,
 #'        out,
 #'        method = "leontief")
+#' 
+#' # run the WWZ decomposition
+#' decomp(inter,
+#'        final,
+#'        countries,
+#'        industries,
+#'        out,
+#'        method = "wwz")
+
 
 
 decomp <- function( x, y, k, i, o,  method=c("leontief", "wwz", "leontief_output" ) ) {  
