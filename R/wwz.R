@@ -295,7 +295,7 @@ wwz <- function( x ) {
     }
   }
   # rm(ALL)
-  rownames( ALLandTotal ) <- x$bigrownam
+  rownames( ALLandTotal ) <- NULL #x$bigrownam
   
   
   
