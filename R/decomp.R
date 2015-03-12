@@ -79,11 +79,11 @@ decomp <- function( x, y, k, i, o,  method=c("leontief", "wwz", "leontief_output
   }
   
   if ( method == "leontief" ) {
-    out <- leontief( decompr_obj, long )
+    out <- leontief( decompr_obj, long = long )
   } else if (method == "wwz" ) {
     out <- wwz(     decompr_obj )
   } else if ( method == "leontief_output") {
-    out <- leontief_output( decompr_obj, long )
+    out <- leontief_output( decompr_obj, long = long )
   } else {
     stop('not a valid method')
   }
