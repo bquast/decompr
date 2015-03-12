@@ -43,12 +43,18 @@ leontief <- function( x, long=TRUE ) {
                        out)
     names(out) <- c("Source_Country", "Source_Industry", "Using_Country", "Using_Industry", "FVAX")
     
+    # set long attribute to TRUE
+    attr(out, "long") <- TRUE
+    
   } else {
     
     # add row and column names
     out <- as.data.frame(out)
     names(out) <- x$rownam
     row.names(out) <- x$rownam
+    
+    # set long attribute to FALSE
+    attr(out, "long") <- FALSE
     
   }
   
