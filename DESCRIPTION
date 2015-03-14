@@ -16,4 +16,6 @@ Depends:
 License: GPL-3
 URL: http://qua.st/decompr, https://github.com/bquast/decompr
 BugReports: https://github.com/bquast/decompr/issues
-Suggests: testthat
+Suggests: testthat,
+    knitr
+VignetteBuilder: knitr
