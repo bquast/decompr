@@ -32,14 +32,36 @@ leontief_output <- function( x, long=TRUE ) {
   # decompose
   out <- x$Vhat %*% x$B %*% diag(x$X)
   
-  # add row and column names
-  out <- as.data.frame(out)
-  names(out) <- x$rownam
-  row.names(out) <- x$rownam
+  if (long == TRUE) {
+    
+    out <- as.vector(t(out))
+    out <- data.frame( rep(x$k,                  each = x$GN*x$N ),
+                       rep(x$i, times = x$G,     each = x$GN),
+                       rep(x$k, times = x$GN,    each = x$N),
+                       rep(x$i, times = x$GN*x$G ),
+                       out)
+    names(out) <- c("Source_Country", "Source_Industry", "Using_Country", "Using_Industry", "FVAX")
+    
+    # set long attribute to TRUE
+    attr(out, "long") <- TRUE
+    
+  } else {
+    
+    # add row and column names
+    out <- as.data.frame(out)
+    names(out) <- x$rownam
+    row.names(out) <- x$rownam
+    
+    # set long attribute to FALSE
+    attr(out, "long") <- FALSE
+    
+  }
+  
+  
   
   # create attributes
-  attr(out, "k")      <- x$i
-  attr(out, "i")      <- x$k
+  attr(out, "k")      <- x$k
+  attr(out, "i")      <- x$i
   # attr(out, "rownam") <- x$rownam
   
   # return result

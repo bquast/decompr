@@ -1,0 +1,61 @@
+---
+title: "decompr"
+author: "Bastiaan Quast"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{decompr}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+
+> "Hello...is it me you're looking for?"
+([via](https://boptopop.files.wordpress.com/2011/03/l9kph.jpg))
+
+## Loading data
+
+We start by loading the package and the included example data set.
+
+```{r}
+library(decompr)
+data(leather)
+```
+
+Listing the data objects included
+
+```{r}
+ls()
+```
+
+Viewing each individual object
+
+```{r}
+inter
+final
+countries
+industries
+out
+```
+
+## Leontief decomposition
+
+```{r}
+decomp(inter,
+       final,
+       countries,
+       industries,
+       out,
+       method = "leontief")
+```
+
+## Wang-Wei-Zhu decomposition
+
+```{r}
+decomp(inter,
+       final,
+       countries,
+       industries,
+       out,
+       method = "wwz")
+```
