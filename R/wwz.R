@@ -278,7 +278,13 @@ wwz <- function( x ) {
   }
   # rm( EEr, z, VrBrs )
   
-
+  
+  ###### try to calculate DViX_Fsr
+  DViX_Fsr <- VsLss %*% x$ESR
+  DViX_Fsr <- t(DViX_Fsr)
+  dim(DViX_Fsr) <- c(x$GN*x$G, 1)
+  
+  
   dimnames( ALL )  <-  list( x$rownam, x$k, decomp19)  
   
   
@@ -329,7 +335,8 @@ wwz <- function( x ) {
                                texpintdiff,
                                texpdiffpercent,
                                texpfddiffpercent,
-                               texpintdiffpercent )
+                               texpintdiffpercent,
+                               DViX_Fsr)
   
   names(ALLandTotal)[1:3] <- c("Exporting_Country", "Exporting_Industry", "Importing_Country")
                           
