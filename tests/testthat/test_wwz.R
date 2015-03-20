@@ -16,7 +16,7 @@ w <- decomp(inter,
 context("output format")
 
 test_that("output size matches", {
-  expect_equal(length(w), 28 )
+  expect_equal(length(w), 29 )
   expect_equal(dim(w)[1], 27 )
 })
 
