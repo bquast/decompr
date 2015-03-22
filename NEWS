@@ -1,9 +1,23 @@
-decompr 2.2.0
+decompr 3.0.0
 =======================
 
-* remove vertical_specialisation and vertical_specialization, will be included in GVC package (on Github)
+* remove vertical_specialisation and vertical_specialization, will be included in gvc package (on Github)
 
-* add some attributes to output t.b. used by GVC package
+* add some attributes to output t.b. used by gvc package
+
+* change the output format of leontief and leontief-output to long form (tidy data)
+
+* add columns country and sectors names
+
+* add DViX_Fsr to wwz
+
+* add Vignette (decompr)
+
+* add tests
+
+* add Travis-CI support
+
+* add coveralls.io support
 
 
 decompr 2.1.0
