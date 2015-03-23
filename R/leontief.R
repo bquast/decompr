@@ -63,6 +63,7 @@ leontief <- function( x, long=TRUE ) {
   # create attributes
   attr(out, "k")      <- x$k
   attr(out, "i")      <- x$i
+  attr(out, "decomposition") <- "leontief"
   # attr(out, "rownam") <- x$rownam
   
   # return result

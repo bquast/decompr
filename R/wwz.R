@@ -342,6 +342,8 @@ wwz <- function( x ) {
                           
   # dim( ALLandTotal )
   
+  attr(ALLandTotal, "decomposition") <- "wwz"
+  
   return(ALLandTotal)
   
 }
