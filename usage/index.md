@@ -11,7 +11,7 @@ As mentioned, the package is written for the free software R ([website](http://w
 The download and installation guide can be found here for [Windows](http://cran.r-project.org/bin/windows/base) and [Mac](http://cran.r-project.org/bin/macosx).
 In addition we recommend installing [RStudio](http://www.rstudio.com/products/rstudio/), which can be downloaded free of cost  [here](http://www.rstudio.com/products/rstudio/download/).
 
-Once both programs are installed, you can install the latest **stable** version from [CRAN](http://cran.r-project.org/web/packages/decompr/index.html).
+Once both programs are installed, you can install the latest **stable** version of decompr from [CRAN](http://cran.r-project.org/web/packages/decompr/index.html).
 
 {% highlight r %}
 install.packages("decompr")
@@ -44,6 +44,16 @@ library(decompr)
 # open the help file
 help(decompr)
 {% endhighlight %}
+
+In the following example, we use a fictional dataset (leather data) to illustrate the necessary commands for decomposing
+input-output tables. Alternatively, it is possible to use any other available inter-country input-output table (ICIO). 
+To this end, it is necessary to split the new input-output table into five separate files (for example using excel) and load them into R. 
+The five files are output (a file with only the output values of the countries and industries), 
+countries (a list of countries included in the IO table), 
+industries (a list of industries included in the IO table), 
+intermediate demand (the part of the IO table stating the flows between industries), 
+and final demand (the part of the IO table stating the industries' production values for final demand). 
+It is important that the last two files only include values but no countries or industries.
 
 {% highlight r %}
 # load leather example data
