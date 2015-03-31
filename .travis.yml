@@ -1,9 +1,8 @@
-# Sample .travis.yml for R projects
-
 language: r
 warnings_are_errors: true
 
 r_github_packages:
+  - hadley/testthat
   - jimhester/covr
 
 after_success:
