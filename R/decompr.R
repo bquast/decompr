@@ -5,6 +5,7 @@
 #' Bastiaan Quast \email{bquast@@gmail.com}
 #' Fei Wang
 #' Victor Kummritz
+#' @seealso http://qua.st/decompr
 #' @references {Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu. Quantifying international production sharing at the bilateral and sector levels. No. w19677. National Bureau of Economic Research, 2013.}
 NULL
 #' @name final
@@ -36,7 +37,4 @@ NULL
   packageStartupMessage('If you use decompr for data analysis,
 please cite both R and decompr,
 using citation() and citation("decompr") respectively.
-                        
-IMPORTANT changes to the decomp function defaults,
-see help("decomp") and http://qua.st/decompr/decompr-v2/
 ')}
