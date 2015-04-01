@@ -6,7 +6,7 @@ I have checked the package on:
 * Win-Builder R-3.2.0 ALPHA (2015-03-31 r68131) (i386 & x64)
 
 
-There was one note regarding the spelling of the following names and words. The word decompositions (plural of decomposition).
+There was one note regarding the spelling of the following names and the word decompositions (plural of decomposition).
   Leontief (4:60, 7:59)
   Zhu (4:52, 6:18, 6:38, 9:53)
   decompositions (5:38)
