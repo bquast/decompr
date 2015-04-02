@@ -96,9 +96,9 @@ write.csv(w, file="wwz.csv")
 write.csv(lt, file="leontief.csv")
 {% endhighlight %}
 
-This YouTube videos gives a brief overwiew into the usage of the package as coded above.
+This YouTube videos gives a brief overwiew into the usage of the package as shown above.
 
-<iframe width="560" height="315" src="//www.youtube.com/embed/hg6TyqapYtc" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="//www.youtube.com/watch?v=e5rKmukFZ8g" frameborder="0" allowfullscreen></iframe>
 
 The usage is also described in the R documentation included in the package.
 
