@@ -33,7 +33,7 @@ Please read the included documentation, specifically of the `decomp` function.
 
 ```r
 library(decompr)
-vignette("decomp")
+vignette("decompr")
 
 ```
 
