@@ -33,7 +33,7 @@ install_github("bquast/decompr")
 
 There is a video briefly expaining how to perform this in RStudio.
 
-<iframe width="560" height="315" src="//www.youtube.com/embed/pdYJ2QjNiY8" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="//www.youtube.com/watch?v=e5rKmukFZ8g" frameborder="0" allowfullscreen></iframe>
 
 Now that the package is installed, we can proceed with loading the application and opening the help file for information.
 
