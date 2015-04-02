@@ -33,7 +33,7 @@ install_github("bquast/decompr")
 
 There is a video briefly expaining how to perform this in RStudio.
 
-<iframe width="560" height="315" src="//www.youtube.com/watch?v=e5rKmukFZ8g" frameborder="0" allowfullscreen></iframe>
+-<iframe width="560" height="315" src="//www.youtube.com/embed/pdYJ2QjNiY8" frameborder="0" allowfullscreen></iframe>
 
 Now that the package is installed, we can proceed with loading the application and opening the help file for information.
 
@@ -98,7 +98,7 @@ write.csv(lt, file="leontief.csv")
 
 This YouTube videos gives a brief overwiew into the usage of the package as shown above.
 
-<iframe width="560" height="315" src="//www.youtube.com/watch?v=e5rKmukFZ8g" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="//www.youtube.com/embed/e5rKmukFZ8g" frameborder="0" allowfullscreen></iframe>
 
 The usage is also described in the R documentation included in the package.
 
