@@ -1,6 +1,10 @@
 language: r
 warnings_are_errors: true
 
+env:
+ global:
+   - CRAN: http://cran.rstudio.com
+
 r_github_packages:
   - hadley/testthat
   - jimhester/covr
