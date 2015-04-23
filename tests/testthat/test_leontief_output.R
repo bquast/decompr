@@ -13,7 +13,7 @@ lo <- decomp(inter,
              method = "leontief",
              post = "output")
 
-# define context
+# define context (i.e. structure not numbers)
 context("output format")
 
 test_that("output size matches", {
@@ -23,4 +23,14 @@ test_that("output size matches", {
 
 test_that("output format matches", {
   expect_match(typeof( lo[,5]), "double" )
+})
+
+
+# define context
+context("output content")
+
+# test output content (i.e. numbers)
+test_that("output matches", {
+  expect_equal( lo[1, 5],  66.75361799, tolerance = .002 )
+  expect_equal( lo[81, 5], 96.78316785, tolerance = .002 )
 })
