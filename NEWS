@@ -1,3 +1,11 @@
+decompr 3.1.0
+=======================
+
+* add post-multiplication argument to leontief method
+
+* use ellipsis for decomp function
+
+
 decompr 3.0.0
 =======================
 
