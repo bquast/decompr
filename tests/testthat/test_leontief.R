@@ -34,5 +34,3 @@ test_that("output matches", {
   expect_equal( l[1, 5],  28.52278, tolerance = .002 )
   expect_equal( l[81, 5], 34.74381, tolerance = .002 )
 })
-
-
