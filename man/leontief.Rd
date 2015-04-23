@@ -4,10 +4,12 @@
 \alias{leontief}
 \title{Leontief Decomposition}
 \usage{
-leontief(x, long = TRUE)
+leontief(x, post = c("exports", "output", NULL), long = TRUE)
 }
 \arguments{
-\item{x}{ane object of class decompr}
+\item{x}{an object of class decompr}
+
+\item{post}{post-multiply the Leontief inverse with something, the default is exports}
 
 \item{long}{transform the output data into a long (tidy) data set or not, default it TRUE.}
 }

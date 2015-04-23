@@ -10,7 +10,8 @@ lo <- decomp(inter,
              countries,
              industries,
              out,
-             method = "leontief_output")
+             method = "leontief",
+             post = "output")
 
 # define context
 context("output format")

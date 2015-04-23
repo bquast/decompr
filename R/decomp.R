@@ -61,7 +61,7 @@
 
 
 
-decomp <- function( x, y, k, i, o,  method=c("leontief", "wwz", "leontief_output" ), ... ) {  
+decomp <- function( x, y, k, i, o,  method=c("leontief", "wwz" ), ... ) {  
   
   if ( missing(method) ) {
     message('No method specified, the default method in version 2 of decompr has been changed to Leontief.
@@ -82,8 +82,6 @@ decomp <- function( x, y, k, i, o,  method=c("leontief", "wwz", "leontief_output
     out <- leontief( decompr_obj, ... )
   } else if (method == "wwz" ) {
     out <- wwz(     decompr_obj )
-  } else if ( method == "leontief_output") {
-    out <- leontief_output( decompr_obj, ... )
   } else {
     stop('not a valid method')
   }
