@@ -23,7 +23,7 @@
 #'                                       out        )
 #' 
 #' # run the Leontief decomposition on the decompr object
-#' leontief(decompr_object, long=FALSE )
+#' leontief(decompr_object )
 
 
 leontief <- function( x, post = c("exports", "output", NULL), long=TRUE ) {
