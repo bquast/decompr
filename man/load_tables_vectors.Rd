@@ -22,6 +22,8 @@ and second row which contains the five decomposed final demands (M).}
 \item{i}{is a vector of sector or industry names}
 
 \item{o}{is a vecotr of final outputs}
+
+\item{null_inventory}{when the inventory (last FDC) should be set to zero}
 }
 \value{
 a decompr class object

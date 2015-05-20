@@ -14,6 +14,7 @@
 #' @param k is a vector of country of region names
 #' @param i is a vector of sector or industry names
 #' @param o is a vecotr of final outputs
+#' @param null_inventory when the inventory (last FDC) should be set to zero
 #' @return a decompr class object
 #' @author Bastiaan Quast
 #' @details Adapted from code by Fei Wang.
