@@ -4,7 +4,7 @@
 \alias{load_tables_vectors}
 \title{Load the Input-Output and Final demand tables}
 \usage{
-load_tables_vectors(x, y, k, i, o)
+load_tables_vectors(x, y, k, i, o, null_inventory = FALSE)
 }
 \arguments{
 \item{x}{the intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),

@@ -33,13 +33,13 @@
 #' str(decompr_object)
 
 
-load_tables_vectors <- function(x, y, k, i, o) {
+load_tables_vectors <- function(x, y, k, i, o, null_inventory = FALSE ) {
 
   # find number of sections and regions
   # compute combination
   G      <- length(k)
   N      <- length(i)
-  GN     <- G * N
+  GN     <- G * N  
   
   # create vector of unique combinations of regions and sectors
   z <- t(outer(k, i, paste, sep="."))
@@ -51,6 +51,14 @@ load_tables_vectors <- function(x, y, k, i, o) {
   z02 <- rep( k,times=GN )
   
   bigrownam <- paste( z01, z02, sep="." )
+  
+    # contruct final demand components
+  fdc <- dim(y)[2] / G
+  
+  # null inventory if needed
+  if (null_inventory==TRUE) {
+    y[ , fdc*(1:G) ] <- 0
+  }
   
   # define dimensions
   Ad   <- matrix( 0, nrow = GN, ncol = GN )
@@ -93,10 +101,6 @@ load_tables_vectors <- function(x, y, k, i, o) {
   Vc[ Vc==Inf ]     <- 0
   
   Vhat <- diag(Vc)
-  
-  
-  # contruct final demand components
-  fdc <- dim(y)[2] / G
   
   # Part 2: computing final demand: Y
   for ( j in 1:G ){
@@ -177,8 +181,8 @@ load_tables_vectors <- function(x, y, k, i, o) {
   rownames( ESR ) <- rownam
   dimnames(Eint)  <- dimnames( ESR )
   dimnames(Efd)   <- dimnames( ESR )
-  
 
+  
   # Part 5: creating decompr object
   out <- list( Exp  = Exp,
                Vhat = Vhat,
