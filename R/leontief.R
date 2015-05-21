@@ -62,7 +62,7 @@ leontief <- function( x, post = c("exports", "output", "final_demand", "none"), 
     
     # add row and column names
     out <- as.data.frame(out)
-    names(out) <- x$rownam
+    if (post != "final_demand") names(out) <- x$rownam
     row.names(out) <- x$rownam
     
     # set long attribute to FALSE
