@@ -26,7 +26,7 @@
 #' leontief(decompr_object )
 
 
-leontief <- function( x, post = c("exports", "output", NULL), long=TRUE ) {
+leontief <- function( x, post = c("exports", "output", "final_demand", "none"), long=TRUE ) {
   
   post <- match.arg(post)
   
@@ -38,6 +38,8 @@ leontief <- function( x, post = c("exports", "output", NULL), long=TRUE ) {
     out <- out %*% x$Exp
   } else if (post == "output") {
     out <- out %*% diag(x$X)
+  } else if (post == "final_demand") {
+    out <- out %*% x$Y
   }
   
   

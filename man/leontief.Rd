@@ -4,7 +4,8 @@
 \alias{leontief}
 \title{Leontief Decomposition}
 \usage{
-leontief(x, post = c("exports", "output", NULL), long = TRUE)
+leontief(x, post = c("exports", "output", "final_demand", "none"),
+  long = TRUE)
 }
 \arguments{
 \item{x}{an object of class decompr}
