@@ -1,6 +1,5 @@
 decompr
 =======
-[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.14810.png)](http://dx.doi.org/10.5281/zenodo.14810)
 [![Travis-CI Build Status](https://travis-ci.org/bquast/decompr.png?branch=master)](https://travis-ci.org/bquast/decompr)
 [![Coverage Status](https://coveralls.io/repos/bquast/decompr/badge.svg?branch=master)](https://coveralls.io/r/bquast/decompr?branch=master)
 
