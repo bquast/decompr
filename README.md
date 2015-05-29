@@ -1,5 +1,6 @@
 decompr
 =======
+[![CRAN Version](http://www.r-pkg.org/badges/version/decompr)](http://cran.r-project.org/web/packages/decompr/index.html)
 [![Travis-CI Build Status](https://travis-ci.org/bquast/decompr.png?branch=master)](https://travis-ci.org/bquast/decompr)
 [![Coverage Status](https://coveralls.io/repos/bquast/decompr/badge.svg?branch=master)](https://coveralls.io/r/bquast/decompr?branch=master)
 
