@@ -22,7 +22,7 @@ You can install the latest **development** version from GitHub using the `devtoo
 
 ```r
 if (!require('devtools')) install.packages('devtools')
-devtools::install_github("bquast/decompr", build_vignettes=TRUE)
+devtools::install_github("bquast/decompr")
 ```
 
 
