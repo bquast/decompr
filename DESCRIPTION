@@ -1,8 +1,8 @@
 Package: decompr
 Version: 3.0.0.9990
 Title: Global Value Chains Decomposition (Wang-Wei-Zhu and Leontief)
-Description: Two Global Value Chains decompositions are implemented. Firstly,
-    the Wang-Wei-Zhu (Wang, Wei, and Zhu 2013) algorithm splits bilateral gross
+Description: Two Global Value Chains decompositions are implemented.
+    Firstly, the Wang-Wei-Zhu (Wang, Wei, and Zhu 2013) algorithm splits bilateral gross
     exports into 16 value added components. Secondly, the Leontief decomposition
     (default) derives the value added origin of exports by country and
     industry, which is also based on Wang, Wei, and Zhu (2013).
