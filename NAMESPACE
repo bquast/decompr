@@ -2,7 +2,6 @@
 
 export(decomp)
 export(leontief)
-export(leontief_output)
 export(load_tables)
 export(load_tables_vectors)
 export(wwz)
