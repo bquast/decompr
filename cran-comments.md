@@ -8,3 +8,14 @@
 
 ## R CMD check results
 There were no ERRORs or WARNINGs. 
+
+* checking CRAN incoming feasibility ... NOTE
+Maintainer: 'Bastiaan Quast <bquast@gmail.com>'
+
+Possibly mis-spelled words in DESCRIPTION:
+  Leontief (3:60, 6:59)
+  Zhu (3:52, 5:27, 5:47, 8:53)
+  decompositions (4:38)
+
+* checking package dependencies ... NOTE
+  No repository set, so cyclic dependency check skipped
