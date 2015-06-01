@@ -49,7 +49,7 @@ help("wwz")
 help("load_tables_vectors")
 ```
 
-In addition to the help files we provide long form examples in a **vignette** .
+In addition to the help files we provide long form examples in a [vignette](http://cran.r-project.org/web/packages/decompr/vignettes/decompr.html) .
 
 ```r
 vignette("decompr")
