@@ -19,3 +19,7 @@ Possibly mis-spelled words in DESCRIPTION:
 
 * checking package dependencies ... NOTE
   No repository set, so cyclic dependency check skipped
+
+Regarding the spelling, the first two are names, the last one is the plural of decomposition.
+
+All three are already present in the version currently on CRAN.
