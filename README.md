@@ -1,6 +1,6 @@
 decompr
 =======
-[![CRAN Version](http://www.r-pkg.org/badges/version/decompr)](http://cran.r-project.org/web/packages/decompr/index.html)
+[![CRAN Version](http://www.r-pkg.org/badges/version/decompr)](http://cran.r-project.org/package=decompr)
 [![RStudio Cloud Downloads](http://cranlogs.r-pkg.org/badges/decompr?color=brightgreen)](http://cran.rstudio.com/web/packages/decompr/index.html)
 [![Travis-CI Build Status](https://travis-ci.org/bquast/decompr.png?branch=master)](https://travis-ci.org/bquast/decompr)
 [![Coverage Status](https://coveralls.io/repos/bquast/decompr/badge.svg?branch=master)](https://coveralls.io/r/bquast/decompr?branch=master)
@@ -12,10 +12,12 @@ Firstly, the Wang-Wei-Zhu (Wang, Wei, and Zhu 2013) algorithm splits bilateral g
 Secondly, the Leontief decomposition (default) derives the value added origin of exports by country and industry, 
 which is also based on Wang, Wei, and Zhu (2013).
 
+Additional tools for GVC analysis are available in the [gvc package](http://cran.r-project.org/package=gvc).
+
 
 Installation
 ------------
-You can install the latest **stable** version from [CRAN](http://cran.r-project.org/?package=decompr).
+You can install the latest **stable** version from [CRAN](http://cran.r-project.org/package=decompr).
 
 ```r
 install.packages("decompr")
