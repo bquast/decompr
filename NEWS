@@ -1,7 +1,9 @@
-decompr 3.1.0
+decompr 4.0.0
 =======================
 
 * add post-multiplication argument to leontief method
+
+* remove leontief_output(), functionality moved to leontief()
 
 * use ellipsis for decomp function
 
