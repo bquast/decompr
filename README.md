@@ -13,7 +13,8 @@ Secondly, the Leontief decomposition (default) derives the value added origin of
 which is also based on Wang, Wei, and Zhu (2013).
 
 
-In
+Installation
+------------
 You can install the latest **stable** version from CRAN.
 
 ```r
@@ -26,6 +27,10 @@ The development version, to be used **at your peril**, can be installed from [Gi
 if (!require('devtools')) install.packages('devtools')
 devtools::install_github("bquast/decompr")
 ```
+
+
+Usage
+-------------
 
 Following installation, the package can be loaded using:
 
@@ -55,6 +60,10 @@ In addition to the help files we provide long form examples in a [vignette](http
 vignette("decompr")
 ```
 
+
+Additional Information
+-----------------------
+
 An overview of the changes is available in the NEWS file.
 
 ```r
@@ -76,7 +85,7 @@ https://github.com/bquast/decompr/issues
 
 
 Credit
-------
+---------
 
 The Wang-Wei-Zhu algorithm (`wwz()`)is based on R code written by Fei Wang
 (not to be confused with the author of the algorithm, with the same last name),
