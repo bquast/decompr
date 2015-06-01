@@ -15,7 +15,7 @@ which is also based on Wang, Wei, and Zhu (2013).
 
 Installation
 ------------
-You can install the latest **stable** version from CRAN.
+You can install the latest **stable** version from [CRAN](http://cran.r-project.org/?package=decompr).
 
 ```r
 install.packages("decompr")
