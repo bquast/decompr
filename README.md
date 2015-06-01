@@ -23,7 +23,7 @@ You can install the latest **stable** version from [CRAN](http://cran.r-project.
 install.packages("decompr")
 ```
 
-The development version, to be used **at your peril**, can be installed from [GitHub](http://github.com/bquast/decompr) using the `devtools` package.
+The **development** version, to be used **at your peril**, can be installed from [GitHub](http://github.com/bquast/decompr) using the `devtools` package.
 
 ```r
 if (!require('devtools')) install.packages('devtools')
@@ -56,7 +56,7 @@ help("wwz")
 help("load_tables_vectors")
 ```
 
-In addition to the help files we provide long form examples in a [vignette](http://cran.r-project.org/web/packages/decompr/vignettes/decompr.html) .
+In addition to the help files we provide a long form example in a [vignette](http://cran.r-project.org/web/packages/decompr/vignettes/decompr.html) .
 
 ```r
 vignette("decompr")
