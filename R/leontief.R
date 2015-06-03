@@ -39,7 +39,32 @@ leontief <- function( x, post = c("exports", "output", "final_demand", "none"), 
   } else if (post == "output") {
     out <- out %*% diag(x$X)
   } else if (post == "final_demand") {
-    out <- out %*% x$Y
+    
+    # aggregate final demand components
+    fdc_by_country <- diagonals::split_vector(1:dim(x$Yd)[2] , size = x$fdc)
+    
+    x$Yt <-matrix(nrow=x$GN, ncol=x$G)
+    
+    for (i in 1:x$G ) {
+      x$Yt[,i] <- rowSums( subset(x$Yd, select=fdc_by_country[[i]] ) )
+    }
+    
+    out <- out %*% x$Yt
+    
+    # create output format for post="final_demand"
+    out <- as.vector(t(out))
+    out <- data.frame( rep(x$k, each=x$N),
+                       rep(x$i, times=x$G),
+                       out
+                       )
+    names(out) <- c("Source_Country", "Source_Industry", "Final_Demand")
+    
+    # create attributes
+    attr(out, "k")      <- x$k
+    attr(out, "i")      <- x$i
+    attr(out, "decomposition") <- "leontief"
+    
+    return(out)
   }
   
   
