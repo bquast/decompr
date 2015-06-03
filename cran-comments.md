@@ -23,3 +23,14 @@ Possibly mis-spelled words in DESCRIPTION:
 Regarding the spelling, the first two are names, the last one is the plural of decomposition.
 
 All three are already present in the version currently on CRAN.
+
+Upon the suggestion of Prof. Ripley I have changed the spelling of the following items in the DESCRIPTION file
+
+(title)
+Global Value Chain Decomposition -> Global-Value-Chain Decomposition
+
+(description)
+Global Value Chain -> global-value-chain
+value added -> value-added
+(full citation of relevant paper Wang, Wei, Zhu 2013)
+
