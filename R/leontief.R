@@ -43,13 +43,13 @@ leontief <- function( x, post = c("exports", "output", "final_demand", "none"), 
     # aggregate final demand components
     fdc_by_country <- diagonals::split_vector(1:dim(x$Yd)[2] , size = x$fdc)
     
-    x$Yt <-matrix(nrow=x$GN, ncol=x$G)
+    Yt <-matrix(nrow=x$GN, ncol=x$G)
     
     for (i in 1:x$G ) {
-      x$Yt[,i] <- rowSums( subset(x$Yd, select=fdc_by_country[[i]] ) )
+      Yt[,i] <- rowSums( subset(x$Yd, select=fdc_by_country[[i]] ) )
     }
     
-    out <- out %*% x$Yt
+    out <- out %*% Yt
     
     # create output format for post="final_demand"
     out <- as.vector(t(out))
