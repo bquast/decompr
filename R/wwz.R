@@ -11,9 +11,6 @@
 #' No. w19677. National Bureau of Economic Research, 2013.
 #' @export
 #' @examples
-#' # load leather example data
-#' data(leather)
-#' 
 #' # create intermediate object (class decompr)
 #' decompr_object <- load_tables_vectors(inter,
 #'                                       final,
