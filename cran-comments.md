@@ -6,6 +6,14 @@
 - Ubuntu (Travic-CI) R-3.2.0-x64
 - Win-Builder  (devel and R-3.2.0-x64)
 
+
+## Explanation early release
+
+This release comes very quickly after the release of decompr v. 4.0.0.
+There was a critical error in the new post-multiplication "final_demand" of the leontief() function.
+I apologise for the inconvenience this causes the CRAN maintainers.
+
+
 ## R CMD check results
 There were no ERRORs or WARNINGs. 
 
@@ -23,3 +31,5 @@ Possibly mis-spelled words in DESCRIPTION:
 Regarding the spelling, the first two are names, the last one is the plural of decomposition.
 
 All three are already present in the version currently on CRAN.
+
+
