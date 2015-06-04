@@ -18,12 +18,9 @@ leontief(x, post = c("exports", "output", "final_demand", "none"),
 a data frame containing the square matrix and labelled column and rows
 }
 \description{
-This function runs the Leontief decomposition.
+Leontief Decomposition
 }
 \examples{
-# load leather example data
-data(leather)
-
 # create intermediate object (class decompr)
 decompr_object <- load_tables_vectors(inter,
                                       final,

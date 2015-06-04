@@ -36,9 +36,6 @@ and defines all variables for the decomposition
 Adapted from code by Fei Wang.
 }
 \examples{
-# load leather example data
-data(leather)
-
 # create intermediate object (class decompr)
 decompr_object <- load_tables_vectors(inter,
                                       final,
