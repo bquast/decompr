@@ -21,6 +21,9 @@ a data frame containing the square matrix and labelled column and rows
 Leontief Decomposition
 }
 \examples{
+# load example data
+data(leather)
+
 # create intermediate object (class decompr)
 decompr_object <- load_tables_vectors(inter,
                                       final,

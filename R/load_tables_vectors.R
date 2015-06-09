@@ -20,6 +20,9 @@
 #' @details Adapted from code by Fei Wang.
 #' @export
 #' @examples
+#' # load example data
+#' data(leather)
+#' 
 #' # create intermediate object (class decompr)
 #' decompr_object <- load_tables_vectors(inter,
 #'                                       final,
