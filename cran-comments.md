@@ -17,19 +17,14 @@ I apologise for the inconvenience this causes the CRAN maintainers.
 ## R CMD check results
 There were no ERRORs or WARNINGs. 
 
-* checking CRAN incoming feasibility ... NOTE
-Maintainer: 'Bastiaan Quast <bquast@gmail.com>'
+Status: 1 NOTE
 
 Possibly mis-spelled words in DESCRIPTION:
-  Leontief (3:60, 6:59)
-  Zhu (3:52, 5:27, 5:47, 8:53)
-  decompositions (4:38)
+  Leontief (6:59)
+  Zhu (5:27, 5:47, 8:53, 9:34)
+  decompositions (4:37)
 
-* checking package dependencies ... NOTE
-  No repository set, so cyclic dependency check skipped
 
-Regarding the spelling, the first two are names, the last one is the plural of decomposition.
+The former two are names, the later is the plural of the noun: "decomposition".
 
 All three are already present in the version currently on CRAN.
-
-
