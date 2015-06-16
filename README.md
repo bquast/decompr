@@ -74,7 +74,7 @@ news(package="decompr")
 
 There is a dedicated website with information hosted on my [personal website](http://qua.st/).
 
-http://qua.st/decompr.
+http://qua.st/decompr
 
 
 Development
