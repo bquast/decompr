@@ -4,17 +4,18 @@
 #' NOTE: the default method is now "leontief", please specify method="wwz" explicitly for Wang-Wei-Zhu.
 #' See http://qua.st/decompr/decompr-v2/ for more information.
 #'
-#' @param x the intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
+#' @param x intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
 #'  excluding the first row and the first column which contains the country names,
 #'  and the second row and second column which contain the industry names for each country.
 #'  In addition, an extra row at the end should contain final demand.
-#' @param y the final demand table it has dimensions GN x MN,
+#' @param y final demand table it has dimensions GN x MN,
 #'  excluding the first row and the first column which contains the country names,
 #'  the second column which contains the industry names for each country,
 #'  and second row which contains the five decomposed final demands (M).
 #'  #' @param k is a vector of country of region names
-#' @param i is a vector of sector or industry names
-#' @param o is a vecotr of final outputs
+#' @param k vector or country or region names
+#' @param i vector of sector or industry names
+#' @param o vector of final outputs
 #' @param method user specified the decomposition method
 #' @param ... arguments to pass on the respective decomposition method
 #' @return The output when using the WWZ algorithm is a matrix with dimensions GNG*19.

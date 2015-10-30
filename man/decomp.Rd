@@ -7,20 +7,22 @@
 decomp(x, y, k, i, o, method = c("leontief", "wwz"), ...)
 }
 \arguments{
-\item{x}{the intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
+\item{x}{intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
 excluding the first row and the first column which contains the country names,
 and the second row and second column which contain the industry names for each country.
 In addition, an extra row at the end should contain final demand.}
 
-\item{y}{the final demand table it has dimensions GN x MN,
+\item{y}{final demand table it has dimensions GN x MN,
 excluding the first row and the first column which contains the country names,
 the second column which contains the industry names for each country,
 and second row which contains the five decomposed final demands (M).
 #' @param k is a vector of country of region names}
 
-\item{i}{is a vector of sector or industry names}
+\item{k}{vector or country or region names}
 
-\item{o}{is a vecotr of final outputs}
+\item{i}{vector of sector or industry names}
+
+\item{o}{vector of final outputs}
 
 \item{method}{user specified the decomposition method}
 

@@ -7,21 +7,22 @@
 load_tables_vectors(x, y, k, i, o, null_inventory = FALSE)
 }
 \arguments{
-\item{x}{the intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
+\item{x}{intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
 excluding the first row and the first column which contains the country names,
 and the second row and second column which contain the industry names for each country.
 In addition, an extra row at the end should contain final demand.}
 
-\item{y}{the final demand table it has dimensions GN x MN,
+\item{y}{final demand table it has dimensions GN x MN,
 excluding the first row and the first column which contains the country names,
 the second column which contains the industry names for each country,
-and second row which contains the five decomposed final demands (M).}
+and second row which contains the five decomposed final demands (M).
+#' @param k is a vector of country of region names}
 
-\item{k}{is a vector of country of region names}
+\item{k}{vector or country or region names}
 
-\item{i}{is a vector of sector or industry names}
+\item{i}{vector of sector or industry names}
 
-\item{o}{is a vecotr of final outputs}
+\item{o}{vector of final outputs}
 
 \item{null_inventory}{when the inventory (last FDC) should be set to zero}
 }

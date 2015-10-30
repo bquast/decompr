@@ -3,17 +3,18 @@
 #' This function loads the demand tables
 #' and defines all variables for the decomposition
 #' 
-#' @param x the intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
+#' @param x intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
 #'  excluding the first row and the first column which contains the country names,
 #'  and the second row and second column which contain the industry names for each country.
 #'  In addition, an extra row at the end should contain final demand.
-#' @param y the final demand table it has dimensions GN x MN,
+#' @param y final demand table it has dimensions GN x MN,
 #'  excluding the first row and the first column which contains the country names,
 #'  the second column which contains the industry names for each country,
 #'  and second row which contains the five decomposed final demands (M).
-#' @param k is a vector of country of region names
-#' @param i is a vector of sector or industry names
-#' @param o is a vecotr of final outputs
+#'  #' @param k is a vector of country of region names
+#' @param k vector or country or region names
+#' @param i vector of sector or industry names
+#' @param o vector of final outputs
 #' @param null_inventory when the inventory (last FDC) should be set to zero
 #' @return a decompr class object
 #' @author Bastiaan Quast
