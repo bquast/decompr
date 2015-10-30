@@ -5,6 +5,14 @@
 \alias{decompr}
 \alias{decompr-package}
 \title{Export Decomposition using the Wang-Wei-Zhu and Leontief decompositions algorithms.}
+\description{
+Two global-value-chain decompositions are implemented. Firstly, the
+Wang-Wei-Zhu (Wang, Wei, and Zhu, 2013) algorithm splits bilateral gross exports
+into 16 value-added components. Secondly, the Leontief decomposition (default)
+derives the value added origin of exports by country and industry, which is also
+based on Wang, Wei, and Zhu (Wang, Z., S.-J. Wei, and K. Zhu. 2013. "Quantifying
+International Production Sharing at the Bilateral and Sector Levels.").
+}
 \author{
 Bastiaan Quast \email{bquast@gmail.com}
 Fei Wang
