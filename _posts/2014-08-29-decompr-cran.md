@@ -8,9 +8,6 @@ comments: true
 
 We are proud to announce that after a few emails back and forth with [Prof. Brian Ripley](http://en.wikipedia.org/wiki/Brian_D._Ripley), which consisted mostly of us appologising for not following the proper procedure for submission, I received an email announing that my [decompr package](http://qua.st/decompr) is now [available on CRAN](http://cran.r-project.org/web/packages/decompr/index.html).
 
-[![CRAN Version](http://www.r-pkg.org/badges/version/decompr)](http://cran.r-project.org/package=decompr)
-[![RStudio Cloud Downloads](http://cranlogs.r-pkg.org/badges/decompr?color=brightgreen)](http://cran.rstudio.com/web/packages/decompr/index.html)
-
 The package can now easily be installed using:
 
 {% highlight r linenos %}
@@ -69,6 +66,9 @@ news(package="decompr")
 ```
 
 As well as [this previous post](/decompr-package).
+
+[![CRAN Version](http://www.r-pkg.org/badges/version/decompr)](http://cran.r-project.org/package=decompr)
+[![RStudio Cloud Downloads](http://cranlogs.r-pkg.org/badges/decompr?color=brightgreen)](http://cran.rstudio.com/web/packages/decompr/index.html)
 
 
 Credit
