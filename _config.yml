@@ -29,10 +29,12 @@ kramdown:
 owner:
   name: Bastiaan Quast
   avatar: http://gravatar.com/avatar/9f979d814c18db7e759b64ca8a52953d?s=400
-  bio: "PhD Development Economics, decompr maintainer"
-  email: bastiaan.quast@graduateinstitute.ch
-  disqus-shortname: decompr
+  bio: PhD Development Economics
+  web: http://qua.st/
+  email: bquast@gmail.com
+  disqus-shortname: bquast
   twitter: baquast
+  facebook: baquast
   google:
     plus: BastiaanQuast
     analytics: UA-52945502-3
