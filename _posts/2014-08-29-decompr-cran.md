@@ -65,7 +65,7 @@ An overview of the changes is available in the NEWS file.
 news(package="decompr")
 ```
 
-As well as [this previous post](/decompr-package).
+As well as [this previous post](/decompr/decompr-package).
 
 [![CRAN Version](http://www.r-pkg.org/badges/version/decompr)](http://cran.r-project.org/package=decompr)
 [![RStudio Cloud Downloads](http://cranlogs.r-pkg.org/badges/decompr?color=brightgreen)](http://cran.rstudio.com/web/packages/decompr/index.html)
