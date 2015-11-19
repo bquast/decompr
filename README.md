@@ -40,7 +40,7 @@ Following installation, the package can be loaded using:
 library(decompr)
 ```
 
-For general information on using the package, please refer to the help files    .
+For general information on using the package, please refer to the help files.
 
 ```r
 help("decompr")
