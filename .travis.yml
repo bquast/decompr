@@ -1,13 +1,16 @@
 language: r
+sudo: false
+cache: packages
 warnings_are_errors: true
 
 env:
  global:
    - CRAN: http://cran.rstudio.com
 
-r_github_packages:
-  - hadley/testthat
-  - jimhester/covr
+r_packages:
+- testthat
+- rmarkdown
+- covr
 
 after_success:
   - Rscript -e 'library(covr);coveralls()'
