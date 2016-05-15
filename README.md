@@ -1,5 +1,6 @@
 decompr
 =======
+[![License](http://img.shields.io/badge/license-GPLv3-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0.html)
 [![CRAN Version](http://www.r-pkg.org/badges/version/decompr)](http://cran.r-project.org/package=decompr)
 [![Total RStudio Cloud Downloads](http://cranlogs.r-pkg.org/badges/grand-total/decompr?color=brightgreen)](http://cran.rstudio.com/web/packages/decompr/index.html)
 [![Monthly RStudio Cloud Downloads](http://cranlogs.r-pkg.org/badges/decompr?color=brightgreen)](http://cran.rstudio.com/web/packages/decompr/index.html)
