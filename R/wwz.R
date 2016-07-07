@@ -27,22 +27,26 @@
 library(haven)
 library(decompr)
 library(microbenchmark)
-path <- "W:/00_POOL/02 PROJECT PIPELINE/UNIDO - Global Value Chains and International Cooperation/data/OECD_ICIO/IOtables"
+## path <- "W:/00_POOL/02 PROJECT PIPELINE/UNIDO - Global Value Chains and International Cooperation/data/OECD_ICIO/IOtables"
 
-setwd(path)
-(file <- list.files(pattern = "STATA12.dta$")[1])
-tab <- as.data.table(read_dta(file))
+## setwd(path)
+## (file <- list.files(pattern = "STATA12.dta$")[1])
+## tab <- as.data.table(read_dta(file))
 
-Amat <- as.matrix(tab[grepl("^v", column_names), .SD, .SDcols = colnames(tab)[grepl("^v", 
-    colnames(tab))]])
-FD <- as.matrix(tab[grepl("^v", column_names), .SD, .SDcols = colnames(tab)[grepl("^zfd.+hc$", 
-    colnames(tab))]])
-countries <- unique(substring(colnames(FD), 5, 7))
-industries <- unique(substring(colnames(Amat)[1:100], 7, 100))
-output <- unlist(tab[column_names == "zzz_OUT", .SD, .SDcols = colnames(tab)[grepl("^v", 
-    colnames(tab))], drop = TRUE])
+## Amat <- as.matrix(tab[grepl("^v", column_names), .SD, .SDcols = colnames(tab)[grepl("^v", 
+##     colnames(tab))]])
+## FD <- as.matrix(tab[grepl("^v", column_names), .SD, .SDcols = colnames(tab)[grepl("^zfd.+hc$", 
+##     colnames(tab))]])
+## countries <- unique(substring(colnames(FD), 5, 7))
+## industries <- unique(substring(colnames(Amat)[1:100], 7, 100))
+## output <- unlist(tab[column_names == "zzz_OUT", .SD, .SDcols = colnames(tab)[grepl("^v", 
+##     colnames(tab))], drop = TRUE])
 
-x <- load_tables_vectors(Amat, FD, countries, industries, output)
+## x <- load_tables_vectors(Amat, FD, countries, industries, output)
+
+x <- load_tables_vectors(Amat, FD, as.vector(countries),
+                         1:64, as.vector(go))
+res <- wwz(x)
 
 hd <- function(x) x[1:10, 1:10]
 test <- function(x1, x2) {
@@ -84,22 +88,23 @@ wwz <- function(x) {
     x$Eint <- NULL
     x$Efd <- NULL
 
+    
+    ##
+    ## all Terms are numbered as in Table A2 in the Appendix of WWZ
+    ## 
 
     
     ## 
     ## DVA_FIN
-    ## 
+    ##
+
+    ## Term 1
     Vhat.diag <- diag(x$Vhat)
     Bd_Vhat <- x$Bd * Vhat.diag
     for (r in 1:x$G) {
         Ym.country <- x$Ym[, r]
         ALL[, r, 1] <- colSums(sweep(Bd_Vhat, 2, Ym.country, `*`))
     }
-    
-    ## was:
-    ## for ( r in 1: x$G ) { z1 <- matrix( x$Ym[ , r], nrow = x$GN,
-    ## ncol = x$GN ) ALL[, r, 1] <- colSums( x$Vhat %*% x$Bd * t(z1) ) }
-    ## View( ALL[ ,,1 ] ) # DVA_FIN
 
 
     
@@ -107,15 +112,15 @@ wwz <- function(x) {
     ## DVA_INT
     ## 
 
-    ## VsLss.1 <- x$Vhat %*% x$L
+    ## Term 2
     VsLss <- Vhat.diag * x$L
-    VsLss.colsums <- colSums(VsLss)
+    VsLss.colSums <- colSums(VsLss)
     Am_Bd_Yd <- x$Am %*% x$Bd %*% x$Yd
     
     for (r in 1:x$G) {
-        ALL[, r, 2] <- VsLss.colsums * t(Am_Bd_Yd[, r])
+        ALL[, r, 2] <- VsLss.colSums * t(Am_Bd_Yd[, r])
     }
-    ## View( ALL[ ,,2 ] ) # DVA_INT
+
 
 
 
@@ -123,39 +128,37 @@ wwz <- function(x) {
     ## DVA_INTrex
     ## 
 
-    ## not yet enhanced {{{
-    
-    ## Part 2-3: H10-(3): DVA_INTrexI1 OK
+    ## Term 3
     z1 <- matrix(rowSums(x$Yd), nrow = x$GN, ncol = x$GN)
-    for (tt in 1:x$G) {
-        m <- 1 + (tt - 1) * x$N
-        n <- x$N + (tt - 1) * x$N
+    for (r in 1:x$G) {
+        m <- 1 + (r - 1) * x$N
+        n <- x$N + (r - 1) * x$N
         z1[m:n, m:n] <- 0
     }
-    
-    z2 <- x$Bm %*% z1
-    for (tt in 1:x$G) {
-        m <- 1 + (tt - 1) * x$N
-        n <- x$N + (tt - 1) * x$N
+
+    z2 <- (x$Bm %*% z1)
+    for (r in 1:x$G) {
+        m <- 1 + (r - 1) * x$N
+        n <- x$N + (r - 1) * x$N
         z2[m:n, m:n] <- 0
     }
+
     
     z3 <- x$Am * t(z2)
     for (r in 1:x$G) {
         m <- 1 + (r - 1) * x$N
         n <- x$N + (r - 1) * x$N
-        ALL[, r, 3] <- colSums(VsLss) * (rowSums(z3[, m:n]))
+        ALL[, r, 3] <- VsLss.colSums * (rowSums(z3[, m:n]))
     }
-    ## View( ALL[ ,,3 ] ) # DVA_INTrexI1
     
     
-    ## Part 2-4: H10-(4): DVA_INTrexF OK
+    ## Term 4
     z <- matrix(0, nrow = x$GN, ncol = x$GN)
     z1 <- rowSums(x$Ym)
-    for (tt in 1:x$G) {
-        m <- 1 + (tt - 1) * x$N
-        n <- x$N + (tt - 1) * x$N
-        z[, m:n] <- z1 - x$Ym[, tt]
+    for (r in 1:x$G) {
+        m <- 1 + (r - 1) * x$N
+        n <- x$N + (r - 1) * x$N
+        z[, m:n] <- z1 - x$Ym[, r]
         z[m:n, m:n] <- 0
     }
     
@@ -163,15 +166,15 @@ wwz <- function(x) {
     for (r in 1:x$G) {
         m <- 1 + (r - 1) * x$N
         n <- x$N + (r - 1) * x$N
-        ALL[, r, 4] <- colSums(VsLss) * (rowSums(z2[, m:n]))
+        ALL[, r, 4] <- VsLss.colSums * (rowSums(z2[, m:n]))
     }
     
     
-    ## Part 2-5: H10-(5): DVA_INTrexI2 OK !
+    ## Term 5
     z1 <- t(x$Bm %*% z)
-    for (tt in 1:x$G) {
-        m <- 1 + (tt - 1) * x$N
-        n <- x$N + (tt - 1) * x$N
+    for (r in 1:x$G) {
+        m <- 1 + (r - 1) * x$N
+        n <- x$N + (r - 1) * x$N
         z1[m:n, m:n] <- 0
     }
     
@@ -179,34 +182,53 @@ wwz <- function(x) {
     for (r in 1:x$G) {
         m <- 1 + (r - 1) * x$N
         n <- x$N + (r - 1) * x$N
-        ALL[, r, 5] <- colSums(VsLss) * (rowSums(z2[, m:n]))
+        ALL[, r, 5] <- VsLss.colSums * (rowSums(z2[, m:n]))
     }
-    ## View( ALL[ ,,5 ] ) # DVA_INTrexI2
+
+    
+
+    ##
+    ## RDV_G
+    ## 
+
     
     
-    ## Part 2-6: H10-(6): RDV_FIN OK !
+    ## Term 6
     z <- matrix(0, nrow = x$GN, ncol = x$GN)
-    for (tt in 1:x$G) {
-        m <- 1 + (tt - 1) * x$N
-        n <- x$N + (tt - 1) * x$N
-        z[, m:n] <- x$Ym[, tt]
-    }
-    
-    z1 <- x$Am * t(x$Bd %*% z)
-    
     for (r in 1:x$G) {
         m <- 1 + (r - 1) * x$N
         n <- x$N + (r - 1) * x$N
-        ALL[, r, 7] <- colSums(VsLss) * (rowSums(z1[, m:n]))
+        z[, m:n] <- x$Yd[, r]
     }
-    ## View( ALL[ ,,7 ] ) # RDV_FIN
+    
+    z1 <- x$Am * t(x$Bm %*% z)
+    for (r in 1:x$G) {
+        m <- 1 + (r - 1) * x$N
+        n <- x$N + (r - 1) * x$N
+        ALL[, r, 6] <- VsLss.colSums * (rowSums(z1[, m:n]))
+    }
+    
+    ## Term 7
+    z <- matrix(0, nrow = x$GN, ncol = x$GN)
+    for (r in 1:x$G) {
+        m <- 1 + (r - 1) * x$N
+        n <- x$N + (r - 1) * x$N
+        z[, m:n] <- x$Ym[, r]
+    }
+    
+    z1 <- x$Am * t(x$Bd %*% z)
+    for (r in 1:x$G) {
+        m <- 1 + (r - 1) * x$N
+        n <- x$N + (r - 1) * x$N
+        ALL[, r, 7] <- VsLss.colSums * (rowSums(z1[, m:n]))
+    }
     
     
-    ## Part 2-7 == H10-(7): RDV_FIN2 OK !
+    ## Term 8
     z1 <- x$Bm %*% z
-    for (tt in 1:x$G) {
-        m <- 1 + (tt - 1) * x$N
-        n <- x$N + (tt - 1) * x$N
+    for (r in 1:x$G) {
+        m <- 1 + (r - 1) * x$N
+        n <- x$N + (r - 1) * x$N
         z1[m:n, m:n] <- 0
     }
     
@@ -214,28 +236,8 @@ wwz <- function(x) {
     for (r in 1:x$G) {
         m <- 1 + (r - 1) * x$N
         n <- x$N + (r - 1) * x$N
-        ALL[, r, 8] <- colSums(VsLss) * (rowSums(z2[, m:n]))
+        ALL[, r, 8] <- VsLss.colSums * (rowSums(z2[, m:n]))
     }
-    ## rm(z2) View( ALL[ ,,8 ] ) # RDV_FIN2
-    
-    
-    ## Part 2-8 == H10-(8): RDV_INT OK !
-    z <- matrix(0, nrow = x$GN, ncol = x$GN)
-    for (tt in 1:x$G) {
-        m <- 1 + (tt - 1) * x$N
-        n <- x$N + (tt - 1) * x$N
-        z[, m:n] <- x$Yd[, tt]
-    }
-    
-    z1 <- x$Am * t(x$Bm %*% z)
-    for (r in 1:x$G) {
-        m <- 1 + (r - 1) * x$N
-        n <- x$N + (r - 1) * x$N
-        ALL[, r, 6] <- colSums(VsLss) * (rowSums(z1[, m:n]))
-    }
-    ## View( ALL[ ,,6 ] ) # RDV_INT
-
-    ## }}}
     
     
 
@@ -245,9 +247,9 @@ wwz <- function(x) {
 
     ## Part 2-9 == H10-(9): DDC_FIN OK !
     z <- matrix(0, nrow = x$GN, ncol = x$GN)
-    for (tt in 1:x$G) {
-        m <- 1 + (tt - 1) * x$N
-        n <- x$N + (tt - 1) * x$N
+    for (r in 1:x$G) {
+        m <- 1 + (r - 1) * x$N
+        n <- x$N + (r - 1) * x$N
         z[m:n, m:n] <- rowSums(x$Ym[m:n, ])
     }
     
@@ -255,9 +257,8 @@ wwz <- function(x) {
     for (r in 1:x$G) {
         m <- 1 + (r - 1) * x$N
         n <- x$N + (r - 1) * x$N
-        ALL[, r, 13] <- colSums(VsLss) * (rowSums(z1[, m:n]))
+        ALL[, r, 13] <- VsLss.colSums * (rowSums(z1[, m:n]))
     }
-    ## View( ALL[ ,,13 ] ) # DDC_FIN
 
     
     ## Part 2-10 == H10-(10): DDC_INT
@@ -269,11 +270,8 @@ wwz <- function(x) {
     for (r in 1:x$G) {
         m <- 1 + (r - 1) * x$N
         n <- x$N + (r - 1) * x$N
-        ## message("m: ", m, "  n: ", n)
         ALL[, r, 14] <- Vc_Bd_VsLss.colsums * (rowSums(Am_X[, m:n]))
     }
-
-    stop("stopped here")
     
     ## Part 2-11 == H10-(11): MVA_FIN =[ VrBrs#Ysr ] H10-(14): OVA_FIN =[
     ## Sum(VtBts)#rYsr ] OK !
@@ -287,35 +285,33 @@ wwz <- function(x) {
         ALL[, r, 10] <- colSums(z[m:n, ])  # MVA_FIN[ ,r ]
         ALL[, r, 9] <- colSums(z[-c(m:n), ])  # OVA_FIN[ ,r ]
     }
-    ## rm( YYsr ) View( ALL[ ,,9 ] ) # OVA_FIN View( ALL[ ,,10 ] )
 
     ## 
     ## MVA_FIN
     ## 
     
-    ####### THIS ONE TAKES A VERY LONG TIME ########## Part 2-12 == H10-(12):
-    ####### MVA_INT =[ VrBrs#AsrLrrYrr ] H10-(15): OVA_INT =[
-    ####### Sum(VtBts)#AsrLrrYrr ] OK !
+    ## Part 2-12 == H10-(12):
+    ## MVA_INT =[ VrBrs#AsrLrrYrr ] H10-(15): OVA_INT =[
+    ## Sum(VtBts)#AsrLrrYrr ] OK !
     YYrr <- matrix(0, nrow = x$GN, ncol = x$GN)
+    Am_L <- x$Am %*% x$L
     for (r in 1:x$G) {
         m <- 1 + (r - 1) * x$N
         n <- x$N + (r - 1) * x$N
         YYrr[, 1:x$GN] <- x$Yd[, r]
-        z <- VrBrs * t(x$Am %*% x$L %*% YYrr)
+        z <- VrBrs * t(Am_L %*% YYrr)        
         ALL[, r, 12] <- colSums(z[m:n, ])  #  MVA_INT[ ,r ]
         ALL[, r, 11] <- colSums(z[-c(m:n), ])  #   OVA_INT[ ,r ]
     }
-    ## rm( YYrr ) View( ALL[ ,,11 ] ) # OVA_INT View( ALL[ ,,12 ] ) #
-    ## MVA_INT
     
-    ####### THIS ONE TAKES A VERY LONG TIME ########## Part 2-13 == H10-(13): MDC
-    ####### =[ VrBrs#AsrLrrEr* ] == H10-(16): ODC =[ Sum(VtBts)#AsrLrrEr* ] OK !
+    ## Part 2-13 == H10-(13): MDC
+    ## =[ VrBrs#AsrLrrEr* ] == H10-(16): ODC =[ Sum(VtBts)#AsrLrrEr* ] OK !
     for (r in 1:x$G) {
         m <- 1 + (r - 1) * x$N
         n <- x$N + (r - 1) * x$N
         EEr <- matrix(0, nrow = x$GN, ncol = x$GN)
         EEr[m:n, 1:x$GN] <- x$E[m:n, 1]
-        z <- VrBrs * t(x$Am %*% x$L %*% EEr)
+        z <- VrBrs * t(Am_L %*% EEr)
         ALL[, r, 16] <- colSums(z[m:n, ])  # MDC[ ,r ]
         ALL[, r, 15] <- colSums(z[-c(m:n), ])  # ODC[ ,r ]
     }
@@ -327,27 +323,23 @@ wwz <- function(x) {
     DViX_Fsr <- t(DViX_Fsr)
     dim(DViX_Fsr) <- c(x$GN * x$G, 1)
     
-    
     dimnames(ALL) <- list(x$rownam, x$k, decomp19)
     
     
     ## Part 3
     ## Putting all results in one sheet
+
+    ALLandTotal <- NULL
     for (u in 1:x$GN) {
-        if (u == 1) {
-            ## ALLandTotal <- rbind( ALL[ u,, ], colSums( ALL[ u,, ] ))
-            ALLandTotal <- rbind(ALL[u, , ])
-        } else {
-            ## ALLandTotal <- rbind( ALLandTotal, ALL[ u,, ], colSums( ALL[ u,, ] ))
-            ALLandTotal <- rbind(ALLandTotal, ALL[u, , ])
-        }
+        ALLandTotal <- rbind(ALLandTotal, ALL[u, , ])
     }
+    
     ## rm(ALL)
     rownames(ALLandTotal) <- NULL  #x$bigrownam
-    
-    
-    
-    ## Part 4 checking the differences resulted in texp, texpfd, texpintdiff
+
+    ## 
+    ## Part 4
+    ## checking the differences resulted in texp, texpfd, texpintdiff
     
     texpdiff <- rowSums(ALLandTotal[, 1:16]) - ALLandTotal[, 17]
     
@@ -370,15 +362,22 @@ wwz <- function(x) {
     texpfddiffpercent <- round(texpfddiffpercent, 4)
     texpintdiffpercent <- round(texpintdiffpercent, 4)
     
-    ALLandTotal <- data.frame(rep(x$k, each = length(x$k) * length(x$i)), 
-        rep(x$i, times = length(x$k), each = length(x$k)), rep(x$k, times = length(x$k) * 
-            length(x$i)), ALLandTotal, texpdiff, texpfddiff, texpintdiff, 
-        texpdiffpercent, texpfddiffpercent, texpintdiffpercent, DViX_Fsr)
+    ALLandTotal <- data.frame(rep(x$k, each = length(x$k) * length(x$i)),
+                              rep(x$i, times = length(x$k),
+                                  each = length(x$k)),
+                              rep(x$k, times = length(x$k) * length(x$i)),
+                              ALLandTotal,
+                              texpdiff,
+                              texpfddiff,
+                              texpintdiff,
+                              texpdiffpercent,
+                              texpfddiffpercent,
+                              texpintdiffpercent,
+                              DViX_Fsr)
     
-    names(ALLandTotal)[1:3] <- c("Exporting_Country", "Exporting_Industry", 
-        "Importing_Country")
-    
-    ## dim( ALLandTotal )
+    names(ALLandTotal)[1:3] <- c("Exporting_Country",
+                                 "Exporting_Industry",
+                                 "Importing_Country")
     
     attr(ALLandTotal, "decomposition") <- "wwz"
     
