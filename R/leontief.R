@@ -24,7 +24,9 @@
 #' leontief(decompr_object )
 
 
-leontief <- function( x, post = c("exports", "output", "final_demand", "none"), long=TRUE ) {
+leontief <- function(x,
+                     post = c("exports", "output", "final_demand", "none"),
+                     long=TRUE ) {
 
   post <- match.arg(post)
 
@@ -47,7 +49,8 @@ leontief <- function( x, post = c("exports", "output", "final_demand", "none"), 
                        rep(x$k, times=x$GN),
                        out
                        )
-    names(out) <- c("Source_Country", "Source_Industry", "Importing_Country", "Final_Demand")
+      names(out) <- c("Source_Country", "Source_Industry",
+                      "Importing_Country", "Final_Demand")
 
     # create attributes
     attr(out, "k")      <- x$k

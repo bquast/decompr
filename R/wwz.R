@@ -24,40 +24,9 @@
 #' # run the WWZ decomposition on the decompr object
 #' wwz(decompr_object)
 
-library(haven)
-library(decompr)
-library(microbenchmark)
-## path <- "W:/00_POOL/02 PROJECT PIPELINE/UNIDO - Global Value Chains and International Cooperation/data/OECD_ICIO/IOtables"
-
-## setwd(path)
-## (file <- list.files(pattern = "STATA12.dta$")[1])
-## tab <- as.data.table(read_dta(file))
-
-## Amat <- as.matrix(tab[grepl("^v", column_names), .SD, .SDcols = colnames(tab)[grepl("^v", 
-##     colnames(tab))]])
-## FD <- as.matrix(tab[grepl("^v", column_names), .SD, .SDcols = colnames(tab)[grepl("^zfd.+hc$", 
-##     colnames(tab))]])
-## countries <- unique(substring(colnames(FD), 5, 7))
-## industries <- unique(substring(colnames(Amat)[1:100], 7, 100))
-## output <- unlist(tab[column_names == "zzz_OUT", .SD, .SDcols = colnames(tab)[grepl("^v", 
-##     colnames(tab))], drop = TRUE])
-
-## x <- load_tables_vectors(Amat, FD, countries, industries, output)
-
-x <- load_tables_vectors(Amat, FD, as.vector(countries),
-                         1:64, as.vector(go))
-res <- wwz(x)
-
-hd <- function(x) x[1:10, 1:10]
-test <- function(x1, x2) {
-    dimnames(x1) <- NULL
-    dimnames(x2) <- NULL
-    identical(x1, x2)
-}
-
 wwz <- function(x) {
     
-    ## Part 1: Decomposing Export into VA( 16 items ) defining ALL to
+    ## Part 1: Decomposing Export into VA (16 items) defining ALL to
     ## contain all decomposed results
     ALL <- array(0, dim = c(x$GN, x$G, 19))
     
@@ -97,6 +66,7 @@ wwz <- function(x) {
     ## 
     ## DVA_FIN
     ##
+    start <- Sys.time()
 
     ## Term 1
     Vhat.diag <- diag(x$Vhat)
@@ -105,7 +75,8 @@ wwz <- function(x) {
         Ym.country <- x$Ym[, r]
         ALL[, r, 1] <- colSums(sweep(Bd_Vhat, 2, Ym.country, `*`))
     }
-
+    elapsed <- round(Sys.time() - start, digits = 3)
+    message("1/16, elapsed time: ", elapsed, " seconds")
 
     
     ## 
@@ -120,6 +91,7 @@ wwz <- function(x) {
     for (r in 1:x$G) {
         ALL[, r, 2] <- VsLss.colSums * t(Am_Bd_Yd[, r])
     }
+    message("2/16")
 
 
 
@@ -150,6 +122,7 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 3] <- VsLss.colSums * (rowSums(z3[, m:n]))
     }
+    message("3/16")
     
     
     ## Term 4
@@ -168,6 +141,7 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 4] <- VsLss.colSums * (rowSums(z2[, m:n]))
     }
+    message("4/16")
     
     
     ## Term 5
@@ -184,6 +158,7 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 5] <- VsLss.colSums * (rowSums(z2[, m:n]))
     }
+    message("5/16")
 
     
 
@@ -207,6 +182,8 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 6] <- VsLss.colSums * (rowSums(z1[, m:n]))
     }
+    message("6/16")
+    
     
     ## Term 7
     z <- matrix(0, nrow = x$GN, ncol = x$GN)
@@ -222,6 +199,8 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 7] <- VsLss.colSums * (rowSums(z1[, m:n]))
     }
+    message("7/16")
+
     
     
     ## Term 8
@@ -238,6 +217,7 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 8] <- VsLss.colSums * (rowSums(z2[, m:n]))
     }
+    message("8/16")
     
     
 
@@ -259,11 +239,10 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 13] <- VsLss.colSums * (rowSums(z1[, m:n]))
     }
+    message("9/16")
 
     
     ## Part 2-10 == H10-(10): DDC_INT
-
-    ## z.1 <- x$Am %*% diag(x$X)
     Am_X <- t(t(x$Am) * x$X)
     Vc_Bd_VsLss.colsums <- colSums((x$Vc * x$Bd) - VsLss)    
     
@@ -272,6 +251,7 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 14] <- Vc_Bd_VsLss.colsums * (rowSums(Am_X[, m:n]))
     }
+    message("10/16")
     
     ## Part 2-11 == H10-(11): MVA_FIN =[ VrBrs#Ysr ] H10-(14): OVA_FIN =[
     ## Sum(VtBts)#rYsr ] OK !
@@ -282,9 +262,10 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         YYsr[, 1:x$GN] <- x$Ym[, r]
         z <- VrBrs * t(YYsr)
-        ALL[, r, 10] <- colSums(z[m:n, ])  # MVA_FIN[ ,r ]
         ALL[, r, 9] <- colSums(z[-c(m:n), ])  # OVA_FIN[ ,r ]
+        ALL[, r, 10] <- colSums(z[m:n, ])  # MVA_FIN[ ,r ]
     }
+    message("12/16")
 
     ## 
     ## MVA_FIN
@@ -300,9 +281,10 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         YYrr[, 1:x$GN] <- x$Yd[, r]
         z <- VrBrs * t(Am_L %*% YYrr)        
-        ALL[, r, 12] <- colSums(z[m:n, ])  #  MVA_INT[ ,r ]
         ALL[, r, 11] <- colSums(z[-c(m:n), ])  #   OVA_INT[ ,r ]
+        ALL[, r, 12] <- colSums(z[m:n, ])  #  MVA_INT[ ,r ]
     }
+    message("14/16")
     
     ## Part 2-13 == H10-(13): MDC
     ## =[ VrBrs#AsrLrrEr* ] == H10-(16): ODC =[ Sum(VtBts)#AsrLrrEr* ] OK !
@@ -312,20 +294,22 @@ wwz <- function(x) {
         EEr <- matrix(0, nrow = x$GN, ncol = x$GN)
         EEr[m:n, 1:x$GN] <- x$E[m:n, 1]
         z <- VrBrs * t(Am_L %*% EEr)
-        ALL[, r, 16] <- colSums(z[m:n, ])  # MDC[ ,r ]
         ALL[, r, 15] <- colSums(z[-c(m:n), ])  # ODC[ ,r ]
+        ALL[, r, 16] <- colSums(z[m:n, ])  # MDC[ ,r ]
     }
-    ## rm( EEr, z, VrBrs )
+    message("16/16")
+
     
     
-    ###### try to calculate DViX_Fsr
+    ## try to calculate DViX_Fsr
     DViX_Fsr <- VsLss %*% x$ESR
     DViX_Fsr <- t(DViX_Fsr)
     dim(DViX_Fsr) <- c(x$GN * x$G, 1)
     
     dimnames(ALL) <- list(x$rownam, x$k, decomp19)
     
-    
+
+    ## 
     ## Part 3
     ## Putting all results in one sheet
 
@@ -340,26 +324,28 @@ wwz <- function(x) {
     ## 
     ## Part 4
     ## checking the differences resulted in texp, texpfd, texpintdiff
-    
+
+    ## Total Export goods difference
     texpdiff <- rowSums(ALLandTotal[, 1:16]) - ALLandTotal[, 17]
-    
-    texpfddiff <- ALLandTotal[, 1] + ALLandTotal[, 9] + ALLandTotal[, 10] - 
-        ALLandTotal[, 19]
-    
-    texpintdiff <- rowSums(ALLandTotal[, 2:8]) + rowSums(ALLandTotal[, 
-        11:16]) - ALLandTotal[, 18]
-    
     texpdiffpercent <- texpdiff/ALLandTotal[, 17] * 100
     texpdiffpercent[is.na(texpdiffpercent)] <- 0
+    texpdiff <- round(texpdiff, 4)
+    texpdiffpercent <- round(texpdiffpercent, 4)
+
+    ## Total Export Final goods difference
+    texpfddiff <- ALLandTotal[, 1] + ALLandTotal[, 9] + ALLandTotal[, 10] - 
+        ALLandTotal[, 19]
     texpfddiffpercent <- texpfddiff/ALLandTotal[, 19] * 100
     texpfddiffpercent[is.na(texpfddiffpercent)] <- 0
+    texpfddiff <- round(texpfddiff, 4)
+    texpfddiffpercent <- round(texpfddiffpercent, 4)
+
+    ## Total intermediate export goods difference
+    texpintdiff <- rowSums(ALLandTotal[, 2:8]) + rowSums(ALLandTotal[, 
+        11:16]) - ALLandTotal[, 18]
     texpintdiffpercent <- texpintdiff/ALLandTotal[, 18] * 100
     texpintdiffpercent[is.na(texpintdiffpercent)] <- 0
-    texpdiff <- round(texpdiff, 4)
-    texpfddiff <- round(texpfddiff, 4)
     texpintdiff <- round(texpintdiff, 4)
-    texpdiffpercent <- round(texpdiffpercent, 4)
-    texpfddiffpercent <- round(texpfddiffpercent, 4)
     texpintdiffpercent <- round(texpintdiffpercent, 4)
     
     ALLandTotal <- data.frame(rep(x$k, each = length(x$k) * length(x$i)),
@@ -368,10 +354,10 @@ wwz <- function(x) {
                               rep(x$k, times = length(x$k) * length(x$i)),
                               ALLandTotal,
                               texpdiff,
-                              texpfddiff,
-                              texpintdiff,
                               texpdiffpercent,
+                              texpfddiff,
                               texpfddiffpercent,
+                              texpintdiff,
                               texpintdiffpercent,
                               DViX_Fsr)
     
@@ -382,5 +368,4 @@ wwz <- function(x) {
     attr(ALLandTotal, "decomposition") <- "wwz"
     
     return(ALLandTotal)
-    
-}
+    }
