@@ -72,7 +72,11 @@ decomp <- function( x, y, k, i, o, V,
   In order to use the Wang-Wei-Zhu (cf. decompr v.1), please specify this explicitly using: method="wwz"')
   }
 
-  method <- match.arg(method)
+    method <- match.arg(method)
+
+    if(missing(V)) {
+        V <- NULL
+    }
 
   if ( missing(k) | missing(i) | missing(o) ) {
     warning('argument k, i, or o is missing, switching to the old "load_tables" function, which is DEPRECATED! Please see "help(decomp) and "http://qua.st/decompr/decompr-v2/" for more information on this.')

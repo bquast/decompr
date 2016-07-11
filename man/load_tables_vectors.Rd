@@ -4,7 +4,7 @@
 \alias{load_tables_vectors}
 \title{Load the Input-Output and Final demand tables}
 \usage{
-load_tables_vectors(x, y, k, i, o, null_inventory = FALSE)
+load_tables_vectors(x, y, k, i, o, V, null_inventory = FALSE)
 }
 \arguments{
 \item{x}{intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
@@ -23,6 +23,8 @@ and second row which contains the five decomposed final demands (M).
 \item{i}{vector of sector or industry names}
 
 \item{o}{vector of final outputs}
+
+\item{V}{vector of value added}
 
 \item{null_inventory}{when the inventory (last FDC) should be set to zero}
 }

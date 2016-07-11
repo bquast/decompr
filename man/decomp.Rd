@@ -4,7 +4,7 @@
 \alias{decomp}
 \title{Interface function for decompositions}
 \usage{
-decomp(x, y, k, i, o, method = c("leontief", "wwz"), ...)
+decomp(x, y, k, i, o, V, method = c("leontief", "wwz"), ...)
 }
 \arguments{
 \item{x}{intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
@@ -23,6 +23,8 @@ and second row which contains the five decomposed final demands (M).
 \item{i}{vector of sector or industry names}
 
 \item{o}{vector of final outputs}
+
+\item{V}{vector of value added}
 
 \item{method}{user specified the decomposition method}
 
