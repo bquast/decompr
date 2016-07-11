@@ -16,7 +16,7 @@
 #' @param k vector or country or region names
 #' @param i vector of sector or industry names
 #' @param o vector of final outputs
-#' @param V vector of value added
+#' @param V vector of value added, optional. If this vector is not specified, value added will be calculated as gross output - intermediate consumption
 #' @param method user specified the decomposition method
 #' @param ... arguments to pass on the respective decomposition method
 #' @return The output when using the WWZ algorithm is a matrix with dimensions GNG*19.

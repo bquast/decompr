@@ -62,14 +62,14 @@ wwz <- function(x) {
     ## all Terms are numbered as in Table A2 in the Appendix of WWZ
     ## 
 
-    
+    Vhat.diag <- diag(x$Vhat)
+
     ## 
     ## DVA_FIN
     ##
     start <- Sys.time()
 
     ## Term 1
-    Vhat.diag <- diag(x$Vhat)
     Bd_Vhat <- x$Bd * Vhat.diag
     for (r in 1:x$G) {
         Ym.country <- x$Ym[, r]
@@ -77,6 +77,7 @@ wwz <- function(x) {
     }
     elapsed <- round(Sys.time() - start, digits = 3)
     message("1/16, elapsed time: ", elapsed, " seconds")
+    start <- Sys.time()
 
     
     ## 
@@ -91,7 +92,9 @@ wwz <- function(x) {
     for (r in 1:x$G) {
         ALL[, r, 2] <- VsLss.colSums * t(Am_Bd_Yd[, r])
     }
-    message("2/16")
+    elapsed <- round(Sys.time() - start, digits = 3)
+    message("2/16, elapsed time: ", elapsed, " seconds")
+    start <- Sys.time()
 
 
 
@@ -122,7 +125,9 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 3] <- VsLss.colSums * (rowSums(z3[, m:n]))
     }
-    message("3/16")
+    elapsed <- round(Sys.time() - start, digits = 3)
+    message("3/16, elapsed time: ", elapsed, " seconds")
+    start <- Sys.time()
     
     
     ## Term 4
@@ -141,7 +146,9 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 4] <- VsLss.colSums * (rowSums(z2[, m:n]))
     }
-    message("4/16")
+    elapsed <- round(Sys.time() - start, digits = 3)
+    message("4/16, elapsed time: ", elapsed, " seconds")
+    start <- Sys.time()
     
     
     ## Term 5
@@ -158,7 +165,9 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 5] <- VsLss.colSums * (rowSums(z2[, m:n]))
     }
-    message("5/16")
+    elapsed <- round(Sys.time() - start, digits = 3)
+    message("5/16, elapsed time: ", elapsed, " seconds")
+    start <- Sys.time()
 
     
 
@@ -182,7 +191,9 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 6] <- VsLss.colSums * (rowSums(z1[, m:n]))
     }
-    message("6/16")
+    elapsed <- round(Sys.time() - start, digits = 3)
+    message("6/16, elapsed time: ", elapsed, " seconds")
+    start <- Sys.time()
     
     
     ## Term 7
@@ -199,7 +210,9 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 7] <- VsLss.colSums * (rowSums(z1[, m:n]))
     }
-    message("7/16")
+    elapsed <- round(Sys.time() - start, digits = 3)
+    message("7/16, elapsed time: ", elapsed, " seconds")
+    start <- Sys.time()
 
     
     
@@ -217,7 +230,9 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 8] <- VsLss.colSums * (rowSums(z2[, m:n]))
     }
-    message("8/16")
+    elapsed <- round(Sys.time() - start, digits = 3)
+    message("8/16, elapsed time: ", elapsed, " seconds")
+    start <- Sys.time()
     
     
 
@@ -239,7 +254,9 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 13] <- VsLss.colSums * (rowSums(z1[, m:n]))
     }
-    message("9/16")
+    elapsed <- round(Sys.time() - start, digits = 3)
+    message("9/16, elapsed time: ", elapsed, " seconds")
+    start <- Sys.time()
 
     
     ## Part 2-10 == H10-(10): DDC_INT
@@ -251,7 +268,9 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 14] <- Vc_Bd_VsLss.colsums * (rowSums(Am_X[, m:n]))
     }
-    message("10/16")
+    elapsed <- round(Sys.time() - start, digits = 3)
+    message("10/16, elapsed time: ", elapsed, " seconds")
+    start <- Sys.time()
     
     ## Part 2-11 == H10-(11): MVA_FIN =[ VrBrs#Ysr ] H10-(14): OVA_FIN =[
     ## Sum(VtBts)#rYsr ] OK !
@@ -265,7 +284,9 @@ wwz <- function(x) {
         ALL[, r, 9] <- colSums(z[-c(m:n), ])  # OVA_FIN[ ,r ]
         ALL[, r, 10] <- colSums(z[m:n, ])  # MVA_FIN[ ,r ]
     }
-    message("12/16")
+    elapsed <- round(Sys.time() - start, digits = 3)
+    message("12/16, elapsed time: ", elapsed, " seconds")
+    start <- Sys.time()
 
     ## 
     ## MVA_FIN
@@ -274,30 +295,48 @@ wwz <- function(x) {
     ## Part 2-12 == H10-(12):
     ## MVA_INT =[ VrBrs#AsrLrrYrr ] H10-(15): OVA_INT =[
     ## Sum(VtBts)#AsrLrrYrr ] OK !
+
     YYrr <- matrix(0, nrow = x$GN, ncol = x$GN)
     Am_L <- x$Am %*% x$L
     for (r in 1:x$G) {
         m <- 1 + (r - 1) * x$N
         n <- x$N + (r - 1) * x$N
-        YYrr[, 1:x$GN] <- x$Yd[, r]
-        z <- VrBrs * t(Am_L %*% YYrr)        
+
+        ## message("r: ", r, "  --> m: ", m, "  n: ", n)
+        ## YYrr[, 1:x$GN] <- x$Yd[, r]
+        ## z <- VrBrs * t(Am_L %*% YYrr)
+        
+        ## better is:
+        zz <- rowSums(sweep(Am_L, 2, x$Yd[, r], `*`))
+        z <- sweep(VrBrs, 2, zz, `*`)
+                
         ALL[, r, 11] <- colSums(z[-c(m:n), ])  #   OVA_INT[ ,r ]
         ALL[, r, 12] <- colSums(z[m:n, ])  #  MVA_INT[ ,r ]
     }
-    message("14/16")
+    elapsed <- round(Sys.time() - start, digits = 3)
+    message("14/16, elapsed time: ", elapsed, " seconds")
+    start <- Sys.time()
     
     ## Part 2-13 == H10-(13): MDC
     ## =[ VrBrs#AsrLrrEr* ] == H10-(16): ODC =[ Sum(VtBts)#AsrLrrEr* ] OK !
     for (r in 1:x$G) {
         m <- 1 + (r - 1) * x$N
         n <- x$N + (r - 1) * x$N
-        EEr <- matrix(0, nrow = x$GN, ncol = x$GN)
-        EEr[m:n, 1:x$GN] <- x$E[m:n, 1]
-        z <- VrBrs * t(Am_L %*% EEr)
+
+        ## EEr <- matrix(0, nrow = x$GN, ncol = x$GN)
+        ## EEr[m:n, 1:x$GN] <- x$E[m:n, 1]
+        ## z <- VrBrs * t(Am_L %*% EEr)
+
+        Er <- rep(0, x$GN)
+        Er[m:n] <- x$E[m:n, 1]
+        zz <- rowSums(sweep(Am_L, 2, Er, `*`))
+        z <- sweep(VrBrs, 2, zz, `*`)
+
         ALL[, r, 15] <- colSums(z[-c(m:n), ])  # ODC[ ,r ]
         ALL[, r, 16] <- colSums(z[m:n, ])  # MDC[ ,r ]
     }
-    message("16/16")
+    elapsed <- round(Sys.time() - start, digits = 3)
+    message("16/16, elapsed time: ", elapsed, " seconds")
 
     
     
