@@ -15,6 +15,7 @@
 #' @param k vector or country or region names
 #' @param i vector of sector or industry names
 #' @param o vector of final outputs
+#' @param V vector of value added
 #' @param null_inventory when the inventory (last FDC) should be set to zero
 #' @return a decompr class object
 #' @author Bastiaan Quast
@@ -35,7 +36,8 @@
 #' str(decompr_object)
 
 
-load_tables_vectors <- function(x, y, k, i, o, null_inventory = FALSE ) {
+load_tables_vectors <- function(x, y, k, i, o, V,
+                                null_inventory = FALSE ) {
 
   # find number of sections and regions
   # compute combination
@@ -76,8 +78,9 @@ load_tables_vectors <- function(x, y, k, i, o, null_inventory = FALSE ) {
   
   X <- o
   
-  #### this might not be the best way to construct V
-  V <- o - colSums( x )
+  ## this might not be the best way to construct V
+    ## V <- o - colSums( x )
+    ## use separate argument
   
   A <- t(t(x)/o)
   A[ is.na( A ) ] <- 0
