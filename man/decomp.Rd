@@ -24,7 +24,7 @@ and second row which contains the five decomposed final demands (M).
 
 \item{o}{vector of final outputs}
 
-\item{V}{vector of value added}
+\item{V}{vector of value added, optional. If this vector is not specified, value added will be calculated as gross output - intermediate consumption}
 
 \item{method}{user specified the decomposition method}
 

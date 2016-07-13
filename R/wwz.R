@@ -54,15 +54,13 @@ wwz <- function(x) {
     ALL[, , 17] <- x$ESR
     ALL[, , 18] <- x$Eint
     ALL[, , 19] <- x$Efd
-    x$Eint <- NULL
-    x$Efd <- NULL
+    ## x$Eint <- NULL
+    ## x$Efd <- NULL
 
     
     ##
     ## all Terms are numbered as in Table A2 in the Appendix of WWZ
     ## 
-
-    Vhat.diag <- diag(x$Vhat)
 
     ## 
     ## DVA_FIN
@@ -70,7 +68,7 @@ wwz <- function(x) {
     start <- Sys.time()
 
     ## Term 1
-    Bd_Vhat <- x$Bd * Vhat.diag
+    Bd_Vhat <- x$Bd * x$Vc
     for (r in 1:x$G) {
         Ym.country <- x$Ym[, r]
         ALL[, r, 1] <- colSums(sweep(Bd_Vhat, 2, Ym.country, `*`))
@@ -85,7 +83,7 @@ wwz <- function(x) {
     ## 
 
     ## Term 2
-    VsLss <- Vhat.diag * x$L
+    VsLss <- x$Vc * x$L
     VsLss.colSums <- colSums(VsLss)
     Am_Bd_Yd <- x$Am %*% x$Bd %*% x$Yd
     
@@ -274,13 +272,19 @@ wwz <- function(x) {
     
     ## Part 2-11 == H10-(11): MVA_FIN =[ VrBrs#Ysr ] H10-(14): OVA_FIN =[
     ## Sum(VtBts)#rYsr ] OK !
-    VrBrs <- x$Vhat %*% x$Bm
+    ## VrBrs <- x$Vhat %*% x$Bm            # TODO
+    VrBrs <- x$Vc * x$Bm
     YYsr <- matrix(0, nrow = x$GN, ncol = x$GN)
     for (r in 1:x$G) {
         m <- 1 + (r - 1) * x$N
         n <- x$N + (r - 1) * x$N
-        YYsr[, 1:x$GN] <- x$Ym[, r]
-        z <- VrBrs * t(YYsr)
+
+        ## YYsr[, 1:x$GN] <- x$Ym[, r]
+        ## z <- VrBrs * t(YYsr)
+        ## just as fast, but more memory efficient
+        z <- sweep(VrBrs, 2, x$Ym[, r], `*`)
+        
+        
         ALL[, r, 9] <- colSums(z[-c(m:n), ])  # OVA_FIN[ ,r ]
         ALL[, r, 10] <- colSums(z[m:n, ])  # MVA_FIN[ ,r ]
     }

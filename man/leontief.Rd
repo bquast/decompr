@@ -21,17 +21,17 @@ a data frame containing the square matrix and labelled column and rows
 Leontief Decomposition
 }
 \examples{
-# load example data
+## load example data
 data(leather)
 
-# create intermediate object (class decompr)
+## create intermediate object (class decompr)
 decompr_object <- load_tables_vectors(inter,
                                       final,
                                       countries,
                                       industries,
                                       out        )
 
-# run the Leontief decomposition on the decompr object
+## run the Leontief decomposition on the decompr object
 leontief(decompr_object )
 }
 \author{
