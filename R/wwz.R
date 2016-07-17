@@ -3,6 +3,7 @@
 #' This function runs the Wang-Wei-Zhu decomposition.
 #' 
 #' @param x an object of the class decompr
+#' @param verbose logical, should timings of the calculation be displayed? Default is FALSE
 #' @return the decomposed table
 #' @author Bastiaan Quast
 #' @details Adapted from code by Fei Wang.
@@ -24,7 +25,7 @@
 #' # run the WWZ decomposition on the decompr object
 #' wwz(decompr_object)
 
-wwz <- function(x) {
+wwz <- function(x, verbose = FALSE) {
     
     ## Part 1: Decomposing Export into VA (16 items) defining ALL to
     ## contain all decomposed results
@@ -65,7 +66,10 @@ wwz <- function(x) {
     ## 
     ## DVA_FIN
     ##
-    start <- Sys.time()
+    if(verbose) {
+        message("Starting decomposing the trade flow ...")
+        start <- Sys.time()
+    }
 
     ## Term 1
     Bd_Vhat <- x$Bd * x$Vc
@@ -73,10 +77,11 @@ wwz <- function(x) {
         Ym.country <- x$Ym[, r]
         ALL[, r, 1] <- colSums(sweep(Bd_Vhat, 2, Ym.country, `*`))
     }
-    elapsed <- round(Sys.time() - start, digits = 3)
-    message("1/16, elapsed time: ", elapsed, " seconds")
-    start <- Sys.time()
-
+    if(verbose) {
+        elapsed <- round(Sys.time() - start, digits = 3)
+        message("1/16, elapsed time: ", elapsed, " seconds")
+        start <- Sys.time()
+    }
     
     ## 
     ## DVA_INT
@@ -90,10 +95,11 @@ wwz <- function(x) {
     for (r in 1:x$G) {
         ALL[, r, 2] <- VsLss.colSums * t(Am_Bd_Yd[, r])
     }
-    elapsed <- round(Sys.time() - start, digits = 3)
-    message("2/16, elapsed time: ", elapsed, " seconds")
-    start <- Sys.time()
-
+    if(verbose) {
+        elapsed <- round(Sys.time() - start, digits = 3)
+        message("2/16, elapsed time: ", elapsed, " seconds")
+        start <- Sys.time()
+    }
 
 
 
@@ -123,10 +129,11 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 3] <- VsLss.colSums * (rowSums(z3[, m:n]))
     }
-    elapsed <- round(Sys.time() - start, digits = 3)
-    message("3/16, elapsed time: ", elapsed, " seconds")
-    start <- Sys.time()
-    
+    if(verbose) {
+        elapsed <- round(Sys.time() - start, digits = 3)
+        message("3/16, elapsed time: ", elapsed, " seconds")
+        start <- Sys.time()
+    }    
     
     ## Term 4
     z <- matrix(0, nrow = x$GN, ncol = x$GN)
@@ -144,10 +151,11 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 4] <- VsLss.colSums * (rowSums(z2[, m:n]))
     }
-    elapsed <- round(Sys.time() - start, digits = 3)
-    message("4/16, elapsed time: ", elapsed, " seconds")
-    start <- Sys.time()
-    
+    if(verbose) {
+        elapsed <- round(Sys.time() - start, digits = 3)
+        message("4/16, elapsed time: ", elapsed, " seconds")
+        start <- Sys.time()
+    }    
     
     ## Term 5
     z1 <- t(x$Bm %*% z)
@@ -163,10 +171,11 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 5] <- VsLss.colSums * (rowSums(z2[, m:n]))
     }
-    elapsed <- round(Sys.time() - start, digits = 3)
-    message("5/16, elapsed time: ", elapsed, " seconds")
-    start <- Sys.time()
-
+    if(verbose) {
+        elapsed <- round(Sys.time() - start, digits = 3)
+        message("5/16, elapsed time: ", elapsed, " seconds")
+        start <- Sys.time()
+    }
     
 
     ##
@@ -189,10 +198,11 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 6] <- VsLss.colSums * (rowSums(z1[, m:n]))
     }
-    elapsed <- round(Sys.time() - start, digits = 3)
-    message("6/16, elapsed time: ", elapsed, " seconds")
-    start <- Sys.time()
-    
+    if(verbose) {
+        elapsed <- round(Sys.time() - start, digits = 3)
+        message("6/16, elapsed time: ", elapsed, " seconds")
+        start <- Sys.time()
+    }    
     
     ## Term 7
     z <- matrix(0, nrow = x$GN, ncol = x$GN)
@@ -208,10 +218,11 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 7] <- VsLss.colSums * (rowSums(z1[, m:n]))
     }
-    elapsed <- round(Sys.time() - start, digits = 3)
-    message("7/16, elapsed time: ", elapsed, " seconds")
-    start <- Sys.time()
-
+    if(verbose) {
+        elapsed <- round(Sys.time() - start, digits = 3)
+        message("7/16, elapsed time: ", elapsed, " seconds")
+        start <- Sys.time()
+    }
     
     
     ## Term 8
@@ -228,10 +239,11 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 8] <- VsLss.colSums * (rowSums(z2[, m:n]))
     }
-    elapsed <- round(Sys.time() - start, digits = 3)
-    message("8/16, elapsed time: ", elapsed, " seconds")
-    start <- Sys.time()
-    
+    if(verbose) {
+        elapsed <- round(Sys.time() - start, digits = 3)
+        message("8/16, elapsed time: ", elapsed, " seconds")
+        start <- Sys.time()
+    }    
     
 
     ##
@@ -252,10 +264,11 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 13] <- VsLss.colSums * (rowSums(z1[, m:n]))
     }
-    elapsed <- round(Sys.time() - start, digits = 3)
-    message("9/16, elapsed time: ", elapsed, " seconds")
-    start <- Sys.time()
-
+    if(verbose) {
+        elapsed <- round(Sys.time() - start, digits = 3)
+        message("9/16, elapsed time: ", elapsed, " seconds")
+        start <- Sys.time()
+    }
     
     ## Part 2-10 == H10-(10): DDC_INT
     Am_X <- t(t(x$Am) * x$X)
@@ -266,10 +279,11 @@ wwz <- function(x) {
         n <- x$N + (r - 1) * x$N
         ALL[, r, 14] <- Vc_Bd_VsLss.colsums * (rowSums(Am_X[, m:n]))
     }
-    elapsed <- round(Sys.time() - start, digits = 3)
-    message("10/16, elapsed time: ", elapsed, " seconds")
-    start <- Sys.time()
-    
+    if(verbose) {
+        elapsed <- round(Sys.time() - start, digits = 3)
+        message("10/16, elapsed time: ", elapsed, " seconds")
+        start <- Sys.time()
+    }    
     ## Part 2-11 == H10-(11): MVA_FIN =[ VrBrs#Ysr ] H10-(14): OVA_FIN =[
     ## Sum(VtBts)#rYsr ] OK !
     ## VrBrs <- x$Vhat %*% x$Bm            # TODO
@@ -288,10 +302,11 @@ wwz <- function(x) {
         ALL[, r, 9] <- colSums(z[-c(m:n), ])  # OVA_FIN[ ,r ]
         ALL[, r, 10] <- colSums(z[m:n, ])  # MVA_FIN[ ,r ]
     }
-    elapsed <- round(Sys.time() - start, digits = 3)
-    message("12/16, elapsed time: ", elapsed, " seconds")
-    start <- Sys.time()
-
+    if(verbose) {
+        elapsed <- round(Sys.time() - start, digits = 3)
+        message("12/16, elapsed time: ", elapsed, " seconds")
+        start <- Sys.time()
+    }
     ## 
     ## MVA_FIN
     ## 
@@ -317,10 +332,11 @@ wwz <- function(x) {
         ALL[, r, 11] <- colSums(z[-c(m:n), ])  #   OVA_INT[ ,r ]
         ALL[, r, 12] <- colSums(z[m:n, ])  #  MVA_INT[ ,r ]
     }
-    elapsed <- round(Sys.time() - start, digits = 3)
-    message("14/16, elapsed time: ", elapsed, " seconds")
-    start <- Sys.time()
-    
+    if(verbose) {
+        elapsed <- round(Sys.time() - start, digits = 3)
+        message("14/16, elapsed time: ", elapsed, " seconds")
+        start <- Sys.time()
+    }    
     ## Part 2-13 == H10-(13): MDC
     ## =[ VrBrs#AsrLrrEr* ] == H10-(16): ODC =[ Sum(VtBts)#AsrLrrEr* ] OK !
     for (r in 1:x$G) {
@@ -339,9 +355,10 @@ wwz <- function(x) {
         ALL[, r, 15] <- colSums(z[-c(m:n), ])  # ODC[ ,r ]
         ALL[, r, 16] <- colSums(z[m:n, ])  # MDC[ ,r ]
     }
-    elapsed <- round(Sys.time() - start, digits = 3)
-    message("16/16, elapsed time: ", elapsed, " seconds")
-
+    if(verbose) {
+        elapsed <- round(Sys.time() - start, digits = 3)
+        message("16/16, elapsed time: ", elapsed, " seconds")
+    }
     
     
     ## try to calculate DViX_Fsr

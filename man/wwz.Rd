@@ -4,10 +4,12 @@
 \alias{wwz}
 \title{Runs the Wang-Wei-Zhu decomposition}
 \usage{
-wwz(x)
+wwz(x, verbose = FALSE)
 }
 \arguments{
 \item{x}{an object of the class decompr}
+
+\item{verbose}{logical, should timings of the calculation be displayed? Default is FALSE}
 }
 \value{
 the decomposed table
