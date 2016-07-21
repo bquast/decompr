@@ -15,7 +15,7 @@
 #' @param k vector or country or region names
 #' @param i vector of sector or industry names
 #' @param o vector of final outputs
-#' @param V vector of value added
+#' @param v vector of value added
 #' @param null_inventory when the inventory (last FDC) should be set to zero
 #' @return a decompr class object
 #' @author Bastiaan Quast
@@ -30,13 +30,14 @@
 #'                                       final,
 #'                                       countries,
 #'                                       industries,
-#'                                       out        )
+#'                                       out)
 #' 
 #' # examine output object                                    
 #' str(decompr_object)
 
 
-load_tables_vectors <- function(x, y, k, i, o, V, null_inventory = FALSE) {
+load_tables_vectors <- function(x, y, k, i, o, v = NULL,
+                                null_inventory = FALSE) {
     
     ## find number of sections and regions compute combination
     G <- length(k)
@@ -70,8 +71,8 @@ load_tables_vectors <- function(x, y, k, i, o, V, null_inventory = FALSE) {
 
     
     ## this might not be the best way to construct V
-    if (is.null(V)) {
-        V <- o - colSums(x)
+    if (is.null(v)) {
+        v <- o - colSums(x)
     }
     
     A <- t(t(x) / o)
@@ -95,7 +96,7 @@ load_tables_vectors <- function(x, y, k, i, o, V, null_inventory = FALSE) {
     }
     
     L <- solve(II - Ad)
-    Vc <- V/o
+    Vc <- v/o
     Vc[!is.finite(Vc)] <- 0
     ## Vhat <- diag(Vc)
     

@@ -16,7 +16,7 @@
 #' @param k vector or country or region names
 #' @param i vector of sector or industry names
 #' @param o vector of final outputs
-#' @param V vector of value added, optional. If this vector is not specified, value added will be calculated as gross output - intermediate consumption
+#' @param v vector of value added, optional. If this vector is not specified, value added will be calculated as gross output - intermediate consumption
 #' @param method user specified the decomposition method
 #' @param verbose logical, should timings of the calculation be displayed? Default is FALSE
 #' @param ... arguments to pass on the respective decomposition method

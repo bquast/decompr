@@ -25,13 +25,13 @@ and second row which contains the five decomposed final demands (M).
 
 \item{o}{vector of final outputs}
 
+\item{v}{vector of value added, optional. If this vector is not specified, value added will be calculated as gross output - intermediate consumption}
+
 \item{method}{user specified the decomposition method}
 
 \item{verbose}{logical, should timings of the calculation be displayed? Default is FALSE}
 
 \item{...}{arguments to pass on the respective decomposition method}
-
-\item{V}{vector of value added, optional. If this vector is not specified, value added will be calculated as gross output - intermediate consumption}
 }
 \value{
 The output when using the WWZ algorithm is a matrix with dimensions GNG*19.
