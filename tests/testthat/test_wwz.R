@@ -4,7 +4,7 @@ library(decompr)
 # load test data
 data(leather)
 
-# leontief decomposition
+# WWZ decomposition
 w <- decomp(inter,
             final,
             countries,
@@ -23,3 +23,15 @@ test_that("output size matches", {
 test_that("output format matches", {
   expect_match(typeof(w[,5]), "double")
 })
+
+
+# test that verbose turns some messages on
+test_that("verbose computation 1/2",
+          expect_message(decomp(inter, final, countries, industries,
+                                out, method = "wwz", verbose = TRUE),
+                         "Starting decomposing the trade flow"))
+
+test_that("verbose computation 2/2",
+          expect_message(decomp(inter, final, countries, industries,
+                                out, method = "wwz", verbose = TRUE),
+                         "16/16, elapsed time:"))
