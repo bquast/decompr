@@ -32,23 +32,23 @@ wwz <- function(x, verbose = FALSE) {
     ALL <- array(0, dim = c(x$GN, x$G, 19))
     
     ## the order of 16 items and exp, expint, expfd
-    decomp19 <- c("DVA_FIN",
-                  "DVA_INT",
-                  "DVA_INTrexI1",
-                  "DVA_INTrexF",
-                  "DVA_INTrexI2",
-                  "RDV_INT",
-                  "RDV_FIN",
-                  "RDV_FIN2",
-                  "OVA_FIN",
-                  "MVA_FIN",
-                  "OVA_INT",
-                  "MVA_INT",
-                  "DDC_FIN",
-                  "DDC_INT",
-                  "ODC",
-                  "MDC",
-                  "texp",
+    decomp19 <- c("DVA_FIN",            # term #01 in equation (19)
+                  "DVA_INT",            # term #02 in equation (19)
+                  "DVA_INTrexI1",       # term #03 in equation (19)
+                  "DVA_INTrexF",        # term #04 in equation (19)
+                  "DVA_INTrexI2",       # term #05 in equation (19)
+                  "RDV_INT",            # term #06 in equation (19)
+                  "RDV_FIN",            # term #07 in equation (19)
+                  "RDV_FIN2",           # term #08 in equation (19)
+                  "OVA_FIN",            # term #09 in equation (19)
+                  "MVA_FIN",            # term #10 in equation (19)
+                  "OVA_INT",            # term #11 in equation (19)
+                  "MVA_INT",            # term #12 in equation (19)
+                  "DDC_FIN",            # term #13 in equation (19)
+                  "DDC_INT",            # term #14 in equation (19)
+                  "ODC",                # term #15 in equation (19)
+                  "MDC",                # term #16 in equation (19)
+                  "texp",               
                   "texpint",
                   "texpfd")
     
@@ -63,13 +63,13 @@ wwz <- function(x, verbose = FALSE) {
     ## all Terms are numbered as in Table A2 in the Appendix of WWZ
     ## 
 
-    ## 
-    ## DVA_FIN
-    ##
     if(verbose) {
         message("Starting decomposing the trade flow ...")
         start <- Sys.time()
     }
+    ## 
+    ## DVA_FIN
+    ##
 
     ## Term 1
     Bd_Vhat <- x$Bd * x$Vc

@@ -46,8 +46,8 @@ leontief <- function(x,
         
     } else if (post == "final_demand") {
 
-        ## out <- V %*% x$Y
-        out <- sweep(V, 2, x$Y, `*`)
+        out <- V %*% x$Y
+        ## out <- sweep(V, 2, x$Y, `*`)
 
         ## create output format for post="final_demand"
         out <- as.vector(t(out))
@@ -73,12 +73,13 @@ leontief <- function(x,
     if (long == TRUE) {
 
         out <- as.vector(t(out))
-        out <- data.frame( rep(x$k,                  each = x$GN*x$N ),
+        out <- data.frame(rep(x$k,                  each = x$GN*x$N ),
                           rep(x$i, times = x$G,     each = x$GN),
                           rep(x$k, times = x$GN,    each = x$N),
                           rep(x$i, times = x$GN*x$G ),
                           out)
-        names(out) <- c("Source_Country", "Source_Industry", "Using_Country", "Using_Industry", "FVAX")
+        names(out) <- c("Source_Country", "Source_Industry",
+                        "Using_Country", "Using_Industry", "FVAX")
 
         ## set long attribute to TRUE
         attr(out, "long") <- TRUE
