@@ -10,9 +10,8 @@ decompr
 Bastiaan Quast, <bquast@gmail.com>
 ----------------------------------
 Two Global Value Chains decompositions are implemented.
-Firstly, the Wang-Wei-Zhu (Wang, Wei, and Zhu 2013) algorithm splits bilateral gross exports into 16 value added components.
-Secondly, the Leontief decomposition (default) derives the value added origin of exports by country and industry, 
-which is also based on Wang, Wei, and Zhu (2013).
+Firstly, the Wang, Wei, and Zhu (2013) <DOI:10.3386/w19677> algorithm splits bilateral gross exports into 16 value added components.
+Secondly, the Leontief decomposition (default) derives the value added origin of exports by country and industry, see Leontief (1937) <DOI:10.2307/1927837>.
 
 Additional tools for GVC analysis are available in the [gvc package](http://cran.r-project.org/package=gvc).
 
@@ -96,9 +95,3 @@ Credit
 The Wang-Wei-Zhu algorithm (`wwz()`)is based on R code written by Fei Wang
 (not to be confused with the author of the algorithm, with the same last name),
 which implemented this algorithm.
-
-
-References
-----------
-
-Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu. 2013. “Quantifying International Production Sharing at the Bilateral and Sector Levels.”
