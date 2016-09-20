@@ -27,3 +27,14 @@ docs:
         url: /docs/installation/
       - title: "Loading"
         url: /docs/loading/
+      - title: "Example"
+        url: /docs/example/
+  
+  - title: Loading Data
+    children:
+      - title: "Sample Data"
+        url: /docs/sample-data/
+      - title: "WIOD Data"
+        url: /docs/wiod-data/
+      - title: "Importing Data"
+        url: /docs/importing-data/
