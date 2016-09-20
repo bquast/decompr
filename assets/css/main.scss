@@ -1,28 +1,39 @@
 ---
-sitemap: false
 ---
 
 /*
+ *    Minimal Mistakes Jekyll Theme
  *
- *  Minimal Mistakes
- *
- *  Designer: Michael Rose
- *  Twitter: http://twitter.com/mmistakes
+ *  - Michael Rose
+ *  - mademistakes.com
+ *  - https://twitter.com/mmistakes
  *
 */
 
-// Partials
+@import "vendor/breakpoint/breakpoint"; // media query mixins
 @import "variables";
-@import "grid";
 @import "mixins";
-@import "normalize";
-@import "site";
-@import "typography";
-@import "pygments";
-@import "coderay";
-@import "elements";
+@import "vendor/susy/susy";
+
+@import "reset";
+@import "base";
+
+@import "utilities";
+@import "animations";
+@import "tables";
+@import "buttons";
+@import "notices";
+@import "masthead";
+@import "navigation";
+@import "footer";
+@import "syntax";
+
 @import "forms";
+
 @import "page";
+@import "archive";
+@import "sidebar";
+
 @import "vendor/font-awesome/font-awesome";
 @import "vendor/magnific-popup/magnific-popup";
-//@import "vendor/google/fonts";
+@import "print";

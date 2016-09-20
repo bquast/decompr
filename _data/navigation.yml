@@ -1,19 +1,7 @@
-# Site navigation links
+# main links links
+main:
+  - title: "Sample Navigation Link"
+    url: https://mmistakes.github.io/minimal-mistakes/docs/navigation/
 
-- title: About
-  url: /about/
-
-- title: News
-  url: /news/
-
-- title: Usage
-  url: /usage/
-
-- title: Contributing
-  url: /contributing/
-
-- title: Acknowledgements
-  url: /acknowledgements/
-
-- title: Citing
-  url: /citing/
+  - title: "Sample Navigation Link 2"
+    url: /
