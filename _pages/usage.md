@@ -1,8 +1,8 @@
 ---
-layout: page
+layout: single
 title: Usage
 modified: 2015-01-04
-permalink: usage
+permalink: /usage/
 image:
   feature: shipping-train.jpg
 ---

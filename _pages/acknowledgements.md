@@ -1,8 +1,8 @@
 ---
-layout: page
+layout: single
 title: Acknowledgements
 tags: [acknowledgements]
-permalink: acknowledgements
+permalink: /acknowledgements/
 modified: 2014-12-09
 image:
   feature: ship-ice.jpg

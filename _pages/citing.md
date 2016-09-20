@@ -1,8 +1,8 @@
 ---
-layout: page
+layout: single
 title: Citing
 tags: [about, Jekyll, theme, responsive]
-permalink: citing
+permalink: /citing/
 modified: 2014-08-08
 image:
   feature: ship-sunset.jpg

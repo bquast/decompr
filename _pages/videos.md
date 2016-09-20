@@ -1,9 +1,9 @@
 ---
-layout: page
+layout: single
 title: Videos
 tags: [about, Jekyll, theme, responsive]
 modified: 2014-08-08
-permalink: videos
+permalink: /videos/
 image:
   feature: ship-ice.jpg
   credit: WeGraphics
