@@ -2,8 +2,8 @@
 layout: page
 title: Contributing
 tags: [about, Jekyll, theme, responsive]
-modified: 2015-01-04T13:03:02.362000+01:00
-comments: true
+permalink: contributing
+modified: 2015-01-04
 image:
   feature: container-ship-port-night.jpg
 ---

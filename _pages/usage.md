@@ -1,13 +1,13 @@
 ---
 layout: page
 title: Usage
-modified: 2015-01-04T13:03:02.362000+01:00
-comments: true
+modified: 2015-01-04
+permalink: usage
 image:
   feature: shipping-train.jpg
 ---
 
-As mentioned, the package is written for the free software R ([website](http://www.r-project.org)). 
+As mentioned, the package is written for the free software R ([website](http://www.r-project.org)).
 The download and installation guide can be found here for [Windows](http://cran.r-project.org/bin/windows/base) and [Mac](http://cran.r-project.org/bin/macosx).
 In addition we recommend installing [RStudio](http://www.rstudio.com/products/rstudio/), which can be downloaded free of cost  [here](http://www.rstudio.com/products/rstudio/download/).
 
@@ -46,13 +46,13 @@ help(decompr)
 {% endhighlight %}
 
 In the following example, we use a fictional dataset (leather data) to illustrate the necessary commands for decomposing
-input-output tables. Alternatively, it is possible to use any other available inter-country input-output table (ICIO). 
-To this end, it is necessary to split the new input-output table into five separate files (for example using excel) and load them into R. 
-The five files are output (a file with only the output values of the countries and industries), 
-countries (a list of countries included in the IO table), 
-industries (a list of industries included in the IO table), 
-intermediate demand (the part of the IO table stating the flows between industries), 
-and final demand (the part of the IO table stating the industries' production values for final demand). 
+input-output tables. Alternatively, it is possible to use any other available inter-country input-output table (ICIO).
+To this end, it is necessary to split the new input-output table into five separate files (for example using excel) and load them into R.
+The five files are output (a file with only the output values of the countries and industries),
+countries (a list of countries included in the IO table),
+industries (a list of industries included in the IO table),
+intermediate demand (the part of the IO table stating the flows between industries),
+and final demand (the part of the IO table stating the industries' production values for final demand).
 It is important that the last two files only include values but no countries or industries.
 
 {% highlight r %}
@@ -138,15 +138,15 @@ year <- c(1995, 2000, 2005, 2008)
 # run the loop once for every year
 # i.e. the length of the vector
 for (i in length(year) ) {
-  
+
   # read the file names of the csv data
   inter.csv <- paste("WID", year[i], ".csv", sep="")
   final.csv <- paste("WFD", year[i], ".csv", sep="")
-  
+
   # write the data to temporary objects
   inter.obj <- read.csv(inter.csv, header = FALSE, sep = ";")
   final.obj <- read.csv(final.csv, header = FALSE, sep = ";")
-  
+
   # rename the temporary objects
   # include the year
   assign(paste("inter", year[i], sep=""), inter.obj )
@@ -158,27 +158,27 @@ library(decompr)
 
 ## construct a decompr object for each year
 for (i in length(year) ) {
-  
+
   # create object names from vector
   inter.obj <- paste("inter", year[i], sep="")
   final.obj <- paste("final", year[i], sep="")
-  
+
   # construct the decompr object
   decompr.obj <- load_tables(inter.obj, final.obj)
-  
+
   # rename the decompr object to include the year
   assign(paste("decompr", year[i], sep=""), decompr.obj )
 }
 
 ## perform the decomposition
 for (i in length(year) ) {
-  
+
   # create object names from vector
   decompr.obj <- paste("decompr", year[i], sep="")
-  
+
   # run the WWZ decomposition
   wwz.obj <- wwz(decompr.obj)
-  
+
   # rename the output object
   assign(paste("wwz", year[i], sep=""), wwz.obj )
 }

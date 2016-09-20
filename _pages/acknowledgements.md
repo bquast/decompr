@@ -2,8 +2,8 @@
 layout: page
 title: Acknowledgements
 tags: [acknowledgements]
-modified: 2014-12-09T16:58:07.573882+01:00
-comments: true
+permalink: acknowledgements
+modified: 2014-12-09
 image:
   feature: ship-ice.jpg
 ---
@@ -18,4 +18,3 @@ The authors gratefully acknowledge funding from the SNF under the projects 13514
 Timmer, Marcel, A. A. Erumban, R. Gouma, B. Los, U. Temurshoev, G. J. de Vries, and I. Arto. 2012. "The World Input-Output Database (WIOD): Contents, Sources and Methods." *WIOD Background Document Available at www.wiod.Org*.
 
 Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu. 2014. "Quantifying International Production Sharing at the Bilateral and Sector Levels."
-
