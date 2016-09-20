@@ -1,9 +1,7 @@
 ---
-layout: post
+layout: single
 title: "leather data set"
-author: Bastiaan_Quast
-modified: 2015-01-06T13:03:02.362000+01:00
-comments: true
+modified: 2015-01-06
 ---
 
 The current development version of decompr now includes a new 3-country  3-sector example dataset, which illustrates the value of the Wang-Wei-Zhu algorithm by revealing the value of forward- and backward-linkages.
@@ -46,7 +44,7 @@ ls()
 {% endhighlight %}
 
 {% highlight r %}
-[1] "countries"  "final"      "industries" "inter"      "out" 
+[1] "countries"  "final"      "industries" "inter"      "out"
 {% endhighlight %}
 
 Now lets examine each object in detail.
