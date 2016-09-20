@@ -3,6 +3,7 @@ layout: single
 title: "Interpreting the output of the Leontief Decomposition"
 author: Victor Kummritz
 excerpt: "A short description on how to read the results of the Leontief decomposition and its advantages."
+author_profile: true
 ---
 
 Let's take a look at the output that the Leontief decomposition of the package creates. To this end, we look at the results of the Leontief decomposition for our example data set (Table 1). The output consists of a GNxGN matrix that gives for each country and industry the value added origins of its exports by country and industry. In the first column we find the source countries and industries while the first row contains the using countries and industries. The first element, 28.52, thus gives the amount of value added that the Argentinian Agriculture industry has contributed to the exports of the Argentinian Agriculture industry. Similarly, the last element of this row, 4.12, gives the amount of value added that the Argentinian Agriculture industry has contributed to the exports of the German Transport Equipment industry.
