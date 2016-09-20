@@ -2,7 +2,7 @@
 layout: single
 title: Demonstration
 modified: 2016-09-20
-permalink: /installing/
+permalink: /docs/demonstration/
 image:
   feature: shipping-train.jpg
 ---
