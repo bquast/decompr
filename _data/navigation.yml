@@ -38,3 +38,13 @@ docs:
         url: /docs/wiod-data/
       - title: "Importing Data"
         url: /docs/importing-data/
+
+  - title: Options
+    children:
+      - title: "Decomposition"
+        url: /docs/decomposition/
+  
+  - title: Extra
+    children:
+      - title: "gvc package"
+        url: /docs/gvc-package/
