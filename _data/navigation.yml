@@ -6,8 +6,8 @@ main:
   - title: "News"
     url: /news/
 
-  - title: "Usage"
-    url: /usage/
+  - title: "Quick-Start Guide"
+    url: /docs/quick-start-guide/
 
   - title: "Contributing"
     url: /contributing/
@@ -24,6 +24,6 @@ docs:
     - title: "Quick-Start Guide"
       url: /docs/quick-start-guide/
     - title: "Installation"
-      url: /installation/
+      url: /docs/installation/
     - title: "Loading"
-      url: /loading/
+      url: /docs/loading/
