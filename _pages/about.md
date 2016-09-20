@@ -2,7 +2,7 @@
 layout: page
 title: About decompr
 tags: [about, decompr, GVC]
-permalink: /about
+permalink: /about/
 modified: 2015-01-04
 image:
   feature: shipping-train.jpg
