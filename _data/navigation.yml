@@ -20,10 +20,10 @@ main:
 
 docs:
   - title: Getting Started
-  children:
-    - title: "Quick-Start Guide"
-      url: /docs/quick-start-guide/
-    - title: "Installation"
-      url: /docs/installation/
-    - title: "Loading"
-      url: /docs/loading/
+    children:
+      - title: "Quick-Start Guide"
+        url: /docs/quick-start-guide/
+      - title: "Installation"
+        url: /docs/installation/
+      - title: "Loading"
+        url: /docs/loading/
