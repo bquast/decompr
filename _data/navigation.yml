@@ -17,3 +17,13 @@ main:
 
   - title: "Citing"
     url: /citing/
+
+docs:
+  - title: Getting Started
+  children:
+    - title: "Quick-Start Guide"
+      url: /docs/quick-start-guide/
+    - title: "Installation"
+      url: /installation/
+    - title: "Loading"
+      url: /loading/
