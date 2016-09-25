@@ -1,8 +1,5 @@
 # main links links
 main:
-  - title: "About"
-    url: /about/
-
   - title: "Quick-Start Guide"
     url: /docs/quick-start-guide/
     
@@ -11,15 +8,9 @@ main:
     
   - title: "News"
     url: /news/  
-
-  - title: "Contributing"
-    url: /contributing/
-
-  - title: "Acknowledgements"
-    url: /acknowledgements/
-
-  - title: "Citing"
-    url: /citing/
+    
+  - title: "About"
+    url: /about/
 
 docs:
   - title: Getting Started
