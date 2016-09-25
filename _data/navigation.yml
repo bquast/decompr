@@ -3,11 +3,14 @@ main:
   - title: "About"
     url: /about/
 
-  - title: "News"
-    url: /news/
-
   - title: "Quick-Start Guide"
     url: /docs/quick-start-guide/
+    
+  - title: "Interactive Demo"
+    url: /demo/
+    
+  - title: "News"
+    url: /news/  
 
   - title: "Contributing"
     url: /contributing/
