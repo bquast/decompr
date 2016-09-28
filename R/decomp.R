@@ -69,12 +69,6 @@ decomp <- function(x, y, k, i, o, v,
                    verbose = FALSE,
                    ... ) {
 
-  if ( missing(method) ) {
-    message('No method specified, the default method in version 2 of decompr has been changed to Leontief.
-
-  In order to use the Wang-Wei-Zhu (cf. decompr v.1), please specify this explicitly using: method="wwz"')
-  }
-
     method <- match.arg(method)
 
     if(missing(v)) {
