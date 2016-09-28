@@ -40,7 +40,6 @@ NULL
 #' @description final output
 NULL
 .onAttach <- function(...) {
-  packageStartupMessage('If you use decompr for data analysis,
-please cite both R and decompr,
-using citation() and citation("decompr") respectively.
+  packageStartupMessage('Please consider citing both R and decompr,
+using citation() and citation("decompr")
 ')}
