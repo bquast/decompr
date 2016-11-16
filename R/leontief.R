@@ -65,7 +65,9 @@ leontief <- function(x,
         attr(out, "decomposition") <- "leontief"
 
         return(out)
-    }
+    } else {
+      out <- V
+    } 
 
 
 
