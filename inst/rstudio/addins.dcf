@@ -1,0 +1,4 @@
+Name: decompr
+Description: Leontief and Wang-Wei-Zhu decomposition
+Binding: decomp_gadget
+Interactive: true
