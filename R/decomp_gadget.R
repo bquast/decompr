@@ -4,9 +4,6 @@
 #' @export
 #' @import shiny miniUI
 
-library(shiny)
-library(miniUI)
-
 decomp_gadget <- function(inputValue1, inputValue2) {
   
   ui <- miniPage(
@@ -17,18 +14,18 @@ decomp_gadget <- function(inputValue1, inputValue2) {
                    "Select dataset:",
                    choices = c('Example dataset "leather"' = "leather",
                                "Manual" = "globalenv",
-                               "WIOD Regional" = "wiod",
+                               "WIOD" = "wiod",
                                "TiVa" = "tiva")
                    ),
       conditionalPanel( condition = 'input.dataselect == "wiod"',
                         selectInput("wiodselect", "Choose year for WIOD:",
-                                    choices = c("WIOD 1995 Regional" = "95",
-                                                "WIOD 2000 Regional" = "00",
-                                                "WIOD 2005 Regional" = "05",
-                                                "WIOD 2008 Regional" = "08",
-                                                "WIOD 2009 Regional" = "09",
-                                                "WIOD 2010 Regional" = "10",
-                                                "WIOD 2011 Regional" = "11") )
+                                    choices = c("WIOD 1995" = "95",
+                                                "WIOD 2000" = "00",
+                                                "WIOD 2005" = "05",
+                                                "WIOD 2008" = "08",
+                                                "WIOD 2009" = "09",
+                                                "WIOD 2010" = "10",
+                                                "WIOD 2011" = "11") )
       ),
       
       conditionalPanel( condition = 'input.dataselect == "tiva"',
@@ -44,7 +41,7 @@ decomp_gadget <- function(inputValue1, inputValue2) {
       
       conditionalPanel( condition = 'input.dataselect == "globalenv"',
                         selectInput("countries", "Countries list:", choices = ls(.GlobalEnv),
-                                    selected = grep("^[cC][oO][nN]", ls(.GlobalEnv), perl = TRUE, value = TRUE) )
+                                    selected = grep("^[cCrR][oOeE][nNgG]", ls(.GlobalEnv), perl = TRUE, value = TRUE) )
       ),
       
       conditionalPanel( condition = 'input.dataselect == "globalenv"',
@@ -109,12 +106,15 @@ decomp_gadget <- function(inputValue1, inputValue2) {
                                method = input$method,
                                post = input$post)
       } else if (input$dataselect == "wiod") {
-        data(wiod95regional)
-        .decomposed <<- decomp(x = inter_reg95,
-                               y = final_reg95,
-                               k = regions,
+        data(list=paste('wiod', input$wiodselect, sep = ''))
+        inter <- get(grep("^[iI][nN][tT]", ls(.GlobalEnv), value=TRUE))
+        final <- get(grep("^[fF][iI][nN]", ls(.GlobalEnv), value=TRUE))
+        output <- get(grep("^[oO][uU][tT]", ls(.GlobalEnv), value=TRUE))
+        .decomposed <<- decomp(x = inter,
+                               y = final,
+                               k = countries,
                                i = industries,
-                               o = output_reg95,
+                               o = output,
                                method = input$method,
                                post = input$post)
       } else {
