@@ -1,3 +1,122 @@
+## [4.1.1](https://github.com/mmistakes/minimal-mistakes/releases/tag/4.1.1)
+
+### Enhancements
+
+- Remove hardcoded `words_per_minute` "less than" and "minute read" values and make dynamic. [#703](https://github.com/mmistakes/minimal-mistakes/issues/703)
+- Update Font Awesome to `v4.7.0`. [#723](https://github.com/mmistakes/minimal-mistakes/issues/723), [#722](https://github.com/mmistakes/minimal-mistakes/issues/722)
+- Add support for YouTube channel URLs in author profile. [#716](https://github.com/mmistakes/minimal-mistakes/issues/716)
+
+### Bug Fixes
+
+- Add Jekyll as `spec.add_runtime_dependency` in `.gemspec`.
+
+## [4.1.0](https://github.com/mmistakes/minimal-mistakes/releases/tag/4.1.0)
+
+### Enhancements
+
+- Add Jekyll include for adding [custom author profile links](https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/author-profile-custom-links.html) to sidebar
+
+### Bug Fixes
+
+- Fix link to Discourse.org homepage in `noscript` section [#699](https://github.com/mmistakes/minimal-mistakes/pull/699)
+- Fix padding issue with pagination buttons [#694](https://github.com/mmistakes/minimal-mistakes/issues/694)
+
+## [4.0.10](https://github.com/mmistakes/minimal-mistakes/releases/tag/4.0.10)
+
+### Bug Fixes
+
+- Add Staticman default `path`. [#683](https://github.com/mmistakes/minimal-mistakes/issues/683)
+
+### Maintenance
+
+- Slight correction/improvements to French UI text. [#685](https://github.com/mmistakes/minimal-mistakes/pull/685)
+
+## [4.0.9](https://github.com/mmistakes/minimal-mistakes/releases/tag/4.0.9)
+
+### Bug Fixes
+
+- Fix overlapping sidebar navigation lists due to `max-height: 100vh`. [#668](https://github.com/mmistakes/minimal-mistakes/issues/668)
+
+## [4.0.8](https://github.com/mmistakes/minimal-mistakes/releases/tag/4.0.8)
+
+### Bug Fixes
+
+- Set default value for `words_per_minute`. [#657](https://github.com/mmistakes/minimal-mistakes/issues/657)
+- Adjust sidebar navigation list CSS so it collapses at the correct width.
+
+### Maintenance
+
+- Add Google AdSense banner to `/docs/_layouts/default.html` for demo site.
+
+## [4.0.7](https://github.com/mmistakes/minimal-mistakes/releases/tag/4.0.7)
+
+### Enhancements
+
+- Add `!default` values to **_sass/_variables.scss**.
+- Collapse sidebar navigation lists on smaller screens. [#607](https://github.com/mmistakes/minimal-mistakes/issues/607)
+
+### Bug Fixes
+
+- Rename `#comments` to something more unique to avoid clashes with Kramdown generated headline IDs. [#582](https://github.com/mmistakes/minimal-mistakes/issues/582)
+
+### Maintenance
+
+- Reorganize SCSS partials in **assets/css/main.scss**
+
+## [4.0.6](https://github.com/mmistakes/minimal-mistakes/releases/tag/4.0.6)
+
+### Enhancements
+
+- Add [`figure` helper](https://mmistakes.github.io/minimal-mistakes/docs/helpers/#figure) to make generating a `<figure>` element with a single image and caption easier. [#572](https://github.com/mmistakes/minimal-mistakes/pull/572)
+- Add structured data markup for `itemprop="person"` in author profile sidebar. [#647](https://github.com/mmistakes/minimal-mistakes/pull/647)
+
+### Bug Fixes
+
+- Fix improper YAML formatting of some locales. [#651](https://github.com/mmistakes/minimal-mistakes/pull/651)
+
+### Maintenance
+
+- Clarify "migrating to gem-theme" instructions in **Quick Start Guide**. 
+- Add `rake preview` task for testing `/test` during theme development.
+
+## [4.0.5](https://github.com/mmistakes/minimal-mistakes/releases/tag/4.0.5)
+
+### Enhancements
+
+- Update gems: `jekyll-sitemap` (0.12), `jekyll-feed` (0.8).
+- Improve next/previous pager links visibility by changing gray color to blue (`$link-color`).
+
+### Bug Fixes
+
+- Fix `.sidebar` flicker/jump when hovered. [#583](https://github.com/mmistakes/minimal-mistakes/issues/583)
+
+### Maintenance
+
+- Move contents of `gh-pages` branch to `master` inside of the `/docs` folder.
+
+## [4.0.4](https://github.com/mmistakes/minimal-mistakes/releases/tag/4.0.4)
+
+### Enhancements
+
+- "Gemify" theme ~> `gem "minimal-mistakes-jekyll"`
+- Replace `base_path` include with `absolute_url` filter where possible.
+- Allow images to be placed in other folders. Remove `/images/` only restriction and encourage placement in `/assets/images/` instead. **Full paths are now required. If upgrading from MM 3.4 add `/images/` before filenames in Front Matter and `_config.yml` variables.**
+- Add [home `layout`](https://github.com/mmistakes/minimal-mistakes/blob/master/_layouts/home.html)
+- Added missing Turkish translations for UI text. [#621](https://github.com/mmistakes/minimal-mistakes/pull/621)
+- Make author avatar optional in sidebar.
+- Update **/_includes/seo.html** for meta description. [#558](https://github.com/mmistakes/minimal-mistakes/pull/558)
+
+### Bug Fixes
+
+- Fix navigation bar animation "flicker" in Safari [#568](https://github.com/mmistakes/minimal-mistakes/issues/568)
+- Fix `author.avatar` paths for externally hosted images.
+
+### Maintenance
+
+- Add documentation around `gem "minimal-mistakes-jekyll"` installation and use.
+- Add note about using full image paths for eg. `assets/images/filename.jpg` (header images, overlays, galleries, feature rows, etc.) instead of assuming they will always be in `/images/`.
+- Add "[Overriding Theme Defaults](https://mmistakes.github.io/minimal-mistakes/docs/overriding-theme-defaults/)" page to documentation.
+
 ## [3.4.8](https://github.com/mmistakes/minimal-mistakes/releases/tag/3.4.8)
 
 ### Enhancements
