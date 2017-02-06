@@ -9,4 +9,3 @@ decomp_gadget(inputValue1, inputValue2)
 \description{
 decomp user interface
 }
-

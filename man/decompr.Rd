@@ -13,15 +13,14 @@ derives the value added origin of exports by country and industry, which is also
 based on Wang, Wei, and Zhu (Wang, Z., S.-J. Wei, and K. Zhu. 2013. "Quantifying
 International Production Sharing at the Bilateral and Sector Levels.").
 }
-\author{
-Bastiaan Quast \email{bquast@gmail.com}
-Fei Wang
-Victor Kummritz
-}
 \references{
 {Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu. Quantifying international production sharing at the bilateral and sector levels. No. w19677. National Bureau of Economic Research, 2013.}
 }
 \seealso{
 http://qua.st/decompr
 }
-
+\author{
+Bastiaan Quast \email{bquast@gmail.com}
+Fei Wang
+Victor Kummritz
+}

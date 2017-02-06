@@ -30,4 +30,3 @@ Adapted from code by Fei Wang.
 \author{
 Bastiaan Quast
 }
-

@@ -4,9 +4,11 @@
 \alias{load_tables_vectors}
 \title{Load the Input-Output and Final demand tables}
 \usage{
-load_tables_vectors(x, y, k, i, o, v = NULL, null_inventory = FALSE)
+load_tables_vectors(iot, x, y, k, i, o, v = NULL, null_inventory = FALSE)
 }
 \arguments{
+\item{iot}{Input Output Table object, contains x, y, k, i, and o}
+
 \item{x}{intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
 excluding the first row and the first column which contains the country names,
 and the second row and second column which contain the industry names for each country.
@@ -55,4 +57,3 @@ str(decompr_object)
 \author{
 Bastiaan Quast
 }
-

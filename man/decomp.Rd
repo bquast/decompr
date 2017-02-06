@@ -4,10 +4,12 @@
 \alias{decomp}
 \title{Interface function for decompositions}
 \usage{
-decomp(x, y, k, i, o, v, method = c("leontief", "wwz"), verbose = FALSE,
-  ...)
+decomp(iot, x, y, k, i, o, v, method = c("leontief", "wwz"),
+  verbose = FALSE, ...)
 }
 \arguments{
+\item{iot}{Input Output Table object, contains x, y, k, i, and o}
+
 \item{x}{intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
 excluding the first row and the first column which contains the country names,
 and the second row and second column which contain the industry names for each country.
@@ -79,12 +81,11 @@ decomp(inter,
        out,
        method = "wwz")
 }
-\author{
-Bastiaan Quast
-}
 \references{
 {Timmer, Marcel P. (ed) (2012), "The World Input-Output Database (WIOD): Contents Sources and Methods", WIOD Working Paper Number 10, downloadable at http://www.wiod.org/publications/papers/wiod10.pdf }
 
 {Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu. Quantifying international production sharing at the bilateral and sector levels. No. w19677. National Bureau of Economic Research, 2013.}
 }
-
+\author{
+Bastiaan Quast
+}
