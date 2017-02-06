@@ -3,6 +3,7 @@
 #' This function loads the demand tables
 #' and defines all variables for the decomposition
 #' 
+#' @param iot Input Output Table object, contains x, y, k, i, and o
 #' @param x intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
 #'  excluding the first row and the first column which contains the country names,
 #'  and the second row and second column which contain the industry names for each country.
@@ -36,8 +37,17 @@
 #' str(decompr_object)
 
 
-load_tables_vectors <- function(x, y, k, i, o, v = NULL,
+load_tables_vectors <- function(iot, x, y, k, i, o, v = NULL,
                                 null_inventory = FALSE) {
+  
+    ## extract objects from iot object
+    if(hasArg(iot) && class(iot)=='iot') {
+      x <- iot$inter
+      y <- iot$final
+      o <- iot$output
+      k <- iot$countries
+      i <- iot$industries
+    }
     
     ## find number of sections and regions compute combination
     G <- length(k)

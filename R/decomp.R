@@ -4,6 +4,7 @@
 #' NOTE: the default method is now "leontief", please specify method="wwz" explicitly for Wang-Wei-Zhu.
 #' See http://qua.st/decompr/decompr-v2/ for more information.
 #'
+#' @param iot Input Output Table object, contains x, y, k, i, and o
 #' @param x intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
 #'  excluding the first row and the first column which contains the country names,
 #'  and the second row and second column which contain the industry names for each country.
@@ -64,7 +65,7 @@
 
 
 
-decomp <- function(x, y, k, i, o, v,
+decomp <- function(iot, x, y, k, i, o, v,
                    method=c("leontief", "wwz" ),
                    verbose = FALSE,
                    ... ) {
@@ -75,11 +76,10 @@ decomp <- function(x, y, k, i, o, v,
         v <- NULL
     }
 
-  if ( missing(k) | missing(i) | missing(o) ) {
-    warning('argument k, i, or o is missing, switching to the old "load_tables" function, which is DEPRECATED! Please see "help(decomp) and "http://qua.st/decompr/decompr-v2/" for more information on this.')
-    decompr_obj <- load_tables(x, y)
+  if ( missing(x) ) {
+      decompr_obj <- load_tables_vectors(iot = iot)
   }  else {
-      decompr_obj <- load_tables_vectors(x, y, k, i, o, v)
+      decompr_obj <- load_tables_vectors(x = x, y = y, k = k, i = i, o = o, v = v)
   }
 
   if ( method == "leontief" ) {
