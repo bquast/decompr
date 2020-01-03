@@ -4,8 +4,18 @@
 \alias{decomp}
 \title{Interface function for decompositions}
 \usage{
-decomp(iot, x, y, k, i, o, v, method = c("leontief", "wwz"),
-  verbose = FALSE, ...)
+decomp(
+  iot,
+  x,
+  y,
+  k,
+  i,
+  o,
+  v,
+  method = c("leontief", "wwz"),
+  verbose = FALSE,
+  ...
+)
 }
 \arguments{
 \item{iot}{Input Output Table object, contains x, y, k, i, and o}

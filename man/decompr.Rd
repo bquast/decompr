@@ -3,7 +3,6 @@
 \docType{package}
 \name{decompr}
 \alias{decompr}
-\alias{decompr-package}
 \title{Export Decomposition using the Wang-Wei-Zhu and Leontief decompositions algorithms.}
 \description{
 Two global-value-chain decompositions are implemented. Firstly, the
