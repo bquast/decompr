@@ -5,8 +5,7 @@ decompr
 [![Total RStudio Cloud Downloads](http://cranlogs.r-pkg.org/badges/grand-total/decompr?color=brightgreen)](https://cran.r-project.org/package=decompr)
 [![Monthly RStudio Cloud Downloads](http://cranlogs.r-pkg.org/badges/decompr?color=brightgreen)](https://cran.r-project.org/package=decompr)
 [![Travis-CI Build Status](https://travis-ci.org/bquast/decompr.png?branch=master)](https://travis-ci.org/bquast/decompr)
-[![Coverage Status](https://coveralls.io/repos/bquast/decompr/badge.svg?branch=master)](https://coveralls.io/r/bquast/decompr?branch=master)
-
+[![Coverage Status](https://coveralls.io/repos/github/bquast/decompr/badge.svg?branch=master)](https://coveralls.io/github/bquast/decompr?branch=master)
 
 Demonstration
 ---------------
