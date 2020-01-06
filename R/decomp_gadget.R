@@ -118,7 +118,7 @@ decomp_gadget <- function(inputValue1, inputValue2) {
                                method = input$method,
                                post = input$post)
       } else {
-        data(leather)
+        data(leather, package="decompr")
         .decomposed <<- decomp(x = inter,
                                y = final,
                                k = countries,
