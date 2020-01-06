@@ -48,19 +48,19 @@
 #' # use the direct approach
 #'
 #' # run the Leontief decomposition
-#' decomp(inter,
-#'        final,
-#'        countries,
-#'        industries,
-#'        out,
+#' decomp(x = inter,
+#'        y = final,
+#'        k = countries,
+#'        i = industries,
+#'        o = out,
 #'        method = "leontief")
 #'
 #' # run the WWZ decomposition
-#' decomp(inter,
-#'        final,
-#'        countries,
-#'        industries,
-#'        out,
+#' decomp(x = inter,
+#'        y = final,
+#'        k = countries,
+#'        i = industries,
+#'        o = out,
 #'        method = "wwz")
 
 
