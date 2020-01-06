@@ -7,8 +7,13 @@ decompr
 [![Travis-CI Build Status](https://travis-ci.org/bquast/decompr.png?branch=master)](https://travis-ci.org/bquast/decompr)
 [![Coverage Status](https://coveralls.io/repos/bquast/decompr/badge.svg?branch=master)](https://coveralls.io/r/bquast/decompr?branch=master)
 
-Bastiaan Quast, <bquast@gmail.com>
-----------------------------------
+
+Demonstration
+---------------
+![decompr GUI demonstration](/man/figures/decompr.gif)
+
+Description
+---------------
 Two Global Value Chains decompositions are implemented.
 Firstly, the Wang, Wei, and Zhu (2013) <DOI:10.3386/w19677> algorithm splits bilateral gross exports into 16 value added components.
 Secondly, the Leontief decomposition (default) derives the value added origin of exports by country and industry, see Leontief (1937) <DOI:10.2307/1927837>.
