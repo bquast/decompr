@@ -1,5 +1,5 @@
 Package: decompr
-Version: 4.5.0.9990
+Version: 4.5.0.9991
 Title: Global-Value-Chain Decomposition
 Description: Two global-value-chain decompositions are implemented. Firstly, the
     Wang-Wei-Zhu (Wang, Wei, and Zhu, 2013) algorithm splits bilateral gross exports
