@@ -41,21 +41,21 @@ out
 ## Leontief decomposition
 
 ```{r}
-decomp(inter,
-       final,
-       countries,
-       industries,
-       out,
+decomp(x=inter,
+       y=final,
+       k=countries,
+       i=industries,
+       o=out,
        method = "leontief")
 ```
 
 ## Wang-Wei-Zhu decomposition
 
 ```{r}
-decomp(inter,
-       final,
-       countries,
-       industries,
-       out,
+decomp(x=inter,
+       y=final,
+       k=countries,
+       i=industries,
+       o=out,
        method = "wwz")
 ```
