@@ -14,8 +14,8 @@ Demonstration
 Description
 ---------------
 Two Global Value Chains decompositions are implemented.
-Firstly, the Wang, Wei, and Zhu (2013) <DOI:10.3386/w19677> algorithm splits bilateral gross exports into 16 value added components.
-Secondly, the Leontief decomposition (default) derives the value added origin of exports by country and industry, see Leontief (1937) <DOI:10.2307/1927837>.
+Firstly, the Wang, Wei, and Zhu (2013) algorithm splits bilateral gross exports into 16 value added components.
+Secondly, the Leontief decomposition (default) derives the value added origin of exports by country and industry, see Leontief (1937).
 
 Additional tools for GVC analysis are available in the [gvc package](https://cran.r-project.org/package=gvc).
 
