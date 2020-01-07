@@ -21,6 +21,7 @@
 #' @return a decompr class object
 #' @author Bastiaan Quast
 #' @details Adapted from code by Fei Wang.
+#' @import methods
 #' @export
 #' @examples
 #' # load example data
@@ -41,7 +42,7 @@ load_tables_vectors <- function(iot, x, y, k, i, o, v = NULL,
                                 null_inventory = FALSE) {
   
     ## extract objects from iot object
-    if(hasArg(iot) && class(iot)=='iot') {
+    if(methods::hasArg(iot) && class(iot)=='iot') {
       x <- iot$inter
       y <- iot$final
       o <- iot$output

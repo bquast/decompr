@@ -3,9 +3,6 @@
 \name{decomp_gadget}
 \alias{decomp_gadget}
 \title{decomp user interface}
-\usage{
-decomp_gadget()
-}
 \description{
 decomp user interface
 }

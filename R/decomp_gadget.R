@@ -3,8 +3,11 @@
 #' @name decomp_gadget
 #' @export
 #' @import shiny miniUI
+globalVariables(c("<<-", "data", "leather", "countries", "industries", "out", ".decomposed", "View"))
 
 decomp_gadget <- function() {
+  
+  
   
   ui <- miniPage(
     miniTitleBar("decomp", right = miniTitleBarButton("done", "Accept", primary = TRUE)),
