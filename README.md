@@ -17,18 +17,18 @@ Two Global Value Chains decompositions are implemented.
 Firstly, the Wang, Wei, and Zhu (2013) <DOI:10.3386/w19677> algorithm splits bilateral gross exports into 16 value added components.
 Secondly, the Leontief decomposition (default) derives the value added origin of exports by country and industry, see Leontief (1937) <DOI:10.2307/1927837>.
 
-Additional tools for GVC analysis are available in the [gvc package](http://cran.r-project.org/package=gvc).
+Additional tools for GVC analysis are available in the [gvc package](https://cran.r-project.org/package=gvc).
 
 
 Installation
 ------------
-You can install the latest **stable** version from [CRAN](http://cran.r-project.org/package=decompr).
+You can install the latest **stable** version from [CRAN](https://cran.r-project.org/package=decompr).
 
 ```r
 install.packages("decompr")
 ```
 
-The **development** version, to be used **at your peril**, can be installed from [GitHub](http://github.com/bquast/decompr) using the `devtools` package.
+The **development** version, to be used **at your peril**, can be installed from [GitHub](https://github.com/bquast/decompr) using the `devtools` package.
 
 ```r
 if (!require('devtools')) install.packages('devtools')
@@ -61,7 +61,7 @@ help("wwz")
 help("load_tables_vectors")
 ```
 
-In addition to the help files we provide a long form example in a [vignette](http://cran.r-project.org/web/packages/decompr/vignettes/decompr.html) .
+In addition to the help files we provide a long form example in a vignette:
 
 ```r
 vignette("decompr")
