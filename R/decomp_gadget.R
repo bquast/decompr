@@ -90,7 +90,7 @@ decomp_gadget <- function() {
     
     miniButtonBlock(
 
-      a("Built using decompr, ", href="http://qua.st/decompr/", target="_blank"),
+      a("Built using decompr, ", href="https://qua.st/decompr/", target="_blank"),
       a("please cite: Quast & Kummritz 2015", href="https://ideas.repec.org/p/gii/cteiwp/ctei-2015-01.html", target="_blank")
     )
   )
