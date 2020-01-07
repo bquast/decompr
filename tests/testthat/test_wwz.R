@@ -5,11 +5,11 @@ library(decompr)
 data(leather)
 
 # WWZ decomposition
-w <- decomp(inter,
-            final,
-            countries,
-            industries,
-            out,
+w <- decomp(x = inter,
+            y = final,
+            k = countries,
+            i = industries,
+            o = out,
             method = "wwz")
 
 # define context
@@ -27,13 +27,13 @@ test_that("output format matches", {
 
 # test that verbose turns some messages on
 test_that("verbose computation 1/2",
-          expect_message(decomp(inter, final, countries, industries,
-                                out, method = "wwz", verbose = TRUE),
+          expect_message(decomp(x=inter, y=final, k=countries, i=industries,
+                                o=out, method = "wwz", verbose = TRUE),
                          "Starting decomposing the trade flow"))
 
 test_that("verbose computation 2/2",
-          expect_message(decomp(inter, final, countries, industries,
-                                out, method = "wwz", verbose = TRUE),
+          expect_message(decomp(x=inter, y=final, k=countries, i=industries,
+                                o=out, method = "wwz", verbose = TRUE),
                          "16/16, elapsed time:"))
 
 ##
@@ -44,11 +44,11 @@ context("custom v")
 va <- out - colSums(inter)
 
 ## WWZ decomposition: specify v
-w.2 <- decomp(inter,
-              final,
-              countries,
-              industries,
-              out,
+w.2 <- decomp(x = inter,
+              y = final,
+              k = countries,
+              i = industries,
+              o = out,
               v = va,
               method = "wwz")
 
@@ -58,11 +58,11 @@ test_that("specifying v leaves output unchanged",
 
 ## WWZ decomposition: only argentina
 va[4:9] <- 0
-w.arg <- decomp(inter,
-                final,
-                countries,
-                industries,
-                out,
+w.arg <- decomp(x = inter,
+                y = final,
+                k = countries,
+                i = industries,
+                o = out,
                 v = va,
                 method = "wwz")
 
@@ -76,13 +76,13 @@ test_that("turkey and germany are 0",
 ## now we only care about the transport_equipment industry
 va <- out - colSums(inter)
 va[1:9 %% 3 != 0] <- 0
-w.transport <- decomp(inter,
-                final,
-                countries,
-                industries,
-                out,
-                v = va,
-                method = "wwz")
+w.transport <- decomp(x = inter,
+                      y = final,
+                      k = countries,
+                      i = industries,
+                      o = out,
+                      v = va,
+                      method = "wwz")
 
 within.country <- w.transport[w.transport$Exporting_Country == w.transport$Importing_Country, "DVA_FIN"]
 test_that("only within-country flows are 0",

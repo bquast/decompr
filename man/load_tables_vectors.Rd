@@ -45,11 +45,11 @@ Adapted from code by Fei Wang.
 data(leather)
 
 # create intermediate object (class decompr)
-decompr_object <- load_tables_vectors(inter,
-                                      final,
-                                      countries,
-                                      industries,
-                                      out)
+decompr_object <- load_tables_vectors(x = inter,
+                                      y = final,
+                                      k = countries,
+                                      i = industries,
+                                      o = out)
 
 # examine output object                                    
 str(decompr_object)
