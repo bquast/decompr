@@ -4,7 +4,7 @@
 #' @export
 #' @import shiny miniUI
 
-decomp_gadget <- function(inputValue1, inputValue2) {
+decomp_gadget <- function() {
   
   ui <- miniPage(
     miniTitleBar("decomp", right = miniTitleBarButton("done", "Accept", primary = TRUE)),

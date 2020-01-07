@@ -4,7 +4,7 @@
 \alias{decomp_gadget}
 \title{decomp user interface}
 \usage{
-decomp_gadget(inputValue1, inputValue2)
+decomp_gadget()
 }
 \description{
 decomp user interface
