@@ -7,9 +7,10 @@ decompr
 [![Travis-CI Build Status](https://travis-ci.org/bquast/decompr.png?branch=master)](https://travis-ci.org/bquast/decompr)
 [![Coverage Status](https://coveralls.io/repos/github/bquast/decompr/badge.svg?branch=master)](https://coveralls.io/github/bquast/decompr?branch=master)
 
+
 Demonstration
 ---------------
-![decompr GUI demonstration](/man/figures/decompr.gif)
+![decompr GUI demonstration](https://github.com/bquast/R-demo-GIFs/blob/master/decompr.gif)
 
 Description
 ---------------
