@@ -1,20 +1,28 @@
 ## Test environments
 
-- OSX 10.11.5 R-3.3.1-x64
-- Ubuntu (Travic-CI) R-3.3.1-x64
-- Win-Builder  (devel and release)
+- Local Arch Linux R 3.6.2
+- Ubuntu (Travic-CI) R-3.6.2
+- Win-Builder devel
 
 ## R CMD check results
 There were no ERRORs or WARNINGs. 
 
-Status: 1 NOTE
+N  checking R code for possible problems (3s)
+   decomp_gadget : server: no visible binding for '<<-' assignment to
+     ‘.decomposed’
+   
+   Found the following assignments to the global environment:
+   File ‘decompr/R/decomp_gadget.R’:
+     assign(paste(outputobj), .decomposed, envir = .GlobalEnv)
+   
+   Found the following calls to data() loading into the global environment:
+   File ‘decompr/R/decomp_gadget.R’:
+     data(list = paste("wiod", input$wiodselect, sep = ""))
+     data(leather, package = "decompr")
+   See section ‘Good practice’ in ‘?data’.
+   
+Please note that this is not new behaviour, it is also present in the version currently on CRAN.
 
-Possibly mis-spelled words in DESCRIPTION:
-  Leontief (6:59)
-  Zhu (5:27, 5:47, 8:53, 9:34)
-  decompositions (4:37)
+I have tried my best to remove any notes, but this one seems impossible to avoid.
 
-
-The former two are names, the later is the plural of the noun: "decomposition".
-
-All three are already present in the version currently on CRAN.
+This update solve a long list of problems and errors in the version currently on CRAN.
