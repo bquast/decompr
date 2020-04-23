@@ -54,8 +54,8 @@ leontief <- function(x,
         out <- data.frame(rep(x$k, each=x$GN),
                           rep(x$i, times=x$G, each=x$G),
                           rep(x$k, times=x$GN),
-                          out
-                          )
+                          out,
+                          stringsAsFactors=TRUE         )
         names(out) <- c("Source_Country", "Source_Industry",
                         "Importing_Country", "Final_Demand")
 

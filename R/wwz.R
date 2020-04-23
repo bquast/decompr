@@ -419,7 +419,8 @@ wwz <- function(x, verbose = FALSE) {
                               texpfddiffpercent,
                               texpintdiff,
                               texpintdiffpercent,
-                              DViX_Fsr)
+                              DViX_Fsr,
+                              stringsAsFactors=TRUE                       )
     
     names(ALLandTotal)[1:3] <- c("Exporting_Country",
                                  "Exporting_Industry",
