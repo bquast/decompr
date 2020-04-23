@@ -87,7 +87,7 @@ Development
 -------------
 Development takes place on the GitHub page.
 
-http://github.com/bquast/decompr
+https://github.com/bquast/decompr
 
 Bugs can be filed on the issues page on GitHub.
 
