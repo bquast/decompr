@@ -26,14 +26,14 @@ Installation
 You can install the latest **stable** version from [CRAN](https://cran.r-project.org/package=decompr).
 
 ```r
-install.packages("decompr")
+install.packages('decompr')
 ```
 
 The **development** version, to be used **at your peril**, can be installed from [GitHub](https://github.com/bquast/decompr) using the `devtools` package.
 
 ```r
-if (!require('devtools')) install.packages('devtools')
-devtools::install_github("bquast/decompr")
+if (!require('remotes')) install.packages('remotes')
+remotes::install_github('bquast/decompr')
 ```
 
 
@@ -49,23 +49,23 @@ library(decompr)
 For general information on using the package, please refer to the help files.
 
 ```r
-help("decompr")
-help(package="decompr")
+help('decompr')
+help(package='decompr')
 ```
 
 For examples of usage, see the function specific help pages, in particular the `decomp()` function.
 
 ```r
-help("decomp")
-help("leontief")
-help("wwz")
-help("load_tables_vectors")
+help('decomp')
+help('leontief')
+help('wwz')
+help('load_tables_vectors')
 ```
 
 In addition to the help files we provide a long form example in a vignette:
 
 ```r
-vignette("decompr")
+vignette('decompr')
 ```
 
 
@@ -75,12 +75,12 @@ Additional Information
 An overview of the changes is available in the NEWS file.
 
 ```r
-news(package="decompr")
+news(package='decompr')
 ```
 
-There is a dedicated website with information hosted on my [personal website](http://qua.st/).
+There is a dedicated website with information hosted on my [personal website](https://qua.st/).
 
-http://qua.st/decompr
+https://qua.st/decompr
 
 
 Development
