@@ -20,20 +20,19 @@
 load_tables <- function(x, y) {
   
   # Part 1: getting the rownames etc.
-  secreg <- as.character(x[2,-c(1,2)])
+  secreg <- as.character(x[2L, -(1:2)])
   GN     <- length(secreg)
   secnam <- unique(secreg)
   N      <- length(secnam)
   G      <- as.integer(GN / N)
-  regnam <- unique( as.character(x[1,-c(1,2)] ) )
+  regnam <- unique(as.character(x[1L, -(1:2)]))
   
-  x <- x[ -c(1,2),-c(1,2) ]
-  x <- apply( x, 2, as.numeric )
-  output <- x[ dim(x)[1], ]
+  x <- x[-(1:2), -(1:2)]
+  x <- apply(x, 2L, as.numeric)
+  output <- x[dim(x)[1L], ]
+  x <- x[1:GN, ]
   
-  x <- x[ 1:GN, ]
-  
-  y <- data.matrix( y[3:(GN+2),3:((5*G)+2)] )
+  y <- data.matrix(y[3:(GN + 2L), 3:((5L * G) + 2L)])
   
   warning("The API for the decomp function has changed,
   it now uses load_tables_vectors instead of load_tables,
@@ -44,5 +43,4 @@ load_tables <- function(x, y) {
                       regnam,
                       secnam,
                       output)
-  
 }
