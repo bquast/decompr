@@ -1,24 +1,43 @@
-#' Load the Input-Output and Final demand tables
+#' Load the Input-Output and Final Demand Tables
 #' 
 #' This function loads the demand tables
-#' and defines all variables for the decomposition
+#' and defines all variables for the decomposition.
 #' 
-#' @param iot Input Output Table object, contains x, y, k, i, and o
-#' @param x intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
-#'  excluding the first row and the first column which contains the country names,
-#'  and the second row and second column which contain the industry names for each country.
-#'  In addition, an extra row at the end should contain final demand.
-#' @param y final demand table it has dimensions GN x MN,
-#'  excluding the first row and the first column which contains the country names,
-#'  the second column which contains the industry names for each country,
-#'  and second row which contains the five decomposed final demands (M).
-#'  #' @param k is a vector of country of region names
-#' @param k vector or country or region names
-#' @param i vector of sector or industry names
-#' @param o vector of final outputs
-#' @param v vector of value added
-#' @param null_inventory when the inventory (last FDC) should be set to zero
-#' @return a decompr class object
+#' @param iot Input Output Table object, contains x, y, k, i, and o. If not provided, at least x, y, k and i need to be supplied to the function.
+#' @param x intermediate demand table supplied as a numeric matrix. It has dimensions GN x GN (G = no. of country or regions, N = no. of industries). 
+#' Both rows and columns should be arranged first by country, then by industry (e.g. C1I1, C1I2, ..., C2I1, C2I2, ...) and should match (symmetry), 
+#' such that rows and columns refer to the same country-industries.
+#' @param y final demand table supplied as a numeric matrix. It has dimensions GN x MG (M = no. of final demand categories recorded for each country). 
+#' The rows of y need to match the rows of x, and the columns should also be arranged first by country, then by final demand category (e.g. C1FD1, C1FD2, ..., C2FD1, C2FD2, ...) with the order of the 
+#' countries the same as in x. 
+#' @param k character. A vector of country or region names of length G, arranged in the same order as they occur in the rows and columns of x, y.
+#' @param i character. A vector of country or region names of length N, arranged in the same order as they occur in the rows and columns of x and rows of y.
+#' @param o numeric. A vector of final outputs for each country-industry matching the rows of x and y. If not provided it will be computed as \code{rowSums(x) + rowSums(y)}.
+#' @param v numeric. A vector of value added for each country-industry matching the columns of x. If not provided it will be computed as \code{o - colSums(x)}.
+#' @param null_inventory logical. When the inventory (last final demand category in each country) should be set to zero.
+#' @return a 'decompr' class object - a list with the following elements:
+#'  \tabular{rrrl}{
+#'  Am \tab\tab\tab Imported / Exported goods IO shares matrix (\code{x} row-normalized by output \code{o}, with domestic entries set to 0). \cr
+#'  B  \tab\tab\tab Leontief Inverse matrix (I - A)^(-1) where A is \code{x} row-normalized by output \code{o}. \cr               
+#'  Bd \tab\tab\tab Domestic part of Leontief Inverse matrix (inter-country elements of B set to 0, needed for wwz decomposition). \cr                 
+#'  Bm \tab\tab\tab Imported / Exported part of Leontief Inverse matrix (domestic elements of B set to 0, needed for wwz decomposition). \cr              
+#'  L  \tab\tab\tab Domestic economy Leontief Inverse matrix (I - Ad)^(-1) where Ad is A with all inter-country elements set to 0. \cr
+#'  E  \tab\tab\tab Total Exports (output of each country-industry servicing foreign production or foreign final demand). \cr
+#'  ESR \tab\tab\tab Total Exports by destination country. \cr
+#'  Eint \tab\tab\tab Exports for intermediate production by destination country. \cr
+#'  Efd \tab\tab\tab Exports for final demand by destination country. \cr
+#'  Vc \tab\tab\tab Value added content of output (\code{v / o}). \cr
+#'  G \tab\tab\tab Number of countries. \cr
+#'  N \tab\tab\tab Number of industries. \cr
+#'  GN \tab\tab\tab Number of country-industries. \cr
+#'  k \tab\tab\tab Vector of country names. \cr  
+#'  i \tab\tab\tab Vector of industry names. \cr
+#'  rownam \tab\tab\tab Unique country-industry names identifying the rows / columns of x and rows of y. \cr
+#'  X \tab\tab\tab Total Output (\code{ = o}). \cr
+#'  Y \tab\tab\tab Total Final Demand by destination country. \cr 
+#'  Yd \tab\tab\tab Domestic Final Demand. \cr
+#'  Ym \tab\tab\tab Foreign Final Demand. \cr
+#'  }
 #' @author Bastiaan Quast
 #' @details Adapted from code by Fei Wang.
 #' @import methods
@@ -38,11 +57,11 @@
 #' str(decompr_object)
 
 
-load_tables_vectors <- function(iot, x, y, k, i, o, v = NULL,
+load_tables_vectors <- function(iot, x, y, k, i, o = NULL, v = NULL,
                                 null_inventory = FALSE) {
   
     ## extract objects from iot object
-    if(methods::hasArg(iot) && class(iot)=='iot') {
+    if(methods::hasArg(iot) && inherits(iot, 'iot')) {
       x <- iot$inter
       y <- iot$final
       o <- iot$output
@@ -50,11 +69,24 @@ load_tables_vectors <- function(iot, x, y, k, i, o, v = NULL,
       i <- iot$industries
     }
     
+    # Some extra checks at little cost: sometimes IO data is wrongly imported or pre-processed
+    if(!is.numeric(x) || anyNA(x)) warning("x is not numeric or contains missing values")
+    if(!is.numeric(y) || anyNA(y)) warning("y is not numeric or contains missing values")
+    if(!is.character(k) || anyNA(k)) warning("k is not character or contains missing values")
+    if(!is.character(i) || anyNA(i)) warning("i is not character or contains missing values")
+  
     ## find number of sections and regions compute combination
     G <- length(k)
     N <- length(i)
     GN <- G * N
+    dx <- dim(x)
+    dy <- dim(y)
     
+    # Some dimension checking
+    if(!all(dx == GN)) stop("x of dimension ", paste(dx, collapse = " * "), " does not match length(k) * length(i) = ", GN)
+    if(dy[1L] != GN) stop("nrow(y) = ", dy[1L], " does not match length(k) * length(i) = ", GN)
+    if(dy[2L] %% G) stop("The number of final demand categories ncol(y) = ", dy[2L], " is not a multiple of the number of countries length(k) = ", G)
+                              
     ## create vector of unique combinations of regions and sectors
     rownam <- as.vector(t(outer(k, i, paste, sep = ".")))
     
@@ -65,28 +97,40 @@ load_tables_vectors <- function(iot, x, y, k, i, o, v = NULL,
     ## bigrownam <- paste(z01, z02, sep = ".")
     
     ## contruct final demand components
-    fdc <- dim(y)[2]/G
+    fdc <- dy[2L] / G
     
     ## null inventory if needed
-    if (null_inventory == TRUE) {
-        y[, fdc * (1:G)] <- 0
-    }
+    if (isTRUE(null_inventory)) y[, fdc * (1:G)] <- 0
     
     ## define dimensions
-    ## -> only needed for matrizes that will be "manually"
+    ## -> only needed for matrices that will be "manually"
     ## (e.g. in a for-loop) filled
     ## For matrix copies, no need for setting the dimensions,
     ## only increases the memory burden
     Bd <- Ad <- matrix(0, nrow = GN, ncol = GN)
     Yd <- ESR <- Eint <- Efd <- Y <- matrix(0, nrow = GN, ncol = G)
-
+    
+    # o can be computed...
+    if (is.null(o)) {
+      o <- rowSums(x) + rowSums(y)
+    } else {
+      if(!is.numeric(o) || anyNA(o)) warning("o is not numeric or contains missing values")
+      if(length(o) != GN) stop("length(o) = ", length(o), " does not match length(k) * length(i) = ", GN)
+      if(is.character(m <- all.equal(rowSums(x) + rowSums(y), o))) 
+        message("o supplied is different from rowSums(x) + rowSums(y). ", m)
+    }
     
     ## this might not be the best way to construct V
     if (is.null(v)) {
-        v <- o - colSums(x)
+      v <- o - colSums(x)
+    } else {
+      if(!is.numeric(v) || anyNA(v)) warning("v is not numeric or contains missing values")
+      if(length(v) != GN) stop("length(v) = ", length(v), " does not match length(k) * length(i) = ", GN)
+      if(is.character(m <- all.equal(o - colSums(x), v))) 
+        message("v supplied is different from o - colSums(x). ", m)
     }
     
-    A <- t(t(x) / o)
+    A <- x / outer(rep.int(1L, GN), o) # Significantly faster than:  t(t(x) / o)
     A[!is.finite(A)] <- 0
     Am <- A
 
@@ -94,8 +138,8 @@ load_tables_vectors <- function(iot, x, y, k, i, o, v = NULL,
     Bm <- B <- solve(II - A)
     
     for (j in 1:G) {
-        m = 1 + (j - 1) * N
-        n = N + (j - 1) * N
+        m = 1L + (j - 1L) * N
+        n = N + (j - 1L) * N
 
         ## set diagonal
         Ad[m:n, m:n] <- A[m:n, m:n]
@@ -107,19 +151,19 @@ load_tables_vectors <- function(iot, x, y, k, i, o, v = NULL,
     }
     
     L <- solve(II - Ad)
-    Vc <- v/o
+    Vc <- v / o
     Vc[!is.finite(Vc)] <- 0
     ## Vhat <- diag(Vc)
     
     ## Part 2: computing final demand: Y
-    if(fdc > 1) {
+    if(fdc > 1L) {
         for (j in 1:G) {
-            m <- 1 + (j - 1) * fdc
-            n <- fdc + (j - 1) * fdc
+            m <- 1L + (j - 1L) * fdc
+            n <- fdc + (j - 1L) * fdc
 
             Y[, j] <- rowSums(y[, m:n])
         }
-    } else if(fdc == 1) {
+    } else if(fdc == 1L) {
         Y <- y
     }
 
@@ -128,13 +172,13 @@ load_tables_vectors <- function(iot, x, y, k, i, o, v = NULL,
     
     
     ## Part 3: computing export: E, Esr
-    E <- cbind(x, y)
+    E <- cbind(x, y) # This is also expensive with large matrices. Would be nice if it could be avoided
     for (j in 1:G) {
-        m <- 1 + (j - 1) * N
-        n <- N + (j - 1) * N
+        m <- 1L + (j - 1L) * N
+        n <- N + (j - 1L) * N
         
-        s <- GN + 1 + (j - 1) * fdc
-        r <- GN + fdc + (j - 1) * fdc
+        s <- GN + 1L + (j - 1L) * fdc
+        r <- GN + fdc + (j - 1L) * fdc
         
         E[m:n, m:n] <- 0  ## intermediate demand for domestic goods
         E[m:n, s:r] <- 0  ## final demand for domestic goods
@@ -144,53 +188,44 @@ load_tables_vectors <- function(iot, x, y, k, i, o, v = NULL,
     }
     
     z <- E
-    E <- as.matrix(rowSums(E))
+    E <- rowSums(E) # Not necessary to have a matrix here, I changed the code in wwz.R
 
     for (j in 1:G) {
-        m <- 1 + (j - 1) * N
-        n <- N + (j - 1) * N
-        s <- GN + 1 + (j - 1) * fdc
-        r <- GN + fdc + (j - 1) * fdc
+        m <- 1L + (j - 1L) * N
+        n <- N + (j - 1L) * N
+        s <- GN + 1L + (j - 1L) * fdc
+        r <- GN + fdc + (j - 1L) * fdc
 
         ## Final goods exports
-        if (s == r) {
-            Efd[, j] <- z[, s:r]
-        } else {
-            Efd[, j] <- rowSums(z[, s:r])
-        }
-
-        ## Total exports
-        ESR[, j] <- rowSums(z[, m:n]) + Efd[, j]
+        Efd[, j] <- if (s == r) z[, s] else rowSums(z[, s:r])
 
         ## intermediate exports
         Eint[, j] <- rowSums(z[, m:n])
+
+        ## Total exports
+        ESR[, j] <- Eint[, j] + Efd[, j]
     }
     
     
     ## Part 4: naming the rows and columns in variables
-    ## colnames(A) <- rownam
-    ## rownames(A) <- rownam
     names(Vc) <- rownam
     names(o) <- rownam
-    rownames(Y) <- rownam
-    rownames(ESR) <- rownam
     names(E) <- rownam
-
-    dimnames(B) <- dimnames(A)
-    dimnames(Bm) <- dimnames(A)
-    dimnames(Bd) <- dimnames(A)
-    ## dimnames(Ad) <- dimnames(A)
-    dimnames(Am) <- dimnames(A)
-    dimnames(L) <- dimnames(A)
-    
-    colnames(ESR) <- k
-    colnames(Y) <- k
-    
-    dimnames(Ym) <- dimnames(Y)
-    
-    dimnames(Eint) <- dimnames(ESR)
-    dimnames(Efd) <- dimnames(ESR)
-
+    dny <- list(rownam, k)
+    dimnames(Y) <- dny
+    dimnames(Yd) <- dny
+    dimnames(Ym) <- dny
+    dimnames(ESR) <- dny
+    dimnames(Eint) <- dny
+    dimnames(Efd) <- dny
+    dnx <- list(rownam, rownam) 
+    dimnames(Am) <- dnx
+    ## dimnames(Ad) <- dnx
+    ## dimnames(A) <- dnx
+    dimnames(B) <- dnx
+    dimnames(Bd) <- dnx
+    dimnames(Bm) <- dnx
+    dimnames(L) <- dnx
     
     ## Part 5: creating decompr object
     out <- list(Am = Am,
@@ -209,10 +244,10 @@ load_tables_vectors <- function(iot, x, y, k, i, o, v = NULL,
 
                 ## country/industry parameter
                 G = G,
-                GN = GN,
-                i = i, 
-                k = k,
                 N = N,
+                GN = GN,
+                k = k,
+                i = i, 
                 
                 rownam = rownam,
                 ## bigrownam = bigrownam,
