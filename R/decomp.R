@@ -1,10 +1,10 @@
-#' Interface function for decompositions
+#' Interface Function for Decompositions
 #'
-#' This function runs the decomposition.
-#' NOTE: the default method is now "leontief", please specify method="wwz" explicitly for Wang-Wei-Zhu.
-#' See http://qua.st/decompr/decompr-v2/ for more information.
+#' This function loads the ICIO table and runs a specified decomposition. It is a shorthand for quick analysis. For more detailed analysis with multiple decompositions consider using 
+#' \code{\link{load_tables_vectors}} to create a 'decompr' class object and then run the decomposition functions \code{\link{leontief}}, \code{\link{kww}} and \code{\link{wwz}} on the object. 
 #'
-#' @param iot Input Output Table object, contains x, y, k, i, and o
+#' @param iot a Input Output Table object - a list with elements 'inter' (= x), 'final' (= y), 'output' (= o), 'countries' (= k) and 'industries' (= i) of class 'iot' preferred in older versions of this package. 
+#' Alternatively, the inputs can be passed directly to the function: 
 #' @param x intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
 #'  excluding the first row and the first column which contains the country names,
 #'  and the second row and second column which contain the industry names for each country.
@@ -27,6 +27,7 @@
 #' @details Version 2 introduces several important changes, the default method is now leontief, which means that wwz has to be specified explicitly.
 #' Furthermore, the input object have a different structure, see the information below for details.
 #' @author Bastiaan Quast
+#' @note NOTE: the default method is now "leontief". See http://qua.st/decompr/decompr-v2/ for more information.
 #' @references {Timmer, Marcel P. (ed) (2012), "The World Input-Output Database (WIOD): Contents Sources and Methods", WIOD Working Paper Number 10, downloadable at http://www.wiod.org/publications/papers/wiod10.pdf }
 #'
 #' {Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu. Quantifying international production sharing at the bilateral and sector levels. No. w19677. National Bureau of Economic Research, 2013.}
@@ -65,31 +66,21 @@
 
 
 
-decomp <- function(iot, x, y, k, i, o, v,
-                   method=c("leontief", "wwz" ),
-                   verbose = FALSE,
-                   ... ) {
+decomp <- function(iot, x, y, k, i, o = NULL, v = NULL,
+                   method = c("leontief", "kww", "wwz"),
+                   verbose = FALSE, ...) {
 
-    method <- match.arg(method)
+  method <- match.arg(method)
 
-    if(missing(v)) {
-        v <- NULL
-    }
-
-  if ( missing(x) ) {
-      decompr_obj <- load_tables_vectors(iot = iot)
-  }  else {
-      decompr_obj <- load_tables_vectors(x = x, y = y, k = k, i = i, o = o, v = v)
-  }
-
-  if ( method == "leontief" ) {
-      out <- leontief(decompr_obj, ... )
-  } else if (method == "wwz" ) {
-      out <- wwz(decompr_obj, verbose = verbose)
+  if(missing(x)) {
+    decompr_obj <- load_tables_vectors(iot = iot)
   } else {
-    stop('not a valid method')
+    decompr_obj <- load_tables_vectors(x = x, y = y, k = k, i = i, o = o, v = v)
   }
 
-  return(out)
-
+  switch(method, 
+         leontief = leontief(decompr_obj, ...),
+         kww = kww(decompr_obj),
+         wwz = wwz(decompr_obj, verbose = verbose),
+         stop('not a valid method'))         
 }
