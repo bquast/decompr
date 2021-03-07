@@ -84,7 +84,7 @@ decomp_gadget <- function() {
       
       textInput('outputobj', label = 'Save as:', value = 'decompr_object'),
       
-      checkboxInput("showoutput", "Show output", value=TRUE)
+      checkboxInput("showoutput", "Show output", value = TRUE)
       
     ),
     
@@ -110,9 +110,9 @@ decomp_gadget <- function() {
                                post = input$post)
       } else if (input$dataselect == "wiod") {
         data(list=paste('wiod', input$wiodselect, sep = ''))
-        inter <- get(grep("^[iI][nN][tT]", ls(.GlobalEnv), value=TRUE))
-        final <- get(grep("^[fF][iI][nN]", ls(.GlobalEnv), value=TRUE))
-        output <- get(grep("^[oO][uU][tT]", ls(.GlobalEnv), value=TRUE))
+        inter <- get(grep("^[iI][nN][tT]", ls(.GlobalEnv), value = TRUE))
+        final <- get(grep("^[fF][iI][nN]", ls(.GlobalEnv), value = TRUE))
+        output <- get(grep("^[oO][uU][tT]", ls(.GlobalEnv), value = TRUE))
         .decomposed <<- decomp(x = inter,
                                y = final,
                                k = countries,
@@ -132,7 +132,7 @@ decomp_gadget <- function() {
       }
       outputobj <- input$outputobj
       assign(paste(outputobj), .decomposed, envir = .GlobalEnv)
-      if(input$showoutput == TRUE)
+      if(input$showoutput)
         View(.decomposed, outputobj)
       stopApp()
     })
