@@ -2,42 +2,69 @@
 % Please edit documentation in R/wwz.R
 \name{wwz}
 \alias{wwz}
-\title{Runs the Wang-Wei-Zhu decomposition}
+\title{Wang-Wei-Zhu Decomposition of Gross Exports}
 \usage{
 wwz(x, verbose = FALSE)
 }
 \arguments{
-\item{x}{an object of the class decompr}
+\item{x}{an object of the class 'decompr' obtained from \code{\link{load_tables_vectors}}.}
 
 \item{verbose}{logical, should timings of the calculation be displayed? Default is FALSE}
 }
 \value{
-the decomposed table
+A data frame with exports decomposed into 16 components (columns), as detailed in Table E1 in the appendix of the paper, and additional diagnostic items:
+ \tabular{llll}{
+ \emph{Term} \tab\tab\tab \emph{Description} \cr\cr\cr
+ DVA_FIN \tab\tab\tab Domestic VA in final goods exports. \cr\cr\cr
+ DVA_INT \tab\tab\tab Domestic VA in intermediate exports used by direct importer to produce domestic final goods consumed at home. \cr\cr\cr
+ DVA_INTrexI1 \tab\tab\tab Domestic VA in intermediate exports used by the direct importer to produce intermediate exports for production of final goods in third countries that are then imported and consumed by the direct importer. \cr\cr\cr
+ DVA_INTrexF \tab\tab\tab Domestic VA in intermediate exports used by the direct importer to produce final goods exports to third countries. \cr\cr\cr
+ DVA_INTrexI2 \tab\tab\tab Domestic VA in Intermediate exports used by the direct importer to produce intermediate exports to third countries. \cr\cr\cr
+ RDV_INT \tab\tab\tab Domestic VA in intermediate exports that returns via intermediate imports (i.e. is used to produce a locally consumed final good). \cr\cr\cr
+ RDV_FIN \tab\tab\tab Domestic VA in intermediate exports that returns home via final goods imports from the direct importer. \cr\cr\cr
+ RDV_FIN2 \tab\tab\tab Domestic VA in intermediate exports that returns home via in final goods imports from third countries. \cr\cr\cr
+ OVA_FIN \tab\tab\tab Third countries’ VA in final goods exports. \cr\cr\cr
+ MVA_FIN \tab\tab\tab Direct importer’s VA in final goods exports. \cr\cr\cr
+ OVA_INT \tab\tab\tab Third countries’ VA in intermediate exports. \cr\cr\cr
+ MVA_INT \tab\tab\tab Direct importer’s VA in intermediate exports. \cr\cr\cr
+ DDC_FIN \tab\tab\tab Double counted Domestic VA used to produce final goods exports. \cr\cr\cr
+ DDC_INT \tab\tab\tab Double counted Domestic VA used to produce intermediate exports. \cr\cr\cr
+ ODC \tab\tab\tab Double counted third countries’ VA in home country’s exports production. \cr\cr\cr
+ MDC \tab\tab\tab Double counted direct importer’s VA in home country’s exports production. \cr\cr\cr\cr\cr\cr\cr
+ \emph{Diagnostic Item} \tab\tab\tab \emph{Description} \cr\cr\cr
+ texp \tab\tab\tab Total Exports (matrix 'ESR' from \code{\link{load_tables_vectors}}). \cr\cr\cr
+ texpint \tab\tab\tab Exports for intermediate production (matrix 'Eint' from \code{\link{load_tables_vectors}}). \cr\cr\cr
+ texpfd \tab\tab\tab Exports for final demand (matrix 'Efd' from \code{\link{load_tables_vectors}}). \cr\cr\cr
+ texpdiff \tab\tab\tab Difference between Total Exports and the sum of the 16 terms. \cr\cr\cr
+ texpdiffpercent \tab\tab\tab ... in percent of total exports. \cr\cr\cr
+ texpfddiff \tab\tab\tab Difference between Final Exports and the sum of terms DVA_FIN, OVA_FIN and MVA_FIN. \cr\cr\cr
+ texpfddiffpercent \tab\tab\tab ... in percent of final exports. \cr\cr\cr
+ texpintdiff \tab\tab\tab Difference between Intermediate Exports and the sum of all the remaining terms (except DVA_FIN, OVA_FIN and MVA_FIN). \cr\cr\cr
+ texpintdiffpercent \tab\tab\tab ... in percent of intermediate exports. \cr\cr\cr
+ DViX_Fsr \tab\tab\tab DVA embodied in gross exports based on forward linkage. \cr
+ }
 }
 \description{
-This function runs the Wang-Wei-Zhu decomposition.
+This function performs the Wang-Wei-Zhu decomposition of country-sector level gross exports into 16 value added components by importing country.
 }
 \details{
 Adapted from code by Fei Wang.
 }
 \examples{
-# load example data
+# Load example data
 data(leather)
 
-# create intermediate object (class decompr)
-decompr_object <- load_tables_vectors(x = inter,
-                                      y = final,
-                                      k = countries,
-                                      i = industries,
-                                      o = out        )
+# Create intermediate object (class 'decompr')
+decompr_object <- load_tables_vectors(leather)
 
-# run the WWZ decomposition on the decompr object
+# Perform the WWZ decomposition
 wwz(decompr_object)
 }
 \references{
-Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu.
-Quantifying international production sharing at the bilateral and sector levels. 
-No. w19677. National Bureau of Economic Research, 2013.
+Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu (2013). Quantifying international production sharing at the bilateral and sector levels (No. w19677). \emph{National Bureau of Economic Research}.
+}
+\seealso{
+\code{\link{kww}}, \code{\link{wwz2kww}}, \code{\link{decompr-package}}
 }
 \author{
 Bastiaan Quast

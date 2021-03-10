@@ -2,57 +2,85 @@
 % Please edit documentation in R/load_tables_vectors.R
 \name{load_tables_vectors}
 \alias{load_tables_vectors}
-\title{Load the Input-Output and Final demand tables}
+\title{Load the Input-Output and Final Demand Tables}
 \usage{
-load_tables_vectors(iot, x, y, k, i, o, v = NULL, null_inventory = FALSE)
+load_tables_vectors(
+  iot,
+  x,
+  y,
+  k,
+  i,
+  o = NULL,
+  v = NULL,
+  null_inventory = FALSE
+)
 }
 \arguments{
-\item{iot}{Input Output Table object, contains x, y, k, i, and o}
+\item{iot}{a Input Output Table object - a list with elements 'inter' (= x), 'final' (= y), 'output' (= o), 'countries' (= k) and 'industries' (= i) of class 'iot'. 
+Alternatively these objects can be passed directly to the function, at least x, y, k and i need to be supplied.}
 
-\item{x}{intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
-excluding the first row and the first column which contains the country names,
-and the second row and second column which contain the industry names for each country.
-In addition, an extra row at the end should contain final demand.}
+\item{x}{intermediate demand table supplied as a numeric matrix of dimensions GN x GN (G = no. of country, N = no. of industries). 
+Both rows and columns should be arranged first by country, then by industry (e.g. C1I1, C1I2, ..., C2I1, C2I2, ...) and should match (symmetry), 
+such that rows and columns refer to the same country-industries.}
 
-\item{y}{final demand table it has dimensions GN x MN,
-excluding the first row and the first column which contains the country names,
-the second column which contains the industry names for each country,
-and second row which contains the five decomposed final demands (M).
-#' @param k is a vector of country of region names}
+\item{y}{final demand table supplied as a numeric matrix of dimensions GN x MN (M = no. of final demand categories recorded for each country). 
+The rows of y need to match the rows of x, and the columns should also be arranged first by country, then by final demand category (e.g. C1FD1, C1FD2, ..., C2FD1, C2FD2, ...) with the order of the 
+countries the same as in x.}
 
-\item{k}{vector or country or region names}
+\item{k}{character. A vector of country or region names of length G, arranged in the same order as they occur in the rows and columns of x, y.}
 
-\item{i}{vector of sector or industry names}
+\item{i}{character. A vector of country or region names of length N, arranged in the same order as they occur in the rows and columns of x and rows of y.}
 
-\item{o}{vector of final outputs}
+\item{o}{numeric. A vector of final outputs for each country-industry matching the rows of x and y. If not provided it will be computed as \code{rowSums(x) + rowSums(y)}.}
 
-\item{v}{vector of value added}
+\item{v}{numeric. A vector of value added for each country-industry matching the columns of x. If not provided it will be computed as \code{o - colSums(x)}.}
 
-\item{null_inventory}{when the inventory (last FDC) should be set to zero}
+\item{null_inventory}{logical. \code{TRUE} sets the inventory (last final demand category for each country) to zero.}
 }
 \value{
-a decompr class object
+A 'decompr' class object - a list with the following elements:
+ \tabular{rrrl}{
+ Am \tab\tab\tab Imported / Exported goods IO shares matrix (\code{x} column-normalized by output \code{o}, with domestic entries set to 0). \cr
+ B  \tab\tab\tab Leontief Inverse matrix \eqn{(I - A)^{-1}} where \eqn{A} is \code{x} column-normalized by output \code{o}. \cr               
+ Bd \tab\tab\tab Domestic part of Leontief Inverse matrix (inter-country elements of \eqn{B} set to 0, needed for WWZ decomposition). \cr                 
+ Bm \tab\tab\tab Imported / Exported part of Leontief Inverse matrix (domestic elements of \eqn{B} set to 0, needed for WWZ decomposition). \cr              
+ L  \tab\tab\tab Domestic economy Leontief Inverse matrix \eqn{(I - Ad)^{-1}} where \eqn{Ad} is \eqn{A} with all inter-country elements set to 0. \cr
+ E  \tab\tab\tab Total Exports (output of each country-industry servicing foreign production or foreign final demand). \cr
+ ESR \tab\tab\tab Total Exports by destination country. \cr
+ Eint \tab\tab\tab Exports for intermediate production by destination country. \cr
+ Efd \tab\tab\tab Exports for final demand by destination country. \cr
+ Vc \tab\tab\tab Value added content of output (\code{v / o}). \cr
+ G \tab\tab\tab Number of countries. \cr
+ N \tab\tab\tab Number of industries. \cr
+ GN \tab\tab\tab Number of country-industries. \cr
+ k \tab\tab\tab Vector of country names. \cr  
+ i \tab\tab\tab Vector of industry names. \cr
+ rownam \tab\tab\tab Unique country-industry names identifying the rows / columns of x and rows of y. \cr
+ X \tab\tab\tab Total Output (\code{ = o}). \cr
+ Y \tab\tab\tab Total Final Demand by destination country. \cr 
+ Yd \tab\tab\tab Domestic Final Demand. \cr
+ Ym \tab\tab\tab Foreign Final Demand. \cr
+ }
 }
 \description{
 This function loads the demand tables
-and defines all variables for the decomposition
+and creates all matrices and variables required for the GVC decompositions.
 }
 \details{
 Adapted from code by Fei Wang.
 }
 \examples{
-# load example data
+# Load example data
 data(leather)
 
-# create intermediate object (class decompr)
-decompr_object <- load_tables_vectors(x = inter,
-                                      y = final,
-                                      k = countries,
-                                      i = industries,
-                                      o = out)
+# Create intermediate object (class 'decompr')
+decompr_object <- load_tables_vectors(leather)
 
-# examine output object                                    
+# Examine the object                                    
 str(decompr_object)
+}
+\seealso{
+\code{\link{leontief}}, \code{\link{kww}}, \code{\link{wwz}}, \code{\link{decompr-package}}
 }
 \author{
 Bastiaan Quast

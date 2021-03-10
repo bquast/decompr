@@ -8,3 +8,4 @@ decomp_gadget.R
 tiva.R
 kww_example.R
 kww_experimental.R
+^\.github$

@@ -2,7 +2,7 @@
 % Please edit documentation in R/load_tables.R
 \name{load_tables}
 \alias{load_tables}
-\title{Load the Input-Output and Final demand tables}
+\title{Load the Input-Output and Final Demand Tables: Depreciated Interface}
 \usage{
 load_tables(x, y)
 }
@@ -18,14 +18,17 @@ the second column which contains the industry names for each country,
 and second row which contains the five decomposed final demands (M).}
 }
 \value{
-a decompr class object
+A 'decompr' class object.
 }
 \description{
 This function loads the demand tables
-and defines all variables for the decomposition
+and defines all variables for the decomposition. It is kept in the package for backward compatibility. New users should use \code{\link{load_tables_vectors}} instead.
 }
 \details{
 Adapted from code by Fei Wang.
+}
+\seealso{
+\code{\link{load_tables_vectors}}
 }
 \author{
 Bastiaan Quast
