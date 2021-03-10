@@ -10,26 +10,22 @@
 #'  DVA_FIN \tab\tab\tab Domestic VA in final goods exports. \cr\cr\cr
 #'  DVA_INT \tab\tab\tab Domestic VA in intermediate exports absorbed by direct importers (used to produce a locally consumed final good). \cr\cr\cr
 #'  DVA_INTrex \tab\tab\tab Domestic VA in intermediate exports reexported to third countries and absorbed there. \cr\cr\cr
-#'  RDV_FIN \tab\tab\tab Domestic VA in intermediates that returns home via final imports. \cr\cr\cr
-#'  RDV_INT \tab\tab\tab Domestic VA in intermediates that returns home via intermediate imports (used to produce a domestically consumed final good). \cr\cr\cr
-#'  DDC \tab\tab\tab Pure double counted DVA in intermediate exports (VA already captured in RDV_FIN and RDV_INT). \cr\cr\cr
+#'  RDV_FIN \tab\tab\tab Domestic VA in intermediate exports that returns home via final imports. \cr\cr\cr
+#'  RDV_INT \tab\tab\tab Domestic VA in intermediate exports that returns home via intermediate imports (used to produce a domestically consumed final good). \cr\cr\cr
+#'  DDC \tab\tab\tab Double counted DVA in intermediate exports (arising from 2-way trade in intermediate goods). \cr\cr\cr % (VA already captured in RDV_FIN and RDV_INT). -> Not strictly correct.
 #'  FVA_FIN \tab\tab\tab Foreign VA in final goods exports.  \cr\cr\cr
-#'  FVA_INT \tab\tab\tab Foreign VA in intermediate goods exports. \cr\cr\cr
-#'  FDC \tab\tab\tab Pure double counted FVA in intermediate exports (VA already captured in FVA_INT). \cr
+#'  FVA_INT \tab\tab\tab Foreign VA in intermediate exports. \cr\cr\cr
+#'  FDC \tab\tab\tab Double counted FVA in intermediate exports (arising from 2-way trade in intermediate goods). \cr % (VA already captured in FVA_INT). -> Not strictly correct.
 #'  }
 #' @references Koopman, R., Wang, Z., & Wei, S. J. (2014). Tracing value-added and double counting in gross exports. \emph{American Economic Review, 104}(2), 459-94.
 #' @export
+#' @seealso \code{\link{wwz}}, \code{\link{wwz2kww}}, \code{\link{decompr-package}}
 #' @examples
-#' 
 #' # Load example data
 #' data(leather)
 #'
 #' # Create intermediate object (class 'decompr')
-#' decompr_object <- load_tables_vectors(x = inter,
-#'                                       y = final,
-#'                                       k = countries,
-#'                                       i = industries,
-#'                                       o = out)
+#' decompr_object <- load_tables_vectors(leather)
 #'  
 #' # Perform the KWW decomposition
 #' kww(decompr_object)
@@ -42,6 +38,7 @@ kww <- function(x) {
   
   if(!inherits(x, "decompr")) stop("x must be an object of class 'decompr' created by the load_tables_vectors() function.")
   
+  B <- Y <- Vc <- N <- G <- GN <- Bd <- Ym <- Bm <- Yd <- Am <- L <- E <- k <- NULL # First need to initialize as NULL to avoid R CMD check error. 
   list2env(x, environment())
   
   # breaking up gross output according to where it is ultimately absorbed...
@@ -93,20 +90,21 @@ kww <- function(x) {
   attr(out, "row.names") <- .set_row_names(GN)
   class(out) <- "data.frame"
   # Aggregating: Necessary, other wise not correct... (as seen in some negative values in T9 at sector level)
-  out <- cbind(Exporting_Country = k, rowsum(out, rep(k, each = N), reorder = FALSE))
+  out <- cbind(Country = structure(seq_along(k), levels = k, class = "factor"), 
+               rowsum(out, rep(k, each = N), reorder = FALSE))
   attr(out, "row.names") <- .set_row_names(G)
   attr(out, "decomposition") <- "kww"
   out
 }
 
 
-#' Compute Koopman-Wang-Wei Decomposition from Wang-Wei-Zhu Decomposition
+#' Koopman-Wang-Wei from Wang-Wei-Zhu Decomposition
 #' 
-#' This function by default returns a disaggregated version of the the Koopman-Wang-Wei (KWW) (AER 2014) decomposition breaking up sector-level gross exports into 9 value added terms,
+#' This function by default returns a disaggregated version of the the Koopman-Wang-Wei (KWW) decomposition breaking up sector-level gross exports into 9 value added terms,
 #' from an already computed and more detailed (16 term) Wang-Wei-Zhu decomposition of sector-level gross exports. An aggregation option also allows obtaining the aggregate KWW decomposition. 
 #' 
 #' @param x a data frame with the WWZ decomposition obtained from \code{\link{wwz}}. Alternatively a 'decompr' class object from \code{\link{load_tables_vectors}} can be supplied, which will toggle calling \code{wwz()} first. 
-#' @param aggregate logical. \code{TRUE} aggregates the KWW decomposition to the country level, giving exactly the same outcome as \code{\link{kww}}. \code{FALSE} maintains the sector level decomposition in KWW format. 
+#' @param aggregate logical. \code{TRUE} aggregates the KWW decomposition to the country level, giving exactly the same output as \code{\link{kww}}. \code{FALSE} maintains the sector level decomposition in KWW format. 
 #' @details The mapping of the 16 terms in the WWZ decomposition to the 9 terms in the KWW decomposition is provided in table E2 in the appendix of the WWZ (2013) paper. The table is reproduced here using the term naming 
 #' conventions followed in this package.
 #'
@@ -118,41 +116,41 @@ kww <- function(x) {
 #'  in third countries (i.e. the VA is absorbed by the direct importer, but it may be exported to third countries as intermediates first before returning to direct importer as final goods). \cr\cr\cr
 #'  DVA_INTrexF, DVA_INTrexI2 \tab\tab\tab DVA_INTrex \tab\tab\tab Domestic VA in intermediate exports reexported to third countries and absorbed there. WWZ separates VA in final goods exports 
 #'  of direct importer to third countries from VA in intermediate exports from direct importers to third countries (that is ultimately absorbed in third countries). \cr\cr\cr
-#'  RDV_FIN, RDV_FIN2 \tab\tab\tab RDV_FIN \tab\tab\tab Domestic VA in intermediates that returns home via final imports. WWZ separates final imports from the direct importer and third countries. \cr\cr\cr
-#'  RDV_INT \tab\tab\tab RDV_INT \tab\tab\tab Domestic VA in intermediates that returns via intermediate imports (i.e. is used to produce a locally consumed final good). \cr\cr\cr
+#'  RDV_FIN, RDV_FIN2 \tab\tab\tab RDV_FIN \tab\tab\tab Domestic VA in intermediate exports that returns home via final imports. WWZ separates final imports from the direct importer and third countries. \cr\cr\cr
+#'  RDV_INT \tab\tab\tab RDV_INT \tab\tab\tab Domestic VA in intermediate exports that returns via intermediate imports (i.e. is used to produce a locally consumed final good). \cr\cr\cr
 #'  DDC_FIN, DDC_INT \tab\tab\tab DDC \tab\tab\tab Double counted Domestic Value Added in gross exports. WWZ separates double counting due to final and intermediate exports production. \cr\cr\cr
-#'  OVA_FIN, MVA_FIN \tab\tab\tab FVA_FIN \tab\tab\tab Foreign VA in final goods exports. WWZ separates FVA from direct importer and from third countries.  \cr\cr\cr
-#'  OVA_INT,  MVA_INT \tab\tab\tab FVA_INT \tab\tab\tab Foreign VA in intermediate goods exports. WWZ separates FVA from direct importer and from third countries. \cr\cr\cr
-#'  ODC, MDC \tab\tab\tab FDC \tab\tab\tab Double counted Foreign Value Added in gross exports. WWZ separates FDC from direct importer and from third countries. \cr
+#'  MVA_FIN, OVA_FIN \tab\tab\tab FVA_FIN \tab\tab\tab Foreign VA in final goods exports. WWZ separates FVA from direct importer and from third countries.  \cr\cr\cr
+#'  MVA_INT,  OVA_INT \tab\tab\tab FVA_INT \tab\tab\tab Foreign VA in intermediate exports. WWZ separates FVA from direct importer and from third countries. \cr\cr\cr
+#'  MDC, ODC \tab\tab\tab FDC \tab\tab\tab Double counted Foreign Value Added in gross exports. WWZ separates FDC from direct importer and from third countries. \cr
 #'  }
 #'  
 #' @author Sebastian Krantz
 #' @return A data frame with exports decomposed into 9 components (columns), see the table above and \code{\link{kww}} for a shorter description of the 9 terms.
 #' @note If both WWZ and KWW decompositions are required, it is computationally more efficient to call \code{wwz2kww(x, aggregate = TRUE)} on an already computed WWZ decomposition, than to call \code{\link{kww}} on a 'decompr' object. 
 #' @references Koopman, R., Wang, Z., & Wei, S. J. (2014). Tracing value-added and double counting in gross exports. \emph{American Economic Review, 104}(2), 459-94.
+#' 
+#' Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu (2013). Quantifying international production sharing at the bilateral and sector levels (No. w19677). \emph{National Bureau of Economic Research}.
 #' @export
+#' @seealso \code{\link{wwz}}, \code{\link{kww}}, \code{\link{decompr-package}}
 #' @examples
 #' 
-#' # load example data
+#' # Load example data
 #' data(leather)
 #'
-#' # create intermediate object (class decompr)
-#' decompr_object <- load_tables_vectors(x = inter,
-#'                                       y = final,
-#'                                       k = countries,
-#'                                       i = industries,
-#'                                       o = out        )
+#' # Create intermediate object (class 'decompr')
+#' decompr_object <- load_tables_vectors(leather)
 #'  
-#' # run the WWZ decomposition on the decompr object
+#' # Perform the WWZ decomposition
 #' WWZ <- wwz(decompr_object)
 #' 
-#' # get a disaggregated KWW decomposition
+#' # Obtain a disaggregated KWW decomposition
 #' KWW <- wwz2kww(WWZ)
 #' 
-#' # Aggregated version 
+#' # Aggregate KWW 
 #' wwz2kww(WWZ, aggregate = TRUE)
 #' 
-#' # Same as running KWW directly, but the former is more efficient if we already have the WWZ. 
+#' # Same as running KWW directly, but the former is more efficient 
+#' # if we already have the WWZ
 #' kww(decompr_object)
 
 # This is correct, I checked it !!
@@ -163,19 +161,19 @@ wwz2kww <- function(x, aggregate = FALSE) {
     x <- wwz(x)
   }
   y <- x[, 1:3]
-  list2env(x, environment())
-  y$DVA_FIN <- DVA_FIN
-  y$DVA_INT <- DVA_INT + DVA_INTrexI1
-  y$DVA_INTrex <- DVA_INTrexF + DVA_INTrexI2
-  y$RDV_FIN <- RDV_FIN + RDV_FIN2
-  y$RDV_INT <- RDV_INT
-  y$DDC <- DDC_FIN + DDC_INT
-  y$FVA_FIN <- OVA_FIN + MVA_FIN
-  y$FVA_INT <- OVA_INT + MVA_INT
-  y$FDC <- ODC + MDC
+  oldClass(x) <- NULL # Some extra $ subsetting speed
+  y$DVA_FIN <- x$DVA_FIN
+  y$DVA_INT <- x$DVA_INT + x$DVA_INTrexI1
+  y$DVA_INTrex <- x$DVA_INTrexF + x$DVA_INTrexI2
+  y$RDV_FIN <- x$RDV_FIN + x$RDV_FIN2
+  y$RDV_INT <- x$RDV_INT
+  y$DDC <- x$DDC_FIN + x$DDC_INT
+  y$FVA_FIN <- x$OVA_FIN + x$MVA_FIN
+  y$FVA_INT <- x$OVA_INT + x$MVA_INT
+  y$FDC <- x$ODC + x$MDC
   if(!aggregate) return(`attr<-`(y, "decomposition", "kww"))
-  out <- cbind(Exporting_Country = unique(Exporting_Country), 
-               rowsum(y[, -(1:3)], Exporting_Country, reorder = FALSE))
+  out <- cbind(Country = unique(x$Exporting_Country), 
+               rowsum(y[, -(1:3)], x$Exporting_Country, reorder = FALSE))
   row.names(out) <- NULL
   attr(out, "decomposition") <- "kww"
   out

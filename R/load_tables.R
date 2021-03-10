@@ -1,7 +1,8 @@
-#' Load the Input-Output and Final demand tables
+#' Load the Input-Output and Final Demand Tables: Depreciated Interface
 #' 
 #' This function loads the demand tables
-#' and defines all variables for the decomposition
+#' and defines all variables for the decomposition. It is kept in the package for backward compatibility. New users should use \code{\link{load_tables_vectors}} instead.
+#'
 #' 
 #' @param x the intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
 #'  excluding the first row and the first column which contains the country names,
@@ -11,9 +12,10 @@
 #'  excluding the first row and the first column which contains the country names,
 #'  the second column which contains the industry names for each country,
 #'  and second row which contains the five decomposed final demands (M).
-#' @return a decompr class object
+#' @return A 'decompr' class object.
 #' @author Bastiaan Quast
 #' @details Adapted from code by Fei Wang.
+#' @seealso \code{\link{load_tables_vectors}}
 #' @export
 
 

@@ -1,27 +1,28 @@
 #' Load the Input-Output and Final Demand Tables
 #' 
 #' This function loads the demand tables
-#' and defines all variables for the decomposition.
+#' and creates all matrices and variables required for the GVC decompositions.
 #' 
-#' @param iot Input Output Table object, contains x, y, k, i, and o. If not provided, at least x, y, k and i need to be supplied to the function.
-#' @param x intermediate demand table supplied as a numeric matrix. It has dimensions GN x GN (G = no. of country or regions, N = no. of industries). 
+#' @param iot a Input Output Table object - a list with elements 'inter' (= x), 'final' (= y), 'output' (= o), 'countries' (= k) and 'industries' (= i) of class 'iot'. 
+#' Alternatively these objects can be passed directly to the function, at least x, y, k and i need to be supplied.
+#' @param x intermediate demand table supplied as a numeric matrix of dimensions GN x GN (G = no. of country, N = no. of industries). 
 #' Both rows and columns should be arranged first by country, then by industry (e.g. C1I1, C1I2, ..., C2I1, C2I2, ...) and should match (symmetry), 
 #' such that rows and columns refer to the same country-industries.
-#' @param y final demand table supplied as a numeric matrix. It has dimensions GN x MG (M = no. of final demand categories recorded for each country). 
+#' @param y final demand table supplied as a numeric matrix of dimensions GN x MN (M = no. of final demand categories recorded for each country). 
 #' The rows of y need to match the rows of x, and the columns should also be arranged first by country, then by final demand category (e.g. C1FD1, C1FD2, ..., C2FD1, C2FD2, ...) with the order of the 
-#' countries the same as in x. 
+#' countries the same as in x.
 #' @param k character. A vector of country or region names of length G, arranged in the same order as they occur in the rows and columns of x, y.
 #' @param i character. A vector of country or region names of length N, arranged in the same order as they occur in the rows and columns of x and rows of y.
 #' @param o numeric. A vector of final outputs for each country-industry matching the rows of x and y. If not provided it will be computed as \code{rowSums(x) + rowSums(y)}.
 #' @param v numeric. A vector of value added for each country-industry matching the columns of x. If not provided it will be computed as \code{o - colSums(x)}.
-#' @param null_inventory logical. When the inventory (last final demand category in each country) should be set to zero.
-#' @return a 'decompr' class object - a list with the following elements:
+#' @param null_inventory logical. \code{TRUE} sets the inventory (last final demand category for each country) to zero.
+#' @return A 'decompr' class object - a list with the following elements:
 #'  \tabular{rrrl}{
-#'  Am \tab\tab\tab Imported / Exported goods IO shares matrix (\code{x} row-normalized by output \code{o}, with domestic entries set to 0). \cr
-#'  B  \tab\tab\tab Leontief Inverse matrix (I - A)^(-1) where A is \code{x} row-normalized by output \code{o}. \cr               
-#'  Bd \tab\tab\tab Domestic part of Leontief Inverse matrix (inter-country elements of B set to 0, needed for wwz decomposition). \cr                 
-#'  Bm \tab\tab\tab Imported / Exported part of Leontief Inverse matrix (domestic elements of B set to 0, needed for wwz decomposition). \cr              
-#'  L  \tab\tab\tab Domestic economy Leontief Inverse matrix (I - Ad)^(-1) where Ad is A with all inter-country elements set to 0. \cr
+#'  Am \tab\tab\tab Imported / Exported goods IO shares matrix (\code{x} column-normalized by output \code{o}, with domestic entries set to 0). \cr
+#'  B  \tab\tab\tab Leontief Inverse matrix \eqn{(I - A)^{-1}} where \eqn{A} is \code{x} column-normalized by output \code{o}. \cr               
+#'  Bd \tab\tab\tab Domestic part of Leontief Inverse matrix (inter-country elements of \eqn{B} set to 0, needed for WWZ decomposition). \cr                 
+#'  Bm \tab\tab\tab Imported / Exported part of Leontief Inverse matrix (domestic elements of \eqn{B} set to 0, needed for WWZ decomposition). \cr              
+#'  L  \tab\tab\tab Domestic economy Leontief Inverse matrix \eqn{(I - Ad)^{-1}} where \eqn{Ad} is \eqn{A} with all inter-country elements set to 0. \cr
 #'  E  \tab\tab\tab Total Exports (output of each country-industry servicing foreign production or foreign final demand). \cr
 #'  ESR \tab\tab\tab Total Exports by destination country. \cr
 #'  Eint \tab\tab\tab Exports for intermediate production by destination country. \cr
@@ -40,20 +41,16 @@
 #'  }
 #' @author Bastiaan Quast
 #' @details Adapted from code by Fei Wang.
-#' @import methods
 #' @export
+#' @seealso \code{\link{leontief}}, \code{\link{kww}}, \code{\link{wwz}}, \code{\link{decompr-package}}
 #' @examples
-#' # load example data
+#' # Load example data
 #' data(leather)
 #' 
-#' # create intermediate object (class decompr)
-#' decompr_object <- load_tables_vectors(x = inter,
-#'                                       y = final,
-#'                                       k = countries,
-#'                                       i = industries,
-#'                                       o = out)
+#' # Create intermediate object (class 'decompr')
+#' decompr_object <- load_tables_vectors(leather)
 #' 
-#' # examine output object                                    
+#' # Examine the object                                    
 #' str(decompr_object)
 
 
@@ -61,12 +58,12 @@ load_tables_vectors <- function(iot, x, y, k, i, o = NULL, v = NULL,
                                 null_inventory = FALSE) {
   
     ## extract objects from iot object
-    if(methods::hasArg(iot) && inherits(iot, 'iot')) {
+    if(!missing(iot) && inherits(iot, 'iot')) {
       x <- iot$inter
       y <- iot$final
-      o <- iot$output
       k <- iot$countries
       i <- iot$industries
+      o <- iot$output
     }
     
     # Some extra checks at little cost: sometimes IO data is wrongly imported or pre-processed

@@ -4,56 +4,50 @@
 #' 
 #' @param x an object of the class 'decompr' obtained from \code{\link{load_tables_vectors}}.
 #' @param verbose logical, should timings of the calculation be displayed? Default is FALSE
-#' @return the decomposed table
 #' @author Bastiaan Quast
 #' @details Adapted from code by Fei Wang.
-#' @return a data frame with exports decomposed into 16 components (columns), as detailed in Table E1 in the appendix of the paper, and additional diagnostic items:
+#' @return A data frame with exports decomposed into 16 components (columns), as detailed in Table E1 in the appendix of the paper, and additional diagnostic items:
 #'  \tabular{llll}{
-#'  \emph{Term} \tab\tab\tab \emph{Description} \cr
-#'  DVA_FIN \tab\tab\tab Domestic Value Added in final goods exports \cr
-#'  DVA_INT \tab\tab\tab Domestic Value Added in intermediate exports used by direct importer to produce its domestic final goods and consumed there \cr
-#'  DVA_INTrexI1 \tab\tab\tab Domestic Value Added in intermediate exports used by the direct importer to produce intermediate exports for production of domestic used final goods in third countries \cr
-#'  DVA_INTrexF \tab\tab\tab Domestic Value Added in intermediate exports used by the direct importer to produce final goods exports to third countries \cr
-#'  DVA_INTrexI2 \tab\tab\tab Domestic Value Added in Intermediate exports used by the direct importer to produce intermediate exports to third countries \cr
-#'  RDV_INT \tab\tab\tab Returned Domestic Value Added in intermediate imports used produce final goods consumed at home \cr
-#'  RDV_FIN \tab\tab\tab Returned Domestic Value Added in final goods imports from the direct importer \cr
-#'  RDV_FIN2 \tab\tab\tab Returned Domestic Value Added in final goods imports via third countries \cr
-#'  OVA_FIN \tab\tab\tab Third countries’ Value Added in exporting country’s final goods exports \cr
-#'  MVA_FIN \tab\tab\tab Direct importer’s Value Added in exporting country’s final goods exports \cr
-#'  OVA_INT \tab\tab\tab Third countries’ Value Added in exporting country’s intermediate goods exports \cr
-#'  MVA_INT \tab\tab\tab Direct importer’s Value Added in exporting country’s intermediate goods exports \cr
-#'  DDC_FIN \tab\tab\tab Double counted Domestic Value Added used to produce final goods exports \cr
-#'  DDC_INT \tab\tab\tab Double counted Domestic Value Added used to produce intermediate exports \cr
-#'  ODC \tab\tab\tab Third countries’ Value Added double counted in home country’s exports production \cr
-#'  MDC \tab\tab\tab Direct importer’s Value Added double counted in home country’s exports production \cr\cr\cr
-#'  \emph{Diagnostic Item} \tab\tab\tab \emph{Description} \cr
-#'  texp \tab\tab\tab Total Exports (matrix 'ESR' from \code{\link{load_tables_vectors}}) \cr
-#'  texpint \tab\tab\tab Exports for intermediate production (matrix 'Eint' from \code{\link{load_tables_vectors}}) \cr
-#'  texpfd \tab\tab\tab Exports for final demand (matrix 'Efd' from \code{\link{load_tables_vectors}}) \cr
-#'  texpdiff \tab\tab\tab Difference between Total Exports and the sum of the 16 terms \cr
-#'  texpdiffpercent \tab\tab\tab ... in percent of total exports \cr
-#'  texpfddiff \tab\tab\tab Difference between Final Exports and the sum of terms DVA_FIN, OVA_FIN and MVA_FIN \cr
-#'  texpfddiffpercent \tab\tab\tab ... in percent of final exports \cr
-#'  texpintdiff \tab\tab\tab Difference between Intermediate Exports and the sum of all the remaining terms (except DVA_FIN, OVA_FIN and MVA_FIN) \cr
-#'  texpintdiffpercent \tab\tab\tab ... in percent of intermediate exports \cr
-#'  DViX_Fsr \tab\tab\tab  \cr
+#'  \emph{Term} \tab\tab\tab \emph{Description} \cr\cr\cr
+#'  DVA_FIN \tab\tab\tab Domestic VA in final goods exports. \cr\cr\cr
+#'  DVA_INT \tab\tab\tab Domestic VA in intermediate exports used by direct importer to produce domestic final goods consumed at home. \cr\cr\cr
+#'  DVA_INTrexI1 \tab\tab\tab Domestic VA in intermediate exports used by the direct importer to produce intermediate exports for production of final goods in third countries that are then imported and consumed by the direct importer. \cr\cr\cr
+#'  DVA_INTrexF \tab\tab\tab Domestic VA in intermediate exports used by the direct importer to produce final goods exports to third countries. \cr\cr\cr
+#'  DVA_INTrexI2 \tab\tab\tab Domestic VA in Intermediate exports used by the direct importer to produce intermediate exports to third countries. \cr\cr\cr
+#'  RDV_INT \tab\tab\tab Domestic VA in intermediate exports that returns via intermediate imports (i.e. is used to produce a locally consumed final good). \cr\cr\cr
+#'  RDV_FIN \tab\tab\tab Domestic VA in intermediate exports that returns home via final goods imports from the direct importer. \cr\cr\cr
+#'  RDV_FIN2 \tab\tab\tab Domestic VA in intermediate exports that returns home via in final goods imports from third countries. \cr\cr\cr
+#'  OVA_FIN \tab\tab\tab Third countries’ VA in final goods exports. \cr\cr\cr
+#'  MVA_FIN \tab\tab\tab Direct importer’s VA in final goods exports. \cr\cr\cr
+#'  OVA_INT \tab\tab\tab Third countries’ VA in intermediate exports. \cr\cr\cr
+#'  MVA_INT \tab\tab\tab Direct importer’s VA in intermediate exports. \cr\cr\cr
+#'  DDC_FIN \tab\tab\tab Double counted Domestic VA used to produce final goods exports. \cr\cr\cr
+#'  DDC_INT \tab\tab\tab Double counted Domestic VA used to produce intermediate exports. \cr\cr\cr
+#'  ODC \tab\tab\tab Double counted third countries’ VA in home country’s exports production. \cr\cr\cr
+#'  MDC \tab\tab\tab Double counted direct importer’s VA in home country’s exports production. \cr\cr\cr\cr\cr\cr\cr
+#'  \emph{Diagnostic Item} \tab\tab\tab \emph{Description} \cr\cr\cr
+#'  texp \tab\tab\tab Total Exports (matrix 'ESR' from \code{\link{load_tables_vectors}}). \cr\cr\cr
+#'  texpint \tab\tab\tab Exports for intermediate production (matrix 'Eint' from \code{\link{load_tables_vectors}}). \cr\cr\cr
+#'  texpfd \tab\tab\tab Exports for final demand (matrix 'Efd' from \code{\link{load_tables_vectors}}). \cr\cr\cr
+#'  texpdiff \tab\tab\tab Difference between Total Exports and the sum of the 16 terms. \cr\cr\cr
+#'  texpdiffpercent \tab\tab\tab ... in percent of total exports. \cr\cr\cr
+#'  texpfddiff \tab\tab\tab Difference between Final Exports and the sum of terms DVA_FIN, OVA_FIN and MVA_FIN. \cr\cr\cr
+#'  texpfddiffpercent \tab\tab\tab ... in percent of final exports. \cr\cr\cr
+#'  texpintdiff \tab\tab\tab Difference between Intermediate Exports and the sum of all the remaining terms (except DVA_FIN, OVA_FIN and MVA_FIN). \cr\cr\cr
+#'  texpintdiffpercent \tab\tab\tab ... in percent of intermediate exports. \cr\cr\cr
+#'  DViX_Fsr \tab\tab\tab DVA embodied in gross exports based on forward linkage. \cr
 #'  }
-#' @references Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu.
-#' Quantifying international production sharing at the bilateral and sector levels. 
-#' No. w19677. National Bureau of Economic Research, 2013.
+#' @references Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu (2013). Quantifying international production sharing at the bilateral and sector levels (No. w19677). \emph{National Bureau of Economic Research}.
 #' @export
+#' @seealso \code{\link{kww}}, \code{\link{wwz2kww}}, \code{\link{decompr-package}}
 #' @examples
-#' # load example data
+#' # Load example data
 #' data(leather)
 #' 
-#' # create intermediate object (class decompr)
-#' decompr_object <- load_tables_vectors(x = inter,
-#'                                       y = final,
-#'                                       k = countries,
-#'                                       i = industries,
-#'                                       o = out        )
+#' # Create intermediate object (class 'decompr')
+#' decompr_object <- load_tables_vectors(leather)
 #' 
-#' # run the WWZ decomposition on the decompr object
+#' # Perform the WWZ decomposition
 #' wwz(decompr_object)
 
 wwz <- function(x, verbose = FALSE) {
@@ -61,6 +55,7 @@ wwz <- function(x, verbose = FALSE) {
     if(!inherits(x, "decompr")) stop("x must be an object of class 'decompr' created by the load_tables_vectors() function.")
     
     # This loads all the elements into the current function namespace, and avoids 165 calls to x$... some of which are done inside loops.
+    GN <- G <- ESR <- Eint <- Efd <- Bd <- Vc <- Ym <- L <- Am <- Yd <- N <- Bm <- X <- E <- k <- i <- NULL # First need to initialize as NULL to avoid R CMD check error. 
     list2env(x, environment())
     
     ## Part 1: Decomposing Export into VA (16 items) defining ALL to
