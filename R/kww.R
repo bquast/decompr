@@ -50,7 +50,7 @@ kww <- function(x) {
   # Elements in the diagonal columns give each country’s production of value added absorbed at home. 
   # Exports of value added can be defined as the elements in the off-diagonal columns of this GN × G matrix
   i1 <- rep(1:N, G)
-  i2 <- rep(0:(N-1L), each = G)
+  i2 <- rep(0:(G-1L), each = N)
   idiag <- i1 + (N * i2) + (GN * i2)
   VBY[idiag] <- 0
   # Obviously it excludes value added produced by the home country that returns home after being processed abroad.
