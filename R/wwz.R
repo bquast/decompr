@@ -90,7 +90,7 @@ wwz <- function(x, verbose = FALSE) {
     ## Efd <- NULL
     
     # Unit vector will come in handy in several places
-    u <- rep.int(1L, GN)
+    # u <- rep.int(1L, GN)
     
     ##
     ## all Terms are numbered as in Table A2 in the Appendix of WWZ
@@ -156,7 +156,7 @@ wwz <- function(x, verbose = FALSE) {
     for (r in 1:G) {
         m <- 1L + (r - 1L) * N
         n <- N + (r - 1L) * N
-        ALL[, r, 3L] <- VsLss.colSums * rowSums(z3[, m:n])
+        ALL[, r, 3L] <- VsLss.colSums * rowSums2(z3, cols = m:n)
     }
     
     if(verbose) {
@@ -179,7 +179,7 @@ wwz <- function(x, verbose = FALSE) {
     for (r in 1:G) {
         m <- 1L + (r - 1L) * N
         n <- N + (r - 1L) * N
-        ALL[, r, 4L] <- VsLss.colSums * rowSums(z2[, m:n])
+        ALL[, r, 4L] <- VsLss.colSums * rowSums2(z2, cols = m:n)
     }
     
     if(verbose) {
@@ -200,7 +200,7 @@ wwz <- function(x, verbose = FALSE) {
     for (r in 1:G) {
         m <- 1L + (r - 1L) * N
         n <- N + (r - 1L) * N
-        ALL[, r, 5L] <- VsLss.colSums * rowSums(z2[, m:n])
+        ALL[, r, 5L] <- VsLss.colSums * rowSums2(z2, cols = m:n)
     }
     if(verbose) {
         elapsed <- round(Sys.time() - start, digits = 3L)
@@ -227,7 +227,7 @@ wwz <- function(x, verbose = FALSE) {
     for (r in 1:G) {
         m <- 1L + (r - 1L) * N
         n <- N + (r - 1L) * N
-        ALL[, r, 6L] <- VsLss.colSums * rowSums(z1[, m:n])
+        ALL[, r, 6L] <- VsLss.colSums * rowSums2(z1, cols = m:n)
     }
     
     if(verbose) {
@@ -248,7 +248,7 @@ wwz <- function(x, verbose = FALSE) {
     for (r in 1:G) {
         m <- 1L + (r - 1L) * N
         n <- N + (r - 1L) * N
-        ALL[, r, 7L] <- VsLss.colSums * rowSums(z1[, m:n])
+        ALL[, r, 7L] <- VsLss.colSums * rowSums2(z1, cols = m:n)
     }
     if(verbose) {
         elapsed <- round(Sys.time() - start, digits = 3L)
@@ -269,7 +269,7 @@ wwz <- function(x, verbose = FALSE) {
     for (r in 1:G) {
         m <- 1L + (r - 1L) * N
         n <- N + (r - 1L) * N
-        ALL[, r, 8L] <- VsLss.colSums * rowSums(z2[, m:n])
+        ALL[, r, 8L] <- VsLss.colSums * rowSums2(z2, cols = m:n)
     }
     if(verbose) {
         elapsed <- round(Sys.time() - start, digits = 3L)
@@ -287,14 +287,14 @@ wwz <- function(x, verbose = FALSE) {
     for (r in 1:G) {
         m <- 1L + (r - 1L) * N
         n <- N + (r - 1L) * N
-        z[m:n, m:n] <- rowSums(Ym[m:n, ])
+        z[m:n, m:n] <- rowSums2(Ym, rows = m:n)
     }
     
     z1 <- Am * t(Bm %*% z)
     for (r in 1:G) {
         m <- 1L + (r - 1L) * N
         n <- N + (r - 1L) * N
-        ALL[, r, 13L] <- VsLss.colSums * rowSums(z1[, m:n])
+        ALL[, r, 13L] <- VsLss.colSums * rowSums2(z1, cols = m:n)
     }
     if(verbose) {
         elapsed <- round(Sys.time() - start, digits = 3L)
@@ -303,13 +303,13 @@ wwz <- function(x, verbose = FALSE) {
     }
     
     ## Part 2-10 == H10-(10): DDC_INT
-    Am_X <- Am * outer(u, X)
+    Am_X <- .Call(C_rowmult, Am, X) # Am * outer(u, X)
     Vc_Bd_VsLss.colsums <- Bd_Vhat_sum - VsLss.colSums
     
     for (r in 1:G) {
         m <- 1L + (r - 1L) * N
         n <- N + (r - 1L) * N
-        ALL[, r, 14L] <- Vc_Bd_VsLss.colsums * rowSums(Am_X[, m:n])
+        ALL[, r, 14L] <- Vc_Bd_VsLss.colsums * rowSums2(Am_X, cols = m:n)
     }
     
     if(verbose) {
@@ -328,9 +328,9 @@ wwz <- function(x, verbose = FALSE) {
         ## YYsr[, 1:GN] <- Ym[, r]
         ## z <- VrBrs * t(YYsr)
         ## just as fast, but more memory efficient
-        z <- VrBrs * outer(u, Ym[, r])
-        ALL[, r, 9L] <- colSums(z[-(m:n), ])  # OVA_FIN[ ,r ]
-        ALL[, r, 10L] <- colSums(z[m:n, ])  # MVA_FIN[ ,r ]
+        z <- .Call(C_rowmult, VrBrs, Ym[, r]) # VrBrs * outer(u, Ym[, r])
+        ALL[, r, 9L] <- colSums2(z, rows = -(m:n))  # OVA_FIN[ ,r ]
+        ALL[, r, 10L] <- colSums2(z, rows = m:n)  # MVA_FIN[ ,r ]
     }
     
     if(verbose) {
@@ -358,10 +358,10 @@ wwz <- function(x, verbose = FALSE) {
         
         ## better is:
         zz <- colSums(Am_L_t * Yd[, r])
-        z <- VrBrs * outer(u, zz)
+        z <- .Call(C_rowmult, VrBrs, zz) # VrBrs * outer(u, zz)
                 
-        ALL[, r, 11L] <- colSums(z[-(m:n), ])  #   OVA_INT[ ,r ]
-        ALL[, r, 12L] <- colSums(z[m:n, ])  #  MVA_INT[ ,r ]
+        ALL[, r, 11L] <- colSums2(z, rows = -(m:n))  #   OVA_INT[ ,r ]
+        ALL[, r, 12L] <- colSums2(z, rows = m:n)  #  MVA_INT[ ,r ]
     }
     
     if(verbose) {
@@ -380,10 +380,10 @@ wwz <- function(x, verbose = FALSE) {
         ## EEr[m:n, 1:GN] <- E[m:n]
         ## z <- VrBrs * t(Am_L %*% EEr)
         zz <- colSums(Am_L_t * `[<-`(Er, m:n, value = E[m:n]))
-        z <- VrBrs * outer(u, zz)
+        z <- .Call(C_rowmult, VrBrs, zz) # VrBrs * outer(u, zz)
 
-        ALL[, r, 15L] <- colSums(z[-(m:n), ])  # ODC[ ,r ]
-        ALL[, r, 16L] <- colSums(z[m:n, ])  # MDC[ ,r ]
+        ALL[, r, 15L] <- colSums2(z, rows = -(m:n))  # ODC[ ,r ]
+        ALL[, r, 16L] <- colSums2(z, rows = m:n)  # MDC[ ,r ]
     }
     
     if(verbose) {
@@ -414,23 +414,21 @@ wwz <- function(x, verbose = FALSE) {
     ## checking the differences resulted in texp, texpfd, texpintdiff
 
     ## Total Export goods difference
-    texpdiff <- rowSums(ALLandTotal[, 1:16]) - ALLandTotal[, 17L]
+    texpdiff <- rowSums2(ALLandTotal, cols = 1:16) - ALLandTotal[, 17L]
     texpdiffpercent <- texpdiff / ALLandTotal[, 17L] * 100
     texpdiffpercent[is.na(texpdiffpercent)] <- 0
     texpdiff <- round(texpdiff, 4L)
     texpdiffpercent <- round(texpdiffpercent, 4L)
 
     ## Total Export Final goods difference
-    texpfddiff <- ALLandTotal[, 1L] + ALLandTotal[, 9L] + ALLandTotal[, 10L] - 
-        ALLandTotal[, 19L]
+    texpfddiff <- rowSums2(ALLandTotal, cols = c(1L, 9L, 10L)) - ALLandTotal[, 19L]
     texpfddiffpercent <- texpfddiff / ALLandTotal[, 19L] * 100
     texpfddiffpercent[is.na(texpfddiffpercent)] <- 0
     texpfddiff <- round(texpfddiff, 4L)
     texpfddiffpercent <- round(texpfddiffpercent, 4L)
 
     ## Total intermediate export goods difference
-    texpintdiff <- rowSums(ALLandTotal[, 2:8]) + rowSums(ALLandTotal[, 
-        11:16]) - ALLandTotal[, 18L]
+    texpintdiff <- rowSums2(ALLandTotal, cols = c(2:8, 11:16)) - ALLandTotal[, 18L]
     texpintdiffpercent <- texpintdiff/ALLandTotal[, 18L] * 100
     texpintdiffpercent[is.na(texpintdiffpercent)] <- 0
     texpintdiff <- round(texpintdiff, 4L)

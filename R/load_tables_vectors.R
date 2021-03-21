@@ -127,7 +127,8 @@ load_tables_vectors <- function(iot, x, y, k, i, o = NULL, v = NULL,
         message("v supplied is different from o - colSums(x). ", m)
     }
     
-    A <- x / outer(rep.int(1L, GN), o) # Significantly faster than:  t(t(x) / o)
+    # A <- x / outer(rep.int(1L, GN), o) # Significantly faster than:  t(t(x) / o)
+    A <- .Call(C_rowmult, x, 1 / o)
     A[!is.finite(A)] <- 0
     Am <- A
 
@@ -158,7 +159,7 @@ load_tables_vectors <- function(iot, x, y, k, i, o = NULL, v = NULL,
             m <- 1L + (j - 1L) * fdc
             n <- fdc + (j - 1L) * fdc
 
-            Y[, j] <- rowSums(y[, m:n])
+            Y[, j] <- rowSums2(y, cols = m:n)
         }
     } else if(fdc == 1L) {
         Y <- y
@@ -194,10 +195,10 @@ load_tables_vectors <- function(iot, x, y, k, i, o = NULL, v = NULL,
         r <- GN + fdc + (j - 1L) * fdc
 
         ## Final goods exports
-        Efd[, j] <- if (s == r) z[, s] else rowSums(z[, s:r])
+        Efd[, j] <- if (s == r) z[, s] else rowSums2(z, cols = s:r)
 
         ## intermediate exports
-        Eint[, j] <- rowSums(z[, m:n])
+        Eint[, j] <- rowSums2(z, cols = m:n)
 
         ## Total exports
         ESR[, j] <- Eint[, j] + Efd[, j]

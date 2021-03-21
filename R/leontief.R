@@ -58,10 +58,10 @@ leontief <- function(x,
                   ## out.old <- V %*% diag(rowSums(ESR))
                   ## sweep(V, 2, rowSums(ESR), `*`)
                   ## sum(abs(out.old - out))
-                  exports = V * outer(rep.int(1L, GN), E), 
+                  exports = .Call(C_rowmult, V, E), # V * outer(rep.int(1L, GN), E), 
                   ## out <- V %*% diag(X)
                   ## sweep(V, 2, X, `*`)
-                  output = V * outer(rep.int(1L, GN), X),
+                  output = .Call(C_rowmult, V, X), # V * outer(rep.int(1L, GN), X),
                   ## out <- sweep(V, 2, Y, `*`)
                   final_demand = V %*% Y,
                   none = V)
