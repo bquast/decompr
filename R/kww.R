@@ -43,10 +43,9 @@ kww <- function(x) {
   
   # breaking up gross output according to where it is ultimately absorbed...
   Xc <- B %*% Y                  # Xc = 'Gross output decomposition matrix'
-  VB <- diag(Vc) %*% B
-  dimnames(VB) <- dimnames(B)
+  VB <- Vc * B
   # Value added by destination of final absorption (domestic and exported VA)
-  VBY <- Xc * Vc  # VBY = value-added production matrix (same as diag(Vc) %*% Xc)
+  VBY <- Vc * Xc   # VBY = value-added production matrix (same as diag(Vc) %*% Xc)
   # Elements in the diagonal columns give each country’s production of value added absorbed at home. 
   # Exports of value added can be defined as the elements in the off-diagonal columns of this GN × G matrix
   i1 <- rep(1:N, G)
