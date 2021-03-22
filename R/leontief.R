@@ -70,20 +70,20 @@ leontief <- function(x,
     if (isTRUE(long)) {
       
       out <- as.vector(t(out))
-      l <- length(out)
-      
+      sk <- seq_along(k)
+      si <- seq_along(i)
       out <- switch(post,
-                    final_demand = list(Source_Country = factor(rep(k, each = GN), levels = k),
-                                        Source_Industry = factor(rep(i, times = G, each = G), levels = i),
-                                        Importing_Country = factor(rep(k, times = GN), levels = k),
+                    final_demand = list(Source_Country = structure(rep(sk, each = GN), levels = k, class = "factor"),
+                                        Source_Industry = structure(rep(si, times = G, each = G), levels = i, class = "factor"),
+                                        Importing_Country = structure(rep(sk, times = GN), levels = k, class = "factor"),
                                         Final_Demand = out),
-                    list(Source_Country = factor(rep(k, each = GN * N), levels = k),
-                         Source_Industry = factor(rep(i, times = G, each = GN), levels = i),
-                         Using_Country = factor(rep(k, times = GN, each = N), levels = k),
-                         Using_Industry = factor(rep(i, times = GN * G), levels = i),
+                    list(Source_Country = structure(rep(sk, each = GN * N), levels = k, class = "factor"),
+                         Source_Industry = structure(rep(si, times = G, each = GN), levels = i, class = "factor"),
+                         Using_Country = structure(rep(sk, times = GN, each = N), levels = k, class = "factor"),
+                         Using_Industry = structure(rep(si, times = GN * G), levels = i, class = "factor"),
                          FVAX = out))
       
-      attr(out, "row.names") <- .set_row_names(l)
+      attr(out, "row.names") <- .set_row_names(length(out))
       class(out) <- "data.frame"
       
       ## set long attribute to TRUE

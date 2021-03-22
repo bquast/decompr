@@ -434,9 +434,10 @@ wwz <- function(x, verbose = FALSE) {
     texpintdiff <- round(texpintdiff, 4L)
     texpintdiffpercent <- round(texpintdiffpercent, 4L)
     
-    ALLandTotal <- c(list(Exporting_Country = factor(rep(k, each = GN), levels = k),
-                          Exporting_Industry = factor(rep(i, times = G, each = G), levels = i),
-                          Importing_Country = factor(rep(k, times = GN), levels = k)),
+    sk <- seq_along(k)
+    ALLandTotal <- c(list(Exporting_Country = structure(rep(sk, each = GN), levels = k, class = "factor"),
+                          Exporting_Industry = structure(rep(seq_along(i), times = G, each = G), levels = i, class = "factor"),
+                          Importing_Country = structure(rep(sk, times = GN), levels = k, class = "factor")),
                         setNames(lapply(1:ncol(ALLandTotal), function(i) ALLandTotal[, i]), colnames(ALLandTotal)),
                         list(texpdiff = texpdiff,
                         texpdiffpercent = texpdiffpercent,
