@@ -119,11 +119,16 @@ wwz <- function(x, verbose = FALSE) {
     ## DVA_INT: DVA in intermediate exports used by direct importer (r) to produce local final products
     ## 
 
-    ## Term 2
     VsLss <- Vc * L
-    VsLss.colSums <- colSums(VsLss)
+    ## try to calculate DViX_Fsr
+    DViX_Fsr <- t(VsLss %*% ESR)
+    dim(DViX_Fsr) <- NULL
     
-    ALL[, , 2L] <- Am %*% Bd %*% Yd * VsLss.colSums
+    ## Term 2
+    VsLss_colSums <- colSums(VsLss)
+    rm(VsLss)
+    
+    ALL[, , 2L] <- Am %*% Bd %*% Yd * VsLss_colSums
 
     if(verbose) {
         elapsed <- round(Sys.time() - start, digits = 3L)
@@ -140,24 +145,25 @@ wwz <- function(x, verbose = FALSE) {
     ## Term 3: DVA in intermediate exports used to produce intermediates that are re-exported to third countries for production of local final products
     z1 <- matrix(rowSums(Yd), nrow = GN, ncol = GN)
     for (r in 1:G) {
-        m <- 1L + (r - 1L) * N
-        n <- N + (r - 1L) * N
-        z1[m:n, m:n] <- 0
+        q <- (r - 1L) * N
+        mn <- (1L + q):(N + q) 
+        z1[mn, mn] <- 0
     }
 
     z2 <- Bm %*% z1
     for (r in 1:G) {
-        m <- 1L + (r - 1L) * N
-        n <- N + (r - 1L) * N
-        z2[m:n, m:n] <- 0
+        q <- (r - 1L) * N
+        mn <- (1L + q):(N + q) 
+        z2[mn, mn] <- 0
     }
 
     z3 <- Am * t(z2)
     for (r in 1:G) {
-        m <- 1L + (r - 1L) * N
-        n <- N + (r - 1L) * N
-        ALL[, r, 3L] <- VsLss.colSums * rowSums2(z3, cols = m:n)
+        q <- (r - 1L) * N
+        mn <- (1L + q):(N + q) 
+        ALL[, r, 3L] <- VsLss_colSums * rowSums2(z3, cols = mn)
     }
+    rm(z3)
     
     if(verbose) {
         elapsed <- round(Sys.time() - start, digits = 3L)
@@ -169,17 +175,17 @@ wwz <- function(x, verbose = FALSE) {
     z <- matrix(0, nrow = GN, ncol = GN)
     z1 <- rowSums(Ym)
     for (r in 1:G) {
-        m <- 1L + (r - 1L) * N
-        n <- N + (r - 1L) * N
-        z[, m:n] <- z1 - Ym[, r]
-        z[m:n, m:n] <- 0
+        q <- (r - 1L) * N
+        mn <- (1L + q):(N + q) 
+        z[, mn] <- z1 - Ym[, r]
+        z[mn, mn] <- 0
     }
     
     z2 <- Am * t(Bd %*% z)
     for (r in 1:G) {
-        m <- 1L + (r - 1L) * N
-        n <- N + (r - 1L) * N
-        ALL[, r, 4L] <- VsLss.colSums * rowSums2(z2, cols = m:n)
+        q <- (r - 1L) * N
+        mn <- (1L + q):(N + q) 
+        ALL[, r, 4L] <- VsLss_colSums * rowSums2(z2, cols = mn)
     }
     
     if(verbose) {
@@ -191,16 +197,16 @@ wwz <- function(x, verbose = FALSE) {
     ## Term 5: DVA in intermediate exports used by r to produce intermediates that are re-exported to t for the latter’s production of final exports that are shipped to other countries except Country s
     z1 <- t(Bm %*% z)
     for (r in 1:G) {
-        m <- 1L + (r - 1L) * N
-        n <- N + (r - 1L) * N
-        z1[m:n, m:n] <- 0
+        q <- (r - 1L) * N
+        mn <- (1L + q):(N + q) 
+        z1[mn, mn] <- 0
     }
     
     z2 <- Am * z1
     for (r in 1:G) {
-        m <- 1L + (r - 1L) * N
-        n <- N + (r - 1L) * N
-        ALL[, r, 5L] <- VsLss.colSums * rowSums2(z2, cols = m:n)
+        q <- (r - 1L) * N
+        mn <- (1L + q):(N + q) 
+        ALL[, r, 5L] <- VsLss_colSums * rowSums2(z2, cols = mn)
     }
     if(verbose) {
         elapsed <- round(Sys.time() - start, digits = 3L)
@@ -218,16 +224,16 @@ wwz <- function(x, verbose = FALSE) {
     ## Term 6: DVA that returns home via its final imports from r
     z <- matrix(0, nrow = GN, ncol = GN)
     for (r in 1:G) {
-        m <- 1L + (r - 1L) * N
-        n <- N + (r - 1L) * N
-        z[, m:n] <- Yd[, r]
+        q <- (r - 1L) * N
+        mn <- (1L + q):(N + q) 
+        z[, mn] <- Yd[, r]
     }
     
     z1 <- Am * t(Bm %*% z)
     for (r in 1:G) {
-        m <- 1L + (r - 1L) * N
-        n <- N + (r - 1L) * N
-        ALL[, r, 6L] <- VsLss.colSums * rowSums2(z1, cols = m:n)
+        q <- (r - 1L) * N
+        mn <- (1L + q):(N + q) 
+        ALL[, r, 6L] <- VsLss_colSums * rowSums2(z1, cols = mn)
     }
     
     if(verbose) {
@@ -239,16 +245,16 @@ wwz <- function(x, verbose = FALSE) {
     ## Term 7: DVA that returns home via final imports from third countries
     z <- matrix(0, nrow = GN, ncol = GN)
     for (r in 1:G) {
-        m <- 1L + (r - 1L) * N
-        n <- N + (r - 1L) * N
-        z[, m:n] <- Ym[, r]
+        q <- (r - 1L) * N
+        mn <- (1L + q):(N + q) 
+        z[, mn] <- Ym[, r]
     }
     
     z1 <- Am * t(Bd %*% z)
     for (r in 1:G) {
-        m <- 1L + (r - 1L) * N
-        n <- N + (r - 1L) * N
-        ALL[, r, 7L] <- VsLss.colSums * rowSums2(z1, cols = m:n)
+        q <- (r - 1L) * N
+        mn <- (1L + q):(N + q) 
+        ALL[, r, 7L] <- VsLss_colSums * rowSums2(z1, cols = mn)
     }
     if(verbose) {
         elapsed <- round(Sys.time() - start, digits = 3L)
@@ -260,17 +266,18 @@ wwz <- function(x, verbose = FALSE) {
     ## Term 8: DVA that returns home via its intermediate imports and used to produce domestic final products
     z1 <- Bm %*% z
     for (r in 1:G) {
-        m <- 1L + (r - 1L) * N
-        n <- N + (r - 1L) * N
-        z1[m:n, m:n] <- 0
+        q <- (r - 1L) * N
+        mn <- (1L + q):(N + q) 
+        z1[mn, mn] <- 0
     }
     
     z2 <- Am * t(z1)
     for (r in 1:G) {
-        m <- 1L + (r - 1L) * N
-        n <- N + (r - 1L) * N
-        ALL[, r, 8L] <- VsLss.colSums * rowSums2(z2, cols = m:n)
+        q <- (r - 1L) * N
+        mn <- (1L + q):(N + q) 
+        ALL[, r, 8L] <- VsLss_colSums * rowSums2(z2, cols = mn)
     }
+    rm(z2)
     if(verbose) {
         elapsed <- round(Sys.time() - start, digits = 3L)
         message("8/16, elapsed time: ", elapsed, " seconds")
@@ -285,17 +292,18 @@ wwz <- function(x, verbose = FALSE) {
     ## Part 2-9 == H10-(9): DDC_FIN OK ! : DVA embodied in its intermediate exports to Country r but returns home as its intermediate imports, and used for production of its final exports
     z <- matrix(0, nrow = GN, ncol = GN)
     for (r in 1:G) {
-        m <- 1L + (r - 1L) * N
-        n <- N + (r - 1L) * N
-        z[m:n, m:n] <- rowSums2(Ym, rows = m:n)
+        q <- (r - 1L) * N
+        mn <- (1L + q):(N + q) 
+        z[mn, mn] <- rowSums2(Ym, rows = mn)
     }
     
     z1 <- Am * t(Bm %*% z)
     for (r in 1:G) {
-        m <- 1L + (r - 1L) * N
-        n <- N + (r - 1L) * N
-        ALL[, r, 13L] <- VsLss.colSums * rowSums2(z1, cols = m:n)
+        q <- (r - 1L) * N
+        mn <- (1L + q):(N + q) 
+        ALL[, r, 13L] <- VsLss_colSums * rowSums2(z1, cols = mn)
     }
+    rm(z1)
     if(verbose) {
         elapsed <- round(Sys.time() - start, digits = 3L)
         message("9/16, elapsed time: ", elapsed, " seconds")
@@ -304,12 +312,12 @@ wwz <- function(x, verbose = FALSE) {
     
     ## Part 2-10 == H10-(10): DDC_INT
     Am_X <- .Call(C_rowmult, Am, X) # Am * outer(u, X)
-    Vc_Bd_VsLss.colsums <- Bd_Vhat_sum - VsLss.colSums
+    Vc_Bd_VsLss_colsums <- Bd_Vhat_sum - VsLss_colSums
     
     for (r in 1:G) {
-        m <- 1L + (r - 1L) * N
-        n <- N + (r - 1L) * N
-        ALL[, r, 14L] <- Vc_Bd_VsLss.colsums * rowSums2(Am_X, cols = m:n)
+        q <- (r - 1L) * N
+        mn <- (1L + q):(N + q) 
+        ALL[, r, 14L] <- Vc_Bd_VsLss_colsums * rowSums2(Am_X, cols = mn)
     }
     
     if(verbose) {
@@ -323,14 +331,14 @@ wwz <- function(x, verbose = FALSE) {
     VrBrs <- Vc * Bm
     # YYsr <- matrix(0, nrow = GN, ncol = GN)
     for (r in 1:G) {
-        m <- 1L + (r - 1L) * N
-        n <- N + (r - 1L) * N
+        q <- (r - 1L) * N
+        mn <- (1L + q):(N + q) 
         ## YYsr[, 1:GN] <- Ym[, r]
         ## z <- VrBrs * t(YYsr)
         ## just as fast, but more memory efficient
         z <- .Call(C_rowmult, VrBrs, Ym[, r]) # VrBrs * outer(u, Ym[, r])
-        ALL[, r, 9L] <- colSums2(z, rows = -(m:n))  # OVA_FIN[ ,r ]
-        ALL[, r, 10L] <- colSums2(z, rows = m:n)  # MVA_FIN[ ,r ]
+        ALL[, r, 9L] <- colSums2(z, rows = -mn)  # OVA_FIN[ ,r ]
+        ALL[, r, 10L] <- colSums2(z, rows = mn)  # MVA_FIN[ ,r ]
     }
     
     if(verbose) {
@@ -349,8 +357,8 @@ wwz <- function(x, verbose = FALSE) {
     # YYrr <- matrix(0, nrow = GN, ncol = GN)
     Am_L_t <- t(Am %*% L)
     for (r in 1:G) {
-        m <- 1L + (r - 1L) * N
-        n <- N + (r - 1L) * N
+        q <- (r - 1L) * N
+        mn <- (1L + q):(N + q) 
 
         ## message("r: ", r, "  --> m: ", m, "  n: ", n)
         ## YYrr[, 1:GN] <- Yd[, r]
@@ -360,8 +368,8 @@ wwz <- function(x, verbose = FALSE) {
         zz <- colSums(Am_L_t * Yd[, r])
         z <- .Call(C_rowmult, VrBrs, zz) # VrBrs * outer(u, zz)
                 
-        ALL[, r, 11L] <- colSums2(z, rows = -(m:n))  #   OVA_INT[ ,r ]
-        ALL[, r, 12L] <- colSums2(z, rows = m:n)  #  MVA_INT[ ,r ]
+        ALL[, r, 11L] <- colSums2(z, rows = -mn)  #   OVA_INT[ ,r ]
+        ALL[, r, 12L] <- colSums2(z, rows = mn)  #  MVA_INT[ ,r ]
     }
     
     if(verbose) {
@@ -371,20 +379,23 @@ wwz <- function(x, verbose = FALSE) {
     }    
     ## Part 2-13 == H10-(13): MDC
     ## =[ VrBrs#AsrLrrEr* ] == H10-(16): ODC =[ Sum(VtBts)#AsrLrrEr* ] OK !
-    Er <- rep.int(0L, GN)
+    # Er <- rep.int(0L, GN)
+    Am_L_t <- Am_L_t * E
     for (r in 1:G) {
-        m <- 1L + (r - 1L) * N
-        n <- N + (r - 1L) * N
+        q <- (r - 1L) * N
+        mn <- (1L + q):(N + q)
 
         ## EEr <- matrix(0, nrow = GN, ncol = GN)
         ## EEr[m:n, 1:GN] <- E[m:n]
         ## z <- VrBrs * t(Am_L %*% EEr)
-        zz <- colSums(Am_L_t * `[<-`(Er, m:n, value = E[m:n]))
+        # zz <- colSums(Am_L_t * `[<-`(Er, m:n, value = E[m:n]))
+        zz <- colSums2(Am_L_t, rows = mn)
         z <- .Call(C_rowmult, VrBrs, zz) # VrBrs * outer(u, zz)
 
-        ALL[, r, 15L] <- colSums2(z, rows = -(m:n))  # ODC[ ,r ]
-        ALL[, r, 16L] <- colSums2(z, rows = m:n)  # MDC[ ,r ]
+        ALL[, r, 15L] <- colSums2(z, rows = -mn)  # ODC[ ,r ]
+        ALL[, r, 16L] <- colSums2(z, rows = mn)  # MDC[ ,r ]
     }
+    rm(Am_L_t, VrBrs)
     
     if(verbose) {
         elapsed <- round(Sys.time() - start, digits = 3L)
@@ -392,9 +403,7 @@ wwz <- function(x, verbose = FALSE) {
     }
     
     
-    ## try to calculate DViX_Fsr
-    DViX_Fsr <- t(VsLss %*% ESR)
-    dim(DViX_Fsr) <- NULL
+
     
     # dimnames(ALL) <- list(rownam, k, decomp19)
 
