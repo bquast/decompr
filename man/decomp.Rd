@@ -2,7 +2,7 @@
 % Please edit documentation in R/decomp.R
 \name{decomp}
 \alias{decomp}
-\title{Interface function for decompositions}
+\title{Interface Function for Decompositions}
 \usage{
 decomp(
   iot,
@@ -10,91 +10,75 @@ decomp(
   y,
   k,
   i,
-  o,
-  v,
-  method = c("leontief", "wwz"),
-  verbose = FALSE,
+  o = NULL,
+  v = NULL,
+  method = c("leontief", "kww", "wwz"),
   ...
 )
 }
 \arguments{
-\item{iot}{Input Output Table object, contains x, y, k, i, and o}
+\item{iot}{a Input Output Table object - a list with elements 'inter' (= x), 'final' (= y), 'output' (= o), 'countries' (= k) and 'industries' (= i) of class 'iot'. 
+Alternatively these objects can be passed directly to the function, at least x, y, k and i need to be supplied.}
 
-\item{x}{intermediate demand table, it has dimensions GN x GN (G = no. of country, N = no. of industries),
-excluding the first row and the first column which contains the country names,
-and the second row and second column which contain the industry names for each country.
-In addition, an extra row at the end should contain final demand.}
+\item{x}{intermediate demand table supplied as a numeric matrix of dimensions GN x GN (G = no. of country, N = no. of industries). 
+Both rows and columns should be arranged first by country, then by industry (e.g. C1I1, C1I2, ..., C2I1, C2I2, ...) and should match (symmetry), 
+such that rows and columns refer to the same country-industries.}
 
-\item{y}{final demand table it has dimensions GN x MN,
-excluding the first row and the first column which contains the country names,
-the second column which contains the industry names for each country,
-and second row which contains the five decomposed final demands (M).
-#' @param k is a vector of country of region names}
+\item{y}{final demand table supplied as a numeric matrix of dimensions GN x MN (M = no. of final demand categories recorded for each country). 
+The rows of y need to match the rows of x, and the columns should also be arranged first by country, then by final demand category (e.g. C1FD1, C1FD2, ..., C2FD1, C2FD2, ...) with the order of the 
+countries the same as in x.}
 
-\item{k}{vector or country or region names}
+\item{k}{character. A vector of country or region names of length G, arranged in the same order as they occur in the rows and columns of x, y.}
 
-\item{i}{vector of sector or industry names}
+\item{i}{character. A vector of country or region names of length N, arranged in the same order as they occur in the rows and columns of x and rows of y.}
 
-\item{o}{vector of final outputs}
+\item{o}{numeric. A vector of final outputs for each country-industry matching the rows of x and y. If not provided it will be computed as \code{rowSums(x) + rowSums(y)}.}
 
-\item{v}{vector of value added, optional. If this vector is not specified, value added will be calculated as gross output - intermediate consumption}
+\item{v}{numeric. A vector of value added for each country-industry matching the columns of x. If not provided it will be computed as \code{o - colSums(x)}.}
 
-\item{method}{user specified the decomposition method}
+\item{method}{character. The decomposition method, either \code{"leontief"}, \code{"kww"} or \code{"wwz"}.}
 
-\item{verbose}{logical, should timings of the calculation be displayed? Default is FALSE}
-
-\item{...}{arguments to pass on the respective decomposition method}
+\item{\dots}{further arguments passed to \code{\link{leontief}}, \code{\link{kww}} or \code{\link{wwz}}.}
 }
 \value{
-The output when using the WWZ algorithm is a matrix with dimensions GNG*19.
- Whereby 19 is the 16 objects the WWZ algorithm decomposes exports into, plus three checksums.
- GNG represents source country, using industry and using country.
+Depends on the decomposition, see \code{\link{leontief}}, \code{\link{kww}} or \code{\link{wwz}}.
+ % The output when using the WWZ algorithm is a matrix with dimensions GNG*19.
+ % Whereby 19 is the 16 objects the WWZ algorithm decomposes exports into, plus three checksums.
+ % GNG represents source country, using industry and using country.
 }
 \description{
-This function runs the decomposition.
-NOTE: the default method is now "leontief", please specify method="wwz" explicitly for Wang-Wei-Zhu.
-See http://qua.st/decompr/decompr-v2/ for more information.
+This function loads an ICIO table and runs a specified decomposition. It provides a compact interface for quick analysis.
 }
 \details{
-Version 2 introduces several important changes, the default method is now leontief, which means that wwz has to be specified explicitly.
-Furthermore, the input object have a different structure, see the information below for details.
+For more detailed analysis with multiple decompositions consider using 
+\code{\link{load_tables_vectors}} to create a 'decompr' class object and then run the decomposition functions \code{\link{leontief}}, \code{\link{kww}} and \code{\link{wwz}} on the object.
 }
 \examples{
-# load leather example data
+# Load leather example data
 data(leather)
 
-# explore the data set
-ls()
+# Explore the data
+str(leather)
 
-# explore each of the objects
-inter
-final
-countries
-industries
-out
+## Decomposing gross exports:
 
-# use the direct approach
+# Perform the Leontief decomposition
+decomp(leather, method = "leontief")
 
-# run the Leontief decomposition
-decomp(x = inter,
-       y = final,
-       k = countries,
-       i = industries,
-       o = out,
-       method = "leontief")
+# Perform the KWW decomposition
+decomp(leather, method = "kww")
 
-# run the WWZ decomposition
-decomp(x = inter,
-       y = final,
-       k = countries,
-       i = industries,
-       o = out,
-       method = "wwz")
+# Perform the WWZ decomposition
+decomp(leather, method = "wwz")
+
 }
 \references{
-{Timmer, Marcel P. (ed) (2012), "The World Input-Output Database (WIOD): Contents Sources and Methods", WIOD Working Paper Number 10, downloadable at http://www.wiod.org/publications/papers/wiod10.pdf }
+{Timmer, Marcel P. (ed) (2012), "The World Input-Output Database (WIOD): Contents Sources and Methods", \emph{WIOD Working Paper Number 10}, downloadable at http://www.wiod.org/publications/papers/wiod10.pdf }
 
-{Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu. Quantifying international production sharing at the bilateral and sector levels. No. w19677. National Bureau of Economic Research, 2013.}
+{Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu (2013). Quantifying international production sharing at the bilateral and sector levels. \emph{No. w19677. National Bureau of Economic Research}.}
+}
+\seealso{
+\code{\link{decompr-package}}
 }
 \author{
 Bastiaan Quast

@@ -3,6 +3,7 @@ library(decompr)
 
 # load test data
 data(leather)
+list2env(leather, environment())
 
 # WWZ decomposition
 w <- decomp(x = inter,

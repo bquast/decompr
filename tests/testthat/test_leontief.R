@@ -3,6 +3,7 @@ context("leontief")
 
 # load test data
 data(leather)
+list2env(leather, environment())
 
 # leontief decomposition
 # n.b. using default method (Leontief)

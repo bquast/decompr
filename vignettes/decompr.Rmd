@@ -20,42 +20,39 @@ We start by loading the package and the included example data set.
 ```{r}
 library(decompr)
 data(leather)
+str(leather)
 ```
 
-Listing the data objects included
+<!-- Listing the data objects included -->
 
-```{r}
-ls()
-```
+<!-- ```{r} -->
+<!-- ls() -->
+<!-- ``` -->
 
-Viewing each individual object
+<!-- Viewing each individual object -->
 
-```{r}
-inter
-final
-countries
-industries
-out
-```
+<!-- ```{r} -->
+<!-- inter -->
+<!-- final -->
+<!-- countries -->
+<!-- industries -->
+<!-- out -->
+<!-- ``` -->
 
 ## Leontief decomposition
 
 ```{r}
-decomp(x=inter,
-       y=final,
-       k=countries,
-       i=industries,
-       o=out,
-       method = "leontief")
+decomp(leather, method = "leontief")
+```
+
+## Koopman-Wang-Wei decomposition
+
+```{r}
+decomp(leather, method = "kww")
 ```
 
 ## Wang-Wei-Zhu decomposition
 
 ```{r}
-decomp(x=inter,
-       y=final,
-       k=countries,
-       i=industries,
-       o=out,
-       method = "wwz")
+decomp(leather, method = "wwz")
 ```
