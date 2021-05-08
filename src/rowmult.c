@@ -4,6 +4,8 @@
 SEXP rowmult(SEXP x, SEXP v) {
   SEXP dim = getAttrib(x, R_DimSymbol);
   if(isNull(dim)) error("x is not a matrix");
+  if(TYPEOF(x) != REALSXP) error("x needs to be numeric (not integer)");
+  if(TYPEOF(v) != REALSXP) error("v needs to be numeric (not integer)");
   int row = INTEGER(dim)[0], col = INTEGER(dim)[1];
   if(length(v) != col) error("ncol(x) needs to be equal to length(v)");
   SEXP out = PROTECT(allocVector(REALSXP, row * col));
