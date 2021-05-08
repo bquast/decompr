@@ -70,6 +70,7 @@ leontief <- function(x,
     if (isTRUE(long)) {
       
       out <- as.vector(t(out))
+      nr <- length(out)
       sk <- seq_along(k)
       si <- seq_along(i)
       out <- switch(post,
@@ -83,7 +84,7 @@ leontief <- function(x,
                          Using_Industry = structure(rep(si, times = GN * G), levels = i, class = "factor"),
                          FVAX = out))
       
-      attr(out, "row.names") <- .set_row_names(length(out))
+      attr(out, "row.names") <- .set_row_names(nr)
       class(out) <- "data.frame"
       
       ## set long attribute to TRUE
