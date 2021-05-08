@@ -57,6 +57,7 @@ decomp <- function(iot, x, y, k, i, o = NULL, v = NULL,
   if(missing(x)) {
     decompr_obj <- load_tables_vectors(iot = iot)
   } else {
+    if(!missing(iot)) stop("Please either supply an 'iot' object or at least matrices 'x', 'y', 'k' and 'i'.")
     decompr_obj <- load_tables_vectors(x = x, y = y, k = k, i = i, o = o, v = v)
   }
 
