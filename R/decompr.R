@@ -4,7 +4,8 @@
 #' @author
 #' Bastiaan Quast \email{bquast@@gmail.com}\cr
 #' Fei Wang\cr
-#' Victor Kummritz
+#' Victor Kummritz\cr
+#' Sebastian Krantz
 #' @description Three global value chain (GVC) decompositions are implemented. The Leontief decomposition 
 #' derives the value added origin of exports by country and industry as in Hummels, Ishii and Yi (2001). 
 #' The Koopman, Wang and Wei (2014) decomposition splits country-level exports into 9 value added components, 
