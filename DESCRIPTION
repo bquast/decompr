@@ -23,7 +23,7 @@ Authors@R: c(
                 email = "bquast@gmail.com"), 
          person("Fei", "Wang", role = "aut"), 
          person("Victor", "Kummritz", role = "aut"), 
-         person("Oliver", "Reiter", role = "ctb")
+         person("Oliver", "Reiter", role = "ctb"),
          person("Sebastian", "Krantz", role = "ctb")
          )
 Maintainer: Bastiaan Quast <bquast@gmail.com>
