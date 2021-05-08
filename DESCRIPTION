@@ -23,18 +23,20 @@ Authors@R: c(
                 email = "bquast@gmail.com"), 
          person("Fei", "Wang", role = "aut"), 
          person("Victor", "Kummritz", role = "aut"), 
-         person("Oliver", "Reiter", role = "ctb")
+         person("Oliver", "Reiter", role = "ctb"),
+         person("Sebastian", "Krantz", role = "ctb")
          )
 Maintainer: Bastiaan Quast <bquast@gmail.com>
 Depends: R (>= 3.5.0)
 Imports: matrixStats
 License: GPL-3
-URL: https://qua.st/decompr, https://github.com/bquast/decompr
+URL: https://qua.st/decompr/, https://github.com/bquast/decompr
 BugReports: https://github.com/bquast/decompr/issues
 Suggests:
     gvc,
     testthat,
     knitr,
+    rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 7.1.1
 Encoding: UTF-8
