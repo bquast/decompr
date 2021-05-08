@@ -24,6 +24,7 @@ Authors@R: c(
          person("Fei", "Wang", role = "aut"), 
          person("Victor", "Kummritz", role = "aut"), 
          person("Oliver", "Reiter", role = "ctb")
+         person("Sebastian", "Krantz", role = "ctb")
          )
 Maintainer: Bastiaan Quast <bquast@gmail.com>
 Depends: R (>= 3.5.0)
