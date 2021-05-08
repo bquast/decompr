@@ -79,7 +79,7 @@ kww <- function(x) {
   for(s in 1:G) {
     is <- 1L + (s - 1L) * N
     is <- is:(is + N - 1L)
-    tmp <- rowsum(Vc[-is] * B[-is, is], ifac, reorder = FALSE) # rowsum is the r sum, -is is the t sum...
+    tmp <- rowsum(x_OP_y(B, Vc, "*", -is, is, -is), ifac, reorder = FALSE) # x_OP_y statement same as Vc[-is] * B[-is, is] but faster # rowsum is the r sum, -is is the t sum...
     T7[is] <- tmp %*% Yms[is]        # FVA in final goods exports
     T8[is] <- tmp %*% AmLYds[is]     # FVA in intermediate goods exports
   }
