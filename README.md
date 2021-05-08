@@ -3,7 +3,7 @@ decompr
 [![License](http://img.shields.io/badge/license-GPLv3-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0.html)
 [![CRAN Version](http://www.r-pkg.org/badges/version/decompr)](https://cran.r-project.org/package=decompr)
 [![R build status](https://github.com/bquast/decompr/workflows/R-CMD-check/badge.svg)](https://github.com/bquast/decompr/actions?workflow=R-CMD-check)
-[![Coverage Status](https://img.shields.io/codecov/c/github/bquast/decompr/master.svg)](https://codecov.io/bquast/decompr/decompr?branch=master)
+[![Coverage status](https://codecov.io/gh/bquast/gvc/branch/master/graph/badge.svg?token=deFpCmSnfW)](https://codecov.io/gh/bquast/gvc)
 [![Total RStudio Cloud Downloads](http://cranlogs.r-pkg.org/badges/grand-total/decompr?color=brightgreen)](https://cran.r-project.org/package=decompr)
 [![Monthly RStudio Cloud Downloads](http://cranlogs.r-pkg.org/badges/decompr?color=brightgreen)](https://cran.r-project.org/package=decompr)
 
