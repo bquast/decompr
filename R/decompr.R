@@ -42,7 +42,7 @@
 #' 
 #' Wang, Zhi, Shang-Jin Wei, and Kunfu Zhu (2013). Quantifying international production sharing at the bilateral and sector levels (No. w19677). \emph{National Bureau of Economic Research}.
 #' @importFrom stats setNames
-#' @importFrom matrixStats rowSums2 colSums2
+#' @importFrom matrixStats rowSums2 colSums2 x_OP_y
 #' @useDynLib decompr, .registration = TRUE
 NULL
 
