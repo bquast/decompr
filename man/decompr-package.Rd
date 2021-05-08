@@ -49,5 +49,6 @@ http://qua.st/decompr
 \author{
 Bastiaan Quast \email{bquast@gmail.com}\cr
 Fei Wang\cr
-Victor Kummritz
+Victor Kummritz\cr
+Sebastian Krantz
 }
