@@ -1,8 +1,9 @@
 decompr 6.0.0
 =======================
-* added Koopman-Wang-Wei (KWW)
-* 2x speed improvements
-
+* Added Koopman-Wang-Wei (KWW) decompositon and function to aggregate WWZ to KWW decomposition
+* 2x performance improvement through C-code and matrixStats dependency
+* Improved code security through additional checks
+* Enhanced documentation providing more details about methods and resulting objects
 
 decompr 5.2.0
 =======================
