@@ -1,5 +1,5 @@
 Package: decompr
-Version: 6.0.0
+Version: 6.0.0.9000
 Title: Global Value Chain Decomposition
 Description: Three global value chain (GVC) decompositions are implemented. 
     The Leontief decomposition derives the value added origin of exports by 
