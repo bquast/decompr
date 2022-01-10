@@ -35,7 +35,7 @@
 #'
 #' \code{\link[=leather]{data("leather")}}
 #'
-#' @seealso http://qua.st/decompr
+#' @seealso https://qua.st/decompr
 #' @references 
 #' Hummels, D., Ishii, J., & Yi, K. M. (2001). The nature and growth of vertical specialization in world trade. \emph{Journal of international Economics, 54}(1), 75-96.
 #' 
