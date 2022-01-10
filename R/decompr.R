@@ -65,6 +65,7 @@ NULL
 #' @seealso \code{\link{decompr-package}}
 NULL
 .onAttach <- function(...) {
-  packageStartupMessage('Please consider citing both R and decompr,
-using citation() and citation("decompr")
+  packageStartupMessage('Please consider citing R and decompr,
+using citation()
+citation("decompr")
 ')}
