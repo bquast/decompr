@@ -1,3 +1,8 @@
+decompr 6.2.0
+=======================
+* documentation updates
+
+
 decompr 6.0.0
 =======================
 * Added Koopman-Wang-Wei (KWW) decompositon and function to aggregate WWZ to KWW decomposition
