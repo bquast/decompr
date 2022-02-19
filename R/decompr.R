@@ -4,7 +4,7 @@
 #' @author
 #' Bastiaan Quast \email{bquast@@gmail.com}\cr
 #' Fei Wang\cr
-#' Victor Kummritz\cr
+#' Victor Stolzenburg\cr
 #' Sebastian Krantz
 #' @description Three global value chain (GVC) decompositions are implemented. The Leontief decomposition 
 #' derives the value added origin of exports by country and industry as in Hummels, Ishii and Yi (2001). 
@@ -35,7 +35,7 @@
 #'
 #' \code{\link[=leather]{data("leather")}}
 #'
-#' @seealso http://qua.st/decompr
+#' @seealso https://qua.st/decompr/
 #' @references 
 #' Hummels, D., Ishii, J., & Yi, K. M. (2001). The nature and growth of vertical specialization in world trade. \emph{Journal of international Economics, 54}(1), 75-96.
 #' 
@@ -65,6 +65,7 @@ NULL
 #' @seealso \code{\link{decompr-package}}
 NULL
 .onAttach <- function(...) {
-  packageStartupMessage('Please consider citing both R and decompr,
-using citation() and citation("decompr")
-')}
+  packageStartupMessage("Please consider citing R and decompr,
+using citation()
+citation('decompr')
+")}

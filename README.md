@@ -3,7 +3,7 @@ decompr
 [![License](http://img.shields.io/badge/license-GPLv3-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0.html)
 [![CRAN Version](http://www.r-pkg.org/badges/version/decompr)](https://cran.r-project.org/package=decompr)
 [![R build status](https://github.com/bquast/decompr/workflows/R-CMD-check/badge.svg)](https://github.com/bquast/decompr/actions?workflow=R-CMD-check)
-[![Coverage status](https://codecov.io/gh/bquast/decompr/branch/master/graph/badge.svg?token=eKinPv6wxA)](https://codecov.io/gh/bquast/decompr)
+[![Coverage status](https://codecov.io/gh/bquast/decompr/branch/master/graph/badge.svg?token=eKinPv6wxA)](https://app.codecov.io/gh/bquast/decompr)
 [![Total RStudio Cloud Downloads](http://cranlogs.r-pkg.org/badges/grand-total/decompr?color=brightgreen)](https://cran.r-project.org/package=decompr)
 [![Monthly RStudio Cloud Downloads](http://cranlogs.r-pkg.org/badges/decompr?color=brightgreen)](https://cran.r-project.org/package=decompr)
 
@@ -80,7 +80,7 @@ news(package='decompr')
 
 There is a dedicated website with information hosted on my [personal website](https://qua.st/).
 
-https://qua.st/decompr
+https://qua.st/decompr/
 
 
 Development
