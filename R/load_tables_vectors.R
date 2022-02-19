@@ -12,7 +12,7 @@
 #' The rows of y need to match the rows of x, and the columns should also be arranged first by country, then by final demand category (e.g. C1FD1, C1FD2, ..., C2FD1, C2FD2, ...) with the order of the 
 #' countries the same as in x.
 #' @param k character. A vector of country or region names of length G, arranged in the same order as they occur in the rows and columns of x, y.
-#' @param i character. A vector of country or region names of length N, arranged in the same order as they occur in the rows and columns of x and rows of y.
+#' @param i character. A vector of industry names of length N, arranged in the same order as they occur in the rows and columns of x and rows of y.
 #' @param o numeric. A vector of final outputs for each country-industry matching the rows of x and y. If not provided it will be computed as \code{rowSums(x) + rowSums(y)}.
 #' @param v numeric. A vector of value added for each country-industry matching the columns of x. If not provided it will be computed as \code{o - colSums(x)}.
 #' @param null_inventory logical. \code{TRUE} sets the inventory (last final demand category for each country) to zero.
