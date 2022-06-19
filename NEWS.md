@@ -1,3 +1,10 @@
+decompr 6.4.0
+=======================
+* redo documentation
+* small general fixes
+* add ORCID
+
+
 decompr 6.2.0
 =======================
 * documentation updates
