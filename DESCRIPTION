@@ -1,5 +1,5 @@
 Package: decompr
-Version: 6.2.0
+Version: 6.4.0
 Title: Global Value Chain Decomposition
 Description: Three global value chain (GVC) decompositions are implemented. 
     The Leontief decomposition derives the value added origin of exports by 
@@ -38,6 +38,6 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
 Encoding: UTF-8
 NeedsCompilation: yes
